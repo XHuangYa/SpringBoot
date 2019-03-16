@@ -4,38 +4,49 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>         <!--数据库驱动路径 -->
     <classPathEntry
-            location="F:\Program Files\SBootMaven\m2\repository\mysql\mysql-connector-java\8.0.15\mysql-connector-java-8.0.15.jar"/>
+            location="/Users/liting/workSpace/IntelijIDEAPto/maven/Repository/mysql/mysql-connector-java/8.0.15/mysql-connector-java-8.0.15.jar "/>
     <context id="DB2Tables" targetRuntime="MyBatis3">
+        <!-- 使用criteria代替Examples自动生成结尾 如这里会在dao下生成MyInfoCriteria 否则默认的为MyInfoExample-->
+        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+            <property name="searchString" value="Example$" />
+            <property name="replaceString" value="Criteria" />
+        </plugin>
         <commentGenerator>
             <property name="suppressAllComments" value="true" />
         </commentGenerator>
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/mysql?serverTimezone=GMT%2B8" userId="root"  password="123456">
+                        connectionURL="jdbc:mysql://localhost:3306/bakery?serverTimezone=GMT%2B8" userId="root"  password="960218lee">
         </jdbcConnection>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
         <!--域模型层,生成的目标包,项目目标源文件 -->
-        <javaModelGenerator targetPackage="com.example.springboot.model"
+        <javaModelGenerator targetPackage="com.bakery.application.entity"
                             targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
         <!--XML映射文件,生成的位置（目标包）,源代码文件夹 -->
-        <sqlMapGenerator targetPackage="com.example.springboot.mapperxml"
+        <sqlMapGenerator targetPackage="com.bakery.application.mapperxml"
                          targetProject="src/main/resources">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
         <!--XML对应的Mapper类 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.example.springboot.mapper"
+                             targetPackage="com.bakery.application.mapper"
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
         <!--下面是数据库表名和项目中需要生成类的名称，建议和数据库保持一致，如果有多个表，添加多个节点即可 -->
-        <table tableName="person" domainObjectName="Person"
+        <table tableName="bky_base_data" domainObjectName="BaseData"
                enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true"></table>
+               selectByExampleQueryId="true">
+        </table>
+        <table tableName="bky_dictionary" domainObjectName="Dictionary"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
     </context>
 </generatorConfiguration>

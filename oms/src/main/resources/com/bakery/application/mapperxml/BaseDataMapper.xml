@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bakery.application.mapper.BaseDataMapper" >
+  <resultMap id="BaseResultMap" type="com.bakery.application.entity.BaseData" >
+    <id column="DATA_CODE" property="dataCode" jdbcType="VARCHAR" />
+    <result column="ID" property="id" jdbcType="INTEGER" />
+    <result column="DICT_ID" property="dictId" jdbcType="VARCHAR" />
+    <result column="DATA_NAME" property="dataName" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="SORT" property="sort" jdbcType="INTEGER" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    DATA_CODE, ID, DICT_ID, DATA_NAME, STATUS, SORT, REMARK
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bakery.application.entity.BaseDataCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bky_base_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from bky_base_data
+    where DATA_CODE = #{dataCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from bky_base_data
+    where DATA_CODE = #{dataCode,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bakery.application.entity.BaseDataCriteria" >
+    delete from bky_base_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bakery.application.entity.BaseData" >
+    insert into bky_base_data (DATA_CODE, ID, DICT_ID, 
+      DATA_NAME, STATUS, SORT, 
+      REMARK)
+    values (#{dataCode,jdbcType=VARCHAR}, #{id,jdbcType=INTEGER}, #{dictId,jdbcType=VARCHAR}, 
+      #{dataName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bakery.application.entity.BaseData" >
+    insert into bky_base_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dataCode != null" >
+        DATA_CODE,
+      </if>
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="dictId != null" >
+        DICT_ID,
+      </if>
+      <if test="dataName != null" >
+        DATA_NAME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="sort != null" >
+        SORT,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dataCode != null" >
+        #{dataCode,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dictId != null" >
+        #{dictId,jdbcType=VARCHAR},
+      </if>
+      <if test="dataName != null" >
+        #{dataName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bakery.application.entity.BaseDataCriteria" resultType="java.lang.Integer" >
+    select count(*) from bky_base_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update bky_base_data
+    <set >
+      <if test="record.dataCode != null" >
+        DATA_CODE = #{record.dataCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.dictId != null" >
+        DICT_ID = #{record.dictId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataName != null" >
+        DATA_NAME = #{record.dataName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.sort != null" >
+        SORT = #{record.sort,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update bky_base_data
+    set DATA_CODE = #{record.dataCode,jdbcType=VARCHAR},
+      ID = #{record.id,jdbcType=INTEGER},
+      DICT_ID = #{record.dictId,jdbcType=VARCHAR},
+      DATA_NAME = #{record.dataName,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=INTEGER},
+      SORT = #{record.sort,jdbcType=INTEGER},
+      REMARK = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bakery.application.entity.BaseData" >
+    update bky_base_data
+    <set >
+      <if test="id != null" >
+        ID = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dictId != null" >
+        DICT_ID = #{dictId,jdbcType=VARCHAR},
+      </if>
+      <if test="dataName != null" >
+        DATA_NAME = #{dataName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        SORT = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DATA_CODE = #{dataCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bakery.application.entity.BaseData" >
+    update bky_base_data
+    set ID = #{id,jdbcType=INTEGER},
+      DICT_ID = #{dictId,jdbcType=VARCHAR},
+      DATA_NAME = #{dataName,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      SORT = #{sort,jdbcType=INTEGER},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where DATA_CODE = #{dataCode,jdbcType=VARCHAR}
+  </update>
+</mapper>
