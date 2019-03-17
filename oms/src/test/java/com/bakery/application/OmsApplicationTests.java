@@ -12,12 +12,5 @@ import java.util.List;
 @SpringBootTest
 public class OmsApplicationTests {
 
-    @Autowired
-    UserDAO userDAO;
-    @Test
-    public void contextLoads() {
-        List<User> users = userDAO.select();
-        System.out.println(users+"-----");
-    }
 
 }
