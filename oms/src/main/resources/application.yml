@@ -17,12 +17,12 @@ spring:
     testOnBorrow: false
     testOnReturn: false
     poolPreparedStatement: true
-    filters: stat,wall,log4j
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
 mybatis:
   config-location: classpath:sqlMapconfig.xml
-  mapper-locations: classpath:mapper/*.xml
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.bakery.application.entity
 
 
 

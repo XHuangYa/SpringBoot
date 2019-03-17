@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>         <!--数据库驱动路径 -->
     <classPathEntry
-            location="/Users/liting/workSpace/IntelijIDEAPto/maven/Repository/mysql/mysql-connector-java/8.0.15/mysql-connector-java-8.0.15.jar "/>
+            location="/Users/liting/workSpace/IntelijIDEAPto/maven/Repository/mysql/mysql-connector-java/8.0.15/mysql-connector-java-8.0.15.jar"/>
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <!-- 使用criteria代替Examples自动生成结尾 如这里会在dao下生成MyInfoCriteria 否则默认的为MyInfoExample-->
         <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
@@ -44,9 +44,44 @@
                selectByExampleQueryId="true">
         </table>
         <table tableName="bky_dictionary" domainObjectName="Dictionary"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
+               enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+        </table>
+        <table tableName="bky_emp" domainObjectName="Employee"
+               enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+        </table>
+        <table tableName="bky_order" domainObjectName="Order"
+               enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+        </table>
+        <table tableName="bky_order_dtl" domainObjectName="OrderDtl"
+               enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+        </table>
+        <table tableName="bky_pdt" domainObjectName="Product"
+               enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+        </table>
+        <table tableName="bky_stock" domainObjectName="Stock"
+               enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+        </table>
+        <table tableName="bky_store" domainObjectName="Store"
+               enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+        </table>
+        <table tableName="bky_user" domainObjectName="User"
+               enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
         </table>
     </context>
 </generatorConfiguration>
