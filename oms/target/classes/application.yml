@@ -22,6 +22,7 @@ spring:
 mybatis:
   config-location: classpath:sqlMapconfig.xml
   mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.bakery.application.entity
 
 
 

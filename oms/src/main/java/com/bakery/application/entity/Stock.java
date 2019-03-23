@@ -9,9 +9,7 @@ public class Stock {
 
     private String storeId;
 
-    private String pdtId;
-
-    private String pdtCode;
+    private String orderDtlId;
 
     private Date inTime;
 
@@ -53,20 +51,12 @@ public class Stock {
         this.storeId = storeId == null ? null : storeId.trim();
     }
 
-    public String getPdtId() {
-        return pdtId;
+    public String getOrderDtlId() {
+        return orderDtlId;
     }
 
-    public void setPdtId(String pdtId) {
-        this.pdtId = pdtId == null ? null : pdtId.trim();
-    }
-
-    public String getPdtCode() {
-        return pdtCode;
-    }
-
-    public void setPdtCode(String pdtCode) {
-        this.pdtCode = pdtCode == null ? null : pdtCode.trim();
+    public void setOrderDtlId(String orderDtlId) {
+        this.orderDtlId = orderDtlId == null ? null : orderDtlId.trim();
     }
 
     public Date getInTime() {

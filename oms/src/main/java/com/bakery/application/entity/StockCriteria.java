@@ -332,143 +332,73 @@ public class StockCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andPdtIdIsNull() {
-            addCriterion("PDT_ID is null");
+        public Criteria andOrderDtlIdIsNull() {
+            addCriterion("ORDER_DTL_ID is null");
             return (Criteria) this;
         }
 
-        public Criteria andPdtIdIsNotNull() {
-            addCriterion("PDT_ID is not null");
+        public Criteria andOrderDtlIdIsNotNull() {
+            addCriterion("ORDER_DTL_ID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPdtIdEqualTo(String value) {
-            addCriterion("PDT_ID =", value, "pdtId");
+        public Criteria andOrderDtlIdEqualTo(String value) {
+            addCriterion("ORDER_DTL_ID =", value, "orderDtlId");
             return (Criteria) this;
         }
 
-        public Criteria andPdtIdNotEqualTo(String value) {
-            addCriterion("PDT_ID <>", value, "pdtId");
+        public Criteria andOrderDtlIdNotEqualTo(String value) {
+            addCriterion("ORDER_DTL_ID <>", value, "orderDtlId");
             return (Criteria) this;
         }
 
-        public Criteria andPdtIdGreaterThan(String value) {
-            addCriterion("PDT_ID >", value, "pdtId");
+        public Criteria andOrderDtlIdGreaterThan(String value) {
+            addCriterion("ORDER_DTL_ID >", value, "orderDtlId");
             return (Criteria) this;
         }
 
-        public Criteria andPdtIdGreaterThanOrEqualTo(String value) {
-            addCriterion("PDT_ID >=", value, "pdtId");
+        public Criteria andOrderDtlIdGreaterThanOrEqualTo(String value) {
+            addCriterion("ORDER_DTL_ID >=", value, "orderDtlId");
             return (Criteria) this;
         }
 
-        public Criteria andPdtIdLessThan(String value) {
-            addCriterion("PDT_ID <", value, "pdtId");
+        public Criteria andOrderDtlIdLessThan(String value) {
+            addCriterion("ORDER_DTL_ID <", value, "orderDtlId");
             return (Criteria) this;
         }
 
-        public Criteria andPdtIdLessThanOrEqualTo(String value) {
-            addCriterion("PDT_ID <=", value, "pdtId");
+        public Criteria andOrderDtlIdLessThanOrEqualTo(String value) {
+            addCriterion("ORDER_DTL_ID <=", value, "orderDtlId");
             return (Criteria) this;
         }
 
-        public Criteria andPdtIdLike(String value) {
-            addCriterion("PDT_ID like", value, "pdtId");
+        public Criteria andOrderDtlIdLike(String value) {
+            addCriterion("ORDER_DTL_ID like", value, "orderDtlId");
             return (Criteria) this;
         }
 
-        public Criteria andPdtIdNotLike(String value) {
-            addCriterion("PDT_ID not like", value, "pdtId");
+        public Criteria andOrderDtlIdNotLike(String value) {
+            addCriterion("ORDER_DTL_ID not like", value, "orderDtlId");
             return (Criteria) this;
         }
 
-        public Criteria andPdtIdIn(List<String> values) {
-            addCriterion("PDT_ID in", values, "pdtId");
+        public Criteria andOrderDtlIdIn(List<String> values) {
+            addCriterion("ORDER_DTL_ID in", values, "orderDtlId");
             return (Criteria) this;
         }
 
-        public Criteria andPdtIdNotIn(List<String> values) {
-            addCriterion("PDT_ID not in", values, "pdtId");
+        public Criteria andOrderDtlIdNotIn(List<String> values) {
+            addCriterion("ORDER_DTL_ID not in", values, "orderDtlId");
             return (Criteria) this;
         }
 
-        public Criteria andPdtIdBetween(String value1, String value2) {
-            addCriterion("PDT_ID between", value1, value2, "pdtId");
+        public Criteria andOrderDtlIdBetween(String value1, String value2) {
+            addCriterion("ORDER_DTL_ID between", value1, value2, "orderDtlId");
             return (Criteria) this;
         }
 
-        public Criteria andPdtIdNotBetween(String value1, String value2) {
-            addCriterion("PDT_ID not between", value1, value2, "pdtId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeIsNull() {
-            addCriterion("PDT_CODE is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeIsNotNull() {
-            addCriterion("PDT_CODE is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeEqualTo(String value) {
-            addCriterion("PDT_CODE =", value, "pdtCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeNotEqualTo(String value) {
-            addCriterion("PDT_CODE <>", value, "pdtCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeGreaterThan(String value) {
-            addCriterion("PDT_CODE >", value, "pdtCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeGreaterThanOrEqualTo(String value) {
-            addCriterion("PDT_CODE >=", value, "pdtCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeLessThan(String value) {
-            addCriterion("PDT_CODE <", value, "pdtCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeLessThanOrEqualTo(String value) {
-            addCriterion("PDT_CODE <=", value, "pdtCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeLike(String value) {
-            addCriterion("PDT_CODE like", value, "pdtCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeNotLike(String value) {
-            addCriterion("PDT_CODE not like", value, "pdtCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeIn(List<String> values) {
-            addCriterion("PDT_CODE in", values, "pdtCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeNotIn(List<String> values) {
-            addCriterion("PDT_CODE not in", values, "pdtCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeBetween(String value1, String value2) {
-            addCriterion("PDT_CODE between", value1, value2, "pdtCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeNotBetween(String value1, String value2) {
-            addCriterion("PDT_CODE not between", value1, value2, "pdtCode");
+        public Criteria andOrderDtlIdNotBetween(String value1, String value2) {
+            addCriterion("ORDER_DTL_ID not between", value1, value2, "orderDtlId");
             return (Criteria) this;
         }
 
