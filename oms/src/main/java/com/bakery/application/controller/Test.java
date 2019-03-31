@@ -1,5 +1,7 @@
 package com.bakery.application.controller;
 
+import com.bakery.application.constant.Url;
+import com.bakery.application.constant.Views;
 import com.bakery.application.entity.person;
 import com.bakery.application.service.PersonService;
 import com.bakery.application.util.HttpClientUtil;
@@ -41,9 +43,16 @@ public class Test {
 
     }
 
-    @RequestMapping("/hello")
+    @RequestMapping(Url.EMP_MANAGER_LIST)
     public String get(){
-        return "index";
+        return Views.EMP_LIST_VIEW;
+    }
+
+
+    @RequestMapping(Url.USER_MANAGER_LIST)
+    public String getUser(){
+        System.out.println("iuser");
+        return Views.USER_LIST_VIEW;
     }
 
     @RequestMapping("/number")

@@ -27,7 +27,7 @@
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
         <!--XML映射文件,生成的位置（目标包）,源代码文件夹 -->
-        <sqlMapGenerator targetPackage="com.bakery.application.mapperxml"
+        <sqlMapGenerator targetPackage="com.bakery.application.mapping"
                          targetProject="src/main/resources">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
