@@ -54,6 +54,33 @@ public class Test {
         System.out.println("iuser");
         return Views.USER_LIST_VIEW;
     }
+    @RequestMapping(Url.PDT_MANAGER_LIST)
+    public String getPdt(){
+        System.out.println("pdt");
+        return Views.PDT_LIST_VIEW;
+    }
+       @RequestMapping(Url.ORDER_MANAGE_LIST)
+    public String getOrder(){
+        System.out.println("order");
+        return Views.ORDER_LIST_VIEW;
+    }
+    @RequestMapping(Url.STOCK_MANAGE_LIST)
+    public String getStock(){
+        System.out.println("order");
+        return Views.STOCK_LIST_VIEW;
+    }
+    @RequestMapping(Url.STORE_IN_LIST)
+    public String getIn(){
+        System.out.println("order");
+        return Views.STORE_IN_VIEW;
+    }
+    @RequestMapping(Url.STORE_OUT_LIST)
+    public String getOut(){
+        System.out.println("order");
+        return Views.STORE_OUT_VIEW;
+    }
+
+
 
     @RequestMapping("/number")
     public @ResponseBody String  getNum(String phone, HttpServletRequest request){
@@ -66,7 +93,7 @@ public class Test {
         return HttpClientUtil.getMessage(result);
     }
     @ResponseBody
-    @RequestMapping("/regist")
+    @RequestMapping("/registh")
     public ModelMap regist(String phone, String number,ModelMap model, HttpServletRequest request){
         //从session中比对发送的验证码
         HttpSession session = request.getSession();//设置session

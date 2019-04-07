@@ -23,5 +23,25 @@
         <put-attribute name="title" value="用户列表" />
         <put-attribute name="body" value="/WEB-INF/views/userListIndex.jsp" />
     </definition>
+    <definition name="pdt.list.index" extends="layout.basic">
+        <put-attribute name="title" value="商品列表" />
+        <put-attribute name="body" value="/WEB-INF/views/pdtListIndex.jsp" />
+    </definition>
+    <definition name="order.list.index" extends="layout.basic">
+        <put-attribute name="title" value="订单列表" />
+        <put-attribute name="body" value="/WEB-INF/views/orderListIndex.jsp" />
+    </definition>
+    <definition name="stock.list.index" extends="layout.basic">
+        <put-attribute name="title" value="库存列表" />
+        <put-attribute name="body" value="/WEB-INF/views/stockListIndex.jsp" />
+    </definition>
+    <definition name="store.out.list" extends="layout.basic">
+        <put-attribute name="title" value="出库记录" />
+        <put-attribute name="body" value="/WEB-INF/views/outStore.jsp" />
+    </definition>
+    <definition name="store.in.list" extends="layout.basic">
+        <put-attribute name="title" value="入库记录" />
+        <put-attribute name="body" value="/WEB-INF/views/inStore.jsp" />
+    </definition>
 
 </tiles-definitions>

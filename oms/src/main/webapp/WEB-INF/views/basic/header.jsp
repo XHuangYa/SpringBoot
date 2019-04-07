@@ -13,9 +13,11 @@
     <base href="<%=basePath%>">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>header</title>
-    <script src="<%=basePath%>/static/js/jquery-3.2.1.min.js"></script>
-    <script src="<%=basePath%>/static/bootstrap/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="<%=basePath%>/static/bootstrap/css/bootstrap.min.css">
+    <script src="<%=basePath%>static/js/jquery-3.2.1.min.js"></script>
+    <script src="<%=basePath%>static/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap-theme.min.css">
+
     <style>
         .ha:hover{
             text-decoration: none;
@@ -43,21 +45,21 @@
 <div class="container-fluid hna">
     <div class="row">
         <div class="col-md-8 glyphicon glyphicon-bell hd1">&nbsp;UNIQUE&烘焙店后台管理系统</div>
-        <div class="col-md-2 glyphicon glyphicon-earphone hd2">&nbsp;13467856890</div>
-        <div class="col-md-2">
+        <div class="col-md-2 glyphicon glyphicon-earphone hd2"style="text-align: right;margin-bottom: 2px">&nbsp;13467856890</div>
+        <div class="col-md-2"style="text-align: center">
             <span class="dropdown ">
                 <a  role="button" class="dropdown-toggle ha" data-toggle="dropdown">
                     <i class="glyphicon glyphicon-user"></i> &nbsp;Jack Smith
                     <i class="caret"></i>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a tabindex="-1" href="#">个人信息</a></li>
+                    <li><a tabindex="-1" href="#" class="glyphicon glyphicon-user">&nbsp;个人信息</a></li>
                     <li class="divider"></li>
-                    <li><a tabindex="-1"  href="#">修改密码</a></li>
+                    <li><a tabindex="-1"  href="#" class="glyphicon glyphicon-lock">&nbsp;修改密码</a></li>
                     <li class="divider "></li>
-                    <li><a tabindex="-1" href="sign-in.html">登陆</a></li>
+                    <li><a tabindex="-1" href="" class="glyphicon glyphicon-log-in">&nbsp;登陆</a></li>
                      <li class="divider "></li>
-                    <li><a tabindex="-1" href="sign-in.html">登出</a></li>
+                    <li><a tabindex="-1"  class="glyphicon glyphicon-off">&nbsp;登出</a></li>
                 </ul>
           </span>
         </div>

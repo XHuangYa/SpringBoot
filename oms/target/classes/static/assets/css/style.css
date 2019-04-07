@@ -148,11 +148,13 @@ ul.navbar-nav {
 
 .form-top {
 	overflow: hidden;
-	padding: 15px  15px 0px 15px;
+	padding: 15px  20px 0px 25px;
 	background: #444;
 	background: rgba(0, 0, 0, 0.35);
 	-moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
 	text-align: left;
+	height: 100px;
+
 }
 
 .form-top-left {
@@ -245,6 +247,7 @@ ul.navbar-nav {
 	background: rgba(0, 0, 0, 0.3);
 	-moz-border-radius: 0 0 4px 4px; -webkit-border-radius: 0 0 4px 4px; border-radius: 0 0 4px 4px;
 	text-align: left;
+	padding-top: 0px;
 }
 
 .pwdRegis form textarea {
@@ -362,13 +365,13 @@ form{
 	 color: lightgray;
 }
 .forget{
-	 font-family:"bradley hand itc";
-	 font-size: 20px;
+	font-family: Damascus;
+	font-size: 7px;
  	float: left;
 	color: #fff;
 	opacity: 0.7;
 	padding-left: 150px;
-	margin-left: 100px;
+	margin-left: 60px;
 }
 #reset{
 	text-decoration: none;

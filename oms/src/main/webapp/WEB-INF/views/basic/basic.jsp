@@ -19,13 +19,13 @@
     <body style="background: rgba(53, 53, 53, 0.98);"  >
         <table border="0" width="100%" height="800px" cellspacing="5" align="center" >
                 <tr  >
-                    <td   style="height: 50px" colspan="2" style="background:rgba(53, 53, 53, 0.98)">
+                    <td  colspan="2" style="height: 50px">
                         <tiles:insertAttribute name="header" />
                     </td>
                 </tr>
 
                 <tr>
-                    <td width="140" valign="top" style="background:rgba(53, 53, 53, 0.98);">
+                    <td width="140" valign="top">
                         <tiles:insertAttribute name='menu' />
                     </td>
                     <td valign="top" align="left" style="background:white";>
