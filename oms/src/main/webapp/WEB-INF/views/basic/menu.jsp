@@ -61,10 +61,6 @@
     			</ul>
     		</li>
     	</ul>
-	<%--用于提交数据的表单--%>
-	<form id="menuForm" method="post" action="">
-		<input type="hidden">
-	</form>
  	</body>
 	<script>
         $(function() {
@@ -81,11 +77,8 @@
                 event.stopPropagation();
                 //获取所点击li 的id
                 var getId=$(this).attr("class");
-                console.info(getId+"-------");
-                var userListUrl=$("#"+getId).val();
-                console.info(userListUrl+"-----");
-                $("#menuForm").attr("action",userListUrl);
-                $("#menuForm").submit();
+                var targetUrl=$("#"+getId).val();
+                window.location.href="<%=basePath%>"+targetUrl;
 
             })
         });

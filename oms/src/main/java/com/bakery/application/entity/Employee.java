@@ -1,5 +1,7 @@
 package com.bakery.application.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.util.Date;
 
 public class Employee {
@@ -13,14 +15,14 @@ public class Employee {
 
     private String phone;
 
-    private Integer roleId;
+    private String roleId;
 
     private String job;
 
     private String mgr;
 
     private Integer sex;
-
+   @JSONField(format = "yyyy-MM-dd")
     private Date birth;
 
     private String sal;
@@ -79,11 +81,11 @@ public class Employee {
         this.phone = phone == null ? null : phone.trim();
     }
 
-    public Integer getRoleId() {
+    public String getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(Integer roleId) {
+    public void setRoleId(String roleId) {
         this.roleId = roleId;
     }
 

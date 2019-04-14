@@ -7,6 +7,8 @@ package com.bakery.application.constant;
 public  interface Url{
     //员工管理-员工列表
     String  EMP_MANAGER_LIST="/empManageList";
+    //员工分页查询
+    String  EMP_MANAGE_QUERY_URL=EMP_MANAGER_LIST+"queryEmp";
     //用户管理-用户列表
     String USER_MANAGER_LIST="/userManageList";
     //商品管理-商品列表

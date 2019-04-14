@@ -13,9 +13,19 @@
     <base href="<%=basePath%>">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Title</title>
-    <script src="<%=basePath%>/static/js/jquery-3.2.1.min.js"></script>
-    <script src="<%=basePath%>/static/bootstrap/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="<%=basePath%>/static/bootstrap/css/bootstrap.min.css">
+    <%--js--%>
+    <script src="<%=basePath%>static/js/jquery-3.2.1.min.js"></script>
+    <script src="<%=basePath%>static/bootstrap/js/jquery-confirm.js"></script>
+    <script src="<%=basePath%>static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<%=basePath%>static/bootstrap/js/bootstrap-table.min.js"></script>
+    <script src="<%=basePath%>static/bootstrap/js/bootstrap-table-zh-CN.min.js"></script>
+    <script src="<%=basePath%>static/bootstrap/js/bootstrap-table-group.js"></script>
+    <%--css--%>
+    <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/jquery-confirm.css">
+    <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap-table.min.css">
+    <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap-table-group.css">
+
     <style>
         * {
             margin: 0;
@@ -27,15 +37,24 @@
             height: 40px;
             margin-left: 18px;
         }
+
         .row {
             margin-bottom: 10px;
         }
+
         .modal-dialog {
             width: 700px;
         }
+        #kk{
+            margin-top: 25px;
+            height: 250px;
+        }
+
     </style>
 </head>
 <body>
+<input type="hidden" id="queryEmpManege" value="/empManageListqueryEmp" />
+
 <ol class="breadcrumb">
     <li><a>Home</a></li>
     <li><a>员工管理</a></li>
@@ -44,7 +63,7 @@
 <!-- 查询框 start -->
 <div class="panel-body" style="padding-bottom:0px; padding-top:0px ;">
     <div class="panel panel-default">
-        <div class="panel-body">
+        <div class="panel-body" style="height: 540px">
             <div class="container-fluid">
                 <form id="searchEmpForm" name="searchEmpForm" class="form-horizontal">
                     <div class="form-group">
@@ -57,7 +76,7 @@
 
                             <label class="control-label col-md-1 ">电话号码:</label>
                             <div class="col-md-2 ">
-                                <input type="text" class="form-control  input-sm " id="search_empPhone "
+                                <input type="text" class="form-control  input-sm " id="search_empPhone"
                                        name="search_empPhone" placeholder="请输入电话号码">
                             </div>
                             <label class="control-label col-md-1 ">员工标识:</label>
@@ -65,8 +84,6 @@
                                 <select type="text" class="form-control  input-sm " id="search_roleId"
                                         name="search_roleId">
                                     <option value="">请选择用户级别</option>
-                                    <option value="">普通管理员</option>
-                                    <option value="">超级管理员</option>
                                 </select>
                             </div>
                             <label class="control-label col-md-1 ">归属部门:</label>
@@ -113,6 +130,10 @@
                         </div>
                     </div>
                 </form>
+            </div>
+            <div id="kk" style="width:1175px;">
+                <div id="toolbar" class="btn-group"></div>
+                <table id="tb_roles"></table>
             </div>
         </div>
     </div>
@@ -242,13 +263,219 @@
     </div>
     <!--模态框 end-->
 </div>
+<%--
 <button class="btn btn-danger" id="click">click</button>
+--%>
 </body>
 <script>
+    /*------------全局变量 start----------*/
+    var deptTypeList =${deptTypeList}; //归属部门
+    var roleTypeList =${roleTypeList}; //员工标识
+    var JobList =${JobList}; //员工职位
+    var MgrList =${MgrList}; //上级领导
+    var emp =${emp};
+    console.info(emp.birth + "----roleTypeList");
+    /*------------全局变量 end----------*/
+
+    /*-------下拉框 jsonArr 数据，valPro value ，textPro text，domid select的id*/
+    function initSelectOptions(jsonArr, valPro, textPro, domid) {
+        var opt = '';
+        for (var i = 0; i < jsonArr.length; i++) {
+            opt += '<option value="' + jsonArr[i][valPro] + '">' + jsonArr[i][textPro] + '</option>';
+        }
+        $("#" + domid).append(opt);
+    }
+
+    /*---------bootstrapTable------start-----*/
+    var index = '';
+    var TableInit = function () {
+        var oTableInit = new Object();
+        var urlStr = $("#queryEmpManege").val();
+        //初始化Table
+        oTableInit.Init = function () {
+            $('#tb_roles').bootstrapTable({
+                url: urlStr, //请求后台的URL（*）
+                method: 'post', //请求方式（*）
+                toolbar: '#toolbar', //工具按钮用哪个容器
+                striped: true, //是否显示行间隔色
+                cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                pagination: true, //是否显示分页（*）
+                sortable: true, //是否启用排序
+                sortOrder: "desc", //排序方式
+                striped: true, //是否显示行间隔色
+                sortName: "updateTime",
+                dataType: 'json',
+                queryParamsType: "und1efined",//设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
+                contentType: "application/x-www-form-urlencoded",
+                queryParams: function queryParams(params) { //设置查询参数
+                    var param = {
+                        pageNo: params.pageNumber,
+                        pageSize: params.pageSize,
+                        orderBy: params.sortName,
+                        orderType: params.sortOrder,
+                        empName: $("#search_empId").val(), //员工名称
+                        phone: $("#search_empPhone").val(),//电话号码
+                        roleId: $("#search_roleId").val(),//员工标识
+                        depno: $("#search_dptId").val(),//归属部门
+                        beginTime: $("#search_beginTime").val(),//开始时间
+                        endTime: $("#search_endTime").val(),//结束时间
+                        searchText: params.searchText
+                    };
+                    return param;
+                },
+                sidePagination: "server", //分页方式:client客户端分页，server服务端分页（*）
+                pageNumber: 1, //初始化加载第一页，默认第一页
+                pageSize: 5, //每页的记录行数（*）
+                pageList: [5, 10, 15, 20], //可供选择的每页的行数（*）
+                strictSearch: true,
+                showColumns: true, //是否显示所有的列
+                showRefresh: true, //是否显示刷新按钮
+                minimumCountColumns: 2, //最少允许的列数
+                clickToSelect: true, //是否启用点击选中行
+                maintainSelected: false,
+                checkboxHeader: true,
+                uniqueId: "planid", //每一行的唯一标识，一般为主键列
+                showToggle: true, //是否显示详细视图和列表视图的切换按钮
+                cardView: false, //是否显示详细视图
+                detailView: false, //是否显示父子表
+                showExport: true, //是否显示导出
+                exportDataType: "basic", //basic', 'all', 'selected'.
+                onClickRow: function (row, $element) {
+                    index = $element.data('index');
+                    //点击每列前的checkbox时
+                },
+                onCheck: function (row, $element) {
+                    index = $element.data('index');
+                },
+                onLoadSuccess: function (data) { //bootTable
+                },
+                columns: [{
+                    disabled: true,//设置是否可用
+                    checkbox: true,
+                    align: 'center',
+                    valign: 'middle',
+
+                }, {
+                    title: '员工编号',
+                    field: 'empNo',
+                    align: 'center',
+                    valign: 'middle',
+                    visible: false
+                }, {
+                    title: '员工名称',
+                    field: 'empName',
+                    align: 'center',
+                    valign: 'middle',
+                }, {
+                    title: '登陆密码',
+                    field: 'password',
+                    align: 'center',
+                    valign: 'middle',
+                    visible: false
+                }, {
+                    title: '联系方式',
+                    field: 'phone',
+                    align: 'center',
+                    valign: 'middle',
+                }, {
+                    title: '员工级别',
+                    field: 'roleDes',
+                    align: 'center',
+                    valign: 'middle',
+                }, {
+                    title: '员工职位',
+                    field: 'jobDes',
+                    align: 'center',
+                    valign: 'middle',
+                }, {
+                    title: '上级领导',
+                    field: 'mgrDes',
+                    align: 'center',
+                    valign: 'middle',
+                }, {
+                    title: '性别',
+                    field: 'sexDes',
+                    align: 'center',
+                    valign: 'middle',
+                }, {
+                    title: '出生日期',
+                    field: 'birthday',
+                    align: 'center',
+                    valign: 'middle',
+                }
+                    , {
+                        title: '薪资',
+                        field: 'salary',
+                        align: 'center',
+                        valign: 'middle',
+                    }
+                    , {
+                        title: '住址',
+                        field: 'address',
+                        align: 'center',
+                        valign: 'middle',
+                    }
+                    , {
+                        title: '归属部门',
+                        field: 'deptDes',
+                        align: 'center',
+                        valign: 'middle',
+                    }
+                    , {
+                        title: '存档时间',
+                        field: 'doneTime',
+                        align: 'center',
+                        valign: 'middle',
+                    }
+                    , {
+                        title: '状态',
+                        field: 'status',
+                        align: 'center',
+                        valign: 'middle',
+                        visible: false
+                    }
+                    , {
+                        title: '归属部门',
+                        field: 'deptDes',
+                        align: 'center',
+                        valign: 'middle',
+                    }
+                    , {
+                        title: '创建时间',
+                        field: 'createTime',
+                        align: 'center',
+                        valign: 'middle',
+                        visible: false
+                    }
+                    , {
+                        title: '修改时间',
+                        field: 'deptDes',
+                        align: 'center',
+                        valign: 'middle',
+                        visible: false
+                    }
+                    , {
+                        title: '备注',
+                        field: 'remark',
+                        align: 'center',
+                        valign: 'middle',
+                    }
+                ],
+            });
+
+        };
+        return oTableInit;
+    };
     $(function () {
+        //下拉框
+        initSelectOptions(roleTypeList, "dataCode", "codeName", "search_roleId");
+        //初始化table
+        var oTable = new TableInit();
+        oTable.Init();
         $("#click").click(function () {
             $('#myModal').modal('show')
         })
     })
+
 </script>
 </html>

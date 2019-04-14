@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bakery.application.mapper.CodeTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.bakery.application.entity.CodeType" >
+    <result column="ID" property="id" jdbcType="INTEGER" />
+    <result column="CODE_TYPE" property="codeType" jdbcType="VARCHAR" />
+    <result column="CODE_NAME" property="codeName" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    CODE_TYPE, ID, CODE_NAME, STATUS, REMARK
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bakery.application.entity.CodeTypeCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from code_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from code_type
+    where CODE_TYPE = #{codeType,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from code_type
+    where CODE_TYPE = #{codeType,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bakery.application.entity.CodeTypeCriteria" >
+    delete from code_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bakery.application.entity.CodeType" >
+    insert into code_type (CODE_TYPE, ID, CODE_NAME, 
+      STATUS, REMARK)
+    values (#{codeType,jdbcType=VARCHAR}, #{id,jdbcType=INTEGER}, #{codeName,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bakery.application.entity.CodeType" >
+    insert into code_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="codeType != null" >
+        CODE_TYPE,
+      </if>
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="codeName != null" >
+        CODE_NAME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="codeType != null" >
+        #{codeType,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="codeName != null" >
+        #{codeName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bakery.application.entity.CodeTypeCriteria" resultType="java.lang.Integer" >
+    select count(*) from code_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update code_type
+    <set >
+      <if test="record.codeType != null" >
+        CODE_TYPE = #{record.codeType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.codeName != null" >
+        CODE_NAME = #{record.codeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update code_type
+    set CODE_TYPE = #{record.codeType,jdbcType=VARCHAR},
+      ID = #{record.id,jdbcType=INTEGER},
+      CODE_NAME = #{record.codeName,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=INTEGER},
+      REMARK = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bakery.application.entity.CodeType" >
+    update code_type
+    <set >
+      <if test="id != null" >
+        ID = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="codeName != null" >
+        CODE_NAME = #{codeName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CODE_TYPE = #{codeType,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bakery.application.entity.CodeType" >
+    update code_type
+    set ID = #{id,jdbcType=INTEGER},
+      CODE_NAME = #{codeName,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where CODE_TYPE = #{codeType,jdbcType=VARCHAR}
+  </update>
+</mapper>

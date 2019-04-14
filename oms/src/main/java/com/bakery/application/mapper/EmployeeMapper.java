@@ -3,8 +3,12 @@ package com.bakery.application.mapper;
 import com.bakery.application.entity.Employee;
 import com.bakery.application.entity.EmployeeCriteria;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.mybatis.spring.annotation.MapperScan;
+
+@Mapper
 public interface EmployeeMapper {
     int countByExample(EmployeeCriteria example);
 

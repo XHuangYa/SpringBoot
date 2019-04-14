@@ -1,0 +1,27 @@
+/**
+ *  ggc 2017-7-19
+ *  bootstrap-table 按某列属性分组插件
+ * */
+.group-tr{
+	background-color: #428BCA!important;
+	color: white!important;
+	
+}
+.group-tr td{
+	padding: 0;
+	font-size: 12px!important;
+	padding: 4px 6px!important;
+	height: 20px!important;
+	line-height:20px!important;
+	letter-spacing: 2px;
+}
+.span-btn{
+	display: inline-block!important;
+	height: 20px!important;
+	line-height: 20px!important;
+	width: 20px!important;
+	text-align: center!important;
+}
+.thin-blue{
+	background-color: #6BA3D4!important;
+}
