@@ -67,42 +67,8 @@ public class EmployeeController {
      */
     @RequestMapping(Url.EMP_MANAGE_QUERY_URL)
     public @ResponseBody BootstrapTablePage queryEmpPage(Page page, Employee employee){
-        EmployeeCriteria criteria=new EmployeeCriteria();
-        EmployeeCriteria.Criteria cri=criteria.createCriteria();
-        cri.andStatusEqualTo(1);
-        //员工名称
-        if(StringUtils.isNotBlank(employee.getEmpName())){
-            cri.andEmpNameLike("%"+employee.getEmpName()+"%");
-        }
-        //电话号码
-        if(StringUtils.isNotBlank(employee.getPhone())){
-            cri.andPhoneEqualTo(employee.getPhone());
-        }
-        //员工标识
-        if(StringUtils.isNotBlank(employee.getRoleId())){
-            cri.andPhoneEqualTo(employee.getRoleId());
-        }
-        //归属部门
-        if(StringUtils.isNotBlank(employee.getDepno())){
-            cri.andPhoneEqualTo(employee.getDepno());
-        }
-        //开始时间
-        if(page.getBeginTime()!=null){
-            cri.andDoneTimeGreaterThanOrEqualTo(page.getBeginTime());
-        }
-        //结束时间
-        if(page.getEndTime()!=null){
-            cri.andDoneTimeLessThanOrEqualTo(page.getEndTime());
-        }
-        PageInfo<Employee> pageInfo=null;
-        List<Employee> employeeList=null;
-        PageHelper.startPage(page.getPageNo(),page.getPageSize());
-        employeeList = employeeService.selectByCriteria(criteria);
-        if(employeeList.size()==0){
-            PageHelper.startPage(page.getPageNo()-1,page.getPageSize());
-            employeeList = employeeService.selectByCriteria(criteria);
-        }
-        pageInfo=new PageInfo<Employee>(employeeList);
+        List<Employee> employeeList = employeeService.selectByCriteriaPage(employee, page);
+        PageInfo pageInfo=new PageInfo<Employee>(employeeList);
         BootstrapTablePage bootTable=new BootstrapTablePage(String.valueOf(pageInfo.getTotal()));
         bootTable.pageValue(page,pageInfo.getList());
         bootTable.setPageSize(page.getPageSize()+"");

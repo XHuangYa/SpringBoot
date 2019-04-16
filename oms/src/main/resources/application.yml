@@ -19,10 +19,17 @@ spring:
     poolPreparedStatement: true
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
+# mybatis config
 mybatis:
   config-location: classpath:sqlMapconfig.xml
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.bakery.application.entity
+# pageHealper config
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
 
 
 

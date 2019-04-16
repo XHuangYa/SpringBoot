@@ -45,7 +45,8 @@
         .modal-dialog {
             width: 700px;
         }
-        #kk{
+
+        #kk {
             margin-top: 25px;
             height: 250px;
         }
@@ -53,7 +54,7 @@
     </style>
 </head>
 <body>
-<input type="hidden" id="queryEmpManege" value="/empManageListqueryEmp" />
+<input type="hidden" id="queryEmpManege" value="/empManageListqueryEmp"/>
 
 <ol class="breadcrumb">
     <li><a>Home</a></li>
@@ -376,91 +377,77 @@
                     title: '联系方式',
                     field: 'phone',
                     align: 'center',
-                    valign: 'middle',
+                    valign: 'middle'
                 }, {
                     title: '员工级别',
                     field: 'roleDes',
                     align: 'center',
-                    valign: 'middle',
+                    valign: 'middle'
                 }, {
                     title: '员工职位',
-                    field: 'jobDes',
+                    field: 'job',
                     align: 'center',
-                    valign: 'middle',
+                    valign: 'middle'
                 }, {
                     title: '上级领导',
                     field: 'mgrDes',
                     align: 'center',
-                    valign: 'middle',
+                    valign: 'middle'
                 }, {
                     title: '性别',
                     field: 'sexDes',
                     align: 'center',
-                    valign: 'middle',
-                }, {
+                    valign:'middle'
+                },{
                     title: '出生日期',
-                    field: 'birthday',
+                    field: 'birth',
+                    align: 'center',
+                    valign:'middle'
+                }
+            , {
+                    title: '薪资',
+                    field: 'sal',
+                    align: 'center',
+                    valign:'middle'
+                }
+                , {
+                    title: '住址',
+                    field: 'addr',
+                    align: 'center',
+                    valign:'middle'
+                }
+                , {
+                    title: '归属部门',
+                    field: 'depDes',
+                    align: 'center',
+                    valign: 'middle'
+                }
+                , {
+                    title: '存档时间',
+                    field: 'doneTime',
+                    align: 'center',
+                    valign: 'middle'
+                }
+                , {
+                    title: '状态',
+                    field: 'status',
                     align: 'center',
                     valign: 'middle',
+                    visible: false
                 }
-                    , {
-                        title: '薪资',
-                        field: 'salary',
-                        align: 'center',
-                        valign: 'middle',
-                    }
-                    , {
-                        title: '住址',
-                        field: 'address',
-                        align: 'center',
-                        valign: 'middle',
-                    }
-                    , {
-                        title: '归属部门',
-                        field: 'deptDes',
-                        align: 'center',
-                        valign: 'middle',
-                    }
-                    , {
-                        title: '存档时间',
-                        field: 'doneTime',
-                        align: 'center',
-                        valign: 'middle',
-                    }
-                    , {
-                        title: '状态',
-                        field: 'status',
-                        align: 'center',
-                        valign: 'middle',
-                        visible: false
-                    }
-                    , {
-                        title: '归属部门',
-                        field: 'deptDes',
-                        align: 'center',
-                        valign: 'middle',
-                    }
-                    , {
-                        title: '创建时间',
-                        field: 'createTime',
-                        align: 'center',
-                        valign: 'middle',
-                        visible: false
-                    }
-                    , {
-                        title: '修改时间',
-                        field: 'deptDes',
-                        align: 'center',
-                        valign: 'middle',
-                        visible: false
-                    }
-                    , {
-                        title: '备注',
-                        field: 'remark',
-                        align: 'center',
-                        valign: 'middle',
-                    }
-                ],
+                , {
+                    title: '修改时间',
+                    field: 'updateTime',
+                    align: 'center',
+                    valign: 'middle',
+                    visible: false
+                }
+                , {
+                    title: '备注',
+                    field: 'remark',
+                    align: 'center',
+                    valign: 'middle'
+                }],
             });
 
         };
