@@ -1,6 +1,7 @@
 package com.bakery.application.service.serviceImpl;
 
 import com.bakery.application.constant.Page;
+import com.bakery.application.dto.EmployeeDTO;
 import com.bakery.application.entity.Employee;
 import com.bakery.application.entity.EmployeeCriteria;
 import com.bakery.application.mapper.EmployeeMapper;
@@ -22,8 +23,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     EmployeeMapper employeeMapper;
     @Override
-    public List<Employee> selectByCriteriaPage(Employee employee, Page page) {
+    public List<Employee> selectByCriteriaPage(EmployeeDTO employeeDTO, Page page) {
         PageHelper.startPage(page.getPageNo(),page.getPageSize());
-        return employeeMapper.queryByExample(employee);
+        return employeeMapper.queryByExample(employeeDTO);
     }
 }

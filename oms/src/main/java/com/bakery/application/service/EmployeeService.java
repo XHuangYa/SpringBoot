@@ -1,6 +1,7 @@
 package com.bakery.application.service;
 
 import com.bakery.application.constant.Page;
+import com.bakery.application.dto.EmployeeDTO;
 import com.bakery.application.entity.Employee;
 import com.bakery.application.entity.EmployeeCriteria;
 
@@ -18,5 +19,5 @@ public interface EmployeeService {
      * @return:
      * @throws:
      */
-    public List<Employee> selectByCriteriaPage(Employee employee,Page Page);
+    public List<Employee> selectByCriteriaPage(EmployeeDTO employeeDTO, Page Page);
 }
