@@ -274,6 +274,7 @@
     var roleTypeList =${roleTypeList}; //员工标识
     var JobList =${JobList}; //员工职位
     var MgrList =${MgrList}; //上级领导
+    var sysMenuList=${sysMenuList};//按钮列表
     var emp =${emp};
     console.info(emp.birth + "----roleTypeList");
     /*------------全局变量 end----------*/
@@ -286,7 +287,27 @@
         }
         $("#" + domid).append(opt);
     }
-
+    /* ===========添加功能按钮start============== */
+    var tempStr = "";
+    for (var i = 0; i < sysMenuList.length; i++) {
+        if (sysMenuList[i].dataCode == "add"
+            || sysMenuList[i].dataCode == "update"
+            || sysMenuList[i].dataCode == "delete"
+            || sysMenuList[i].dataCode == "show"
+            || sysMenuList[i].dataCode == "refresh"
+            ) {
+            tempStr += "<button id=\"btn_\""
+                + sysMenuList[i].dataCode
+                + " type=\"button\" class=\"btn btn-default\" onclick=\""
+                + sysMenuList[i].functionName
+                + "();\"><span style=\"display:inline-block; vertical-align:middle; margin-right:3px;\" "
+                +"\" aria-hidden=\"true\"></span>"
+                + sysMenuList[i].dataName
+                + "</button>";
+        }
+    }
+    $("#toolbar").html(tempStr);
+    /* ===========添加功能按钮end============== */
     /*---------bootstrapTable------start-----*/
     var index = '';
     var TableInit = function () {
@@ -329,17 +350,18 @@
                 pageSize: 5, //每页的记录行数（*）
                 pageList: [5, 10, 15, 20], //可供选择的每页的行数（*）
                 strictSearch: true,
-                showColumns: true, //是否显示所有的列
-                showRefresh: true, //是否显示刷新按钮
+                showColumns: false, //是否显示所有的列
+                showRefresh: false, //是否显示刷新按钮
                 minimumCountColumns: 2, //最少允许的列数
                 clickToSelect: true, //是否启用点击选中行
                 maintainSelected: false,
                 checkboxHeader: true,
                 uniqueId: "planid", //每一行的唯一标识，一般为主键列
-                showToggle: true, //是否显示详细视图和列表视图的切换按钮
+                showToggle: false, //是否显示详细视图和列表视图的切换按钮
                 cardView: false, //是否显示详细视图
                 detailView: false, //是否显示父子表
-                showExport: true, //是否显示导出
+                showExport: false, //是否显示导出
+                paginationShowPageGo: true,
                 exportDataType: "basic", //basic', 'all', 'selected'.
                 onClickRow: function (row, $element) {
                     index = $element.data('index');

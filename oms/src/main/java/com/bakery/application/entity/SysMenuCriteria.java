@@ -3,14 +3,14 @@ package com.bakery.application.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseDataCriteria {
+public class SysMenuCriteria {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public BaseDataCriteria() {
+    public SysMenuCriteria() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -104,6 +104,66 @@ public class BaseDataCriteria {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        public Criteria andIdIsNull() {
+            addCriterion("ID is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdIsNotNull() {
+            addCriterion("ID is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdEqualTo(Integer value) {
+            addCriterion("ID =", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNotEqualTo(Integer value) {
+            addCriterion("ID <>", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdGreaterThan(Integer value) {
+            addCriterion("ID >", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("ID >=", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdLessThan(Integer value) {
+            addCriterion("ID <", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdLessThanOrEqualTo(Integer value) {
+            addCriterion("ID <=", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdIn(List<Integer> values) {
+            addCriterion("ID in", values, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNotIn(List<Integer> values) {
+            addCriterion("ID not in", values, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdBetween(Integer value1, Integer value2) {
+            addCriterion("ID between", value1, value2, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("ID not between", value1, value2, "id");
+            return (Criteria) this;
+        }
+
         public Criteria andDataCodeIsNull() {
             addCriterion("DATA_CODE is null");
             return (Criteria) this;
@@ -171,136 +231,6 @@ public class BaseDataCriteria {
 
         public Criteria andDataCodeNotBetween(String value1, String value2) {
             addCriterion("DATA_CODE not between", value1, value2, "dataCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdIsNull() {
-            addCriterion("ID is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdIsNotNull() {
-            addCriterion("ID is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdEqualTo(Integer value) {
-            addCriterion("ID =", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdNotEqualTo(Integer value) {
-            addCriterion("ID <>", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdGreaterThan(Integer value) {
-            addCriterion("ID >", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("ID >=", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdLessThan(Integer value) {
-            addCriterion("ID <", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdLessThanOrEqualTo(Integer value) {
-            addCriterion("ID <=", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdIn(List<Integer> values) {
-            addCriterion("ID in", values, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdNotIn(List<Integer> values) {
-            addCriterion("ID not in", values, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdBetween(Integer value1, Integer value2) {
-            addCriterion("ID between", value1, value2, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("ID not between", value1, value2, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andDictIdIsNull() {
-            addCriterion("DICT_ID is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDictIdIsNotNull() {
-            addCriterion("DICT_ID is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDictIdEqualTo(String value) {
-            addCriterion("DICT_ID =", value, "dictId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDictIdNotEqualTo(String value) {
-            addCriterion("DICT_ID <>", value, "dictId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDictIdGreaterThan(String value) {
-            addCriterion("DICT_ID >", value, "dictId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDictIdGreaterThanOrEqualTo(String value) {
-            addCriterion("DICT_ID >=", value, "dictId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDictIdLessThan(String value) {
-            addCriterion("DICT_ID <", value, "dictId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDictIdLessThanOrEqualTo(String value) {
-            addCriterion("DICT_ID <=", value, "dictId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDictIdLike(String value) {
-            addCriterion("DICT_ID like", value, "dictId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDictIdNotLike(String value) {
-            addCriterion("DICT_ID not like", value, "dictId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDictIdIn(List<String> values) {
-            addCriterion("DICT_ID in", values, "dictId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDictIdNotIn(List<String> values) {
-            addCriterion("DICT_ID not in", values, "dictId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDictIdBetween(String value1, String value2) {
-            addCriterion("DICT_ID between", value1, value2, "dictId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDictIdNotBetween(String value1, String value2) {
-            addCriterion("DICT_ID not between", value1, value2, "dictId");
             return (Criteria) this;
         }
 
@@ -431,6 +361,76 @@ public class BaseDataCriteria {
 
         public Criteria andStatusNotBetween(Integer value1, Integer value2) {
             addCriterion("STATUS not between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andFunctionNameIsNull() {
+            addCriterion("FUNCTION_NAME is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFunctionNameIsNotNull() {
+            addCriterion("FUNCTION_NAME is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFunctionNameEqualTo(String value) {
+            addCriterion("FUNCTION_NAME =", value, "functionName");
+            return (Criteria) this;
+        }
+
+        public Criteria andFunctionNameNotEqualTo(String value) {
+            addCriterion("FUNCTION_NAME <>", value, "functionName");
+            return (Criteria) this;
+        }
+
+        public Criteria andFunctionNameGreaterThan(String value) {
+            addCriterion("FUNCTION_NAME >", value, "functionName");
+            return (Criteria) this;
+        }
+
+        public Criteria andFunctionNameGreaterThanOrEqualTo(String value) {
+            addCriterion("FUNCTION_NAME >=", value, "functionName");
+            return (Criteria) this;
+        }
+
+        public Criteria andFunctionNameLessThan(String value) {
+            addCriterion("FUNCTION_NAME <", value, "functionName");
+            return (Criteria) this;
+        }
+
+        public Criteria andFunctionNameLessThanOrEqualTo(String value) {
+            addCriterion("FUNCTION_NAME <=", value, "functionName");
+            return (Criteria) this;
+        }
+
+        public Criteria andFunctionNameLike(String value) {
+            addCriterion("FUNCTION_NAME like", value, "functionName");
+            return (Criteria) this;
+        }
+
+        public Criteria andFunctionNameNotLike(String value) {
+            addCriterion("FUNCTION_NAME not like", value, "functionName");
+            return (Criteria) this;
+        }
+
+        public Criteria andFunctionNameIn(List<String> values) {
+            addCriterion("FUNCTION_NAME in", values, "functionName");
+            return (Criteria) this;
+        }
+
+        public Criteria andFunctionNameNotIn(List<String> values) {
+            addCriterion("FUNCTION_NAME not in", values, "functionName");
+            return (Criteria) this;
+        }
+
+        public Criteria andFunctionNameBetween(String value1, String value2) {
+            addCriterion("FUNCTION_NAME between", value1, value2, "functionName");
+            return (Criteria) this;
+        }
+
+        public Criteria andFunctionNameNotBetween(String value1, String value2) {
+            addCriterion("FUNCTION_NAME not between", value1, value2, "functionName");
             return (Criteria) this;
         }
 

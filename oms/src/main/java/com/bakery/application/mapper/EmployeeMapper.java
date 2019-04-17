@@ -1,5 +1,7 @@
 package com.bakery.application.mapper;
 
+import com.bakery.application.constant.Page;
+import com.bakery.application.dto.EmployeeDTO;
 import com.bakery.application.entity.Employee;
 import com.bakery.application.entity.EmployeeCriteria;
 import java.util.List;
@@ -10,6 +12,9 @@ import org.mybatis.spring.annotation.MapperScan;
 
 @Mapper
 public interface EmployeeMapper {
+
+    List<Employee> queryByExample(EmployeeDTO employeeDTO);
+
     int countByExample(EmployeeCriteria example);
 
     int deleteByExample(EmployeeCriteria example);

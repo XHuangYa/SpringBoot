@@ -1,0 +1,24 @@
+1555168827735|24|statement|connection 0|select 1 from dual|
+1555168827745|0|statement|connection 1|select 1 from dual|
+1555168827753|0|statement|connection 2|select 1 from dual|
+1555168827762|0|statement|connection 3|select 1 from dual|
+1555168827770|0|statement|connection 4|select 1 from dual|
+1555168997259|10|statement|connection 5|select 1 from dual|
+1555168997271|0|statement|connection 6|select 1 from dual|
+1555168997280|1|statement|connection 7|select 1 from dual|
+1555168997288|0|statement|connection 8|select 1 from dual|
+1555168997298|1|statement|connection 9|select 1 from dual|
+1555168997332|3|statement|connection 9|select               ID, DATA_CODE, CODE_TYPE, CODE_NAME, STATUS, SORT, REMARK         from base_code     WHERE CODE_TYPE=?|select               ID, DATA_CODE, CODE_TYPE, CODE_NAME, STATUS, SORT, REMARK         from base_code     WHERE CODE_TYPE='DEPTTYPE'
+1555168997343|1|commit|connection 9||
+1555168997347|2|statement|connection 9|select               ID, DATA_CODE, CODE_TYPE, CODE_NAME, STATUS, SORT, REMARK         from base_code     WHERE CODE_TYPE=?|select               ID, DATA_CODE, CODE_TYPE, CODE_NAME, STATUS, SORT, REMARK         from base_code     WHERE CODE_TYPE='EMPROLETYPE'
+1555168997350|1|commit|connection 9||
+1555169101265|2|statement|connection 9|select 1 from dual|
+1555169101268|1|statement|connection 9|select               ID, DATA_CODE, CODE_TYPE, CODE_NAME, STATUS, SORT, REMARK         from base_code     WHERE CODE_TYPE=?|select               ID, DATA_CODE, CODE_TYPE, CODE_NAME, STATUS, SORT, REMARK         from base_code     WHERE CODE_TYPE='DEPTTYPE'
+1555169101270|1|commit|connection 9||
+1555169101272|1|statement|connection 9|select               ID, DATA_CODE, CODE_TYPE, CODE_NAME, STATUS, SORT, REMARK         from base_code     WHERE CODE_TYPE=?|select               ID, DATA_CODE, CODE_TYPE, CODE_NAME, STATUS, SORT, REMARK         from base_code     WHERE CODE_TYPE='EMPROLETYPE'
+1555169101273|0|commit|connection 9||
+1555169171688|1|statement|connection 9|select 1 from dual|
+1555169171689|1|statement|connection 9|select               ID, DATA_CODE, CODE_TYPE, CODE_NAME, STATUS, SORT, REMARK         from base_code     WHERE CODE_TYPE=?|select               ID, DATA_CODE, CODE_TYPE, CODE_NAME, STATUS, SORT, REMARK         from base_code     WHERE CODE_TYPE='DEPTTYPE'
+1555169171690|0|commit|connection 9||
+1555169171692|0|statement|connection 9|select               ID, DATA_CODE, CODE_TYPE, CODE_NAME, STATUS, SORT, REMARK         from base_code     WHERE CODE_TYPE=?|select               ID, DATA_CODE, CODE_TYPE, CODE_NAME, STATUS, SORT, REMARK         from base_code     WHERE CODE_TYPE='EMPROLETYPE'
+1555169171693|0|commit|connection 9||

@@ -1,27 +1,19 @@
 package com.bakery.application.entity;
 
-public class BaseData {
-    private String dataCode;
-
+public class SysMenu {
     private Integer id;
 
-    private String dictId;
+    private String dataCode;
 
     private String dataName;
 
     private Integer status;
 
+    private String functionName;
+
     private Integer sort;
 
     private String remark;
-
-    public String getDataCode() {
-        return dataCode;
-    }
-
-    public void setDataCode(String dataCode) {
-        this.dataCode = dataCode == null ? null : dataCode.trim();
-    }
 
     public Integer getId() {
         return id;
@@ -31,12 +23,12 @@ public class BaseData {
         this.id = id;
     }
 
-    public String getDictId() {
-        return dictId;
+    public String getDataCode() {
+        return dataCode;
     }
 
-    public void setDictId(String dictId) {
-        this.dictId = dictId == null ? null : dictId.trim();
+    public void setDataCode(String dataCode) {
+        this.dataCode = dataCode == null ? null : dataCode.trim();
     }
 
     public String getDataName() {
@@ -53,6 +45,14 @@ public class BaseData {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getFunctionName() {
+        return functionName;
+    }
+
+    public void setFunctionName(String functionName) {
+        this.functionName = functionName == null ? null : functionName.trim();
     }
 
     public Integer getSort() {

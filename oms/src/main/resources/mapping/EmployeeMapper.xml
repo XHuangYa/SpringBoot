@@ -1,411 +1,468 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bakery.application.mapper.EmployeeMapper" >
-  <resultMap id="BaseResultMap" type="com.bakery.application.entity.Employee" >
-    <id column="EMP_NO" property="empNo" jdbcType="VARCHAR" />
-    <result column="ID" property="id" jdbcType="INTEGER" />
-    <result column="EMP_NAME" property="empName" jdbcType="VARCHAR" />
-    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
-    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
-    <result column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
-    <result column="JOB" property="job" jdbcType="VARCHAR" />
-    <result column="MGR" property="mgr" jdbcType="VARCHAR" />
-    <result column="SEX" property="sex" jdbcType="INTEGER" />
-    <result column="BIRTH" property="birth" jdbcType="DATE" />
-    <result column="SAL" property="sal" jdbcType="VARCHAR" />
-    <result column="ADDR" property="addr" jdbcType="VARCHAR" />
-    <result column="DEPNO" property="depno" jdbcType="VARCHAR" />
-    <result column="DONE_TIME" property="doneTime" jdbcType="DATE" />
-    <result column="STATUS" property="status" jdbcType="INTEGER" />
-    <result column="CREATE_TIME" property="createTime" jdbcType="DATE" />
-    <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE" />
-    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+<mapper namespace="com.bakery.application.mapper.EmployeeMapper">
+    <resultMap id="BaseResultMap" type="com.bakery.application.entity.Employee">
+        <id column="EMP_NO" property="empNo" jdbcType="VARCHAR"/>
+        <result column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="EMP_NAME" property="empName" jdbcType="VARCHAR"/>
+        <result column="PASSWORD" property="password" jdbcType="VARCHAR"/>
+        <result column="PHONE" property="phone" jdbcType="VARCHAR"/>
+        <result column="ROLE_ID" property="roleId" jdbcType="VARCHAR"/>
+        <result column="JOB" property="job" jdbcType="VARCHAR"/>
+        <result column="MGR" property="mgr" jdbcType="VARCHAR"/>
+        <result column="SEX" property="sex" jdbcType="INTEGER"/>
+        <result column="BIRTH" property="birth" jdbcType="DATE"/>
+        <result column="SAL" property="sal" jdbcType="VARCHAR"/>
+        <result column="ADDR" property="addr" jdbcType="VARCHAR"/>
+        <result column="DEP_NO" property="depNo" jdbcType="VARCHAR"/>
+        <result column="DONE_TIME" property="doneTime" jdbcType="DATE"/>
+        <result column="STATUS" property="status" jdbcType="INTEGER"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="DATE"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="ResultMapPages" type="com.bakery.application.dto.EmployeeDTO">
+        <id column="EMP_NO" property="empNo" jdbcType="VARCHAR"/>
+        <result column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="EMP_NAME" property="empName" jdbcType="VARCHAR"/>
+        <result column="PASSWORD" property="password" jdbcType="VARCHAR"/>
+        <result column="PHONE" property="phone" jdbcType="VARCHAR"/>
+        <result column="ROLE_ID" property="roleId" jdbcType="VARCHAR"/>
+        <result column="JOB" property="job" jdbcType="VARCHAR"/>
+        <result column="MGR" property="mgr" jdbcType="VARCHAR"/>
+        <result column="SEX" property="sex" jdbcType="INTEGER"/>
+        <result column="BIRTH" property="birth" jdbcType="DATE"/>
+        <result column="SAL" property="sal" jdbcType="VARCHAR"/>
+        <result column="ADDR" property="addr" jdbcType="VARCHAR"/>
+        <result column="DEP_NO" property="depNo" jdbcType="VARCHAR"/>
+        <result column="DONE_TIME" property="doneTime" jdbcType="DATE"/>
+        <result column="STATUS" property="status" jdbcType="INTEGER"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="DATE"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+        <result column="roleDes" property="roleDes" jdbcType="VARCHAR"/>
+        <result column="sexDes" property="sexDes" jdbcType="VARCHAR"/>
+        <result column="depDes" property="depDes" jdbcType="VARCHAR"/>
+        <result column="mgrDes" property="mgrDes" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
     EMP_NO, ID, EMP_NAME, PASSWORD, PHONE, ROLE_ID, JOB, MGR, SEX, BIRTH, SAL, ADDR, 
-    DEPNO, DONE_TIME, STATUS, CREATE_TIME, UPDATE_TIME, REMARK
+    DEP_NO, DONE_TIME, STATUS, CREATE_TIME, UPDATE_TIME, REMARK
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bakery.application.entity.EmployeeCriteria" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    'true' as QUERYID,
-    <include refid="Base_Column_List" />
-    from bky_emp
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from bky_emp
-    where EMP_NO = #{empNo,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    <select id="queryByExample" resultMap="ResultMapPages"
+            parameterType="com.bakery.application.dto.EmployeeDTO">
+        select e.EMP_NO, e.EMP_NAME, e.PASSWORD, e.PHONE, e.JOB, e.BIRTH, e.SAL,
+        e.ADDR, DONE_TIME, STATUS, CREATE_TIME, UPDATE_TIME, REMARK,
+        (select bc.CODE_NAME from base_code bc where bc.DATA_CODE=e.ROLE_ID and bc.CODE_TYPE='ROLE_ID') roleDes,
+        (select bc.CODE_NAME from base_code bc where bc.data_code=e.SEX and bc.CODE_TYPE='SEX') sexDes,
+        (select bc.CODE_NAME from base_code bc where bc.data_code=e.DEP_NO and bc.CODE_TYPE='DPT_TYPE')depDes,
+        (select c.EMP_NAME from bky_emp c where e.MGR=c.EMP_NO) mgrDes
+        from bky_emp e
+        <where>
+            <if test="phone != null and phone!=''">
+                e.phone = #{phone}
+            </if>
+            <if test="roleId != null and roleId!=''">
+                AND e.role_id = #{roleId}
+            </if>
+            <if test="depNo != null and depNo!=''">
+                AND e.dep_no = #{depNo}
+            </if>
+            <if test="depNo != null and depNo!=''">
+                AND e.dep_no = #{depNo}
+            </if>
+            <if test="empName != null and empName!=''">
+                AND e.emp_name like #{empName}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectByExample1" resultMap="BaseResultMap"
+            parameterType="com.bakery.application.entity.EmployeeCriteria">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        'true' as QUERYID,
+        <include refid="Base_Column_List"/>
+        from bky_emp
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from bky_emp
+        where EMP_NO = #{empNo,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from bky_emp
     where EMP_NO = #{empNo,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.bakery.application.entity.EmployeeCriteria" >
-    delete from bky_emp
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.bakery.application.entity.Employee" >
+    <delete id="deleteByExample" parameterType="com.bakery.application.entity.EmployeeCriteria">
+        delete from bky_emp
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.bakery.application.entity.Employee">
     insert into bky_emp (EMP_NO, ID, EMP_NAME, 
       PASSWORD, PHONE, ROLE_ID, 
       JOB, MGR, SEX, BIRTH, 
-      SAL, ADDR, DEPNO, DONE_TIME, 
+      SAL, ADDR, DEP_NO, DONE_TIME, 
       STATUS, CREATE_TIME, UPDATE_TIME, 
       REMARK)
     values (#{empNo,jdbcType=VARCHAR}, #{id,jdbcType=INTEGER}, #{empName,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER}, 
+      #{password,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, 
       #{job,jdbcType=VARCHAR}, #{mgr,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{birth,jdbcType=DATE}, 
-      #{sal,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR}, #{depno,jdbcType=VARCHAR}, #{doneTime,jdbcType=DATE}, 
+      #{sal,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR}, #{depNo,jdbcType=VARCHAR}, #{doneTime,jdbcType=DATE}, 
       #{status,jdbcType=INTEGER}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, 
       #{remark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.bakery.application.entity.Employee" >
-    insert into bky_emp
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="empNo != null" >
-        EMP_NO,
-      </if>
-      <if test="id != null" >
-        ID,
-      </if>
-      <if test="empName != null" >
-        EMP_NAME,
-      </if>
-      <if test="password != null" >
-        PASSWORD,
-      </if>
-      <if test="phone != null" >
-        PHONE,
-      </if>
-      <if test="roleId != null" >
-        ROLE_ID,
-      </if>
-      <if test="job != null" >
-        JOB,
-      </if>
-      <if test="mgr != null" >
-        MGR,
-      </if>
-      <if test="sex != null" >
-        SEX,
-      </if>
-      <if test="birth != null" >
-        BIRTH,
-      </if>
-      <if test="sal != null" >
-        SAL,
-      </if>
-      <if test="addr != null" >
-        ADDR,
-      </if>
-      <if test="depno != null" >
-        DEPNO,
-      </if>
-      <if test="doneTime != null" >
-        DONE_TIME,
-      </if>
-      <if test="status != null" >
-        STATUS,
-      </if>
-      <if test="createTime != null" >
-        CREATE_TIME,
-      </if>
-      <if test="updateTime != null" >
-        UPDATE_TIME,
-      </if>
-      <if test="remark != null" >
-        REMARK,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="empNo != null" >
-        #{empNo,jdbcType=VARCHAR},
-      </if>
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="empName != null" >
-        #{empName,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null" >
-        #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="roleId != null" >
-        #{roleId,jdbcType=INTEGER},
-      </if>
-      <if test="job != null" >
-        #{job,jdbcType=VARCHAR},
-      </if>
-      <if test="mgr != null" >
-        #{mgr,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null" >
-        #{sex,jdbcType=INTEGER},
-      </if>
-      <if test="birth != null" >
-        #{birth,jdbcType=DATE},
-      </if>
-      <if test="sal != null" >
-        #{sal,jdbcType=VARCHAR},
-      </if>
-      <if test="addr != null" >
-        #{addr,jdbcType=VARCHAR},
-      </if>
-      <if test="depno != null" >
-        #{depno,jdbcType=VARCHAR},
-      </if>
-      <if test="doneTime != null" >
-        #{doneTime,jdbcType=DATE},
-      </if>
-      <if test="status != null" >
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=DATE},
-      </if>
-      <if test="updateTime != null" >
-        #{updateTime,jdbcType=DATE},
-      </if>
-      <if test="remark != null" >
-        #{remark,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.bakery.application.entity.EmployeeCriteria" resultType="java.lang.Integer" >
-    select count(*) from bky_emp
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update bky_emp
-    <set >
-      <if test="record.empNo != null" >
-        EMP_NO = #{record.empNo,jdbcType=VARCHAR},
-      </if>
-      <if test="record.id != null" >
+    <insert id="insertSelective" parameterType="com.bakery.application.entity.Employee">
+        insert into bky_emp
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="empNo != null">
+                EMP_NO,
+            </if>
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="empName != null">
+                EMP_NAME,
+            </if>
+            <if test="password != null">
+                PASSWORD,
+            </if>
+            <if test="phone != null">
+                PHONE,
+            </if>
+            <if test="roleId != null">
+                ROLE_ID,
+            </if>
+            <if test="job != null">
+                JOB,
+            </if>
+            <if test="mgr != null">
+                MGR,
+            </if>
+            <if test="sex != null">
+                SEX,
+            </if>
+            <if test="birth != null">
+                BIRTH,
+            </if>
+            <if test="sal != null">
+                SAL,
+            </if>
+            <if test="addr != null">
+                ADDR,
+            </if>
+            <if test="depNo != null">
+                DEP_NO,
+            </if>
+            <if test="doneTime != null">
+                DONE_TIME,
+            </if>
+            <if test="status != null">
+                STATUS,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME,
+            </if>
+            <if test="remark != null">
+                REMARK,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="empNo != null">
+                #{empNo,jdbcType=VARCHAR},
+            </if>
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="empName != null">
+                #{empName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="roleId != null">
+                #{roleId,jdbcType=VARCHAR},
+            </if>
+            <if test="job != null">
+                #{job,jdbcType=VARCHAR},
+            </if>
+            <if test="mgr != null">
+                #{mgr,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=INTEGER},
+            </if>
+            <if test="birth != null">
+                #{birth,jdbcType=DATE},
+            </if>
+            <if test="sal != null">
+                #{sal,jdbcType=VARCHAR},
+            </if>
+            <if test="addr != null">
+                #{addr,jdbcType=VARCHAR},
+            </if>
+            <if test="depNo != null">
+                #{depNo,jdbcType=VARCHAR},
+            </if>
+            <if test="doneTime != null">
+                #{doneTime,jdbcType=DATE},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=DATE},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=DATE},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.bakery.application.entity.EmployeeCriteria"
+            resultType="java.lang.Integer">
+        select count(*) from bky_emp
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update bky_emp
+        <set>
+            <if test="record.empNo != null">
+                EMP_NO = #{record.empNo,jdbcType=VARCHAR},
+            </if>
+            <if test="record.id != null">
+                ID = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.empName != null">
+                EMP_NAME = #{record.empName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.password != null">
+                PASSWORD = #{record.password,jdbcType=VARCHAR},
+            </if>
+            <if test="record.phone != null">
+                PHONE = #{record.phone,jdbcType=VARCHAR},
+            </if>
+            <if test="record.roleId != null">
+                ROLE_ID = #{record.roleId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.job != null">
+                JOB = #{record.job,jdbcType=VARCHAR},
+            </if>
+            <if test="record.mgr != null">
+                MGR = #{record.mgr,jdbcType=VARCHAR},
+            </if>
+            <if test="record.sex != null">
+                SEX = #{record.sex,jdbcType=INTEGER},
+            </if>
+            <if test="record.birth != null">
+                BIRTH = #{record.birth,jdbcType=DATE},
+            </if>
+            <if test="record.sal != null">
+                SAL = #{record.sal,jdbcType=VARCHAR},
+            </if>
+            <if test="record.addr != null">
+                ADDR = #{record.addr,jdbcType=VARCHAR},
+            </if>
+            <if test="record.depNo != null">
+                DEP_NO = #{record.depNo,jdbcType=VARCHAR},
+            </if>
+            <if test="record.doneTime != null">
+                DONE_TIME = #{record.doneTime,jdbcType=DATE},
+            </if>
+            <if test="record.status != null">
+                STATUS = #{record.status,jdbcType=INTEGER},
+            </if>
+            <if test="record.createTime != null">
+                CREATE_TIME = #{record.createTime,jdbcType=DATE},
+            </if>
+            <if test="record.updateTime != null">
+                UPDATE_TIME = #{record.updateTime,jdbcType=DATE},
+            </if>
+            <if test="record.remark != null">
+                REMARK = #{record.remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update bky_emp
+        set EMP_NO = #{record.empNo,jdbcType=VARCHAR},
         ID = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.empName != null" >
         EMP_NAME = #{record.empName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.password != null" >
         PASSWORD = #{record.password,jdbcType=VARCHAR},
-      </if>
-      <if test="record.phone != null" >
         PHONE = #{record.phone,jdbcType=VARCHAR},
-      </if>
-      <if test="record.roleId != null" >
-        ROLE_ID = #{record.roleId,jdbcType=INTEGER},
-      </if>
-      <if test="record.job != null" >
+        ROLE_ID = #{record.roleId,jdbcType=VARCHAR},
         JOB = #{record.job,jdbcType=VARCHAR},
-      </if>
-      <if test="record.mgr != null" >
         MGR = #{record.mgr,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sex != null" >
         SEX = #{record.sex,jdbcType=INTEGER},
-      </if>
-      <if test="record.birth != null" >
         BIRTH = #{record.birth,jdbcType=DATE},
-      </if>
-      <if test="record.sal != null" >
         SAL = #{record.sal,jdbcType=VARCHAR},
-      </if>
-      <if test="record.addr != null" >
         ADDR = #{record.addr,jdbcType=VARCHAR},
-      </if>
-      <if test="record.depno != null" >
-        DEPNO = #{record.depno,jdbcType=VARCHAR},
-      </if>
-      <if test="record.doneTime != null" >
+        DEP_NO = #{record.depNo,jdbcType=VARCHAR},
         DONE_TIME = #{record.doneTime,jdbcType=DATE},
-      </if>
-      <if test="record.status != null" >
         STATUS = #{record.status,jdbcType=INTEGER},
-      </if>
-      <if test="record.createTime != null" >
         CREATE_TIME = #{record.createTime,jdbcType=DATE},
-      </if>
-      <if test="record.updateTime != null" >
         UPDATE_TIME = #{record.updateTime,jdbcType=DATE},
-      </if>
-      <if test="record.remark != null" >
-        REMARK = #{record.remark,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update bky_emp
-    set EMP_NO = #{record.empNo,jdbcType=VARCHAR},
-      ID = #{record.id,jdbcType=INTEGER},
-      EMP_NAME = #{record.empName,jdbcType=VARCHAR},
-      PASSWORD = #{record.password,jdbcType=VARCHAR},
-      PHONE = #{record.phone,jdbcType=VARCHAR},
-      ROLE_ID = #{record.roleId,jdbcType=INTEGER},
-      JOB = #{record.job,jdbcType=VARCHAR},
-      MGR = #{record.mgr,jdbcType=VARCHAR},
-      SEX = #{record.sex,jdbcType=INTEGER},
-      BIRTH = #{record.birth,jdbcType=DATE},
-      SAL = #{record.sal,jdbcType=VARCHAR},
-      ADDR = #{record.addr,jdbcType=VARCHAR},
-      DEPNO = #{record.depno,jdbcType=VARCHAR},
-      DONE_TIME = #{record.doneTime,jdbcType=DATE},
-      STATUS = #{record.status,jdbcType=INTEGER},
-      CREATE_TIME = #{record.createTime,jdbcType=DATE},
-      UPDATE_TIME = #{record.updateTime,jdbcType=DATE},
-      REMARK = #{record.remark,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bakery.application.entity.Employee" >
-    update bky_emp
-    <set >
-      <if test="id != null" >
-        ID = #{id,jdbcType=INTEGER},
-      </if>
-      <if test="empName != null" >
-        EMP_NAME = #{empName,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        PASSWORD = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null" >
-        PHONE = #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="roleId != null" >
-        ROLE_ID = #{roleId,jdbcType=INTEGER},
-      </if>
-      <if test="job != null" >
-        JOB = #{job,jdbcType=VARCHAR},
-      </if>
-      <if test="mgr != null" >
-        MGR = #{mgr,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null" >
-        SEX = #{sex,jdbcType=INTEGER},
-      </if>
-      <if test="birth != null" >
-        BIRTH = #{birth,jdbcType=DATE},
-      </if>
-      <if test="sal != null" >
-        SAL = #{sal,jdbcType=VARCHAR},
-      </if>
-      <if test="addr != null" >
-        ADDR = #{addr,jdbcType=VARCHAR},
-      </if>
-      <if test="depno != null" >
-        DEPNO = #{depno,jdbcType=VARCHAR},
-      </if>
-      <if test="doneTime != null" >
-        DONE_TIME = #{doneTime,jdbcType=DATE},
-      </if>
-      <if test="status != null" >
-        STATUS = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="createTime != null" >
-        CREATE_TIME = #{createTime,jdbcType=DATE},
-      </if>
-      <if test="updateTime != null" >
-        UPDATE_TIME = #{updateTime,jdbcType=DATE},
-      </if>
-      <if test="remark != null" >
-        REMARK = #{remark,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where EMP_NO = #{empNo,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.bakery.application.entity.Employee" >
+        REMARK = #{record.remark,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bakery.application.entity.Employee">
+        update bky_emp
+        <set>
+            <if test="id != null">
+                ID = #{id,jdbcType=INTEGER},
+            </if>
+            <if test="empName != null">
+                EMP_NAME = #{empName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                PASSWORD = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                PHONE = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="roleId != null">
+                ROLE_ID = #{roleId,jdbcType=VARCHAR},
+            </if>
+            <if test="job != null">
+                JOB = #{job,jdbcType=VARCHAR},
+            </if>
+            <if test="mgr != null">
+                MGR = #{mgr,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                SEX = #{sex,jdbcType=INTEGER},
+            </if>
+            <if test="birth != null">
+                BIRTH = #{birth,jdbcType=DATE},
+            </if>
+            <if test="sal != null">
+                SAL = #{sal,jdbcType=VARCHAR},
+            </if>
+            <if test="addr != null">
+                ADDR = #{addr,jdbcType=VARCHAR},
+            </if>
+            <if test="depNo != null">
+                DEP_NO = #{depNo,jdbcType=VARCHAR},
+            </if>
+            <if test="doneTime != null">
+                DONE_TIME = #{doneTime,jdbcType=DATE},
+            </if>
+            <if test="status != null">
+                STATUS = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=DATE},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime,jdbcType=DATE},
+            </if>
+            <if test="remark != null">
+                REMARK = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where EMP_NO = #{empNo,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.bakery.application.entity.Employee">
     update bky_emp
     set ID = #{id,jdbcType=INTEGER},
       EMP_NAME = #{empName,jdbcType=VARCHAR},
       PASSWORD = #{password,jdbcType=VARCHAR},
       PHONE = #{phone,jdbcType=VARCHAR},
-      ROLE_ID = #{roleId,jdbcType=INTEGER},
+      ROLE_ID = #{roleId,jdbcType=VARCHAR},
       JOB = #{job,jdbcType=VARCHAR},
       MGR = #{mgr,jdbcType=VARCHAR},
       SEX = #{sex,jdbcType=INTEGER},
       BIRTH = #{birth,jdbcType=DATE},
       SAL = #{sal,jdbcType=VARCHAR},
       ADDR = #{addr,jdbcType=VARCHAR},
-      DEPNO = #{depno,jdbcType=VARCHAR},
+      DEP_NO = #{depNo,jdbcType=VARCHAR},
       DONE_TIME = #{doneTime,jdbcType=DATE},
       STATUS = #{status,jdbcType=INTEGER},
       CREATE_TIME = #{createTime,jdbcType=DATE},
