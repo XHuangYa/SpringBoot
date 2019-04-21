@@ -157,120 +157,130 @@
         <form class="form-horizontal" role="form" id="empForm" name="empForm" method="post">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                    <button onclick="rightClose()" type="button" class="close" data-dismiss="modal"
+                            aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="gridSystemModalLabel">Modal title</h4>
+                    <h4 class="modal-title" id="gridSystemModalLabel">员工信息</h4>
                 </div>
-                <div class="modal-body" style="margin-right: 30px">
-                    <div class="form-group form-group-sm">
-                        <label class="control-label col-sm-2 ">员工名称:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="empName" id="empName" placeholder="请输入..."/>
+                <fieldset id="fieldset">
+                    <div class="modal-body" style="margin-right: 30px">
+                        <input type="hidden" class="form-control" name="empNo" id="empNo" placeholder="请输入..."/>
+                        <div class="form-group form-group-sm">
+                            <label class="control-label col-sm-2 ">员工名称:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="empName" id="empName"
+                                       placeholder="请输入..."/>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group form-group-sm">
-                        <label class="control-label col-sm-2">电话号码:</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" name="phone" id="phone" placeholder="请输入..."/>
+                        <div class="form-group form-group-sm">
+                            <label class="control-label col-sm-2">电话号码:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="phone" id="phone" placeholder="请输入..."/>
+                            </div>
+                            <label class="control-label col-sm-2 "><span>*</span>员工标识:</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" name="roleId" id="roleId"
+                                        onkeyup="this.value=this.value.replace(/\s+/g,'')">
+                                    <option value="">请选择</option>
+                                </select>
+                            </div>
                         </div>
-                        <label class="control-label col-sm-2 "><span>*</span>员工标识:</label>
-                        <div class="col-sm-4">
-                            <select class="form-control" name="roleId" id="roleId"
-                                    onkeyup="this.value=this.value.replace(/\s+/g,'')">
-                                <option value="">请选择</option>
-                            </select>
+                        <div class="form-group form-group-sm">
+                            <label class="control-label col-sm-2 ">员工职位:</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" name="job" id="job"
+                                        onkeyup="this.value=this.value.replace(/\s+/g,'')">
+                                    <option value="">请选择</option>
+                                </select>
+                            </div>
+                            <label class="control-label col-sm-2 ">上级领导:</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" name="mgr" id="mgr"
+                                        onkeyup="this.value=this.value.replace(/\s+/g,'')">
+                                    <option value="">请选择</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group form-group-sm">
-                        <label class="control-label col-sm-2 ">员工职位:</label>
-                        <div class="col-sm-4">
-                            <select class="form-control" name="job" id="job"
-                                    onkeyup="this.value=this.value.replace(/\s+/g,'')">
-                                <option value="">请选择</option>
-                            </select>
+                        <div class="form-group form-group-sm">
+                            <label class="control-label col-sm-2">员工性别:</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" name="sex" id="sex"
+                                        onkeyup="this.value=this.value.replace(/\s+/g,'')">
+                                    <option value="">请选择</option>
+                                </select>
+                            </div>
+                            <label class="control-label col-sm-2">出生日期:</label>
+                            <div class="col-sm-4 has-feedback ">
+                                <input name="birth" id="birth" type="text" placeholder="精确到年月日... "
+                                       class="form-control  input-sm "
+                                       onFocus="WdatePicker({dateFmt: 'yyyy-MM-dd'})"/>
+                                <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                            </div>
                         </div>
-                        <label class="control-label col-sm-2 ">上级领导:</label>
-                        <div class="col-sm-4">
-                            <select class="form-control" name="mgr" id="mgr"
-                                    onkeyup="this.value=this.value.replace(/\s+/g,'')">
-                                <option value="">请选择</option>
-                            </select>
+                        <div class="form-group form-group-sm">
+                            <label class="control-label col-sm-2">居住地址:</label>
                         </div>
-                    </div>
-                    <div class="form-group form-group-sm">
-                        <label class="control-label col-sm-2">员工性别:</label>
-                        <div class="col-sm-4">
-                            <select class="form-control" name="sex" id="sex"
-                                    onkeyup="this.value=this.value.replace(/\s+/g,'')">
-                                <option value="">请选择</option>
-                            </select>
-                        </div>
-                        <label class="control-label col-sm-2">出生日期:</label>
-                        <div class="col-sm-4 has-feedback ">
-                            <input name="birth " id="birth " type="text " placeholder="精确到年月日... "
-                                   class="form-control  input-sm "
-                                   onFocus="WdatePicker({dateFmt: 'yyyy-MM-dd'})"/>
-                            <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
-                        </div>
-                    </div>
-                    <div class="form-group form-group-sm">
-                        <label class="control-label col-sm-2">居住地址:</label>
-                    </div>
-                    <div class="form-group form-group-sm" style="padding-left: 10px">
-                        <div class="col-sm-12">
+                        <div class="form-group form-group-sm" style="padding-left: 10px">
+                            <div class="col-sm-12">
                             <textarea class="form-control" name="addr" id="addr"
                                       style="resize:none; height: 50px;" rows="3"
                                       placeholder="请输入..."
                                       onkeyup="this.value=this.value.replace(/\s+/g,'')"></textarea>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group form-group-sm">
-                        <label class="control-label col-sm-2">员工薪资:</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" name="sal" id="sal" placeholder="请输入..."/>
+                        <div class="form-group form-group-sm">
+                            <label class="control-label col-sm-2">员工薪资:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="sal" id="sal" placeholder="请输入..."/>
+                            </div>
+                            <label class="control-label col-sm-2 ">归属部门:</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" name="depNo" id="depNo"
+                                        onkeyup="this.value=this.value.replace(/\s+/g,'')">
+                                    <option value="">请选择</option>
+                                </select>
+                            </div>
                         </div>
-                        <label class="control-label col-sm-2 ">归属部门:</label>
-                        <div class="col-sm-4">
-                            <select class="form-control" name="depNo" id="depNo"
-                                    onkeyup="this.value=this.value.replace(/\s+/g,'')">
-                                <option value="">请选择</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group form-group-sm">
-                        <label class="control-label col-sm-2 ">存档时间:</label>
-                        <div class="col-sm-4 has-feedback ">
-                            <input name="doneTime " id="doneTime " type="text " placeholder="精确年月日时分秒 "
-                                   class="form-control"
-                                   onFocus="WdatePicker({maxDate:'%y-%M-%d',dateFmt: 'yyyy-MM-dd'})"/>
-                            <span class="glyphicon glyphicon-calendar form-control-feedback "></span>
-                        </div>
+                        <div class="form-group form-group-sm">
+                            <label class="control-label col-sm-2 ">存档时间:</label>
+                            <div class="col-sm-4 has-feedback ">
+                                <input name="doneTime" id="doneTime" type="text " placeholder="精确年月日时分秒 "
+                                       class="form-control"
+                                       onFocus="WdatePicker({maxDate:'%y-%M-%d',dateFmt: 'yyyy-MM-dd'})"/>
+                                <span class="glyphicon glyphicon-calendar form-control-feedback "></span>
+                            </div>
 
-                        <label class="control-label col-sm-2 ">修改时间:</label>
-                        <div class="col-sm-4 has-feedback ">
-                            <input name="updateTime" id="updateTime " type="text " placeholder="精确年月日时分秒 "
-                                   class="form-control "
-                                   onFocus="WdatePicker({maxDate:'%y-%M-%d',dateFmt: 'yyyy-MM-dd'})"/>
-                            <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                            <label class="control-label col-sm-2 ">修改时间:</label>
+                            <div class="col-sm-4 has-feedback ">
+                                <input name="updateTime" id="updateTime" type="text " placeholder="精确年月日时分秒 "
+                                       class="form-control "
+                                       onFocus="WdatePicker({maxDate:'%y-%M-%d',dateFmt: 'yyyy-MM-dd'})"/>
+                                <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group form-group-sm">
-                        <label class="control-label col-sm-2">描&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;述:</label>
-                    </div>
-                    <div class="form-group form-group-sm" style="padding-left: 10px">
-                        <div class="col-sm-12 ">
+                        <div class="form-group form-group-sm">
+                            <label class="control-label col-sm-2">描&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;述:</label>
+                        </div>
+                        <div class="form-group form-group-sm" style="padding-left: 10px">
+                            <div class="col-sm-12 ">
                             <textarea class="form-control" name="remark" id="remark" style="resize:none; height: 70px"
                                       rows="3" placeholder="请输入..."
                                       onkeyup="this.value=this.value.replace(/\s+/g,'')"></textarea>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </fieldset>
                 <div class="form-group form-group-sm">
-                    <button id="saveEmp" onclick="saveEmpFun()" class="btn btn-primary  col-sm-1 col-sm-offset-4" style="width: 80px"
-                            >保存
+                    <button id="saveEmp" onclick="saveOrUpdateFun()" class="btn btn-primary  col-sm-1 col-sm-offset-4"
+                    >保存
                     </button>
-                    <button id="reseted" class="btn btn-warning  col-sm-1  col-sm-offset-2 " style="width: 80px">重置
+                    <button id="resetEmp" onclick="resetModelBtn()" class="btn btn-warning  col-sm-1  col-sm-offset-2 "
+                    >重置
+                    </button>
+                    <button id="closedEmp" onclick="closeModelBtn()" data-dismiss="modal"
+                            class="btn btn-primary  col-sm-4 col-sm-offset-4"
+                    >关闭
                     </button>
                 </div>
             </div>
@@ -394,13 +404,19 @@
                 values += this.value;
             }
         });
-        console.info(values + "length2")
         if (values.length > 0) {
             changeBtnable();
         } else {
             changeBtndisable();
         }
         values = "";
+    }
+
+    /*关闭按钮*/
+    function rightClose() {
+        //清除表单验证
+        $("#empForm").data('bootstrapValidator').destroy();
+        $('#empForm').data('bootstrapValidator', null);
     }
 
     /*查询按钮*/
@@ -523,48 +539,107 @@
 
     /*新增按钮*/
     function addFun() {
+        row = "";
         $('#myModal').modal('show');
+        checkForm();
+        $("#empForm").data('bootstrapValidator').resetForm();
+        $('#empForm')[0].reset();
+        $("#fieldset").removeAttr("disabled");
+        $("#saveEmp").attr("style", "display:block;");
+        $("#resetEmp").attr("style", "display:block;");
+        $("#closedEmp").attr("style", "display:none");
     }
 
     /*新增信息确认按钮*/
-    function saveEmpFun() {
-        var createOrUpdateEmpUrl = $("#createOrUpdateEmpUrl").val();
-        console.info(createOrUpdateEmpUrl + "---");
-        $.post(createOrUpdateEmpUrl, $("#empForm").serialize(), function (data) {
-            if (data == 'true') {
-                $.alert({
-                    title: '提示',
-                    content: '保存成功！',
-                    type: 'green',				//一般危险操作用red,保存成功操作green
-                    buttons: {				//定义按钮
-                        confirm: {
-                            text: '确认',
-                            btnClass: 'btn-primary',
-                            action: function () {	//这里写点击按钮回调函数
-                                $('#myModal').modal('hide');
-                                $('#tb_roles').bootstrapTable('refresh');  //刷新列表
+    function saveOrUpdateFun() {
+        var bootstrapValidator = $("#empForm").data('bootstrapValidator');
+        if (bootstrapValidator.validate().isValid()) {
+            $("body").mLoading({
+                text: "加载中，请稍候...",//加载文字，默认值:加载中...
+                html: false,//设置加载内容是否是html格式，默认值是false
+                content: "",//忽略icon和text的值，直接在加载框中显示此值
+                mask: true//是否显示遮罩效果，默认显示
+            })
+            var createOrUpdateEmpUrl = $("#createOrUpdateEmpUrl").val();
+            console.info(createOrUpdateEmpUrl + "---");
+            $.post(createOrUpdateEmpUrl, $("#empForm").serialize(), function (data) {
+                $("body").mLoading("hide");//隐藏loading组件
+                if (data || data == 'true') {
+                    $.alert({
+                        title: '提示',
+                        content: '保存成功！',
+                        type: 'green',				//一般危险操作用red,保存成功操作green
+                        buttons: {				//定义按钮
+                            confirm: {
+                                text: '确认',
+                                btnClass: 'btn-primary',
+                                action: function () {	//这里写点击按钮回调函数
+                                    $('#myModal').modal('hide');
+                                    $("#empForm").data('bootstrapValidator').resetForm();
+                                    $('#tb_roles').bootstrapTable('refresh');  //刷新列表
+                                }
                             }
                         }
-                    }
-                });
-            } else {
-                $.alert({
-                    title: '提示',
-                    content: '保存失败！',
-                    type: 'red',				//一般危险操作用red,保存成功操作green
-                    buttons: {				//定义按钮
-                        confirm: {
-                            text: '确认',
-                            btnClass: 'btn-primary',
-                            action: function () {	//这里写点击按钮回调函数
-                                $('#tb_roles').bootstrapTable('refresh');  //刷新列表
+                    });
+                } else {
+                    $.alert({
+                        title: '提示',
+                        content: '保存失败！',
+                        type: 'red',				//一般危险操作用red,保存成功操作green
+                        buttons: {				//定义按钮
+                            confirm: {
+                                text: '确认',
+                                btnClass: 'btn-primary',
+                                action: function () {	//这里写点击按钮回调函数
+                                }
                             }
                         }
+                    });
+                }
+            }, 'json');
+        }
+        else {
+            $.alert({
+                title: '提示',
+                content: '请按照相关提示修改！',
+                type: 'red', //一般危险操作用red,保存成功操作green
+                buttons: { //定义按钮
+                    confirm: {
+                        text: '确认',
+                        btnClass: 'btn-primary',
+                        action: function () { //这里写点击按钮回调函数
+                        }
                     }
-                });
-            }
-        }, 'json');
+                }
+            });
+        }
+    }
 
+    /*新增信息重置按钮*/
+    function resetModelBtn() {
+        if (row.empNo == null) {
+            $("#empForm").data('bootstrapValidator').resetForm();
+            $('#empForm')[0].reset();
+            $("#empForm").data('bootstrapValidator').destroy();
+            checkForm();
+        } else {
+            $('#myModal #empNo').val(row.empNo);
+            $('#myModal #empName').val(row.empName);
+            $('#myModal #phone').val(row.phone);
+            $('#myModal #roleId').val(row.roleId);
+            $('#myModal #job').val(row.job);
+            $('#myModal #mgr').val(row.mgr);
+            $('#myModal #sex').val(row.sex);
+            $('#myModal #birth').val(row.birth);
+            $('#myModal #addr').val(row.addr);
+            $('#myModal #sal').val(row.sal);
+            $('#myModal #depNo').val(row.depNo);
+            $('#myModal #doneTime').val(row.doneTime);
+            $('#myModal #updateTime').val(row.updateTime);
+            $('#myModal #remark').val(row.remark);
+            $('#empForm').data('bootstrapValidator', null);
+            checkForm();
+        }
     }
 
     /*表单验证*/
@@ -580,14 +655,170 @@
                 empName: {
                     validators: {
                         notEmpty: {
-                            message: '请选择员工名称'
-                        },
+                            message: '请填写选员工名称'
+                        }
+                    }
+                },
+                phone: {
+                    validators: {
+                        notEmpty: {
+                            message: '请填写电话号码'
+                        }
+                    }
+                },
+                roleId: {
+                    validators: {
+                        notEmpty: {
+                            message: '请选择员工标识'
+                        }
+                    }
+                },
+                job: {
+                    validators: {
+                        notEmpty: {
+                            message: '请选择员工职位'
+                        }
+                    }
+                },
+                mgr: {
+                    validators: {
+                        notEmpty: {
+                            message: '请选择上级领导'
+                        }
+                    }
+                },
+                sal: {
+                    validators: {
+                        notEmpty: {
+                            message: '请填写员工薪资'
+                        }
+                    }
+                },
+                depNo: {
+                    validators: {
+                        notEmpty: {
+                            message: '请选择归属部门'
+                        }
                     }
                 }
+
             }
         });
     }
 
+    /*修改按钮*/
+    var row = "";
+
+    function updateFun() {
+        var rowId = $('#tb_roles').bootstrapTable('getSelections'); //获取所选中的行
+        if (rowId.length <= 0) {
+            $.alert({
+                title: '提示',
+                content: '请选择一行数据修改！',
+                type: 'blue',
+                buttons: { //定义按钮
+                    confirm: {
+                        text: '确认',
+                        btnClass: 'btn-primary',
+                        action: function () { //这里写点击按钮回调函数
+                        }
+                    }
+                }
+            });
+        } else if (rowId.length == 1) {
+            $('#myModal #empNo').val(rowId[0].empNo);
+            $('#myModal #empName').val(rowId[0].empName);
+            $('#myModal #phone').val(rowId[0].phone);
+            $('#myModal #roleId').val(rowId[0].roleId);
+            $('#myModal #job').val(rowId[0].job);
+            $('#myModal #mgr').val(rowId[0].mgr);
+            $('#myModal #sex').val(rowId[0].sex);
+            $('#myModal #birth').val(rowId[0].birth);
+            $('#myModal #addr').val(rowId[0].addr);
+            $('#myModal #sal').val(rowId[0].sal);
+            $('#myModal #depNo').val(rowId[0].depNo);
+            $('#myModal #doneTime').val(rowId[0].doneTime);
+            $('#myModal #updateTime').val(rowId[0].updateTime);
+            $('#myModal #remark').val(rowId[0].remark);
+            row = rowId[0];
+            $('#myModal').modal('show');
+            $("#fieldset").removeAttr("disabled");
+            $("#saveEmp").attr("style", "display:block;");
+            $("#resetEmp").attr("style", "display:block;");
+            $("#closedEmp").attr("style", "display:none");
+            checkForm();
+            $("#empForm").data('bootstrapValidator').resetForm();
+        } else {
+            $.alert({
+                title: '提示',
+                content: '每次只能选择一行数据修改！',
+                type: 'blue', //一般危险操作用red,保存成功操作green
+                buttons: { //定义按钮
+                    confirm: {
+                        text: '确认',
+                        btnClass: 'btn-primary',
+                        action: function () { //这里写点击按钮回调函数
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    /*查看按钮*/
+    function showFun() {
+        var rowId = $('#tb_roles').bootstrapTable('getSelections'); //获取所选中的行
+        if (rowId.length <= 0) {
+            $.alert({
+                title: '提示',
+                content: '请选择一行数据！',
+                type: 'blue',
+                buttons: { //定义按钮
+                    confirm: {
+                        text: '确认',
+                        btnClass: 'btn-primary',
+                        action: function () { //这里写点击按钮回调函数
+                        }
+                    }
+                }
+            });
+        } else if (rowId.length == 1) {
+            $('#myModal #empNo').val(rowId[0].empNo);
+            $('#myModal #empName').val(rowId[0].empName);
+            $('#myModal #phone').val(rowId[0].phone);
+            $('#myModal #roleId').val(rowId[0].roleId);
+            $('#myModal #job').val(rowId[0].job);
+            $('#myModal #mgr').val(rowId[0].mgr);
+            $('#myModal #sex').val(rowId[0].sex);
+            $('#myModal #birth').val(rowId[0].birth);
+            $('#myModal #addr').val(rowId[0].addr);
+            $('#myModal #sal').val(rowId[0].sal);
+            $('#myModal #depNo').val(rowId[0].depNo);
+            $('#myModal #doneTime').val(rowId[0].doneTime);
+            $('#myModal #updateTime').val(rowId[0].updateTime);
+            $('#myModal #remark').val(rowId[0].remark);
+            $('#myModal').modal('show');
+            $("#fieldset").attr("disabled", "true");
+            $("#saveEmp").attr("style", "display:none;");
+            $("#resetEmp").attr("style", "display:none;");
+            $("#closedEmp").attr("style", "display:block");
+
+        } else {
+            $.alert({
+                title: '提示',
+                content: '每次只能选择一行数据！',
+                type: 'blue', //一般危险操作用red,保存成功操作green
+                buttons: { //定义按钮
+                    confirm: {
+                        text: '确认',
+                        btnClass: 'btn-primary',
+                        action: function () { //这里写点击按钮回调函数
+                        }
+                    }
+                }
+            });
+        }
+    }
 
     /*---------bootstrapTable------start-----*/
     var index = '';
@@ -688,18 +919,42 @@
                     valign: 'middle',
                     visible: false
                 }, {
+                    title: '员工编号',
+                    field: 'roleId',
+                    align: 'center',
+                    valign: 'middle',
+                    visible: false
+                }, {
                     title: '员工职位',
                     field: 'jobDes',
                     align: 'center',
                     valign: 'middle'
+                }, {
+                    title: '职位编号',
+                    field: 'job',
+                    align: 'center',
+                    valign: 'middle',
+                    visible: false
                 }, {
                     title: '上级领导',
                     field: 'mgrDes',
                     align: 'center',
                     valign: 'middle'
                 }, {
+                    title: '上级编号',
+                    field: 'mgr',
+                    align: 'center',
+                    valign: 'middle',
+                    visible: false
+                }, {
                     title: '性别',
                     field: 'sexDes',
+                    align: 'center',
+                    valign: 'middle',
+                    visible: false
+                }, {
+                    title: '性别',
+                    field: 'sex',
                     align: 'center',
                     valign: 'middle',
                     visible: false
@@ -723,6 +978,12 @@
                     field: 'depDes',
                     align: 'center',
                     valign: 'middle'
+                }, {
+                    title: '部门id',
+                    field: 'depNo',
+                    align: 'center',
+                    valign: 'middle',
+                    visible: false
                 }, {
                     title: '存档时间',
                     field: 'doneTime',

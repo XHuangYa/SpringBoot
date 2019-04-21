@@ -21,7 +21,7 @@ public interface EmployeeService {
      */
     public List<Employee> selectByCriteriaPage(EmployeeDTO employeeDTO, Page Page);
     /**
-     * @Description: 删除emp
+     * @Description: 删除emp/修改用户
      * @Author: LiTing
      * @Date: 11:21 PM 2019/4/20
      * @return:
@@ -44,5 +44,6 @@ public interface EmployeeService {
      * @throws:
      */
     public boolean insertSelective(Employee employee);
+
 
 }

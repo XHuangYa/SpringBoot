@@ -30,7 +30,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public boolean updateByPrimaryKeySelective(Employee employee) {
-        employee.setStatus(0);
         return employeeMapper.updateByPrimaryKeySelective(employee)>=1?true:false;
     }
 
@@ -43,5 +42,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     public boolean insertSelective(Employee employee) {
         return employeeMapper.insertSelective(employee)>=1?true:false;
     }
+
 
 }

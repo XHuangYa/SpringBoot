@@ -9,6 +9,7 @@ import com.bakery.application.service.SysMenuService;
 import com.bakery.application.util.JsonUtil;
 import com.bakery.application.util.UUIDUtil;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,10 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.ParseException;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 
 /**
@@ -99,8 +98,8 @@ public class EmployeeController {
     @RequestMapping(value = Url.DELETE_EMP_SINGLE_URL, method = RequestMethod.POST)
     public @ResponseBody
     Boolean deleteEmployee(Employee employee) {
-        boolean flag = employeeService.updateByPrimaryKeySelective(employee);
-        return flag;
+        employee.setStatus(0);
+        return employeeService.updateByPrimaryKeySelective(employee);
     }
 
     /**
@@ -113,9 +112,14 @@ public class EmployeeController {
     @RequestMapping(value = Url.INSERT_OR_UPDATE_EMPINFO_URL, method = RequestMethod.POST)
     public @ResponseBody
     boolean insertEmp(Employee employee) {
-        employee.setEmpNo(UUIDUtil.create32Key());
-        employee.setStatus(1);
-        boolean flag = employeeService.insertSelective(employee);
+        boolean flag=false;
+        if(StringUtils.isBlank(employee.getEmpNo())){
+            employee.setEmpNo(UUIDUtil.create32Key());
+            employee.setStatus(1);
+            flag = employeeService.insertSelective(employee);
+        }else{
+            flag = employeeService.updateByPrimaryKeySelective(employee);
+        }
         return flag;
     }
 

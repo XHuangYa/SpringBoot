@@ -114,8 +114,8 @@
   </sql>
     <select id="queryByExample" resultMap="ResultMapPages"
             parameterType="com.bakery.application.dto.EmployeeDTO">
-        select e.EMP_NO, e.EMP_NAME, e.PASSWORD, e.PHONE, e.BIRTH, e.SAL,
-        e.ADDR, DONE_TIME, STATUS, CREATE_TIME, UPDATE_TIME, REMARK,
+        select e.EMP_NO, e.EMP_NAME, e.PASSWORD, e.PHONE, e.BIRTH, e.SAL,e.role_id,e.MGR,e.SEX,
+        e.JOB,e.DEP_NO,e.ADDR, e.DONE_TIME, e.STATUS, e.CREATE_TIME, e.UPDATE_TIME, e.REMARK,
         (select bc.CODE_NAME from base_code bc where bc.DATA_CODE=e.ROLE_ID and bc.CODE_TYPE='ROLE_ID') roleDes,
         (select bc.CODE_NAME from base_code bc where bc.data_code=e.SEX and bc.CODE_TYPE='SEX') sexDes,
         (select bc.CODE_NAME from base_code bc where bc.data_code=e.DEP_NO and bc.CODE_TYPE='DPT_TYPE')depDes,
@@ -143,6 +143,7 @@
             </if>
             and e.status=1
         </where>
+        order by e.update_time
     </select>
 
     <select id="selectByExample" resultMap="BaseResultMap"
