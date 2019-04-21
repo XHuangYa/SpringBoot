@@ -7,6 +7,7 @@
     <result column="DATA_NAME" property="dataName" jdbcType="VARCHAR" />
     <result column="STATUS" property="status" jdbcType="INTEGER" />
     <result column="FUNCTION_NAME" property="functionName" jdbcType="VARCHAR" />
+    <result column="CSS_ICON" property="cssIcon" jdbcType="VARCHAR" />
     <result column="SORT" property="sort" jdbcType="INTEGER" />
     <result column="REMARK" property="remark" jdbcType="VARCHAR" />
   </resultMap>
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    ID, DATA_CODE, DATA_NAME, STATUS, FUNCTION_NAME, SORT, REMARK
+    ID, DATA_CODE, DATA_NAME, STATUS, FUNCTION_NAME, CSS_ICON, SORT, REMARK
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bakery.application.entity.SysMenuCriteria" >
     select
@@ -104,11 +105,11 @@
   </delete>
   <insert id="insert" parameterType="com.bakery.application.entity.SysMenu" >
     insert into sys_menu (ID, DATA_CODE, DATA_NAME, 
-      STATUS, FUNCTION_NAME, SORT, 
-      REMARK)
+      STATUS, FUNCTION_NAME, CSS_ICON, 
+      SORT, REMARK)
     values (#{id,jdbcType=INTEGER}, #{dataCode,jdbcType=VARCHAR}, #{dataName,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{functionName,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
-      #{remark,jdbcType=VARCHAR})
+      #{status,jdbcType=INTEGER}, #{functionName,jdbcType=VARCHAR}, #{cssIcon,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.bakery.application.entity.SysMenu" >
     insert into sys_menu
@@ -127,6 +128,9 @@
       </if>
       <if test="functionName != null" >
         FUNCTION_NAME,
+      </if>
+      <if test="cssIcon != null" >
+        CSS_ICON,
       </if>
       <if test="sort != null" >
         SORT,
@@ -150,6 +154,9 @@
       </if>
       <if test="functionName != null" >
         #{functionName,jdbcType=VARCHAR},
+      </if>
+      <if test="cssIcon != null" >
+        #{cssIcon,jdbcType=VARCHAR},
       </if>
       <if test="sort != null" >
         #{sort,jdbcType=INTEGER},
@@ -183,6 +190,9 @@
       <if test="record.functionName != null" >
         FUNCTION_NAME = #{record.functionName,jdbcType=VARCHAR},
       </if>
+      <if test="record.cssIcon != null" >
+        CSS_ICON = #{record.cssIcon,jdbcType=VARCHAR},
+      </if>
       <if test="record.sort != null" >
         SORT = #{record.sort,jdbcType=INTEGER},
       </if>
@@ -201,6 +211,7 @@
       DATA_NAME = #{record.dataName,jdbcType=VARCHAR},
       STATUS = #{record.status,jdbcType=INTEGER},
       FUNCTION_NAME = #{record.functionName,jdbcType=VARCHAR},
+      CSS_ICON = #{record.cssIcon,jdbcType=VARCHAR},
       SORT = #{record.sort,jdbcType=INTEGER},
       REMARK = #{record.remark,jdbcType=VARCHAR}
     <if test="_parameter != null" >
@@ -222,6 +233,9 @@
       <if test="functionName != null" >
         FUNCTION_NAME = #{functionName,jdbcType=VARCHAR},
       </if>
+      <if test="cssIcon != null" >
+        CSS_ICON = #{cssIcon,jdbcType=VARCHAR},
+      </if>
       <if test="sort != null" >
         SORT = #{sort,jdbcType=INTEGER},
       </if>
@@ -237,6 +251,7 @@
       DATA_NAME = #{dataName,jdbcType=VARCHAR},
       STATUS = #{status,jdbcType=INTEGER},
       FUNCTION_NAME = #{functionName,jdbcType=VARCHAR},
+      CSS_ICON = #{cssIcon,jdbcType=VARCHAR},
       SORT = #{sort,jdbcType=INTEGER},
       REMARK = #{remark,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=INTEGER}

@@ -11,6 +11,8 @@ public class SysMenu {
 
     private String functionName;
 
+    private String cssIcon;
+
     private Integer sort;
 
     private String remark;
@@ -53,6 +55,14 @@ public class SysMenu {
 
     public void setFunctionName(String functionName) {
         this.functionName = functionName == null ? null : functionName.trim();
+    }
+
+    public String getCssIcon() {
+        return cssIcon;
+    }
+
+    public void setCssIcon(String cssIcon) {
+        this.cssIcon = cssIcon == null ? null : cssIcon.trim();
     }
 
     public Integer getSort() {

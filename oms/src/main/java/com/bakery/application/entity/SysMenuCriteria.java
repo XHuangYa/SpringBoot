@@ -434,6 +434,76 @@ public class SysMenuCriteria {
             return (Criteria) this;
         }
 
+        public Criteria andCssIconIsNull() {
+            addCriterion("CSS_ICON is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCssIconIsNotNull() {
+            addCriterion("CSS_ICON is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCssIconEqualTo(String value) {
+            addCriterion("CSS_ICON =", value, "cssIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andCssIconNotEqualTo(String value) {
+            addCriterion("CSS_ICON <>", value, "cssIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andCssIconGreaterThan(String value) {
+            addCriterion("CSS_ICON >", value, "cssIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andCssIconGreaterThanOrEqualTo(String value) {
+            addCriterion("CSS_ICON >=", value, "cssIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andCssIconLessThan(String value) {
+            addCriterion("CSS_ICON <", value, "cssIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andCssIconLessThanOrEqualTo(String value) {
+            addCriterion("CSS_ICON <=", value, "cssIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andCssIconLike(String value) {
+            addCriterion("CSS_ICON like", value, "cssIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andCssIconNotLike(String value) {
+            addCriterion("CSS_ICON not like", value, "cssIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andCssIconIn(List<String> values) {
+            addCriterion("CSS_ICON in", values, "cssIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andCssIconNotIn(List<String> values) {
+            addCriterion("CSS_ICON not in", values, "cssIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andCssIconBetween(String value1, String value2) {
+            addCriterion("CSS_ICON between", value1, value2, "cssIcon");
+            return (Criteria) this;
+        }
+
+        public Criteria andCssIconNotBetween(String value1, String value2) {
+            addCriterion("CSS_ICON not between", value1, value2, "cssIcon");
+            return (Criteria) this;
+        }
+
         public Criteria andSortIsNull() {
             addCriterion("SORT is null");
             return (Criteria) this;

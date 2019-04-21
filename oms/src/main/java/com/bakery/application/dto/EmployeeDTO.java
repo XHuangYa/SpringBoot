@@ -3,6 +3,7 @@ package com.bakery.application.dto;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -51,8 +52,19 @@ public class EmployeeDTO {
     private String sexDes; //性别描述
     private String depDes; //部门描述
     private String mgrDes; //上级领导
+    private String jobDes; //工作
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     private Date beginTime; //开始时间
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     private Date endTime;//结束时间
+
+    public String getJobDes() {
+        return jobDes;
+    }
+
+    public void setJobDes(String jobDes) {
+        this.jobDes = jobDes;
+    }
 
     public Date getBeginTime() {
         return beginTime;
@@ -271,6 +283,10 @@ public class EmployeeDTO {
                 ", roleDes='" + roleDes + '\'' +
                 ", sexDes='" + sexDes + '\'' +
                 ", depDes='" + depDes + '\'' +
+                ", mgrDes='" + mgrDes + '\'' +
+                ", jobDes='" + jobDes + '\'' +
+                ", beginTime=" + beginTime +
+                ", endTime=" + endTime +
                 '}';
     }
 }

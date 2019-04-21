@@ -9,6 +9,10 @@ public  interface Url{
     String  EMP_MANAGER_LIST="/empManageList";
     //员工分页查询
     String  EMP_MANAGE_QUERY_URL=EMP_MANAGER_LIST+"queryEmp";
+    //删除员工信息
+    String  DELETE_EMP_SINGLE_URL=EMP_MANAGER_LIST+"deleteEmp";
+    //新增员工
+    String INSERT_OR_UPDATE_EMPINFO_URL=EMP_MANAGER_LIST+"inserOrUpdatetEmp";
     //用户管理-用户列表
     String USER_MANAGER_LIST="/userManageList";
     //商品管理-商品列表

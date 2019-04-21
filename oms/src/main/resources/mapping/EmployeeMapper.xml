@@ -39,11 +39,14 @@
         <result column="STATUS" property="status" jdbcType="INTEGER"/>
         <result column="CREATE_TIME" property="createTime" jdbcType="DATE"/>
         <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE"/>
+        <result column="beginTime" property="beginTime" jdbcType="DATE"/>
+        <result column="endTime" property="endTime" jdbcType="DATE"/>
         <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
         <result column="roleDes" property="roleDes" jdbcType="VARCHAR"/>
         <result column="sexDes" property="sexDes" jdbcType="VARCHAR"/>
         <result column="depDes" property="depDes" jdbcType="VARCHAR"/>
         <result column="mgrDes" property="mgrDes" jdbcType="VARCHAR"/>
+        <result column="jobDes" property="jobDes" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Example_Where_Clause">
         <where>
@@ -111,11 +114,12 @@
   </sql>
     <select id="queryByExample" resultMap="ResultMapPages"
             parameterType="com.bakery.application.dto.EmployeeDTO">
-        select e.EMP_NO, e.EMP_NAME, e.PASSWORD, e.PHONE, e.JOB, e.BIRTH, e.SAL,
+        select e.EMP_NO, e.EMP_NAME, e.PASSWORD, e.PHONE, e.BIRTH, e.SAL,
         e.ADDR, DONE_TIME, STATUS, CREATE_TIME, UPDATE_TIME, REMARK,
         (select bc.CODE_NAME from base_code bc where bc.DATA_CODE=e.ROLE_ID and bc.CODE_TYPE='ROLE_ID') roleDes,
         (select bc.CODE_NAME from base_code bc where bc.data_code=e.SEX and bc.CODE_TYPE='SEX') sexDes,
         (select bc.CODE_NAME from base_code bc where bc.data_code=e.DEP_NO and bc.CODE_TYPE='DPT_TYPE')depDes,
+        (select bc.CODE_NAME from base_code bc where bc.data_code=e.JOB and bc.CODE_TYPE='JOB_TYPE')jobDes,
         (select c.EMP_NAME from bky_emp c where e.MGR=c.EMP_NO) mgrDes
         from bky_emp e
         <where>
@@ -128,16 +132,20 @@
             <if test="depNo != null and depNo!=''">
                 AND e.dep_no = #{depNo}
             </if>
-            <if test="depNo != null and depNo!=''">
-                AND e.dep_no = #{depNo}
+            <if test="beginTime != null">
+                AND e.done_time &gt;=#{beginTime}
+            </if>
+            <if test="endTime != null">
+                AND e.done_time &lt;=#{endTime}
             </if>
             <if test="empName != null and empName!=''">
                 AND e.emp_name like #{empName}
             </if>
+            and e.status=1
         </where>
     </select>
 
-    <select id="selectByExample1" resultMap="BaseResultMap"
+    <select id="selectByExample" resultMap="BaseResultMap"
             parameterType="com.bakery.application.entity.EmployeeCriteria">
         select
         <if test="distinct">

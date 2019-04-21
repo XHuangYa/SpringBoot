@@ -27,4 +27,21 @@ public class EmployeeServiceImpl implements EmployeeService {
         PageHelper.startPage(page.getPageNo(),page.getPageSize());
         return employeeMapper.queryByExample(employeeDTO);
     }
+
+    @Override
+    public boolean updateByPrimaryKeySelective(Employee employee) {
+        employee.setStatus(0);
+        return employeeMapper.updateByPrimaryKeySelective(employee)>=1?true:false;
+    }
+
+    @Override
+    public List<Employee> selectByCriteria(EmployeeCriteria employeeCriteria) {
+        return employeeMapper.selectByExample(employeeCriteria);
+    }
+
+    @Override
+    public boolean insertSelective(Employee employee) {
+        return employeeMapper.insertSelective(employee)>=1?true:false;
+    }
+
 }

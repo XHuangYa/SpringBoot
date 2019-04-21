@@ -13,11 +13,36 @@ import java.util.List;
  */
 public interface EmployeeService {
     /**
-     * @Description:
+     * @Description:分页查询
      * @Author: LiTing
      * @Date: 7:08 PM 2019/4/14
      * @return:
      * @throws:
      */
     public List<Employee> selectByCriteriaPage(EmployeeDTO employeeDTO, Page Page);
+    /**
+     * @Description: 删除emp
+     * @Author: LiTing
+     * @Date: 11:21 PM 2019/4/20
+     * @return:
+     * @throws:
+     */
+    public boolean updateByPrimaryKeySelective(Employee employee);
+    /**
+     * @Description:
+     * @Author: LiTing
+     * @Date: 11:32 AM 2019/4/21
+     * @return:
+     * @throws:
+     */
+    public List<Employee> selectByCriteria(EmployeeCriteria employeeCriteria);
+    /**
+     * @Description: 新增员工
+     * @Author: LiTing
+     * @Date: 12:47 PM 2019/4/21
+     * @return:
+     * @throws:
+     */
+    public boolean insertSelective(Employee employee);
+
 }
