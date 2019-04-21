@@ -542,7 +542,6 @@
                             btnClass: 'btn-primary',
                             action: function () {	//这里写点击按钮回调函数
                                 $('#myModal').modal('hide');
-                                //$("#paperPlanForm").data('bootstrapValidator').resetForm();
                                 $('#tb_roles').bootstrapTable('refresh');  //刷新列表
                             }
                         }
@@ -559,7 +558,6 @@
                             btnClass: 'btn-primary',
                             action: function () {	//这里写点击按钮回调函数
                                 $('#tb_roles').bootstrapTable('refresh');  //刷新列表
-                                //$("body").mLoading("hide");//隐藏loading组件
                             }
                         }
                     }

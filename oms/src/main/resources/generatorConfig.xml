@@ -27,7 +27,7 @@
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
         <!--XML映射文件,生成的位置（目标包）,源代码文件夹 -->
-        <sqlMapGenerator targetPackage="com.bakery.application.mapping"
+        <sqlMapGenerator targetPackage="mapping"
                          targetProject="src/main/resources">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
@@ -39,7 +39,7 @@
         </javaClientGenerator>
         <!--下面是数据库表名和项目中需要生成类的名称，建议和数据库保持一致，如果有多个表，添加多个节点即可 -->
 
-        <table tableName="bky_stock" domainObjectName="Stock"
+        <table tableName="sys_menu" domainObjectName="SysMenu"
                enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true">

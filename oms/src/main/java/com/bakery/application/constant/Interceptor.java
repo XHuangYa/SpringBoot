@@ -1,15 +1,5 @@
 package com.bakery.application.constant;
 
-import com.bakery.application.entity.Employee;
-import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.util.logging.Logger;
-
 /**
  * @author liting
  * @date 2019/04/06  18:34
