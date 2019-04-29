@@ -262,76 +262,6 @@ public class ProductCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andPdtCodeIsNull() {
-            addCriterion("PDT_CODE is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeIsNotNull() {
-            addCriterion("PDT_CODE is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeEqualTo(String value) {
-            addCriterion("PDT_CODE =", value, "pdtCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeNotEqualTo(String value) {
-            addCriterion("PDT_CODE <>", value, "pdtCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeGreaterThan(String value) {
-            addCriterion("PDT_CODE >", value, "pdtCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeGreaterThanOrEqualTo(String value) {
-            addCriterion("PDT_CODE >=", value, "pdtCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeLessThan(String value) {
-            addCriterion("PDT_CODE <", value, "pdtCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeLessThanOrEqualTo(String value) {
-            addCriterion("PDT_CODE <=", value, "pdtCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeLike(String value) {
-            addCriterion("PDT_CODE like", value, "pdtCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeNotLike(String value) {
-            addCriterion("PDT_CODE not like", value, "pdtCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeIn(List<String> values) {
-            addCriterion("PDT_CODE in", values, "pdtCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeNotIn(List<String> values) {
-            addCriterion("PDT_CODE not in", values, "pdtCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeBetween(String value1, String value2) {
-            addCriterion("PDT_CODE between", value1, value2, "pdtCode");
-            return (Criteria) this;
-        }
-
-        public Criteria andPdtCodeNotBetween(String value1, String value2) {
-            addCriterion("PDT_CODE not between", value1, value2, "pdtCode");
-            return (Criteria) this;
-        }
-
         public Criteria andPdtNameIsNull() {
             addCriterion("PDT_NAME is null");
             return (Criteria) this;
@@ -779,6 +709,76 @@ public class ProductCriteria {
 
         public Criteria andUpdateTimeNotBetween(Date value1, Date value2) {
             addCriterionForJDBCDate("UPDATE_TIME not between", value1, value2, "updateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureIsNull() {
+            addCriterion("PICTURE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureIsNotNull() {
+            addCriterion("PICTURE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureEqualTo(String value) {
+            addCriterion("PICTURE =", value, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureNotEqualTo(String value) {
+            addCriterion("PICTURE <>", value, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureGreaterThan(String value) {
+            addCriterion("PICTURE >", value, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureGreaterThanOrEqualTo(String value) {
+            addCriterion("PICTURE >=", value, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureLessThan(String value) {
+            addCriterion("PICTURE <", value, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureLessThanOrEqualTo(String value) {
+            addCriterion("PICTURE <=", value, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureLike(String value) {
+            addCriterion("PICTURE like", value, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureNotLike(String value) {
+            addCriterion("PICTURE not like", value, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureIn(List<String> values) {
+            addCriterion("PICTURE in", values, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureNotIn(List<String> values) {
+            addCriterion("PICTURE not in", values, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureBetween(String value1, String value2) {
+            addCriterion("PICTURE between", value1, value2, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureNotBetween(String value1, String value2) {
+            addCriterion("PICTURE not between", value1, value2, "picture");
             return (Criteria) this;
         }
 

@@ -5,9 +5,9 @@
     <id column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
     <result column="ID" property="id" jdbcType="INTEGER" />
     <result column="TOTAL_PRICE" property="totalPrice" jdbcType="VARCHAR" />
-    <result column="DONE_TIME" property="doneTime" jdbcType="DATE" />
+    <result column="IS_VIP" property="isVip" jdbcType="VARCHAR" />
     <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
-    <result column="USER_NAME" property="userName" jdbcType="INTEGER" />
+    <result column="PAY_METHOD" property="payMethod" jdbcType="VARCHAR" />
     <result column="STATUS" property="status" jdbcType="INTEGER" />
     <result column="CREATE_TIME" property="createTime" jdbcType="DATE" />
     <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE" />
@@ -72,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    ORDER_ID, ID, TOTAL_PRICE, DONE_TIME, USER_ID, USER_NAME, STATUS, CREATE_TIME, UPDATE_TIME, 
+    ORDER_ID, ID, TOTAL_PRICE, IS_VIP, USER_ID, PAY_METHOD, STATUS, CREATE_TIME, UPDATE_TIME, 
     REMARK
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bakery.application.entity.OrderCriteria" >
@@ -108,11 +108,11 @@
   </delete>
   <insert id="insert" parameterType="com.bakery.application.entity.Order" >
     insert into bky_order (ORDER_ID, ID, TOTAL_PRICE, 
-      DONE_TIME, USER_ID, USER_NAME, 
+      IS_VIP, USER_ID, PAY_METHOD, 
       STATUS, CREATE_TIME, UPDATE_TIME, 
       REMARK)
     values (#{orderId,jdbcType=VARCHAR}, #{id,jdbcType=INTEGER}, #{totalPrice,jdbcType=VARCHAR}, 
-      #{doneTime,jdbcType=DATE}, #{userId,jdbcType=VARCHAR}, #{userName,jdbcType=INTEGER}, 
+      #{isVip,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{payMethod,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, 
       #{remark,jdbcType=VARCHAR})
   </insert>
@@ -128,14 +128,14 @@
       <if test="totalPrice != null" >
         TOTAL_PRICE,
       </if>
-      <if test="doneTime != null" >
-        DONE_TIME,
+      <if test="isVip != null" >
+        IS_VIP,
       </if>
       <if test="userId != null" >
         USER_ID,
       </if>
-      <if test="userName != null" >
-        USER_NAME,
+      <if test="payMethod != null" >
+        PAY_METHOD,
       </if>
       <if test="status != null" >
         STATUS,
@@ -160,14 +160,14 @@
       <if test="totalPrice != null" >
         #{totalPrice,jdbcType=VARCHAR},
       </if>
-      <if test="doneTime != null" >
-        #{doneTime,jdbcType=DATE},
+      <if test="isVip != null" >
+        #{isVip,jdbcType=VARCHAR},
       </if>
       <if test="userId != null" >
         #{userId,jdbcType=VARCHAR},
       </if>
-      <if test="userName != null" >
-        #{userName,jdbcType=INTEGER},
+      <if test="payMethod != null" >
+        #{payMethod,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
@@ -201,14 +201,14 @@
       <if test="record.totalPrice != null" >
         TOTAL_PRICE = #{record.totalPrice,jdbcType=VARCHAR},
       </if>
-      <if test="record.doneTime != null" >
-        DONE_TIME = #{record.doneTime,jdbcType=DATE},
+      <if test="record.isVip != null" >
+        IS_VIP = #{record.isVip,jdbcType=VARCHAR},
       </if>
       <if test="record.userId != null" >
         USER_ID = #{record.userId,jdbcType=VARCHAR},
       </if>
-      <if test="record.userName != null" >
-        USER_NAME = #{record.userName,jdbcType=INTEGER},
+      <if test="record.payMethod != null" >
+        PAY_METHOD = #{record.payMethod,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null" >
         STATUS = #{record.status,jdbcType=INTEGER},
@@ -232,9 +232,9 @@
     set ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
       ID = #{record.id,jdbcType=INTEGER},
       TOTAL_PRICE = #{record.totalPrice,jdbcType=VARCHAR},
-      DONE_TIME = #{record.doneTime,jdbcType=DATE},
+      IS_VIP = #{record.isVip,jdbcType=VARCHAR},
       USER_ID = #{record.userId,jdbcType=VARCHAR},
-      USER_NAME = #{record.userName,jdbcType=INTEGER},
+      PAY_METHOD = #{record.payMethod,jdbcType=VARCHAR},
       STATUS = #{record.status,jdbcType=INTEGER},
       CREATE_TIME = #{record.createTime,jdbcType=DATE},
       UPDATE_TIME = #{record.updateTime,jdbcType=DATE},
@@ -252,14 +252,14 @@
       <if test="totalPrice != null" >
         TOTAL_PRICE = #{totalPrice,jdbcType=VARCHAR},
       </if>
-      <if test="doneTime != null" >
-        DONE_TIME = #{doneTime,jdbcType=DATE},
+      <if test="isVip != null" >
+        IS_VIP = #{isVip,jdbcType=VARCHAR},
       </if>
       <if test="userId != null" >
         USER_ID = #{userId,jdbcType=VARCHAR},
       </if>
-      <if test="userName != null" >
-        USER_NAME = #{userName,jdbcType=INTEGER},
+      <if test="payMethod != null" >
+        PAY_METHOD = #{payMethod,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         STATUS = #{status,jdbcType=INTEGER},
@@ -280,9 +280,9 @@
     update bky_order
     set ID = #{id,jdbcType=INTEGER},
       TOTAL_PRICE = #{totalPrice,jdbcType=VARCHAR},
-      DONE_TIME = #{doneTime,jdbcType=DATE},
+      IS_VIP = #{isVip,jdbcType=VARCHAR},
       USER_ID = #{userId,jdbcType=VARCHAR},
-      USER_NAME = #{userName,jdbcType=INTEGER},
+      PAY_METHOD = #{payMethod,jdbcType=VARCHAR},
       STATUS = #{status,jdbcType=INTEGER},
       CREATE_TIME = #{createTime,jdbcType=DATE},
       UPDATE_TIME = #{updateTime,jdbcType=DATE},

@@ -402,63 +402,63 @@ public class UserCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andLevelIsNull() {
-            addCriterion("LEVEL is null");
+        public Criteria andSexIsNull() {
+            addCriterion("SEX is null");
             return (Criteria) this;
         }
 
-        public Criteria andLevelIsNotNull() {
-            addCriterion("LEVEL is not null");
+        public Criteria andSexIsNotNull() {
+            addCriterion("SEX is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLevelEqualTo(Integer value) {
-            addCriterion("LEVEL =", value, "level");
+        public Criteria andSexEqualTo(Integer value) {
+            addCriterion("SEX =", value, "sex");
             return (Criteria) this;
         }
 
-        public Criteria andLevelNotEqualTo(Integer value) {
-            addCriterion("LEVEL <>", value, "level");
+        public Criteria andSexNotEqualTo(Integer value) {
+            addCriterion("SEX <>", value, "sex");
             return (Criteria) this;
         }
 
-        public Criteria andLevelGreaterThan(Integer value) {
-            addCriterion("LEVEL >", value, "level");
+        public Criteria andSexGreaterThan(Integer value) {
+            addCriterion("SEX >", value, "sex");
             return (Criteria) this;
         }
 
-        public Criteria andLevelGreaterThanOrEqualTo(Integer value) {
-            addCriterion("LEVEL >=", value, "level");
+        public Criteria andSexGreaterThanOrEqualTo(Integer value) {
+            addCriterion("SEX >=", value, "sex");
             return (Criteria) this;
         }
 
-        public Criteria andLevelLessThan(Integer value) {
-            addCriterion("LEVEL <", value, "level");
+        public Criteria andSexLessThan(Integer value) {
+            addCriterion("SEX <", value, "sex");
             return (Criteria) this;
         }
 
-        public Criteria andLevelLessThanOrEqualTo(Integer value) {
-            addCriterion("LEVEL <=", value, "level");
+        public Criteria andSexLessThanOrEqualTo(Integer value) {
+            addCriterion("SEX <=", value, "sex");
             return (Criteria) this;
         }
 
-        public Criteria andLevelIn(List<Integer> values) {
-            addCriterion("LEVEL in", values, "level");
+        public Criteria andSexIn(List<Integer> values) {
+            addCriterion("SEX in", values, "sex");
             return (Criteria) this;
         }
 
-        public Criteria andLevelNotIn(List<Integer> values) {
-            addCriterion("LEVEL not in", values, "level");
+        public Criteria andSexNotIn(List<Integer> values) {
+            addCriterion("SEX not in", values, "sex");
             return (Criteria) this;
         }
 
-        public Criteria andLevelBetween(Integer value1, Integer value2) {
-            addCriterion("LEVEL between", value1, value2, "level");
+        public Criteria andSexBetween(Integer value1, Integer value2) {
+            addCriterion("SEX between", value1, value2, "sex");
             return (Criteria) this;
         }
 
-        public Criteria andLevelNotBetween(Integer value1, Integer value2) {
-            addCriterion("LEVEL not between", value1, value2, "level");
+        public Criteria andSexNotBetween(Integer value1, Integer value2) {
+            addCriterion("SEX not between", value1, value2, "sex");
             return (Criteria) this;
         }
 

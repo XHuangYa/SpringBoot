@@ -7,8 +7,6 @@ public class Product {
 
     private Integer id;
 
-    private String pdtCode;
-
     private String pdtName;
 
     private Integer pdtType;
@@ -22,6 +20,8 @@ public class Product {
     private Date createTime;
 
     private Date updateTime;
+
+    private String picture;
 
     private String remark;
 
@@ -39,14 +39,6 @@ public class Product {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getPdtCode() {
-        return pdtCode;
-    }
-
-    public void setPdtCode(String pdtCode) {
-        this.pdtCode = pdtCode == null ? null : pdtCode.trim();
     }
 
     public String getPdtName() {
@@ -103,6 +95,14 @@ public class Product {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture == null ? null : picture.trim();
     }
 
     public String getRemark() {

@@ -9,11 +9,11 @@ public class Order {
 
     private String totalPrice;
 
-    private Date doneTime;
+    private String isVip;
 
     private String userId;
 
-    private Integer userName;
+    private String payMethod;
 
     private Integer status;
 
@@ -47,12 +47,12 @@ public class Order {
         this.totalPrice = totalPrice == null ? null : totalPrice.trim();
     }
 
-    public Date getDoneTime() {
-        return doneTime;
+    public String getIsVip() {
+        return isVip;
     }
 
-    public void setDoneTime(Date doneTime) {
-        this.doneTime = doneTime;
+    public void setIsVip(String isVip) {
+        this.isVip = isVip == null ? null : isVip.trim();
     }
 
     public String getUserId() {
@@ -63,12 +63,12 @@ public class Order {
         this.userId = userId == null ? null : userId.trim();
     }
 
-    public Integer getUserName() {
-        return userName;
+    public String getPayMethod() {
+        return payMethod;
     }
 
-    public void setUserName(Integer userName) {
-        this.userName = userName;
+    public void setPayMethod(String payMethod) {
+        this.payMethod = payMethod == null ? null : payMethod.trim();
     }
 
     public Integer getStatus() {

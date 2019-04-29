@@ -6,7 +6,7 @@
     <result column="ID" property="id" jdbcType="INTEGER" />
     <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
     <result column="USER_PHONE" property="userPhone" jdbcType="VARCHAR" />
-    <result column="LEVEL" property="level" jdbcType="INTEGER" />
+    <result column="SEX" property="sex" jdbcType="INTEGER" />
     <result column="STATUS" property="status" jdbcType="INTEGER" />
     <result column="CREATE_TIME" property="createTime" jdbcType="DATE" />
     <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE" />
@@ -71,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    USER_ID, ID, USER_NAME, USER_PHONE, LEVEL, STATUS, CREATE_TIME, UPDATE_TIME, REMARK
+    USER_ID, ID, USER_NAME, USER_PHONE, SEX, STATUS, CREATE_TIME, UPDATE_TIME, REMARK
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bakery.application.entity.UserCriteria" >
     select
@@ -106,11 +106,11 @@
   </delete>
   <insert id="insert" parameterType="com.bakery.application.entity.User" >
     insert into bky_user (USER_ID, ID, USER_NAME, 
-      USER_PHONE, LEVEL, STATUS, 
+      USER_PHONE, SEX, STATUS, 
       CREATE_TIME, UPDATE_TIME, REMARK
       )
     values (#{userId,jdbcType=VARCHAR}, #{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, 
-      #{userPhone,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{userPhone,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
       #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, #{remark,jdbcType=VARCHAR}
       )
   </insert>
@@ -129,8 +129,8 @@
       <if test="userPhone != null" >
         USER_PHONE,
       </if>
-      <if test="level != null" >
-        LEVEL,
+      <if test="sex != null" >
+        SEX,
       </if>
       <if test="status != null" >
         STATUS,
@@ -158,8 +158,8 @@
       <if test="userPhone != null" >
         #{userPhone,jdbcType=VARCHAR},
       </if>
-      <if test="level != null" >
-        #{level,jdbcType=INTEGER},
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
@@ -196,8 +196,8 @@
       <if test="record.userPhone != null" >
         USER_PHONE = #{record.userPhone,jdbcType=VARCHAR},
       </if>
-      <if test="record.level != null" >
-        LEVEL = #{record.level,jdbcType=INTEGER},
+      <if test="record.sex != null" >
+        SEX = #{record.sex,jdbcType=INTEGER},
       </if>
       <if test="record.status != null" >
         STATUS = #{record.status,jdbcType=INTEGER},
@@ -222,7 +222,7 @@
       ID = #{record.id,jdbcType=INTEGER},
       USER_NAME = #{record.userName,jdbcType=VARCHAR},
       USER_PHONE = #{record.userPhone,jdbcType=VARCHAR},
-      LEVEL = #{record.level,jdbcType=INTEGER},
+      SEX = #{record.sex,jdbcType=INTEGER},
       STATUS = #{record.status,jdbcType=INTEGER},
       CREATE_TIME = #{record.createTime,jdbcType=DATE},
       UPDATE_TIME = #{record.updateTime,jdbcType=DATE},
@@ -243,8 +243,8 @@
       <if test="userPhone != null" >
         USER_PHONE = #{userPhone,jdbcType=VARCHAR},
       </if>
-      <if test="level != null" >
-        LEVEL = #{level,jdbcType=INTEGER},
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=INTEGER},
       </if>
       <if test="status != null" >
         STATUS = #{status,jdbcType=INTEGER},
@@ -266,7 +266,7 @@
     set ID = #{id,jdbcType=INTEGER},
       USER_NAME = #{userName,jdbcType=VARCHAR},
       USER_PHONE = #{userPhone,jdbcType=VARCHAR},
-      LEVEL = #{level,jdbcType=INTEGER},
+      SEX = #{sex,jdbcType=INTEGER},
       STATUS = #{status,jdbcType=INTEGER},
       CREATE_TIME = #{createTime,jdbcType=DATE},
       UPDATE_TIME = #{updateTime,jdbcType=DATE},

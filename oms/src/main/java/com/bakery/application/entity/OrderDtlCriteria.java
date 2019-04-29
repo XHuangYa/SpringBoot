@@ -402,413 +402,133 @@ public class OrderDtlCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andPdtNameIsNull() {
-            addCriterion("PDT_NAME is null");
+        public Criteria andPdtNumIsNull() {
+            addCriterion("PDT_NUM is null");
             return (Criteria) this;
         }
 
-        public Criteria andPdtNameIsNotNull() {
-            addCriterion("PDT_NAME is not null");
+        public Criteria andPdtNumIsNotNull() {
+            addCriterion("PDT_NUM is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPdtNameEqualTo(String value) {
-            addCriterion("PDT_NAME =", value, "pdtName");
+        public Criteria andPdtNumEqualTo(Integer value) {
+            addCriterion("PDT_NUM =", value, "pdtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPdtNameNotEqualTo(String value) {
-            addCriterion("PDT_NAME <>", value, "pdtName");
+        public Criteria andPdtNumNotEqualTo(Integer value) {
+            addCriterion("PDT_NUM <>", value, "pdtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPdtNameGreaterThan(String value) {
-            addCriterion("PDT_NAME >", value, "pdtName");
+        public Criteria andPdtNumGreaterThan(Integer value) {
+            addCriterion("PDT_NUM >", value, "pdtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPdtNameGreaterThanOrEqualTo(String value) {
-            addCriterion("PDT_NAME >=", value, "pdtName");
+        public Criteria andPdtNumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("PDT_NUM >=", value, "pdtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPdtNameLessThan(String value) {
-            addCriterion("PDT_NAME <", value, "pdtName");
+        public Criteria andPdtNumLessThan(Integer value) {
+            addCriterion("PDT_NUM <", value, "pdtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPdtNameLessThanOrEqualTo(String value) {
-            addCriterion("PDT_NAME <=", value, "pdtName");
+        public Criteria andPdtNumLessThanOrEqualTo(Integer value) {
+            addCriterion("PDT_NUM <=", value, "pdtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPdtNameLike(String value) {
-            addCriterion("PDT_NAME like", value, "pdtName");
+        public Criteria andPdtNumIn(List<Integer> values) {
+            addCriterion("PDT_NUM in", values, "pdtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPdtNameNotLike(String value) {
-            addCriterion("PDT_NAME not like", value, "pdtName");
+        public Criteria andPdtNumNotIn(List<Integer> values) {
+            addCriterion("PDT_NUM not in", values, "pdtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPdtNameIn(List<String> values) {
-            addCriterion("PDT_NAME in", values, "pdtName");
+        public Criteria andPdtNumBetween(Integer value1, Integer value2) {
+            addCriterion("PDT_NUM between", value1, value2, "pdtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPdtNameNotIn(List<String> values) {
-            addCriterion("PDT_NAME not in", values, "pdtName");
+        public Criteria andPdtNumNotBetween(Integer value1, Integer value2) {
+            addCriterion("PDT_NUM not between", value1, value2, "pdtNum");
             return (Criteria) this;
         }
 
-        public Criteria andPdtNameBetween(String value1, String value2) {
-            addCriterion("PDT_NAME between", value1, value2, "pdtName");
+        public Criteria andDtlTotalPriceIsNull() {
+            addCriterion("DTL_TOTAL_PRICE is null");
             return (Criteria) this;
         }
 
-        public Criteria andPdtNameNotBetween(String value1, String value2) {
-            addCriterion("PDT_NAME not between", value1, value2, "pdtName");
+        public Criteria andDtlTotalPriceIsNotNull() {
+            addCriterion("DTL_TOTAL_PRICE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUnitPriceIsNull() {
-            addCriterion("UNIT_PRICE is null");
+        public Criteria andDtlTotalPriceEqualTo(String value) {
+            addCriterion("DTL_TOTAL_PRICE =", value, "dtlTotalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andUnitPriceIsNotNull() {
-            addCriterion("UNIT_PRICE is not null");
+        public Criteria andDtlTotalPriceNotEqualTo(String value) {
+            addCriterion("DTL_TOTAL_PRICE <>", value, "dtlTotalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andUnitPriceEqualTo(String value) {
-            addCriterion("UNIT_PRICE =", value, "unitPrice");
+        public Criteria andDtlTotalPriceGreaterThan(String value) {
+            addCriterion("DTL_TOTAL_PRICE >", value, "dtlTotalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andUnitPriceNotEqualTo(String value) {
-            addCriterion("UNIT_PRICE <>", value, "unitPrice");
+        public Criteria andDtlTotalPriceGreaterThanOrEqualTo(String value) {
+            addCriterion("DTL_TOTAL_PRICE >=", value, "dtlTotalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andUnitPriceGreaterThan(String value) {
-            addCriterion("UNIT_PRICE >", value, "unitPrice");
+        public Criteria andDtlTotalPriceLessThan(String value) {
+            addCriterion("DTL_TOTAL_PRICE <", value, "dtlTotalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andUnitPriceGreaterThanOrEqualTo(String value) {
-            addCriterion("UNIT_PRICE >=", value, "unitPrice");
+        public Criteria andDtlTotalPriceLessThanOrEqualTo(String value) {
+            addCriterion("DTL_TOTAL_PRICE <=", value, "dtlTotalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andUnitPriceLessThan(String value) {
-            addCriterion("UNIT_PRICE <", value, "unitPrice");
+        public Criteria andDtlTotalPriceLike(String value) {
+            addCriterion("DTL_TOTAL_PRICE like", value, "dtlTotalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andUnitPriceLessThanOrEqualTo(String value) {
-            addCriterion("UNIT_PRICE <=", value, "unitPrice");
+        public Criteria andDtlTotalPriceNotLike(String value) {
+            addCriterion("DTL_TOTAL_PRICE not like", value, "dtlTotalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andUnitPriceLike(String value) {
-            addCriterion("UNIT_PRICE like", value, "unitPrice");
+        public Criteria andDtlTotalPriceIn(List<String> values) {
+            addCriterion("DTL_TOTAL_PRICE in", values, "dtlTotalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andUnitPriceNotLike(String value) {
-            addCriterion("UNIT_PRICE not like", value, "unitPrice");
+        public Criteria andDtlTotalPriceNotIn(List<String> values) {
+            addCriterion("DTL_TOTAL_PRICE not in", values, "dtlTotalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andUnitPriceIn(List<String> values) {
-            addCriterion("UNIT_PRICE in", values, "unitPrice");
+        public Criteria andDtlTotalPriceBetween(String value1, String value2) {
+            addCriterion("DTL_TOTAL_PRICE between", value1, value2, "dtlTotalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andUnitPriceNotIn(List<String> values) {
-            addCriterion("UNIT_PRICE not in", values, "unitPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitPriceBetween(String value1, String value2) {
-            addCriterion("UNIT_PRICE between", value1, value2, "unitPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitPriceNotBetween(String value1, String value2) {
-            addCriterion("UNIT_PRICE not between", value1, value2, "unitPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalPriceIsNull() {
-            addCriterion("TOTAL_PRICE is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalPriceIsNotNull() {
-            addCriterion("TOTAL_PRICE is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalPriceEqualTo(String value) {
-            addCriterion("TOTAL_PRICE =", value, "totalPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalPriceNotEqualTo(String value) {
-            addCriterion("TOTAL_PRICE <>", value, "totalPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalPriceGreaterThan(String value) {
-            addCriterion("TOTAL_PRICE >", value, "totalPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalPriceGreaterThanOrEqualTo(String value) {
-            addCriterion("TOTAL_PRICE >=", value, "totalPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalPriceLessThan(String value) {
-            addCriterion("TOTAL_PRICE <", value, "totalPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalPriceLessThanOrEqualTo(String value) {
-            addCriterion("TOTAL_PRICE <=", value, "totalPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalPriceLike(String value) {
-            addCriterion("TOTAL_PRICE like", value, "totalPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalPriceNotLike(String value) {
-            addCriterion("TOTAL_PRICE not like", value, "totalPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalPriceIn(List<String> values) {
-            addCriterion("TOTAL_PRICE in", values, "totalPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalPriceNotIn(List<String> values) {
-            addCriterion("TOTAL_PRICE not in", values, "totalPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalPriceBetween(String value1, String value2) {
-            addCriterion("TOTAL_PRICE between", value1, value2, "totalPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andTotalPriceNotBetween(String value1, String value2) {
-            addCriterion("TOTAL_PRICE not between", value1, value2, "totalPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameIsNull() {
-            addCriterion("USER_NAME is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameIsNotNull() {
-            addCriterion("USER_NAME is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameEqualTo(String value) {
-            addCriterion("USER_NAME =", value, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameNotEqualTo(String value) {
-            addCriterion("USER_NAME <>", value, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameGreaterThan(String value) {
-            addCriterion("USER_NAME >", value, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameGreaterThanOrEqualTo(String value) {
-            addCriterion("USER_NAME >=", value, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameLessThan(String value) {
-            addCriterion("USER_NAME <", value, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameLessThanOrEqualTo(String value) {
-            addCriterion("USER_NAME <=", value, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameLike(String value) {
-            addCriterion("USER_NAME like", value, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameNotLike(String value) {
-            addCriterion("USER_NAME not like", value, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameIn(List<String> values) {
-            addCriterion("USER_NAME in", values, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameNotIn(List<String> values) {
-            addCriterion("USER_NAME not in", values, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameBetween(String value1, String value2) {
-            addCriterion("USER_NAME between", value1, value2, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserNameNotBetween(String value1, String value2) {
-            addCriterion("USER_NAME not between", value1, value2, "userName");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdIsNull() {
-            addCriterion("USER_ID is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdIsNotNull() {
-            addCriterion("USER_ID is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdEqualTo(String value) {
-            addCriterion("USER_ID =", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotEqualTo(String value) {
-            addCriterion("USER_ID <>", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdGreaterThan(String value) {
-            addCriterion("USER_ID >", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdGreaterThanOrEqualTo(String value) {
-            addCriterion("USER_ID >=", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdLessThan(String value) {
-            addCriterion("USER_ID <", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdLessThanOrEqualTo(String value) {
-            addCriterion("USER_ID <=", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdLike(String value) {
-            addCriterion("USER_ID like", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotLike(String value) {
-            addCriterion("USER_ID not like", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdIn(List<String> values) {
-            addCriterion("USER_ID in", values, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotIn(List<String> values) {
-            addCriterion("USER_ID not in", values, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdBetween(String value1, String value2) {
-            addCriterion("USER_ID between", value1, value2, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotBetween(String value1, String value2) {
-            addCriterion("USER_ID not between", value1, value2, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDoneTimeIsNull() {
-            addCriterion("DONE_TIME is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDoneTimeIsNotNull() {
-            addCriterion("DONE_TIME is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDoneTimeEqualTo(Date value) {
-            addCriterionForJDBCDate("DONE_TIME =", value, "doneTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andDoneTimeNotEqualTo(Date value) {
-            addCriterionForJDBCDate("DONE_TIME <>", value, "doneTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andDoneTimeGreaterThan(Date value) {
-            addCriterionForJDBCDate("DONE_TIME >", value, "doneTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andDoneTimeGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("DONE_TIME >=", value, "doneTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andDoneTimeLessThan(Date value) {
-            addCriterionForJDBCDate("DONE_TIME <", value, "doneTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andDoneTimeLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("DONE_TIME <=", value, "doneTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andDoneTimeIn(List<Date> values) {
-            addCriterionForJDBCDate("DONE_TIME in", values, "doneTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andDoneTimeNotIn(List<Date> values) {
-            addCriterionForJDBCDate("DONE_TIME not in", values, "doneTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andDoneTimeBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("DONE_TIME between", value1, value2, "doneTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andDoneTimeNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("DONE_TIME not between", value1, value2, "doneTime");
+        public Criteria andDtlTotalPriceNotBetween(String value1, String value2) {
+            addCriterion("DTL_TOTAL_PRICE not between", value1, value2, "dtlTotalPrice");
             return (Criteria) this;
         }
 

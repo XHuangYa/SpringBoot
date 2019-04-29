@@ -11,17 +11,9 @@ public class OrderDtl {
 
     private String pdtId;
 
-    private String pdtName;
+    private Integer pdtNum;
 
-    private String unitPrice;
-
-    private String totalPrice;
-
-    private String userName;
-
-    private String userId;
-
-    private Date doneTime;
+    private String dtlTotalPrice;
 
     private Integer status;
 
@@ -63,52 +55,20 @@ public class OrderDtl {
         this.pdtId = pdtId == null ? null : pdtId.trim();
     }
 
-    public String getPdtName() {
-        return pdtName;
+    public Integer getPdtNum() {
+        return pdtNum;
     }
 
-    public void setPdtName(String pdtName) {
-        this.pdtName = pdtName == null ? null : pdtName.trim();
+    public void setPdtNum(Integer pdtNum) {
+        this.pdtNum = pdtNum;
     }
 
-    public String getUnitPrice() {
-        return unitPrice;
+    public String getDtlTotalPrice() {
+        return dtlTotalPrice;
     }
 
-    public void setUnitPrice(String unitPrice) {
-        this.unitPrice = unitPrice == null ? null : unitPrice.trim();
-    }
-
-    public String getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(String totalPrice) {
-        this.totalPrice = totalPrice == null ? null : totalPrice.trim();
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
-    }
-
-    public Date getDoneTime() {
-        return doneTime;
-    }
-
-    public void setDoneTime(Date doneTime) {
-        this.doneTime = doneTime;
+    public void setDtlTotalPrice(String dtlTotalPrice) {
+        this.dtlTotalPrice = dtlTotalPrice == null ? null : dtlTotalPrice.trim();
     }
 
     public Integer getStatus() {

@@ -90,7 +90,7 @@
                                 <input type="text" class="form-control  input-sm " id="search_empPhone"
                                        name="search_empPhone" placeholder="请输入电话号码" oninput="checkInput()">
                             </div>
-                            <label class="control-label col-md-1 ">员工标识:</label>
+                            <label class="control-label col-md-1">员工标识:</label>
                             <div class="col-md-2 ">
                                 <select type="text" class="form-control  input-sm " id="search_roleId"
                                         name="search_roleId" onchange="checkInput()">
@@ -166,19 +166,24 @@
                     <div class="modal-body" style="margin-right: 30px">
                         <input type="hidden" class="form-control" name="empNo" id="empNo" placeholder="请输入..."/>
                         <div class="form-group form-group-sm">
-                            <label class="control-label col-sm-2 ">员工名称:</label>
-                            <div class="col-sm-10">
+                            <label class="control-label col-sm-2 "><span style="color:red">*</span>员工名称:</label>
+                            <div class="col-sm-4">
                                 <input type="text" class="form-control" name="empName" id="empName"
                                        placeholder="请输入..."/>
+                            </div>
+                            <label class="control-label col-sm-2">员工密码:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="password" id="password"
+                                       placeholder="默认123456"/>
                             </div>
                         </div>
 
                         <div class="form-group form-group-sm">
-                            <label class="control-label col-sm-2">电话号码:</label>
+                            <label class="control-label col-sm-2"><span style="color:red">*</span>电话号码:</label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control" name="phone" id="phone" placeholder="请输入..."/>
                             </div>
-                            <label class="control-label col-sm-2 "><span>*</span>员工标识:</label>
+                            <label class="control-label col-sm-2 "><span style="color:red">*</span>员工标识:</label>
                             <div class="col-sm-4">
                                 <select class="form-control" name="roleId" id="roleId"
                                         onkeyup="this.value=this.value.replace(/\s+/g,'')">
@@ -187,14 +192,14 @@
                             </div>
                         </div>
                         <div class="form-group form-group-sm">
-                            <label class="control-label col-sm-2 ">员工职位:</label>
+                            <label class="control-label col-sm-2 "><span style="color:red">*</span>员工职位:</label>
                             <div class="col-sm-4">
                                 <select class="form-control" name="job" id="job"
                                         onkeyup="this.value=this.value.replace(/\s+/g,'')">
                                     <option value="">请选择</option>
                                 </select>
                             </div>
-                            <label class="control-label col-sm-2 ">上级领导:</label>
+                            <label class="control-label col-sm-2 "><span style="color:red">*</span>上级领导:</label>
                             <div class="col-sm-4">
                                 <select class="form-control" name="mgr" id="mgr"
                                         onkeyup="this.value=this.value.replace(/\s+/g,'')">
@@ -230,11 +235,11 @@
                             </div>
                         </div>
                         <div class="form-group form-group-sm">
-                            <label class="control-label col-sm-2">员工薪资:</label>
+                            <label class="control-label col-sm-2"><span style="color:red">*</span>员工薪资:</label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control" name="sal" id="sal" placeholder="请输入..."/>
                             </div>
-                            <label class="control-label col-sm-2 ">归属部门:</label>
+                            <label class="control-label col-sm-2 "><span style="color:red">*</span>11归属部门:</label>
                             <div class="col-sm-4">
                                 <select class="form-control" name="depNo" id="depNo"
                                         onkeyup="this.value=this.value.replace(/\s+/g,'')">
@@ -278,7 +283,7 @@
                     <button id="resetEmp" onclick="resetModelBtn()" class="btn btn-warning  col-sm-1  col-sm-offset-2 "
                     >重置
                     </button>
-                    <button id="closedEmp" onclick="closeModelBtn()" data-dismiss="modal"
+                    <button id="closedEmp" onclick="rightClose()" data-dismiss="modal"
                             class="btn btn-primary  col-sm-4 col-sm-offset-4"
                     >关闭
                     </button>
@@ -564,7 +569,7 @@
             console.info(createOrUpdateEmpUrl + "---");
             $.post(createOrUpdateEmpUrl, $("#empForm").serialize(), function (data) {
                 $("body").mLoading("hide");//隐藏loading组件
-                if (data || data == 'true') {
+                if (data.result == true) {
                     $.alert({
                         title: '提示',
                         content: '保存成功！',
@@ -581,7 +586,7 @@
                             }
                         }
                     });
-                } else {
+                } else if (data.result == false) {
                     $.alert({
                         title: '提示',
                         content: '保存失败！',
@@ -595,7 +600,22 @@
                             }
                         }
                     });
+                } else if (data.repeat == false) {
+                    $.alert({
+                        title: '提示',
+                        content: '用户已存在！',
+                        type: 'red',				//一般危险操作用red,保存成功操作green
+                        buttons: {				//定义按钮
+                            confirm: {
+                                text: '确认',
+                                btnClass: 'btn-primary',
+                                action: function () {	//这里写点击按钮回调函数
+                                }
+                            }
+                        }
+                    });
                 }
+
             }, 'json');
         }
         else {
@@ -625,6 +645,7 @@
         } else {
             $('#myModal #empNo').val(row.empNo);
             $('#myModal #empName').val(row.empName);
+            $('#myModal #password').val(row.password);
             $('#myModal #phone').val(row.phone);
             $('#myModal #roleId').val(row.roleId);
             $('#myModal #job').val(row.job);
@@ -728,6 +749,7 @@
         } else if (rowId.length == 1) {
             $('#myModal #empNo').val(rowId[0].empNo);
             $('#myModal #empName').val(rowId[0].empName);
+            $('#myModal #password').val(rowId[0].password);
             $('#myModal #phone').val(rowId[0].phone);
             $('#myModal #roleId').val(rowId[0].roleId);
             $('#myModal #job').val(rowId[0].job);
@@ -785,6 +807,7 @@
         } else if (rowId.length == 1) {
             $('#myModal #empNo').val(rowId[0].empNo);
             $('#myModal #empName').val(rowId[0].empName);
+            $('#myModal #password').val(rowId[0].password);
             $('#myModal #phone').val(rowId[0].phone);
             $('#myModal #roleId').val(rowId[0].roleId);
             $('#myModal #job').val(rowId[0].job);
@@ -901,12 +924,11 @@
                     field: 'empName',
                     align: 'center',
                     valign: 'middle',
-                }, {
+                },{
                     title: '登陆密码',
                     field: 'password',
                     align: 'center',
-                    valign: 'middle',
-                    visible: false
+                    valign: 'middle'
                 }, {
                     title: '联系方式',
                     field: 'phone',

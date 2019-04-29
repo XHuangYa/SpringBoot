@@ -332,63 +332,73 @@ public class OrderCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andDoneTimeIsNull() {
-            addCriterion("DONE_TIME is null");
+        public Criteria andIsVipIsNull() {
+            addCriterion("IS_VIP is null");
             return (Criteria) this;
         }
 
-        public Criteria andDoneTimeIsNotNull() {
-            addCriterion("DONE_TIME is not null");
+        public Criteria andIsVipIsNotNull() {
+            addCriterion("IS_VIP is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDoneTimeEqualTo(Date value) {
-            addCriterionForJDBCDate("DONE_TIME =", value, "doneTime");
+        public Criteria andIsVipEqualTo(String value) {
+            addCriterion("IS_VIP =", value, "isVip");
             return (Criteria) this;
         }
 
-        public Criteria andDoneTimeNotEqualTo(Date value) {
-            addCriterionForJDBCDate("DONE_TIME <>", value, "doneTime");
+        public Criteria andIsVipNotEqualTo(String value) {
+            addCriterion("IS_VIP <>", value, "isVip");
             return (Criteria) this;
         }
 
-        public Criteria andDoneTimeGreaterThan(Date value) {
-            addCriterionForJDBCDate("DONE_TIME >", value, "doneTime");
+        public Criteria andIsVipGreaterThan(String value) {
+            addCriterion("IS_VIP >", value, "isVip");
             return (Criteria) this;
         }
 
-        public Criteria andDoneTimeGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("DONE_TIME >=", value, "doneTime");
+        public Criteria andIsVipGreaterThanOrEqualTo(String value) {
+            addCriterion("IS_VIP >=", value, "isVip");
             return (Criteria) this;
         }
 
-        public Criteria andDoneTimeLessThan(Date value) {
-            addCriterionForJDBCDate("DONE_TIME <", value, "doneTime");
+        public Criteria andIsVipLessThan(String value) {
+            addCriterion("IS_VIP <", value, "isVip");
             return (Criteria) this;
         }
 
-        public Criteria andDoneTimeLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("DONE_TIME <=", value, "doneTime");
+        public Criteria andIsVipLessThanOrEqualTo(String value) {
+            addCriterion("IS_VIP <=", value, "isVip");
             return (Criteria) this;
         }
 
-        public Criteria andDoneTimeIn(List<Date> values) {
-            addCriterionForJDBCDate("DONE_TIME in", values, "doneTime");
+        public Criteria andIsVipLike(String value) {
+            addCriterion("IS_VIP like", value, "isVip");
             return (Criteria) this;
         }
 
-        public Criteria andDoneTimeNotIn(List<Date> values) {
-            addCriterionForJDBCDate("DONE_TIME not in", values, "doneTime");
+        public Criteria andIsVipNotLike(String value) {
+            addCriterion("IS_VIP not like", value, "isVip");
             return (Criteria) this;
         }
 
-        public Criteria andDoneTimeBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("DONE_TIME between", value1, value2, "doneTime");
+        public Criteria andIsVipIn(List<String> values) {
+            addCriterion("IS_VIP in", values, "isVip");
             return (Criteria) this;
         }
 
-        public Criteria andDoneTimeNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("DONE_TIME not between", value1, value2, "doneTime");
+        public Criteria andIsVipNotIn(List<String> values) {
+            addCriterion("IS_VIP not in", values, "isVip");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsVipBetween(String value1, String value2) {
+            addCriterion("IS_VIP between", value1, value2, "isVip");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsVipNotBetween(String value1, String value2) {
+            addCriterion("IS_VIP not between", value1, value2, "isVip");
             return (Criteria) this;
         }
 
@@ -462,63 +472,73 @@ public class OrderCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andUserNameIsNull() {
-            addCriterion("USER_NAME is null");
+        public Criteria andPayMethodIsNull() {
+            addCriterion("PAY_METHOD is null");
             return (Criteria) this;
         }
 
-        public Criteria andUserNameIsNotNull() {
-            addCriterion("USER_NAME is not null");
+        public Criteria andPayMethodIsNotNull() {
+            addCriterion("PAY_METHOD is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUserNameEqualTo(Integer value) {
-            addCriterion("USER_NAME =", value, "userName");
+        public Criteria andPayMethodEqualTo(String value) {
+            addCriterion("PAY_METHOD =", value, "payMethod");
             return (Criteria) this;
         }
 
-        public Criteria andUserNameNotEqualTo(Integer value) {
-            addCriterion("USER_NAME <>", value, "userName");
+        public Criteria andPayMethodNotEqualTo(String value) {
+            addCriterion("PAY_METHOD <>", value, "payMethod");
             return (Criteria) this;
         }
 
-        public Criteria andUserNameGreaterThan(Integer value) {
-            addCriterion("USER_NAME >", value, "userName");
+        public Criteria andPayMethodGreaterThan(String value) {
+            addCriterion("PAY_METHOD >", value, "payMethod");
             return (Criteria) this;
         }
 
-        public Criteria andUserNameGreaterThanOrEqualTo(Integer value) {
-            addCriterion("USER_NAME >=", value, "userName");
+        public Criteria andPayMethodGreaterThanOrEqualTo(String value) {
+            addCriterion("PAY_METHOD >=", value, "payMethod");
             return (Criteria) this;
         }
 
-        public Criteria andUserNameLessThan(Integer value) {
-            addCriterion("USER_NAME <", value, "userName");
+        public Criteria andPayMethodLessThan(String value) {
+            addCriterion("PAY_METHOD <", value, "payMethod");
             return (Criteria) this;
         }
 
-        public Criteria andUserNameLessThanOrEqualTo(Integer value) {
-            addCriterion("USER_NAME <=", value, "userName");
+        public Criteria andPayMethodLessThanOrEqualTo(String value) {
+            addCriterion("PAY_METHOD <=", value, "payMethod");
             return (Criteria) this;
         }
 
-        public Criteria andUserNameIn(List<Integer> values) {
-            addCriterion("USER_NAME in", values, "userName");
+        public Criteria andPayMethodLike(String value) {
+            addCriterion("PAY_METHOD like", value, "payMethod");
             return (Criteria) this;
         }
 
-        public Criteria andUserNameNotIn(List<Integer> values) {
-            addCriterion("USER_NAME not in", values, "userName");
+        public Criteria andPayMethodNotLike(String value) {
+            addCriterion("PAY_METHOD not like", value, "payMethod");
             return (Criteria) this;
         }
 
-        public Criteria andUserNameBetween(Integer value1, Integer value2) {
-            addCriterion("USER_NAME between", value1, value2, "userName");
+        public Criteria andPayMethodIn(List<String> values) {
+            addCriterion("PAY_METHOD in", values, "payMethod");
             return (Criteria) this;
         }
 
-        public Criteria andUserNameNotBetween(Integer value1, Integer value2) {
-            addCriterion("USER_NAME not between", value1, value2, "userName");
+        public Criteria andPayMethodNotIn(List<String> values) {
+            addCriterion("PAY_METHOD not in", values, "payMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayMethodBetween(String value1, String value2) {
+            addCriterion("PAY_METHOD between", value1, value2, "payMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayMethodNotBetween(String value1, String value2) {
+            addCriterion("PAY_METHOD not between", value1, value2, "payMethod");
             return (Criteria) this;
         }
 

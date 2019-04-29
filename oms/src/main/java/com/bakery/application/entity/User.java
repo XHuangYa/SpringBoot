@@ -11,7 +11,7 @@ public class User {
 
     private String userPhone;
 
-    private Integer level;
+    private Integer sex;
 
     private Integer status;
 
@@ -53,12 +53,12 @@ public class User {
         this.userPhone = userPhone == null ? null : userPhone.trim();
     }
 
-    public Integer getLevel() {
-        return level;
+    public Integer getSex() {
+        return sex;
     }
 
-    public void setLevel(Integer level) {
-        this.level = level;
+    public void setSex(Integer sex) {
+        this.sex = sex;
     }
 
     public Integer getStatus() {

@@ -1,7 +1,5 @@
 package com.bakery.application.service.serviceImpl;
 
-import com.bakery.application.entity.person;
-import com.bakery.application.mapper.PesonMapper;
 import com.bakery.application.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

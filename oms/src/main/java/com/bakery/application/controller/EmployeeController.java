@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -111,16 +112,35 @@ public class EmployeeController {
      */
     @RequestMapping(value = Url.INSERT_OR_UPDATE_EMPINFO_URL, method = RequestMethod.POST)
     public @ResponseBody
-    boolean insertEmp(Employee employee) {
-        boolean flag=false;
-        if(StringUtils.isBlank(employee.getEmpNo())){
-            employee.setEmpNo(UUIDUtil.create32Key());
-            employee.setStatus(1);
-            flag = employeeService.insertSelective(employee);
-        }else{
+    Map<String, Object> insertEmp(Employee employee) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        boolean flag = false;
+        if (StringUtils.isBlank(employee.getEmpNo())) {
+            EmployeeCriteria criteria = new EmployeeCriteria();
+            EmployeeCriteria.Criteria cri = criteria.createCriteria();
+            cri.andPhoneEqualTo(employee.getPhone());
+            List<Employee> employees = employeeService.selectByCriteria(criteria);
+            if (employees.isEmpty()) {
+                employee.setEmpNo(UUIDUtil.create32Key());
+                employee.setStatus(1);
+                if(StringUtils.isBlank(employee.getPassword())){
+                    employee.setPassword("123456");
+                }
+                flag = employeeService.insertSelective(employee);
+            } else {
+                map.put("repeat", false);
+            }
+        } else {
             flag = employeeService.updateByPrimaryKeySelective(employee);
         }
-        return flag;
+        if (map.isEmpty()) {
+            if (flag) {
+                map.put("result", true);
+            } else {
+                map.put("result", false);
+            }
+        }
+        return map;
     }
 
 }

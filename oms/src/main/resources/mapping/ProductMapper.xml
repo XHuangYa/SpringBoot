@@ -4,7 +4,6 @@
   <resultMap id="BaseResultMap" type="com.bakery.application.entity.Product" >
     <id column="PDT_ID" property="pdtId" jdbcType="VARCHAR" />
     <result column="ID" property="id" jdbcType="INTEGER" />
-    <result column="PDT_CODE" property="pdtCode" jdbcType="VARCHAR" />
     <result column="PDT_NAME" property="pdtName" jdbcType="VARCHAR" />
     <result column="PDT_TYPE" property="pdtType" jdbcType="INTEGER" />
     <result column="UNIT_PRICE" property="unitPrice" jdbcType="VARCHAR" />
@@ -12,6 +11,7 @@
     <result column="STATUS" property="status" jdbcType="INTEGER" />
     <result column="CREATE_TIME" property="createTime" jdbcType="DATE" />
     <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE" />
+    <result column="PICTURE" property="picture" jdbcType="VARCHAR" />
     <result column="REMARK" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -73,8 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    PDT_ID, ID, PDT_CODE, PDT_NAME, PDT_TYPE, UNIT_PRICE, MEASER, STATUS, CREATE_TIME, 
-    UPDATE_TIME, REMARK
+    PDT_ID, ID, PDT_NAME, PDT_TYPE, UNIT_PRICE, MEASER, STATUS, CREATE_TIME, UPDATE_TIME, 
+    PICTURE, REMARK
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bakery.application.entity.ProductCriteria" >
     select
@@ -108,14 +108,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.bakery.application.entity.Product" >
-    insert into bky_pdt (PDT_ID, ID, PDT_CODE, 
-      PDT_NAME, PDT_TYPE, UNIT_PRICE, 
-      MEASER, STATUS, CREATE_TIME, 
-      UPDATE_TIME, REMARK)
-    values (#{pdtId,jdbcType=VARCHAR}, #{id,jdbcType=INTEGER}, #{pdtCode,jdbcType=VARCHAR}, 
-      #{pdtName,jdbcType=VARCHAR}, #{pdtType,jdbcType=INTEGER}, #{unitPrice,jdbcType=VARCHAR}, 
-      #{measer,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=DATE}, 
-      #{updateTime,jdbcType=DATE}, #{remark,jdbcType=VARCHAR})
+    insert into bky_pdt (PDT_ID, ID, PDT_NAME, 
+      PDT_TYPE, UNIT_PRICE, MEASER, 
+      STATUS, CREATE_TIME, UPDATE_TIME, 
+      PICTURE, REMARK)
+    values (#{pdtId,jdbcType=VARCHAR}, #{id,jdbcType=INTEGER}, #{pdtName,jdbcType=VARCHAR}, 
+      #{pdtType,jdbcType=INTEGER}, #{unitPrice,jdbcType=VARCHAR}, #{measer,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, 
+      #{picture,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.bakery.application.entity.Product" >
     insert into bky_pdt
@@ -125,9 +125,6 @@
       </if>
       <if test="id != null" >
         ID,
-      </if>
-      <if test="pdtCode != null" >
-        PDT_CODE,
       </if>
       <if test="pdtName != null" >
         PDT_NAME,
@@ -150,6 +147,9 @@
       <if test="updateTime != null" >
         UPDATE_TIME,
       </if>
+      <if test="picture != null" >
+        PICTURE,
+      </if>
       <if test="remark != null" >
         REMARK,
       </if>
@@ -160,9 +160,6 @@
       </if>
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
-      </if>
-      <if test="pdtCode != null" >
-        #{pdtCode,jdbcType=VARCHAR},
       </if>
       <if test="pdtName != null" >
         #{pdtName,jdbcType=VARCHAR},
@@ -185,6 +182,9 @@
       <if test="updateTime != null" >
         #{updateTime,jdbcType=DATE},
       </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
+      </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
       </if>
@@ -204,9 +204,6 @@
       </if>
       <if test="record.id != null" >
         ID = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.pdtCode != null" >
-        PDT_CODE = #{record.pdtCode,jdbcType=VARCHAR},
       </if>
       <if test="record.pdtName != null" >
         PDT_NAME = #{record.pdtName,jdbcType=VARCHAR},
@@ -229,6 +226,9 @@
       <if test="record.updateTime != null" >
         UPDATE_TIME = #{record.updateTime,jdbcType=DATE},
       </if>
+      <if test="record.picture != null" >
+        PICTURE = #{record.picture,jdbcType=VARCHAR},
+      </if>
       <if test="record.remark != null" >
         REMARK = #{record.remark,jdbcType=VARCHAR},
       </if>
@@ -241,7 +241,6 @@
     update bky_pdt
     set PDT_ID = #{record.pdtId,jdbcType=VARCHAR},
       ID = #{record.id,jdbcType=INTEGER},
-      PDT_CODE = #{record.pdtCode,jdbcType=VARCHAR},
       PDT_NAME = #{record.pdtName,jdbcType=VARCHAR},
       PDT_TYPE = #{record.pdtType,jdbcType=INTEGER},
       UNIT_PRICE = #{record.unitPrice,jdbcType=VARCHAR},
@@ -249,6 +248,7 @@
       STATUS = #{record.status,jdbcType=INTEGER},
       CREATE_TIME = #{record.createTime,jdbcType=DATE},
       UPDATE_TIME = #{record.updateTime,jdbcType=DATE},
+      PICTURE = #{record.picture,jdbcType=VARCHAR},
       REMARK = #{record.remark,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -259,9 +259,6 @@
     <set >
       <if test="id != null" >
         ID = #{id,jdbcType=INTEGER},
-      </if>
-      <if test="pdtCode != null" >
-        PDT_CODE = #{pdtCode,jdbcType=VARCHAR},
       </if>
       <if test="pdtName != null" >
         PDT_NAME = #{pdtName,jdbcType=VARCHAR},
@@ -284,6 +281,9 @@
       <if test="updateTime != null" >
         UPDATE_TIME = #{updateTime,jdbcType=DATE},
       </if>
+      <if test="picture != null" >
+        PICTURE = #{picture,jdbcType=VARCHAR},
+      </if>
       <if test="remark != null" >
         REMARK = #{remark,jdbcType=VARCHAR},
       </if>
@@ -293,7 +293,6 @@
   <update id="updateByPrimaryKey" parameterType="com.bakery.application.entity.Product" >
     update bky_pdt
     set ID = #{id,jdbcType=INTEGER},
-      PDT_CODE = #{pdtCode,jdbcType=VARCHAR},
       PDT_NAME = #{pdtName,jdbcType=VARCHAR},
       PDT_TYPE = #{pdtType,jdbcType=INTEGER},
       UNIT_PRICE = #{unitPrice,jdbcType=VARCHAR},
@@ -301,6 +300,7 @@
       STATUS = #{status,jdbcType=INTEGER},
       CREATE_TIME = #{createTime,jdbcType=DATE},
       UPDATE_TIME = #{updateTime,jdbcType=DATE},
+      PICTURE = #{picture,jdbcType=VARCHAR},
       REMARK = #{remark,jdbcType=VARCHAR}
     where PDT_ID = #{pdtId,jdbcType=VARCHAR}
   </update>
