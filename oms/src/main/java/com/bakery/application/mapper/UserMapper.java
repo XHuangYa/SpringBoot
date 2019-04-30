@@ -3,9 +3,13 @@ package com.bakery.application.mapper;
 import com.bakery.application.entity.User;
 import com.bakery.application.entity.UserCriteria;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface UserMapper {
+    List<User> queryByExample(User user);
+
     int countByExample(UserCriteria example);
 
     int deleteByExample(UserCriteria example);

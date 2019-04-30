@@ -1,5 +1,7 @@
 package com.bakery.application.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class User {
@@ -14,12 +16,22 @@ public class User {
     private Integer sex;
 
     private Integer status;
-
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     private Date createTime;
-
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     private Date updateTime;
 
     private String remark;
+
+    private String sexDes;//备用字段
+
+    public String getSexDes() {
+        return sexDes;
+    }
+
+    public void setSexDes(String sexDes) {
+        this.sexDes = sexDes;
+    }
 
     public String getUserId() {
         return userId;

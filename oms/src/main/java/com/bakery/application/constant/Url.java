@@ -15,6 +15,9 @@ public  interface Url{
     String INSERT_OR_UPDATE_EMPINFO_URL=EMP_MANAGER_LIST+"inserOrUpdatetEmp";
     //用户管理-用户列表
     String USER_MANAGER_LIST="/userManageList";
+    //用戶分頁查詢
+    String USER_MANAGE_QUERY_URL=USER_MANAGER_LIST+"queryUser";
+
     //商品管理-商品列表
     String PDT_MANAGER_LIST="/pdtManageList";
     //订单管理-订单列表

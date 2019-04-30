@@ -61,10 +61,10 @@
     </style>
 </head>
 <body>
-<input type="hidden" id="queryEmpManegeUrl" value="/empManageListqueryEmp"/>
-<input type="hidden" id="deleteEmpUrl" value="/empManageListdeleteEmp"/>
-<input type="hidden" id="createOrUpdateEmpUrl" value="/empManageListinserOrUpdatetEmp"/>
-<input type="hidden" id="queryEmpNamesUrl" value="/empManageListqueryNames"/>
+<input type="hidden" id="queryEmpManegeUrl" value="empManageListqueryEmp"/>
+<input type="hidden" id="deleteEmpUrl" value="empManageListdeleteEmp"/>
+<input type="hidden" id="createOrUpdateEmpUrl" value="empManageListinserOrUpdatetEmp"/>
+<input type="hidden" id="queryEmpNamesUrl" value="empManageListqueryNames"/>
 
 <ol class="breadcrumb">
     <li><a>Home</a></li>
@@ -239,7 +239,7 @@
                             <div class="col-sm-4">
                                 <input type="text" class="form-control" name="sal" id="sal" placeholder="请输入..."/>
                             </div>
-                            <label class="control-label col-sm-2 "><span style="color:red">*</span>11归属部门:</label>
+                            <label class="control-label col-sm-2 "><span style="color:red">*</span>归属部门:</label>
                             <div class="col-sm-4">
                                 <select class="form-control" name="depNo" id="depNo"
                                         onkeyup="this.value=this.value.replace(/\s+/g,'')">
@@ -402,7 +402,6 @@
     /*-------------设置重置按钮状态end---------*/
     var values = "";//判断按钮状态全局变量
     function checkInput() {
-        console.info(values.length + "length")
         var searchEmpForm = $('#searchEmpForm').serializeArray();
         $.each(searchEmpForm, function () {
             if (this.value != "") {

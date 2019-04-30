@@ -73,6 +73,32 @@
   <sql id="Base_Column_List" >
     USER_ID, ID, USER_NAME, USER_PHONE, SEX, STATUS, CREATE_TIME, UPDATE_TIME, REMARK
   </sql>
+  <select id="queryByExample" parameterType="com.bakery.application.entity.UserCriteria" resultType="com.bakery.application.entity.User">
+    SELECT
+	USER_ID userId,
+	USER_NAME userName,
+	USER_PHONE userPhone,
+	(CASE
+WHEN SEX = 0 THEN
+	'男'
+WHEN SEX = 1 THEN
+	'女'
+END) sexDes,
+ STATUS status,
+ CREATE_TIME createTime,
+ UPDATE_TIME updateTime,
+ REMARK remark
+FROM
+	bky_user
+   <where>
+    <if test="userPhone != null and userPhone!=''">
+      USER_PHONE= #{userPhone}
+    </if>
+      <if test="userName != null and userName!=''">
+      USER_NAME like #{userName}
+      </if>
+    </where>
+  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bakery.application.entity.UserCriteria" >
     select
     <if test="distinct" >
