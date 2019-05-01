@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d94263ca-59db-47ca-8881-86cfa241ea78" name="Default Changelist" comment="20190421">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bakery/application/controller/FrontConroller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bakery/application/tasks/RmvOutDateTask.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/upLoad.jsp" afterDir="false" />
+    <list default="true" id="d94263ca-59db-47ca-8881-86cfa241ea78" name="Default Changelist" comment="20190501">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bakery/application/constant/Interceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bakery/application/constant/Interceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bakery/application/constant/Url.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bakery/application/constant/Url.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bakery/application/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bakery/application/controller/EmployeeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bakery/application/controller/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bakery/application/controller/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bakery/application/entity/Dictionary.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bakery/application/entity/DictionaryCriteria.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bakery/application/mapper/BaseDataMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bakery/application/mapper/DictionaryMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bakery/application/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bakery/application/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bakery/application/service/PersonService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bakery/application/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bakery/application/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bakery/application/service/serviceImpl/PersonServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bakery/application/service/serviceImpl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bakery/application/service/serviceImpl/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/DictionaryMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/EmployeeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/EmployeeMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/bootstrap/js/bootstrap-table-editable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/bootstrap/js/bootstrap-table-editable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/basic/menu.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/basic/menu.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empListIndex.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empListIndex.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/userListIndex.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/userListIndex.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/bakery/application/OmsApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/bakery/application/OmsApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bakery/application/controller/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bakery/application/controller/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/bakery/application/OmsApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/bakery/application/OmsApplicationTests.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -58,34 +65,34 @@
     <session id="318660746">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="27" />
+          <entry key="project.closed" value="33" />
           <entry key="project.open.time.1" value="3" />
-          <entry key="project.open.time.10" value="7" />
-          <entry key="project.open.time.11" value="2" />
-          <entry key="project.open.time.12" value="6" />
-          <entry key="project.open.time.13" value="2" />
+          <entry key="project.open.time.10" value="8" />
+          <entry key="project.open.time.11" value="3" />
+          <entry key="project.open.time.12" value="7" />
+          <entry key="project.open.time.13" value="4" />
           <entry key="project.open.time.14" value="4" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="28" />
+          <entry key="project.opened" value="33" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CLASS" value="71" />
+          <entry key="CLASS" value="75" />
           <entry key="CSS" value="17" />
           <entry key="DTD" value="1" />
           <entry key="HTML" value="3" />
           <entry key="Image" value="3" />
-          <entry key="JAVA" value="166" />
-          <entry key="JSP" value="74" />
-          <entry key="JavaScript" value="15" />
+          <entry key="JAVA" value="192" />
+          <entry key="JSP" value="84" />
+          <entry key="JavaScript" value="17" />
           <entry key="PLAIN_TEXT" value="3" />
           <entry key="Properties" value="13" />
-          <entry key="XML" value="45" />
-          <entry key="YAML" value="11" />
+          <entry key="XML" value="52" />
+          <entry key="YAML" value="12" />
           <entry key="spring.factories" value="4" />
         </counts>
       </usages-collector>
@@ -93,108 +100,182 @@
         <counts>
           <entry key="CSS" value="238" />
           <entry key="HTML" value="6" />
-          <entry key="JAVA" value="6811" />
-          <entry key="JSP" value="6550" />
-          <entry key="PLAIN_TEXT" value="161" />
+          <entry key="JAVA" value="8625" />
+          <entry key="JSP" value="7895" />
+          <entry key="PLAIN_TEXT" value="178" />
           <entry key="Properties" value="78" />
-          <entry key="SQL" value="19" />
-          <entry key="XML" value="844" />
+          <entry key="SQL" value="24" />
+          <entry key="XML" value="1032" />
           <entry key="YAML" value="184" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/controller/EmployeeController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="381">
-              <caret line="117" column="65" selection-start-line="117" selection-start-column="65" selection-end-line="117" selection-end-column="65" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/mapper/EmployeeMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="25" column="23" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/constant/Url.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="14" column="75" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="75" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/service/serviceImpl/EmployeeServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="533">
-              <caret line="43" column="58" selection-start-line="43" selection-start-column="58" selection-end-line="43" selection-end-column="58" />
-              <folding>
-                <element signature="e#1472#1473#0" expanded="true" />
-                <element signature="e#1500#1501#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/EmployeeMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="134" column="41" lean-forward="true" selection-start-line="134" selection-start-column="41" selection-end-line="134" selection-end-column="41" />
-              <folding>
-                <element signature="n#sql#0;n#mapper#0;n#!!top" />
-                <element signature="n#sql#1;n#mapper#0;n#!!top" />
-                <element signature="e#8055#8059#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empListIndex.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="540" column="32" lean-forward="true" selection-start-line="540" selection-start-column="32" selection-end-line="540" selection-end-column="32" />
-              <folding>
-                <element signature="n#style#0;n#button#0;n#div#3;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#1;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#div#2;n#body#0;n#html#0;n#!!top" />
-                <element signature="e#18113#18341#0#HTML" />
-                <element signature="e#18461#19230#0#HTML" />
-                <element signature="n#style#0;n#span#0;n#button#0;n#!!top" expanded="true" />
-                <element signature="e#19383#19589#0#HTML" />
-                <element signature="e#19623#19772#0#HTML" />
-                <element signature="e#19867#19924#0#HTML" />
-                <element signature="e#19983#20211#0#HTML" />
-                <element signature="e#20085#20125#0#HTML" />
-                <element signature="e#20253#20310#0#HTML" />
-                <element signature="e#20350#22112#0#HTML" />
-                <element signature="e#22153#23629#0#HTML" />
-                <element signature="e#23666#23710#0#HTML" />
-                <element signature="e#24450#30720#0#HTML" />
-                <element signature="e#27419#27594#0#HTML" />
-                <element signature="e#27798#27965#0#HTML" />
-                <element signature="e#28172#28336#0#HTML" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.81011534">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/service/serviceImpl/EmployeeServiceImpl.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="267">
+                  <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/EmployeeMapper.xml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="288">
+                  <caret line="137" column="39" lean-forward="true" selection-start-line="137" selection-start-column="39" selection-end-line="137" selection-end-column="39" />
+                  <folding>
+                    <element signature="n#sql#0;n#mapper#0;n#!!top" />
+                    <element signature="n#sql#1;n#mapper#0;n#!!top" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/controller/EmployeeController.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="383">
+                  <caret line="122" column="71" selection-start-line="122" selection-start-column="55" selection-end-line="122" selection-end-column="71" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#4150#4166#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/userListIndex.jsp">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="229">
+                  <caret line="314" lean-forward="true" selection-start-line="314" selection-end-line="314" />
+                  <folding>
+                    <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#button#0;n#div#3;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
+                    <element signature="e#10497#10727#0#HTML" />
+                    <element signature="e#11113#11505#0#HTML" />
+                    <element signature="e#11336#11476#0#HTML" />
+                    <element signature="e#11342#14476#0#HTML" />
+                    <element signature="e#14516#14700#0#HTML" />
+                    <element signature="e#11225#13020#0#HTML" />
+                    <element signature="e#16951#17720#0#HTML" />
+                    <element signature="n#style#0;n#span#0;n#button#0;n#!!top" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/constant/Url.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="369">
+                  <caret line="22" column="64" selection-start-line="22" selection-start-column="54" selection-end-line="22" selection-end-column="64" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/controller/UserController.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="432">
+                  <caret line="112" column="34" lean-forward="true" selection-start-line="112" selection-start-column="34" selection-end-line="112" selection-end-column="34" />
+                  <folding>
+                    <element signature="e#2786#2801#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/UserMapper.xml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="350">
+                  <caret line="101" column="17" lean-forward="true" selection-start-line="101" selection-start-column="17" selection-end-line="101" selection-end-column="17" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/service/serviceImpl/UserServiceImpl.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="330">
+                  <caret line="42" column="51" lean-forward="true" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/mapper/UserMapper.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="133">
+                  <caret line="7" column="43" lean-forward="true" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/service/EmployeeService.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="215">
+                  <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empListIndex.jsp">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="45">
+                  <caret line="57" selection-start-line="57" selection-end-line="58" />
+                  <folding>
+                    <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
+                    <element signature="e#17029#19603#0#JSP" />
+                    <element signature="e#19604#19670#0#JSP" />
+                    <element signature="n#style#0;n#span#0;n#button#0;n#!!top" expanded="true" />
+                    <element signature="e#21421#21627#0#HTML" />
+                    <element signature="e#21661#21810#0#HTML" />
+                    <element signature="e#21913#22272#0#HTML" />
+                    <element signature="e#22313#22453#0#HTML" />
+                    <element signature="e#22594#22822#0#HTML" />
+                    <element signature="e#22863#22920#0#HTML" />
+                    <element signature="e#22960#24722#0#HTML" />
+                    <element signature="e#24763#26239#0#HTML" />
+                    <element signature="e#26276#26668#0#HTML" />
+                    <element signature="e#26718#29852#0#HTML" />
+                    <element signature="e#29900#30992#0#HTML" />
+                    <element signature="e#29933#30137#0#HTML" />
+                    <element signature="e#31032#32827#0#HTML" />
+                    <element signature="e#32886#35134#0#HTML" />
+                    <element signature="e#35172#37299#0#HTML" />
+                    <element signature="e#37401#47010#0#HTML" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -209,28 +290,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&lt;%=basePath%&gt;</find>
-      <find>na</find>
-      <find>navbar-fixed-top</find>
-      <find>navd</find>
-      <find>pd1</find>
-      <find>WebMvc</find>
-      <find>addView</find>
-      <find>forget</find>
-      <find>pwdRegis</find>
-      <find>form-top</find>
-      <find>form-first-name</find>
-      <find>form1</find>
-      <find>class=&quot;registration-form&quot;</find>
-      <find>reset</find>
-      <find>../</find>
-      <find>405</find>
-      <find>deleteByPrimaryKey</find>
-      <find>object2json</find>
-      <find>string2json</find>
-      <find>searchText</find>
-      <find>depno</find>
-      <find>selectByCodeType</find>
       <find>onblur</find>
       <find>onmouseleave</find>
       <find>TableInit</find>
@@ -239,6 +298,28 @@
       <find>resetSearchBtn</find>
       <find>saveEmpSubmit</find>
       <find>searchBtn</find>
+      <find>ResultMapPages</find>
+      <find>updateByPrimaryKey</find>
+      <find>resetEmpBtn</find>
+      <find>fieidset</find>
+      <find>rightClose</find>
+      <find>closeModelBtn()</find>
+      <find>kjm</find>
+      <find>$('#myModal #password').val(row[0].password);</find>
+      <find>column.formatter</find>
+      <find>eval</find>
+      <find>tb_roles</find>
+      <find>kk</find>
+      <find>toolbar</find>
+      <find>checkForm</find>
+      <find>insert</find>
+      <find>createOrUpdateEUserUrl</find>
+      <find>Update_By_Example_Where_Clause</find>
+      <find>resetModelBtn</find>
+      <find>/*格式化时间*/</find>
+      <find>queryEmpNamesUrl</find>
+      <find>createOrUpdateUserUrl</find>
+      <find>selectByCriteria</find>
     </findStrings>
     <replaceStrings>
       <replace>navs</replace>
@@ -262,13 +343,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/constant/Filter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/constant/MyFilter.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/404.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/basic/403.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/basic/500.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/basic/404.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/401.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/400.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/config/ErrorConfig.java" />
@@ -280,7 +354,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/util/UUIDUtil.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/upLoad.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/upLoad.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/basic/menu.jsp" />
         <option value="$PROJECT_DIR$/src/main/resources/com/bakery/application/mapping/CodeTypeMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/service/BaseCodeService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/service/serviceImpl/BaseCodeServideImpl.java" />
@@ -295,11 +368,9 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/static/bootstrap/js/boo.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/constant/BootstrapTablePage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/controller/Test.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/entity/Employee.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/constant/Page.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/service/SysMenuService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/service/serviceImpl/SysMenuServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/mapper/SysMenuMapper.java" />
@@ -307,12 +378,22 @@
         <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/dto/EmployeeDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/mapper/EmployeeMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/constant/CodeTypeConstant.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/constant/Url.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/service/EmployeeService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/service/serviceImpl/EmployeeServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapping/EmployeeMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/service/EmployeeService.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/controller/Test.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/bakery/application/OmsApplicationTests.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/controller/EmployeeController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/bootstrap/js/bootstrap-table-editable.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/basic/menu.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/service/serviceImpl/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/constant/Url.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empListIndex.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/service/UserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bakery/application/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/userListIndex.jsp" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapping/UserMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapping/EmployeeMapper.xml" />
       </list>
     </option>
   </component>
@@ -370,12 +451,18 @@
         <expanded-state>
           <State />
           <State>
+            <id>JavaScript</id>
+          </State>
+          <State>
+            <id>JavaScript validity issuesJavaScript</id>
+          </State>
+          <State>
             <id>SQL</id>
           </State>
         </expanded-state>
         <selected-state>
           <State>
-            <id>SqlDialectInspection</id>
+            <id>BadExpressionStatementJS</id>
           </State>
         </selected-state>
       </profile-state>
@@ -426,6 +513,34 @@
               <item name="oms" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="oms" type="b2602c69:ProjectViewProjectNode" />
+              <item name="oms" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="oms" type="b2602c69:ProjectViewProjectNode" />
+              <item name="oms" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="serviceImpl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="oms" type="b2602c69:ProjectViewProjectNode" />
+              <item name="oms" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -453,15 +568,6 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="bootstrap" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oms" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oms" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -492,8 +598,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -504,7 +610,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555829026265" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556703452992" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -514,24 +620,24 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.postfix.templates" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/mapping" />
-      <recent name="$PROJECT_DIR$/src/main/webapp" />
-      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/views" />
-      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/basic" />
-      <recent name="$PROJECT_DIR$/src/main/resources/templates" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.bakery.application.config" />
-      <recent name="com.bakery.application.util" />
-      <recent name="com.bakery.application.controller" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/static/bootstrap" />
       <recent name="$PROJECT_DIR$/src/main/resources/static/bootstrap/js" />
       <recent name="$PROJECT_DIR$/src/main/resources/static" />
       <recent name="$PROJECT_DIR$/src/main/java/com/bakery/application/util" />
       <recent name="$PROJECT_DIR$/src/main/java/com/bakery/application/constant" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.bakery.application.config" />
+      <recent name="com.bakery.application.util" />
+      <recent name="com.bakery.application.controller" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/mapping" />
+      <recent name="$PROJECT_DIR$/src/main/webapp" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/views" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/basic" />
+      <recent name="$PROJECT_DIR$/src/main/resources/templates" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -725,7 +831,12 @@
       <workItem from="1555506515081" duration="4774000" />
       <workItem from="1555592968452" duration="2898000" />
       <workItem from="1555730685941" duration="23875000" />
-      <workItem from="1555814061640" duration="12528000" />
+      <workItem from="1555814061640" duration="27690000" />
+      <workItem from="1556202536805" duration="2945000" />
+      <workItem from="1556286906520" duration="317000" />
+      <workItem from="1556544372394" duration="1745000" />
+      <workItem from="1556682083063" duration="4188000" />
+      <workItem from="1556688157365" duration="10801000" />
     </task>
     <task id="LOCAL-00001" summary="20190306 自动生成">
       <created>1552748178408</created>
@@ -818,7 +929,21 @@
       <option name="project" value="LOCAL" />
       <updated>1555828668622</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="员工管理模块">
+      <created>1555852234054</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1555852234054</updated>
+    </task>
+    <task id="LOCAL-00015" summary="20190421">
+      <created>1556546043907</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1556546043907</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -854,13 +979,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="191792000" />
+    <option name="totallyTimeSpent" value="226950000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3390558" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21888413" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -870,15 +995,15 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32961586" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49928468" visible="true" weight="0.22924411" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.22924411" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49785408" weight="0.21437423" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.14002478" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Spring" order="7" weight="0.32961586" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5007153" side_tool="true" weight="0.5365552" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32961586" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50214595" side_tool="true" weight="0.27261463" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.58941346" weight="0.32961586" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="13" show_stripe_button="false" />
@@ -894,6 +1019,41 @@
       <window_info anchor="right" id="Bean Validation" order="9" weight="0.3297568" />
       <window_info anchor="right" id="Preview" order="10" weight="0.3297568" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.09012876" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32961586" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49785408" visible="true" weight="0.15861215" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.2527881" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Spring" order="7" weight="0.32961586" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50214595" side_tool="true" weight="0.27261463" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.58941346" weight="0.32961586" />
+      <window_info anchor="bottom" id="Java Enterprise" order="11" />
+      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="13" show_stripe_button="false" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Maven Projects" order="5" weight="0.16809729" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Bean Validation" order="9" weight="0.3297568" />
+      <window_info anchor="right" id="Preview" order="10" weight="0.3297568" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -912,107 +1072,12 @@
     <MESSAGE value="20190416 修改分页" />
     <MESSAGE value="20190417 添加按钮" />
     <MESSAGE value="20190407 添加页面" />
+    <MESSAGE value="员工管理模块" />
     <MESSAGE value="20190421" />
-    <option name="LAST_COMMIT_MESSAGE" value="20190421" />
+    <MESSAGE value="20190501" />
+    <option name="LAST_COMMIT_MESSAGE" value="20190501" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/constant/Page.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/SysMenuMapper.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/entity/SysMenuCriteria.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="41" column="61" selection-start-line="41" selection-start-column="61" selection-end-line="41" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/service/SysMenuService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/service/serviceImpl/SysMenuServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="15" column="3" lean-forward="true" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/service/BaseCodeService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="15" column="15" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/service/serviceImpl/BaseCodeServideImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/mapper/BaseCodeMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="19" column="35" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/BaseCodeMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1862">
-          <caret line="98" column="29" selection-start-line="98" selection-start-column="29" selection-end-line="98" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/mapper/SysMenuMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/entity/SysMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="26" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../../maven/Repository/com/github/pagehelper/pagehelper/5.1.8/pagehelper-5.1.8.jar!/com/github/pagehelper/PageSerializable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="41" selection-start-line="41" selection-end-line="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../../maven/Repository/org/springframework/spring-webmvc/5.1.5.RELEASE/spring-webmvc-5.1.5.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="73" selection-start-line="73" selection-end-line="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../../maven/Repository/org/springframework/spring-webmvc/5.1.5.RELEASE/spring-webmvc-5.1.5.RELEASE.jar!/org/springframework/web/servlet/mvc/method/AbstractHandlerMethodAdapter.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/My97DatePicker/开发包/lang/en.js" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/My97DatePicker/skin/default/img.gif">
       <provider selected="true" editor-type-id="images" />
@@ -1100,13 +1165,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="26" column="20" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -1114,25 +1172,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/dto/EmployeeDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="56" column="26" selection-start-line="56" selection-start-column="17" selection-end-line="56" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/util/DateUtil.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/userListIndex.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="186" column="6" lean-forward="true" selection-start-line="110" selection-end-line="186" selection-end-column="6" />
-          <folding>
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/orderListIndex.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2147">
@@ -1144,16 +1184,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/entity/Employee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="41" column="26" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1169,42 +1199,10 @@
         <state relative-caret-position="-748" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/constant/Url.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="75" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/jquery_mloading/jquery.mloading.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="15" column="32" lean-forward="true" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/service/EmployeeService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="44" column="7" lean-forward="true" selection-start-line="44" selection-start-column="7" selection-end-line="44" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/service/serviceImpl/EmployeeServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="533">
-          <caret line="43" column="58" selection-start-line="43" selection-start-column="58" selection-end-line="43" selection-end-column="58" />
-          <folding>
-            <element signature="e#1472#1473#0" expanded="true" />
-            <element signature="e#1500#1501#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/mapper/EmployeeMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="25" column="23" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -1214,60 +1212,238 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/bootstrap/bootstrapValidator/js/validator/id.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../../maven/Repository/org/springframework/spring-web/5.1.5.RELEASE/spring-web-5.1.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/controller/FrontConroller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="101" selection-start-line="101" selection-end-line="101" />
+        <state relative-caret-position="-323" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/controller/ErrorController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/EmployeeMapper.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/mapper/EmployeeMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="134" column="41" lean-forward="true" selection-start-line="134" selection-start-column="41" selection-end-line="134" selection-end-column="41" />
+        <state relative-caret-position="513">
+          <caret line="35" column="35" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/dto/EmployeeDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="798">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="72" lean-forward="true" selection-start-line="5" selection-start-column="72" selection-end-line="5" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/service/serviceImpl/PersonServiceImpl.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/service/PersonService.java" />
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/bakery/application/OmsApplicationTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/controller/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="67" selection-start-line="67" selection-end-line="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="56" column="60" selection-start-line="56" selection-start-column="60" selection-end-line="56" selection-end-column="60" />
           <folding>
-            <element signature="n#sql#0;n#mapper#0;n#!!top" />
-            <element signature="n#sql#1;n#mapper#0;n#!!top" />
-            <element signature="e#8055#8059#0" expanded="true" />
+            <element signature="n#javaClientGenerator#0;n#context#0;n#generatorConfiguration#0;n#!!top" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/controller/EmployeeController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/entity/Employee.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="117" column="65" selection-start-line="117" selection-start-column="65" selection-end-line="117" selection-end-column="65" />
+        <state relative-caret-position="209">
+          <caret line="13" column="27" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/bootstrap/js/bootstrap-table-editable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="25" column="47" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/basic/menu.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="22" column="49" lean-forward="true" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/entity/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../../maven/Repository/org/springframework/spring-web/5.1.5.RELEASE/spring-web-5.1.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="101" selection-start-line="101" selection-end-line="101" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/mapper/UserMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="43" lean-forward="true" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/constant/Url.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="22" column="64" selection-start-line="22" selection-start-column="54" selection-end-line="22" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/empListIndex.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="540" column="32" lean-forward="true" selection-start-line="540" selection-start-column="32" selection-end-line="540" selection-end-column="32" />
+        <state relative-caret-position="45">
+          <caret line="57" selection-start-line="57" selection-end-line="58" />
           <folding>
-            <element signature="n#style#0;n#button#0;n#div#3;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#1;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="e#18113#18341#0#HTML" />
-            <element signature="e#18461#19230#0#HTML" />
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
+            <element signature="e#17029#19603#0#JSP" />
+            <element signature="e#19604#19670#0#JSP" />
             <element signature="n#style#0;n#span#0;n#button#0;n#!!top" expanded="true" />
-            <element signature="e#19383#19589#0#HTML" />
-            <element signature="e#19623#19772#0#HTML" />
-            <element signature="e#19867#19924#0#HTML" />
-            <element signature="e#19983#20211#0#HTML" />
-            <element signature="e#20085#20125#0#HTML" />
-            <element signature="e#20253#20310#0#HTML" />
-            <element signature="e#20350#22112#0#HTML" />
-            <element signature="e#22153#23629#0#HTML" />
-            <element signature="e#23666#23710#0#HTML" />
-            <element signature="e#24450#30720#0#HTML" />
-            <element signature="e#27419#27594#0#HTML" />
-            <element signature="e#27798#27965#0#HTML" />
-            <element signature="e#28172#28336#0#HTML" />
+            <element signature="e#21421#21627#0#HTML" />
+            <element signature="e#21661#21810#0#HTML" />
+            <element signature="e#21913#22272#0#HTML" />
+            <element signature="e#22313#22453#0#HTML" />
+            <element signature="e#22594#22822#0#HTML" />
+            <element signature="e#22863#22920#0#HTML" />
+            <element signature="e#22960#24722#0#HTML" />
+            <element signature="e#24763#26239#0#HTML" />
+            <element signature="e#26276#26668#0#HTML" />
+            <element signature="e#26718#29852#0#HTML" />
+            <element signature="e#29900#30992#0#HTML" />
+            <element signature="e#29933#30137#0#HTML" />
+            <element signature="e#31032#32827#0#HTML" />
+            <element signature="e#32886#35134#0#HTML" />
+            <element signature="e#35172#37299#0#HTML" />
+            <element signature="e#37401#47010#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/service/serviceImpl/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="42" column="51" lean-forward="true" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/service/EmployeeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/service/serviceImpl/EmployeeServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/controller/EmployeeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="122" column="71" selection-start-line="122" selection-start-column="55" selection-end-line="122" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4150#4166#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="514">
+          <caret line="37" column="19" selection-start-line="37" selection-start-column="19" selection-end-line="37" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bakery/application/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="112" column="34" lean-forward="true" selection-start-line="112" selection-start-column="34" selection-end-line="112" selection-end-column="34" />
+          <folding>
+            <element signature="e#2786#2801#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/userListIndex.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="314" lean-forward="true" selection-start-line="314" selection-end-line="314" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#3;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
+            <element signature="e#10497#10727#0#HTML" />
+            <element signature="e#11113#11505#0#HTML" />
+            <element signature="e#11336#11476#0#HTML" />
+            <element signature="e#11342#14476#0#HTML" />
+            <element signature="e#14516#14700#0#HTML" />
+            <element signature="e#11225#13020#0#HTML" />
+            <element signature="e#16951#17720#0#HTML" />
+            <element signature="n#style#0;n#span#0;n#button#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/UserMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="101" column="17" lean-forward="true" selection-start-line="101" selection-start-column="17" selection-end-line="101" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/EmployeeMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="137" column="39" lean-forward="true" selection-start-line="137" selection-start-column="39" selection-end-line="137" selection-end-column="39" />
+          <folding>
+            <element signature="n#sql#0;n#mapper#0;n#!!top" />
+            <element signature="n#sql#1;n#mapper#0;n#!!top" />
           </folding>
         </state>
       </provider>
