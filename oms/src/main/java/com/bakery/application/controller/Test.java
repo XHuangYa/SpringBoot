@@ -3,8 +3,6 @@ package com.bakery.application.controller;
 import com.bakery.application.constant.Url;
 import com.bakery.application.constant.Views;
 import com.bakery.application.entity.Employee;
-import com.bakery.application.entity.person;
-import com.bakery.application.service.PersonService;
 import com.bakery.application.util.HttpClientUtil;
 import com.bakery.application.util.JsonUtil;
 import com.bakery.application.util.UUIDUtil;
@@ -61,33 +59,13 @@ public class Test {
     }
 
 
-    @Autowired
-    PersonService personService;
-    @RequestMapping("/show")
-    public @ResponseBody
-    Employee select(Map map){
-
-        Employee employee=new Employee();
-        employee.setBirth(new Date());
-        map.put("emp", JsonUtil.beantojson(employee));
-        return employee;
-    }
-
-    @RequestMapping("/add")
-    public int add(person person){
-       int num=personService.addUsers(person);
-       return num;
-
-    }
 
 
 
 
-    @RequestMapping(Url.USER_MANAGER_LIST)
-    public String getUser(){
-        System.out.println("iuser");
-        return Views.USER_LIST_VIEW;
-    }
+
+
+
     @RequestMapping(Url.PDT_MANAGER_LIST)
     public String getPdt(){
         System.out.println("pdt");

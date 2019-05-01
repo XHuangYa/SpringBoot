@@ -24,6 +24,8 @@
     <script src="<%=basePath%>static/js/jquery.serializejson.min.js"></script>
     <script src="<%=basePath%>static/jquery_mloading/jquery.mloading.js"></script>
     <script src="<%=basePath%>static/bootstrap/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+    <script src="<%=basePath%>static/bootstrap/js/bootstrap-editable.min.js"></script>
+    <script src="<%=basePath%>static/bootstrap/js/bootstrap-table-editable.js"></script>
     <%--css--%>
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/jquery-confirm.css">
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap.min.css">
@@ -31,8 +33,8 @@
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap-table-group.css">
     <link rel="stylesheet" href="<%=basePath%>static/jquery_mloading/jquery.mloading.css">
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/bootstrapValidator/css/bootstrapValidator.min.css">
+    <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap-editable.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
     <style>
         * {
             margin: 0;
@@ -64,7 +66,6 @@
 <input type="hidden" id="queryEmpManegeUrl" value="empManageListqueryEmp"/>
 <input type="hidden" id="deleteEmpUrl" value="empManageListdeleteEmp"/>
 <input type="hidden" id="createOrUpdateEmpUrl" value="empManageListinserOrUpdatetEmp"/>
-<input type="hidden" id="queryEmpNamesUrl" value="empManageListqueryNames"/>
 
 <ol class="breadcrumb">
     <li><a>Home</a></li>
@@ -72,7 +73,7 @@
     <li class="active">员工列表</li>
 </ol>
 <!-- 查询框 start -->
-<div class="panel-body" style="padding-bottom:0px; padding-top:0px ;">
+<div class="panel-body" style="padding-bottom:0px; padding-top:0px;">
     <div class="panel panel-default">
         <div class="panel-body" style="height: 540px">
             <div class="container-fluid">
@@ -565,7 +566,6 @@
                 mask: true//是否显示遮罩效果，默认显示
             })
             var createOrUpdateEmpUrl = $("#createOrUpdateEmpUrl").val();
-            console.info(createOrUpdateEmpUrl + "---");
             $.post(createOrUpdateEmpUrl, $("#empForm").serialize(), function (data) {
                 $("body").mLoading("hide");//隐藏loading组件
                 if (data.result == true) {
@@ -923,11 +923,22 @@
                     field: 'empName',
                     align: 'center',
                     valign: 'middle',
-                },{
+                }, {
                     title: '登陆密码',
                     field: 'password',
                     align: 'center',
-                    valign: 'middle'
+                    valign: 'middle',
+                    editable: {
+                        type: 'text',
+                        title: '修改密码',
+                        validate: function (v) {
+                            if (!v) return '登陆密码不能为空';
+                            if (/(^\s+)|(\s+$)/g.test(v)) {
+                                return '登陆密码不不能输入空格!';
+                            }
+
+                        }
+                    }
                 }, {
                     title: '联系方式',
                     field: 'phone',
@@ -1029,6 +1040,52 @@
                     valign: 'middle',
                     visible: false
                 }],
+                onEditableSave: function (field, row, oldValue, $el) {
+                    var createOrUpdateEmpUrl = $("#createOrUpdateEmpUrl").val();
+                    $.ajax({
+                        type: "post",
+                        url: createOrUpdateEmpUrl,
+                        data: row,
+                        dataType: 'JSON',
+                        success: function (data, status) {
+                            console.info(date = +"----" + status);
+                            if (status == "success") {
+                                $.alert({
+                                    title: '提示',
+                                    content: '密码修改成功！',
+                                    type: 'blue', //一般危险操作用red,保存成功操作green
+                                    buttons: { //定义按钮
+                                        confirm: {
+                                            text: '确认',
+                                            btnClass: 'btn-primary',
+                                            action: function () { //这里写点击按钮回调函数
+                                            }
+                                        }
+                                    }
+                                });
+                            }
+                        },
+                        error: function () {
+                            $.alert({
+                                title: '提示',
+                                content: '密码修改失败！',
+                                type: 'red', //一般危险操作用red,保存成功操作green
+                                buttons: { //定义按钮
+                                    confirm: {
+                                        text: '确认',
+                                        btnClass: 'btn-primary',
+                                        action: function () { //这里写点击按钮回调函数
+                                        }
+                                    }
+                                }
+                            });
+                        },
+                        complete: function () {
+
+                        }
+
+                    });
+                }
             });
 
         };

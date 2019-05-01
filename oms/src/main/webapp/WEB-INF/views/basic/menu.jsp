@@ -14,13 +14,13 @@
         <link rel="stylesheet" href="<%=basePath%>static/css/menu.css">
  </head>
     <body>
-	<input type="hidden" id="userList" value="/userManageList" />
-	<input type="hidden" id="empList" value="/empManageList" />
-	<input type="hidden" id="pdtList" value="/pdtManageList" />
-	<input type="hidden" id="orderList" value="/orderManageList" />
-	<input type="hidden" id="stockList" value="/stockManageList" />
-	<input type="hidden" id="storeOutList" value="/storeOutList" />
-	<input type="hidden" id="storeInList" value="/storeInList" />
+	<input type="hidden" id="userList" value="userManageList" />
+	<input type="hidden" id="empList" value="empManageList" />
+	<input type="hidden" id="pdtList" value="pdtManageList" />
+	<input type="hidden" id="orderList" value="orderManageList" />
+	<input type="hidden" id="stockList" value="stockManageList" />
+	<input type="hidden" id="storeOutList" value="storeOutList" />
+	<input type="hidden" id="storeInList" value="storeInList" />
     <div class="circle">
     		<div class="picture">
     			<h2><i class="shop glyphicon glyphicon-shopping-cart "></i><p>shop</p> </h2>

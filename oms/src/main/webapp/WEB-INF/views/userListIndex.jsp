@@ -25,10 +25,9 @@
     <script src="<%=basePath%>static/js/jquery.serializejson.min.js"></script>
     <script src="<%=basePath%>static/jquery_mloading/jquery.mloading.js"></script>
     <script src="<%=basePath%>static/bootstrap/bootstrapValidator/js/bootstrapValidator.min.js"></script>
-   <script src="<%=basePath%>static/bootstrap/js/bootstrap-editable.min.js"></script>
-   <%-- <script src="<%=basePath%>static/bootstrap/js/bootstrap-editable.js"></script>--%>
+    <script src="<%=basePath%>static/bootstrap/js/bootstrap-editable.min.js"></script>
     <script src="<%=basePath%>static/bootstrap/js/bootstrap-table-editable.js"></script>
-<%--css--%>
+    <%--css--%>
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/jquery-confirm.css">
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap-table.min.css">
@@ -43,17 +42,27 @@
             height: 40px;
             margin-left: 18px;
         }
+
         .modal-dialog {
             width: 400px;
         }
-        .modal-body{
+
+        .modal-body {
             margin-right: 15px;
         }
+
+        #kk {
+            margin-top: 50px;
+            height: 260px;
+        }
+
     </style>
 </head>
 
 <body>
-<input type="hidden" id="queryUserManegeUrl" value="userManageListqueryUser"/>
+<input type="hidden" id="queryUserManegeUrl" value="userManageList/queryUser"/>
+<input type="hidden" id="createOrUpdateUserUrl" value="userManageList/inserOrUpdatetUser"/>
+<input type="hidden" id="deleteUserUrl" value="userManageList/deleteuser"/>
 <ol class="breadcrumb">
     <li><a>Home</a></li>
     <li><a>客户管理</a></li>
@@ -62,10 +71,10 @@
 <!-- 查询框 start -->
 <div class="panel-body" style="padding-bottom:0px; padding-top:0px ;">
     <div class="panel panel-default">
-        <div class="panel-body">
+        <div class="panel-body" style="height: 540px">
             <div class="container-fluid">
                 <form id="searchUserForm" name="searchUserForm" class="form-horizontal">
-                    <div class="form-group">
+                    <div class="form-group" style="margin-top: 30px">
                         <div class="row">
                             <label class="control-label col-md-1">客户名称:</label>
                             <div class="col-md-3 ">
@@ -97,7 +106,8 @@
                 </form>
             </div>
             <div id="kk" style="width:1175px;">
-                <div id="toolbar" class="btn-group"></div>
+                <div id="toolbar" class="btn-group">
+                </div>
                 <table id="tb_roles"></table>
             </div>
         </div>
@@ -111,11 +121,12 @@
         <form class="form-horizontal" role="form" id="userForm" name="userForm" method="post">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                    <button type="button" class="close" data-dismiss="modal" onclick="rightClose()"
+                            aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="gridSystemModalLabel">客户信息</h4>
                 </div>
-                <div class="modal-body" >
+                <div class="modal-body">
                     <div class="form-group form-group-sm">
                         <label class="control-label col-sm-4">客户名称:</label>
                         <div class="col-sm-8">
@@ -133,17 +144,18 @@
                     <div class="form-group form-group-sm">
                         <label class="control-label col-sm-4">客户性别:</label>
                         <div class="col-sm-8">
-                        <select class="form-control" name="sex" id="sex"
-                                onkeyup="this.value=this.value.replace(/\s+/g,'')">
-                            <option value="">请选择</option>
-                        </select>
+                            <select class="form-control" name="sex" id="sex"
+                                    onkeyup="this.value=this.value.replace(/\s+/g,'')">
+                                <option value="">请选择</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group form-group-sm">
                         <label class="control-label col-sm-4">存档时间:</label>
                         <div class="col-sm-8 has-feedback ">
                             <input name="createTime" id="createTime" type="text" placeholder="精确到年月日时分秒 "
-                                   class="form-control"/>
+                                   class="form-control"
+                                   onFocus="WdatePicker({maxDate:'%y-%M-%d',dateFmt: 'yyyy-MM-dd'})"/>
                             <span class="glyphicon glyphicon-calendar form-control-feedback "></span>
                         </div>
                     </div>
@@ -151,7 +163,8 @@
                         <label class="control-label col-sm-4">修改时间:</label>
                         <div class="col-sm-8 has-feedback ">
                             <input name="updateTime" id="updateTime" type="text" placeholder="精确到年月日时分秒 "
-                                   class="form-control "/>
+                                   class="form-control "
+                                   onFocus="WdatePicker({maxDate:'%y-%M-%d',dateFmt: 'yyyy-MM-dd'})"/>
                             <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
                         </div>
                     </div>
@@ -159,16 +172,21 @@
                         <label class="control-label col-sm-4">描&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;述:</label>
                     </div>
                     <div class="form-group form-group-sm" style="margin-left: 10px;">
-                        <div class="col-sm-12" >
-                            <textarea class="form-control" name="remark" id="remark" style="resize:none;height: 40px;" rows="3"
+                        <div class="col-sm-12">
+                            <textarea class="form-control" name="remark" id="remark" style="resize:none;height: 40px;"
+                                      rows="3"
                                       placeholder="请输入..."
                                       onkeyup="this.value=this.value.replace(/\s+/g,'')"></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="form-group form-group-sm">
-                    <button id="ok" class="btn btn-primary  col-sm-2 col-sm-offset-3   btn-sm">保存</button>
-                    <button id="reseted" class="btn btn-warning  col-sm-2  col-sm-offset-2  btn-sm">重置</button>
+                    <button id="ok" class="btn btn-primary  col-sm-2 col-sm-offset-3   btn-sm"
+                            onclick="saveOrUpdateFun()">保存
+                    </button>
+                    <button id="reseted" class="btn btn-warning  col-sm-2  col-sm-offset-2  btn-sm"
+                            onclick="resetModelBtn()">重置
+                    </button>
                 </div>
             </div>
         </form>
@@ -189,6 +207,7 @@
         $("#resetSearchBtn").attr("disabled", "true");
         $("#resetSearchBtn").attr("style", "background-color:grey;border-color:grey");
     }
+
     var values = "";//判断按钮状态全局变量
     function checkInput() {
         var searchUserForm = $('#searchUserForm').serializeArray();
@@ -204,8 +223,13 @@
         }
         values = "";
     }
+
     /*查询按钮*/
     function queryUserBtn() {
+        $('#tb_roles').bootstrapTable('refresh');
+    }
+    /*刷新按钮*/
+    function refreshFun() {
         $('#tb_roles').bootstrapTable('refresh');
     }
     /*重置按钮*/
@@ -217,6 +241,241 @@
         $('#tb_roles').bootstrapTable('refresh');
         changeBtndisable();
     }
+
+    /*新增按钮*/
+    function addFun() {
+        row = "";
+        $('#myModal').modal('show');
+        checkForm();
+        $("#userForm").data('bootstrapValidator').resetForm();
+        $('#userForm')[0].reset();
+    }
+
+    /*关闭按钮*/
+    function rightClose() {
+        //清除表单验证
+        $("#userForm").data('bootstrapValidator').destroy();
+        $('#userForm').data('bootstrapValidator', null);
+    }
+    /*删除按钮*/
+    function deleteFun() {
+        var rowids = $('#tb_roles').bootstrapTable('getSelections'); //获取所选中的行
+        if (rowids.length <= 0) {
+            $.alert({
+                title: '提示',
+                content: '请选择一行数据删除！',
+                type: 'blue',
+                buttons: { //定义按钮
+                    confirm: {
+                        text: '确认',
+                        btnClass: 'btn-primary',
+                        action: function () { //这里写点击按钮回调函数
+                        }
+                    }
+                }
+            });
+        } else if (rowids.length == 1) {
+            $.confirm({
+                title: '提示',
+                content: '您确认需要删除选中的数据吗？',
+                type: 'blue',
+                icon: 'glyphicon glyphicon-question-sign',
+                buttons: {
+                    ok: {
+                        text: '确认',
+                        btnClass: 'btn-primary',
+                        action: function () { //确认按钮回调
+                            deleteTask();
+                        }
+                    },
+                    cancel: {
+                        text: '取消',
+                        btnClass: 'btn-primary',
+                        action: function () { //取消按钮回调
+                        }
+                    }
+                },
+            });
+        } else {
+            $.alert({
+                title: '提示',
+                content: '每次只能选择一行数据修改！',
+                type: 'blue', //一般危险操作用red,保存成功操作green
+                buttons: { //定义按钮
+                    confirm: {
+                        text: '确认',
+                        btnClass: 'btn-primary',
+                        action: function () { //这里写点击按钮回调函数
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    /*确认删除*/
+    function deleteTask() {
+        var rowId = $('#tb_roles').bootstrapTable('getSelections');
+        var delUrl = $("#deleteUserUrl").val();
+        var userId = "";
+        if (rowId.length == 1) {
+            userId = rowId[0].userId;
+        }
+        $.post(delUrl, {"userId": userId}, function (data) {
+            if (data || data == 'true') {
+                $.alert({
+                    title: '提示',
+                    content: '删除成功！',
+                    type: 'green',             //一般危险操作用red,保存成功操作green
+                    buttons: {              //定义按钮
+                        confirm: {
+                            text: '确认',
+                            btnClass: 'btn-primary',
+                            action: function () { //这里写点击按钮回调函数
+                            }
+                        }
+                    }
+                });
+                $('#tb_roles').bootstrapTable('refresh');  //刷新列表
+            } else {
+                $.alert({
+                    title: '提示',
+                    content: '删除失败,如有问题请联系管理员！',
+                    type: 'red',             //一般危险操作用red,保存成功操作green
+                    buttons: {              //定义按钮
+                        confirm: {
+                            text: '确认',
+                            btnClass: 'btn-primary',
+                            action: function () { //这里写点击按钮回调函数
+                            }
+                        }
+                    }
+                });
+            }
+        }, 'json');
+    }
+    /*新增信息确认按钮*/
+    function saveOrUpdateFun() {
+        var bootstrapValidator = $("#userForm").data('bootstrapValidator');
+        if (bootstrapValidator.validate().isValid()) {
+            $("body").mLoading({
+                text: "加载中，请稍候...",//加载文字，默认值:加载中...
+                html: false,//设置加载内容是否是html格式，默认值是false
+                content: "",//忽略icon和text的值，直接在加载框中显示此值
+                mask: true//是否显示遮罩效果，默认显示
+            })
+            var createOrUpdateUserUrl = $("#createOrUpdateUserUrl").val();
+            $.post(createOrUpdateUserUrl, $("#userForm").serialize(), function (data) {
+                $("body").mLoading("hide");//隐藏loading组件
+                if (data.result == true) {
+                    $.alert({
+                        title: '提示',
+                        content: '保存成功！',
+                        type: 'green',				//一般危险操作用red,保存成功操作green
+                        buttons: {				//定义按钮
+                            confirm: {
+                                text: '确认',
+                                btnClass: 'btn-primary',
+                                action: function () {	//这里写点击按钮回调函数
+                                    $('#myModal').modal('hide');
+                                    $("#userForm").data('bootstrapValidator').resetForm();
+                                    $('#tb_roles').bootstrapTable('refresh');  //刷新列表
+                                }
+                            }
+                        }
+                    });
+                } else if (data.result == false) {
+                    $.alert({
+                        title: '提示',
+                        content: '保存失败！',
+                        type: 'red',				//一般危险操作用red,保存成功操作green
+                        buttons: {				//定义按钮
+                            confirm: {
+                                text: '确认',
+                                btnClass: 'btn-primary',
+                                action: function () {	//这里写点击按钮回调函数
+                                }
+                            }
+                        }
+                    });
+                } else if (data.repeat == false) {
+                    $.alert({
+                        title: '提示',
+                        content: '用户已存在！',
+                        type: 'red',				//一般危险操作用red,保存成功操作green
+                        buttons: {				//定义按钮
+                            confirm: {
+                                text: '确认',
+                                btnClass: 'btn-primary',
+                                action: function () {	//这里写点击按钮回调函数
+                                }
+                            }
+                        }
+                    });
+                }
+
+            }, 'json');
+        }
+        else {
+            $.alert({
+                title: '提示',
+                content: '请按照相关提示修改！',
+                type: 'red', //一般危险操作用red,保存成功操作green
+                buttons: { //定义按钮
+                    confirm: {
+                        text: '确认',
+                        btnClass: 'btn-primary',
+                        action: function () { //这里写点击按钮回调函数
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    function resetModelBtn() {
+        $("#userForm").data('bootstrapValidator').resetForm();
+        $('#userForm')[0].reset();
+        $("#userForm").data('bootstrapValidator').destroy();
+        checkForm();
+    }
+
+    /*表单验证*/
+    function checkForm() {
+        $("#userForm").bootstrapValidator({
+            message: '不可用的值',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                userName: {
+                    validators: {
+                        notEmpty: {
+                            message: '请填写选客户名称'
+                        }
+                    }
+                },
+                userPhone: {
+                    validators: {
+                        notEmpty: {
+                            message: '请填写电话号码'
+                        }
+                    }
+                },
+                sex: {
+                    validators: {
+                        notEmpty: {
+                            message: '请选择归属性别'
+                        }
+                    }
+                }
+
+            }
+        });
+    }
+
     /*------------全局变量 start----------*/
     var sexList =${sexList};  //性别
     var sysMenuList =${sysMenuList};//按钮列表
@@ -229,6 +488,25 @@
         $("#" + domid).append(opt);
     }
 
+    var tempStr = "";
+    for (var i = 0; i < sysMenuList.length; i++) {
+        if (sysMenuList[i].dataCode == "add"
+            || sysMenuList[i].dataCode == "delete"
+            || sysMenuList[i].dataCode == "refresh"
+        ) {
+            tempStr += "<button id=\"btn_\""
+                + sysMenuList[i].dataCode
+                + " type=\"button\" class=\"btn btn-primary\" onclick=\""
+                + sysMenuList[i].functionName
+                + "();\"><span style=\"display:inline-block; vertical-align:middle; margin-right:3px;\" " +
+                "class=\"" + sysMenuList[i].cssIcon
+                + "\" aria-hidden=\"true\"></span>"
+                + sysMenuList[i].dataName
+                + "</button>";
+        }
+    }
+    $("#toolbar").html(tempStr);
+
     /*---------bootstrapTable------start-----*/
     var index = '';
     var TableInit = function () {
@@ -240,7 +518,7 @@
             $('#tb_roles').bootstrapTable({
                 url: urlStr, //请求后台的URL（*）
                 method: 'post', //请求方式（*）
-                //toolbar: '#toolbar', //工具按钮用哪个容器
+                toolbar: '#toolbar', //工具按钮用哪个容器
                 striped: true, //是否显示行间隔色
                 cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
                 pagination: true, //是否显示分页（*）
@@ -312,6 +590,9 @@
                         title: '客户名称',
                         validate: function (v) {
                             if (!v) return '客户名称不能为空';
+                            if (/(^\s+)|(\s+$)/g.test(v)) {
+                                return '客户名称不能输入空格!';
+                            }
 
                         }
                     }
@@ -319,19 +600,36 @@
                     title: '联系方式',
                     field: 'userPhone',
                     align: 'center',
-                    valign: 'middle'
-                },{
+                    valign: 'middle',
+                    editable: {
+                        type: 'text',
+                        title: '联系方式',
+                        validate: function (v) {
+                            if (!v) return '联系方式不能为空';
+                            if (/(^\s+)|(\s+$)/g.test(v)) {
+                                return '联系方式不能输入空格!';
+                            }
+                            if (!$.trim(v).length == 11) return '联系方式格式有误！';
+                            if (isNaN(v)) return '年联系方式必须是数字';
+                        }
+                    }
+                }, {
                     title: '性别',
                     field: 'sexDes',
                     align: 'center',
-                    valign: 'middle'
+                    valign: 'middle',
+                    editable: {
+                        type: 'select',
+                        title: '性别',
+                        source: [{value: "男", text: "男"}, {value: "女", text: "女"}]
+                    }
                 }, {
                     title: '性别',
                     field: 'sex',
                     align: 'center',
                     valign: 'middle',
                     visible: false
-                },{
+                }, {
                     title: '存档时间',
                     field: 'createTime',
                     align: 'center',
@@ -346,16 +644,67 @@
                     title: '修改时间',
                     field: 'updateTime',
                     align: 'center',
-                    valign: 'middle'
+                    valign: 'middle',
+                    editable: {
+                        type: 'date',
+                        title: '修改时间'
+                    }
                 }, {
                     title: '备注',
                     field: 'remark',
                     align: 'center',
                     valign: 'middle'
-                }]
+                }],
+                onEditableSave: function (field, row, oldValue, $el) {
+                    var createOrUpdateUserUrl = $("#createOrUpdateUserUrl").val();
+                    $.ajax({
+                        type: "post",
+                        url: createOrUpdateUserUrl,
+                        data: row,
+                        dataType: 'JSON',
+                        success: function (data, status) {
+                            if (status == "success") {
+                                $.alert({
+                                    title: '提示',
+                                    content: '修改成功！',
+                                    type: 'blue', //一般危险操作用red,保存成功操作green
+                                    buttons: { //定义按钮
+                                        confirm: {
+                                            text: '确认',
+                                            btnClass: 'btn-primary',
+                                            action: function () { //这里写点击按钮回调函数
+                                                $('#tb_roles').bootstrapTable('refresh');  //刷新列表
+                                            }
+                                        }
+                                    }
+                                });
+                            }
+                        },
+                        error: function () {
+                            $.alert({
+                                title: '提示',
+                                content: '修改失败！',
+                                type: 'red', //一般危险操作用red,保存成功操作green
+                                buttons: { //定义按钮
+                                    confirm: {
+                                        text: '确认',
+                                        btnClass: 'btn-primary',
+                                        action: function () { //这里写点击按钮回调函数
+                                        }
+                                    }
+                                }
+                            });
+                        },
+                        complete: function () {
+
+                        }
+
+                    });
+                }
             });
 
         };
+
         return oTableInit;
     };
     $(function () {

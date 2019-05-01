@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -112,7 +113,7 @@ public class EmployeeController {
      */
     @RequestMapping(value = Url.INSERT_OR_UPDATE_EMPINFO_URL, method = RequestMethod.POST)
     public @ResponseBody
-    Map<String, Object> insertEmp(Employee employee) {
+    Map<String, Object> insertOrUpdateEmp(Employee employee) {
         Map<String, Object> map = new HashMap<String, Object>();
         boolean flag = false;
         if (StringUtils.isBlank(employee.getEmpNo())) {
@@ -131,6 +132,7 @@ public class EmployeeController {
                 map.put("repeat", false);
             }
         } else {
+            employee.setUpdateTime(new Date());
             flag = employeeService.updateByPrimaryKeySelective(employee);
         }
         if (map.isEmpty()) {

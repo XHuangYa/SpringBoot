@@ -139,11 +139,11 @@
                 AND e.done_time &lt;=#{endTime}
             </if>
             <if test="empName != null and empName!=''">
-                AND e.emp_name like #{empName}
+                AND e.emp_name like '%${empName}%'
             </if>
             and e.status=1
         </where>
-        order by e.update_time
+        order by e.update_time desc
     </select>
 
     <select id="selectByExample" resultMap="BaseResultMap"
