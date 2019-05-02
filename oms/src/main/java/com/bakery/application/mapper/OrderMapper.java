@@ -1,11 +1,22 @@
 package com.bakery.application.mapper;
 
+import com.bakery.application.dto.OrderDTO;
 import com.bakery.application.entity.Order;
 import com.bakery.application.entity.OrderCriteria;
-import java.util.List;
+import com.bakery.application.entity.OrderDtl;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
+@Mapper
 public interface OrderMapper {
+    List<Order> queryByExample(OrderDTO orderDTO);
+
+    int updatePricebyPrimaryKey(OrderDtl orderDtl);
+
+    int deleteOrderAndDtl(Order order);
+
     int countByExample(OrderCriteria example);
 
     int deleteByExample(OrderCriteria example);

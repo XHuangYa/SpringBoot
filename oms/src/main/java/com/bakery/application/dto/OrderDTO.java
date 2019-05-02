@@ -1,10 +1,10 @@
-package com.bakery.application.entity;
+package com.bakery.application.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
-public class Order {
+public class OrderDTO {
     private String orderId;
 
     private Integer id;
@@ -24,6 +24,36 @@ public class Order {
     private Date updateTime;
 
     private String remark;
+
+    private String userName;//备用字段
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+    private Date beginTime; //开始时间
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+    private Date endTime;//结束时间
+
+    public Date getBeginTime() {
+        return beginTime;
+    }
+
+    public void setBeginTime(Date beginTime) {
+        this.beginTime = beginTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public String getOrderId() {
         return orderId;

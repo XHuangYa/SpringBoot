@@ -25,6 +25,18 @@ public interface Url {
     String PDT_MANAGER_LIST = "/pdtManageList";
     //订单管理-订单列表
     String ORDER_MANAGE_LIST = "/orderManageList";
+    //修改订单金额
+    String UPDATE_ORDER_PRICE_URL=ORDER_MANAGE_LIST+"/updatePrice";
+    //订单分頁查詢
+    String ORDER_MANAGE_QUERY_URL = ORDER_MANAGE_LIST + "/queryOrder";
+    //删除订单
+    String DELETE_ORDER_URL=ORDER_MANAGE_LIST+"/deleteOrder";
+    //订单明细分页查询
+    String ORDERDTL_MANAGE_QUERY_URL=ORDER_MANAGE_LIST+"queryOrderDtl";
+    //新增/修改订单备注信息
+    String INSERT_OR_UPDATE_ORDER_URL=ORDER_MANAGE_LIST+"/inserOrUpdatetOrder";
+    //删除订单明细
+    String DELETE_ORDER_DTL_URL=ORDER_MANAGE_LIST+"/deleteOrderDtl";
     //库存管理-库存列表
     String STOCK_MANAGE_LIST = "/stockManageList";
     //库存管理-出库记录

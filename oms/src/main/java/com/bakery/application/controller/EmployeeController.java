@@ -120,6 +120,7 @@ public class EmployeeController {
             EmployeeCriteria criteria = new EmployeeCriteria();
             EmployeeCriteria.Criteria cri = criteria.createCriteria();
             cri.andPhoneEqualTo(employee.getPhone());
+            cri.andStatusEqualTo(1);
             List<Employee> employees = employeeService.selectByCriteria(criteria);
             if (employees.isEmpty()) {
                 employee.setEmpNo(UUIDUtil.create32Key());

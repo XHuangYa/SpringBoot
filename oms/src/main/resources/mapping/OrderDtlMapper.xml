@@ -1,112 +1,154 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bakery.application.mapper.OrderDtlMapper" >
-  <resultMap id="BaseResultMap" type="com.bakery.application.entity.OrderDtl" >
-    <id column="ORDER_DTL_ID" property="orderDtlId" jdbcType="VARCHAR" />
-    <result column="ID" property="id" jdbcType="INTEGER" />
-    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
-    <result column="PDT_ID" property="pdtId" jdbcType="VARCHAR" />
-    <result column="PDT_NUM" property="pdtNum" jdbcType="INTEGER" />
-    <result column="DTL_TOTAL_PRICE" property="dtlTotalPrice" jdbcType="VARCHAR" />
-    <result column="STATUS" property="status" jdbcType="INTEGER" />
-    <result column="CREATE_TIME" property="createTime" jdbcType="DATE" />
-    <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE" />
-    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+<mapper namespace="com.bakery.application.mapper.OrderDtlMapper">
+    <resultMap id="BaseResultMap" type="com.bakery.application.entity.OrderDtl">
+        <id column="ORDER_DTL_ID" property="orderDtlId" jdbcType="VARCHAR"/>
+        <result column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR"/>
+        <result column="PDT_ID" property="pdtId" jdbcType="VARCHAR"/>
+        <result column="PDT_NUM" property="pdtNum" jdbcType="INTEGER"/>
+        <result column="DTL_TOTAL_PRICE" property="dtlTotalPrice" jdbcType="VARCHAR"/>
+        <result column="STATUS" property="status" jdbcType="INTEGER"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="DATE"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
     ORDER_DTL_ID, ID, ORDER_ID, PDT_ID, PDT_NUM, DTL_TOTAL_PRICE, STATUS, CREATE_TIME, 
     UPDATE_TIME, REMARK
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bakery.application.entity.OrderDtlCriteria" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    'true' as QUERYID,
-    <include refid="Base_Column_List" />
-    from bky_order_dtl
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from bky_order_dtl
-    where ORDER_DTL_ID = #{orderDtlId,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+
+    <select id="queryByExample" parameterType="java.lang.String" resultType="com.bakery.application.entity.OrderDtl">
+    SELECT
+	od.ORDER_DTL_ID orderDtlId,
+	od.PDT_ID pdtId,
+	(
+		SELECT
+			bp.pdt_name
+		FROM
+			`bky_pdt` bp
+		WHERE
+			bp.PDT_ID = od.PDT_ID
+	) pdtName,
+	od.PDT_NUM pdtNum,
+	od.DTL_TOTAL_PRICE dtlTotalPrice,
+	od.ORDER_ID orderId
+    FROM
+	`bky_order_dtl` od where od.ORDER_ID=#{orderId} and od.status=1;
+    </select>
+    <!--分页查询-->
+    <select id="selectByExample" resultMap="BaseResultMap"
+            parameterType="com.bakery.application.entity.OrderDtlCriteria">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        'true' as QUERYID,
+        <include refid="Base_Column_List"/>
+        from bky_order_dtl
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <!--修改数量-->
+    <update id="updatepdtNumByPrimaryKey" parameterType="com.bakery.application.entity.OrderDtl">
+        UPDATE `bky_order_dtl` od,
+         `bky_order` o
+         SET od.PDT_NUM = #{pdtNum},
+         od.DTL_TOTAL_PRICE = (
+        SELECT
+            (
+                SELECT
+                    bp.UNIT_PRICE
+                FROM
+                    `bky_pdt` bp
+                WHERE
+                    bp.PDT_ID = #{pdtId}
+            ) * od.PDT_NUM
+        )
+        WHERE
+            od.ORDER_DTL_ID = #{orderDtlId}
+    </update>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from bky_order_dtl
+        where ORDER_DTL_ID = #{orderDtlId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from bky_order_dtl
     where ORDER_DTL_ID = #{orderDtlId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.bakery.application.entity.OrderDtlCriteria" >
-    delete from bky_order_dtl
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.bakery.application.entity.OrderDtl" >
+    <delete id="deleteByExample" parameterType="com.bakery.application.entity.OrderDtlCriteria">
+        delete from bky_order_dtl
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.bakery.application.entity.OrderDtl">
     insert into bky_order_dtl (ORDER_DTL_ID, ID, ORDER_ID, 
       PDT_ID, PDT_NUM, DTL_TOTAL_PRICE, 
       STATUS, CREATE_TIME, UPDATE_TIME, 
@@ -116,167 +158,168 @@
       #{status,jdbcType=INTEGER}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, 
       #{remark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.bakery.application.entity.OrderDtl" >
-    insert into bky_order_dtl
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="orderDtlId != null" >
-        ORDER_DTL_ID,
-      </if>
-      <if test="id != null" >
-        ID,
-      </if>
-      <if test="orderId != null" >
-        ORDER_ID,
-      </if>
-      <if test="pdtId != null" >
-        PDT_ID,
-      </if>
-      <if test="pdtNum != null" >
-        PDT_NUM,
-      </if>
-      <if test="dtlTotalPrice != null" >
-        DTL_TOTAL_PRICE,
-      </if>
-      <if test="status != null" >
-        STATUS,
-      </if>
-      <if test="createTime != null" >
-        CREATE_TIME,
-      </if>
-      <if test="updateTime != null" >
-        UPDATE_TIME,
-      </if>
-      <if test="remark != null" >
-        REMARK,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="orderDtlId != null" >
-        #{orderDtlId,jdbcType=VARCHAR},
-      </if>
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="orderId != null" >
-        #{orderId,jdbcType=VARCHAR},
-      </if>
-      <if test="pdtId != null" >
-        #{pdtId,jdbcType=VARCHAR},
-      </if>
-      <if test="pdtNum != null" >
-        #{pdtNum,jdbcType=INTEGER},
-      </if>
-      <if test="dtlTotalPrice != null" >
-        #{dtlTotalPrice,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=DATE},
-      </if>
-      <if test="updateTime != null" >
-        #{updateTime,jdbcType=DATE},
-      </if>
-      <if test="remark != null" >
-        #{remark,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.bakery.application.entity.OrderDtlCriteria" resultType="java.lang.Integer" >
-    select count(*) from bky_order_dtl
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update bky_order_dtl
-    <set >
-      <if test="record.orderDtlId != null" >
-        ORDER_DTL_ID = #{record.orderDtlId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.id != null" >
+    <insert id="insertSelective" parameterType="com.bakery.application.entity.OrderDtl">
+        insert into bky_order_dtl
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderDtlId != null">
+                ORDER_DTL_ID,
+            </if>
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="orderId != null">
+                ORDER_ID,
+            </if>
+            <if test="pdtId != null">
+                PDT_ID,
+            </if>
+            <if test="pdtNum != null">
+                PDT_NUM,
+            </if>
+            <if test="dtlTotalPrice != null">
+                DTL_TOTAL_PRICE,
+            </if>
+            <if test="status != null">
+                STATUS,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME,
+            </if>
+            <if test="remark != null">
+                REMARK,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderDtlId != null">
+                #{orderDtlId,jdbcType=VARCHAR},
+            </if>
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="orderId != null">
+                #{orderId,jdbcType=VARCHAR},
+            </if>
+            <if test="pdtId != null">
+                #{pdtId,jdbcType=VARCHAR},
+            </if>
+            <if test="pdtNum != null">
+                #{pdtNum,jdbcType=INTEGER},
+            </if>
+            <if test="dtlTotalPrice != null">
+                #{dtlTotalPrice,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=DATE},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=DATE},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.bakery.application.entity.OrderDtlCriteria"
+            resultType="java.lang.Integer">
+        select count(*) from bky_order_dtl
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update bky_order_dtl
+        <set>
+            <if test="record.orderDtlId != null">
+                ORDER_DTL_ID = #{record.orderDtlId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.id != null">
+                ID = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.orderId != null">
+                ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.pdtId != null">
+                PDT_ID = #{record.pdtId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.pdtNum != null">
+                PDT_NUM = #{record.pdtNum,jdbcType=INTEGER},
+            </if>
+            <if test="record.dtlTotalPrice != null">
+                DTL_TOTAL_PRICE = #{record.dtlTotalPrice,jdbcType=VARCHAR},
+            </if>
+            <if test="record.status != null">
+                STATUS = #{record.status,jdbcType=INTEGER},
+            </if>
+            <if test="record.createTime != null">
+                CREATE_TIME = #{record.createTime,jdbcType=DATE},
+            </if>
+            <if test="record.updateTime != null">
+                UPDATE_TIME = #{record.updateTime,jdbcType=DATE},
+            </if>
+            <if test="record.remark != null">
+                REMARK = #{record.remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update bky_order_dtl
+        set ORDER_DTL_ID = #{record.orderDtlId,jdbcType=VARCHAR},
         ID = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.orderId != null" >
         ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.pdtId != null" >
         PDT_ID = #{record.pdtId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.pdtNum != null" >
         PDT_NUM = #{record.pdtNum,jdbcType=INTEGER},
-      </if>
-      <if test="record.dtlTotalPrice != null" >
         DTL_TOTAL_PRICE = #{record.dtlTotalPrice,jdbcType=VARCHAR},
-      </if>
-      <if test="record.status != null" >
         STATUS = #{record.status,jdbcType=INTEGER},
-      </if>
-      <if test="record.createTime != null" >
         CREATE_TIME = #{record.createTime,jdbcType=DATE},
-      </if>
-      <if test="record.updateTime != null" >
         UPDATE_TIME = #{record.updateTime,jdbcType=DATE},
-      </if>
-      <if test="record.remark != null" >
-        REMARK = #{record.remark,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update bky_order_dtl
-    set ORDER_DTL_ID = #{record.orderDtlId,jdbcType=VARCHAR},
-      ID = #{record.id,jdbcType=INTEGER},
-      ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
-      PDT_ID = #{record.pdtId,jdbcType=VARCHAR},
-      PDT_NUM = #{record.pdtNum,jdbcType=INTEGER},
-      DTL_TOTAL_PRICE = #{record.dtlTotalPrice,jdbcType=VARCHAR},
-      STATUS = #{record.status,jdbcType=INTEGER},
-      CREATE_TIME = #{record.createTime,jdbcType=DATE},
-      UPDATE_TIME = #{record.updateTime,jdbcType=DATE},
-      REMARK = #{record.remark,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bakery.application.entity.OrderDtl" >
-    update bky_order_dtl
-    <set >
-      <if test="id != null" >
-        ID = #{id,jdbcType=INTEGER},
-      </if>
-      <if test="orderId != null" >
-        ORDER_ID = #{orderId,jdbcType=VARCHAR},
-      </if>
-      <if test="pdtId != null" >
-        PDT_ID = #{pdtId,jdbcType=VARCHAR},
-      </if>
-      <if test="pdtNum != null" >
-        PDT_NUM = #{pdtNum,jdbcType=INTEGER},
-      </if>
-      <if test="dtlTotalPrice != null" >
-        DTL_TOTAL_PRICE = #{dtlTotalPrice,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
-        STATUS = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="createTime != null" >
-        CREATE_TIME = #{createTime,jdbcType=DATE},
-      </if>
-      <if test="updateTime != null" >
-        UPDATE_TIME = #{updateTime,jdbcType=DATE},
-      </if>
-      <if test="remark != null" >
-        REMARK = #{remark,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where ORDER_DTL_ID = #{orderDtlId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.bakery.application.entity.OrderDtl" >
+        REMARK = #{record.remark,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bakery.application.entity.OrderDtl">
+        update bky_order_dtl
+        <set>
+            <if test="id != null">
+                ID = #{id,jdbcType=INTEGER},
+            </if>
+            <if test="orderId != null">
+                ORDER_ID = #{orderId,jdbcType=VARCHAR},
+            </if>
+            <if test="pdtId != null">
+                PDT_ID = #{pdtId,jdbcType=VARCHAR},
+            </if>
+            <if test="pdtNum != null">
+                PDT_NUM = #{pdtNum,jdbcType=INTEGER},
+            </if>
+            <if test="dtlTotalPrice != null">
+                DTL_TOTAL_PRICE = #{dtlTotalPrice,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                STATUS = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=DATE},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime,jdbcType=DATE},
+            </if>
+            <if test="remark != null">
+                REMARK = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ORDER_DTL_ID = #{orderDtlId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.bakery.application.entity.OrderDtl">
     update bky_order_dtl
     set ID = #{id,jdbcType=INTEGER},
       ORDER_ID = #{orderId,jdbcType=VARCHAR},

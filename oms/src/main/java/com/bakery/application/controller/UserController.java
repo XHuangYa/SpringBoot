@@ -93,11 +93,6 @@ public class UserController {
             }
         } else {
             final boolean b = userService.updateByPrimaryKeySelective(user);
-            if (b) {
-                map.put("result", true);
-            } else {
-                map.put("result", false);
-            }
         }
         return map;
     }

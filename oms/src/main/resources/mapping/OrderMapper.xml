@@ -1,287 +1,376 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bakery.application.mapper.OrderMapper" >
-  <resultMap id="BaseResultMap" type="com.bakery.application.entity.Order" >
-    <id column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
-    <result column="ID" property="id" jdbcType="INTEGER" />
-    <result column="TOTAL_PRICE" property="totalPrice" jdbcType="VARCHAR" />
-    <result column="IS_VIP" property="isVip" jdbcType="VARCHAR" />
-    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
-    <result column="PAY_METHOD" property="payMethod" jdbcType="VARCHAR" />
-    <result column="STATUS" property="status" jdbcType="INTEGER" />
-    <result column="CREATE_TIME" property="createTime" jdbcType="DATE" />
-    <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE" />
-    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+<mapper namespace="com.bakery.application.mapper.OrderMapper">
+    <resultMap id="BaseResultMap" type="com.bakery.application.entity.Order">
+        <id column="ORDER_ID" property="orderId" jdbcType="VARCHAR"/>
+        <result column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="TOTAL_PRICE" property="totalPrice" jdbcType="VARCHAR"/>
+        <result column="IS_VIP" property="isVip" jdbcType="VARCHAR"/>
+        <result column="USER_PHONE" property="userPhone" jdbcType="VARCHAR"/>
+        <result column="PAY_METHOD" property="payMethod" jdbcType="VARCHAR"/>
+        <result column="STATUS" property="status" jdbcType="INTEGER"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="DATE"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
-    ORDER_ID, ID, TOTAL_PRICE, IS_VIP, USER_ID, PAY_METHOD, STATUS, CREATE_TIME, UPDATE_TIME, 
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    ORDER_ID, ID, TOTAL_PRICE, IS_VIP, USER_PHONE, PAY_METHOD, STATUS, CREATE_TIME, UPDATE_TIME, 
     REMARK
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bakery.application.entity.OrderCriteria" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    'true' as QUERYID,
-    <include refid="Base_Column_List" />
-    from bky_order
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from bky_order
-    where ORDER_ID = #{orderId,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    <!--分页查询-->
+    <select id="queryByExample" parameterType="com.bakery.application.dto.OrderDTO"
+            resultType="com.bakery.application.dto.OrderDTO">
+        SELECT
+        bo.ORDER_ID orderId,
+        IFNULL(
+        (
+        SELECT
+        bu.USER_NAME
+        FROM
+        `bky_user` bu
+        WHERE
+        bu.USER_PHONE = bo.USER_PHONE
+        ),
+        '游客'
+        ) userName,
+        bo.USER_PHONE userPhone,
+        (
+        SELECT
+        bc.CODE_NAME
+        FROM
+        base_code bc
+        WHERE
+        bc.DATA_CODE = bo.PAY_METHOD
+        AND bc.CODE_TYPE = 'PAY_METHOD'
+        ) payMethod,
+        (
+        SELECT
+        bc.CODE_NAME
+        FROM
+        base_code bc
+        WHERE
+        bc.DATA_CODE = bo.IS_VIP
+        AND bc.CODE_TYPE = 'YSESORNO'
+        ) isVip,
+        bo.TOTAL_PRICE totalPrice,
+        bo.CREATE_TIME createTime,
+        bo.UPDATE_TIME updateTime,
+        bo.REMARK remark
+        FROM
+        `bky_order` bo
+        <where>
+            <if test="isVip != null and isVip!=''">
+                AND bo.IS_VIP= #{isVip}
+            </if>
+            <if test="userPhone != null and userPhone!=''">
+                AND bo.USER_PHONE = #{userPhone}
+            </if>
+            <if test="payMethod != null and payMethod!=''">
+                AND bo.PAY_METHOD = #{payMethod}
+            </if>
+            <if test="beginTime != null">
+                AND bo.CREATE_TIME &gt;=#{beginTime}
+            </if>
+            <if test="endTime != null">
+                AND bo.CREATE_TIME &lt;=#{endTime}
+            </if>
+            <if test="userName != null and userName!=''">
+                AND bu.USER_NAME like '%${userName}%'
+            </if>
+            AND bo.`STATUS` = 1
+        </where>
+    </select>
+    <!--修改订单总价-->
+    <update id="updatePricebyPrimaryKey" parameterType="com.bakery.application.entity.Order">
+        UPDATE `bky_order` o
+        SET o.TOTAL_PRICE = (
+            SELECT
+                SUM(od.DTL_TOTAL_PRICE) price
+            FROM
+                bky_order_dtl od
+            WHERE
+                od.ORDER_ID = #{orderId}
+        )where o.ORDER_ID=#{orderId};
+
+    </update>
+    <!--修改订单/订单明细status-->
+    <update id="deleteOrderAndDtl" parameterType="com.bakery.application.entity.Order">
+        UPDATE bky_order bo,
+         bky_order_dtl od
+        SET bo. STATUS = 0,
+         od. STATUS = 0
+        WHERE
+            bo.ORDER_ID = od.ORDER_ID
+        AND bo.ORDER_ID =#{orderId};
+    </update>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bakery.application.entity.OrderCriteria">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        'true' as QUERYID,
+        <include refid="Base_Column_List"/>
+        from bky_order
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from bky_order
+        where ORDER_ID = #{orderId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from bky_order
     where ORDER_ID = #{orderId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.bakery.application.entity.OrderCriteria" >
-    delete from bky_order
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.bakery.application.entity.Order" >
+    <delete id="deleteByExample" parameterType="com.bakery.application.entity.OrderCriteria">
+        delete from bky_order
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.bakery.application.entity.Order">
     insert into bky_order (ORDER_ID, ID, TOTAL_PRICE, 
-      IS_VIP, USER_ID, PAY_METHOD, 
+      IS_VIP, USER_PHONE, PAY_METHOD, 
       STATUS, CREATE_TIME, UPDATE_TIME, 
       REMARK)
     values (#{orderId,jdbcType=VARCHAR}, #{id,jdbcType=INTEGER}, #{totalPrice,jdbcType=VARCHAR}, 
-      #{isVip,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{payMethod,jdbcType=VARCHAR}, 
+      #{isVip,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, #{payMethod,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, 
       #{remark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.bakery.application.entity.Order" >
-    insert into bky_order
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="orderId != null" >
-        ORDER_ID,
-      </if>
-      <if test="id != null" >
-        ID,
-      </if>
-      <if test="totalPrice != null" >
-        TOTAL_PRICE,
-      </if>
-      <if test="isVip != null" >
-        IS_VIP,
-      </if>
-      <if test="userId != null" >
-        USER_ID,
-      </if>
-      <if test="payMethod != null" >
-        PAY_METHOD,
-      </if>
-      <if test="status != null" >
-        STATUS,
-      </if>
-      <if test="createTime != null" >
-        CREATE_TIME,
-      </if>
-      <if test="updateTime != null" >
-        UPDATE_TIME,
-      </if>
-      <if test="remark != null" >
-        REMARK,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="orderId != null" >
-        #{orderId,jdbcType=VARCHAR},
-      </if>
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="totalPrice != null" >
-        #{totalPrice,jdbcType=VARCHAR},
-      </if>
-      <if test="isVip != null" >
-        #{isVip,jdbcType=VARCHAR},
-      </if>
-      <if test="userId != null" >
-        #{userId,jdbcType=VARCHAR},
-      </if>
-      <if test="payMethod != null" >
-        #{payMethod,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=DATE},
-      </if>
-      <if test="updateTime != null" >
-        #{updateTime,jdbcType=DATE},
-      </if>
-      <if test="remark != null" >
-        #{remark,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.bakery.application.entity.OrderCriteria" resultType="java.lang.Integer" >
-    select count(*) from bky_order
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update bky_order
-    <set >
-      <if test="record.orderId != null" >
-        ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.id != null" >
+    <insert id="insertSelective" parameterType="com.bakery.application.entity.Order">
+        insert into bky_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderId != null">
+                ORDER_ID,
+            </if>
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="totalPrice != null">
+                TOTAL_PRICE,
+            </if>
+            <if test="isVip != null">
+                IS_VIP,
+            </if>
+            <if test="userPhone != null">
+                USER_PHONE,
+            </if>
+            <if test="payMethod != null">
+                PAY_METHOD,
+            </if>
+            <if test="status != null">
+                STATUS,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME,
+            </if>
+            <if test="remark != null">
+                REMARK,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderId != null">
+                #{orderId,jdbcType=VARCHAR},
+            </if>
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="totalPrice != null">
+                #{totalPrice,jdbcType=VARCHAR},
+            </if>
+            <if test="isVip != null">
+                #{isVip,jdbcType=VARCHAR},
+            </if>
+            <if test="userPhone != null">
+                #{userPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="payMethod != null">
+                #{payMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=DATE},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=DATE},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.bakery.application.entity.OrderCriteria"
+            resultType="java.lang.Integer">
+        select count(*) from bky_order
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update bky_order
+        <set>
+            <if test="record.orderId != null">
+                ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.id != null">
+                ID = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.totalPrice != null">
+                TOTAL_PRICE = #{record.totalPrice,jdbcType=VARCHAR},
+            </if>
+            <if test="record.isVip != null">
+                IS_VIP = #{record.isVip,jdbcType=VARCHAR},
+            </if>
+            <if test="record.userPhone != null">
+                USER_PHONE = #{record.userPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="record.payMethod != null">
+                PAY_METHOD = #{record.payMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="record.status != null">
+                STATUS = #{record.status,jdbcType=INTEGER},
+            </if>
+            <if test="record.createTime != null">
+                CREATE_TIME = #{record.createTime,jdbcType=DATE},
+            </if>
+            <if test="record.updateTime != null">
+                UPDATE_TIME = #{record.updateTime,jdbcType=DATE},
+            </if>
+            <if test="record.remark != null">
+                REMARK = #{record.remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update bky_order
+        set ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
         ID = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.totalPrice != null" >
         TOTAL_PRICE = #{record.totalPrice,jdbcType=VARCHAR},
-      </if>
-      <if test="record.isVip != null" >
         IS_VIP = #{record.isVip,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userId != null" >
-        USER_ID = #{record.userId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.payMethod != null" >
+        USER_PHONE = #{record.userPhone,jdbcType=VARCHAR},
         PAY_METHOD = #{record.payMethod,jdbcType=VARCHAR},
-      </if>
-      <if test="record.status != null" >
         STATUS = #{record.status,jdbcType=INTEGER},
-      </if>
-      <if test="record.createTime != null" >
         CREATE_TIME = #{record.createTime,jdbcType=DATE},
-      </if>
-      <if test="record.updateTime != null" >
         UPDATE_TIME = #{record.updateTime,jdbcType=DATE},
-      </if>
-      <if test="record.remark != null" >
-        REMARK = #{record.remark,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update bky_order
-    set ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
-      ID = #{record.id,jdbcType=INTEGER},
-      TOTAL_PRICE = #{record.totalPrice,jdbcType=VARCHAR},
-      IS_VIP = #{record.isVip,jdbcType=VARCHAR},
-      USER_ID = #{record.userId,jdbcType=VARCHAR},
-      PAY_METHOD = #{record.payMethod,jdbcType=VARCHAR},
-      STATUS = #{record.status,jdbcType=INTEGER},
-      CREATE_TIME = #{record.createTime,jdbcType=DATE},
-      UPDATE_TIME = #{record.updateTime,jdbcType=DATE},
-      REMARK = #{record.remark,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bakery.application.entity.Order" >
-    update bky_order
-    <set >
-      <if test="id != null" >
-        ID = #{id,jdbcType=INTEGER},
-      </if>
-      <if test="totalPrice != null" >
-        TOTAL_PRICE = #{totalPrice,jdbcType=VARCHAR},
-      </if>
-      <if test="isVip != null" >
-        IS_VIP = #{isVip,jdbcType=VARCHAR},
-      </if>
-      <if test="userId != null" >
-        USER_ID = #{userId,jdbcType=VARCHAR},
-      </if>
-      <if test="payMethod != null" >
-        PAY_METHOD = #{payMethod,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
-        STATUS = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="createTime != null" >
-        CREATE_TIME = #{createTime,jdbcType=DATE},
-      </if>
-      <if test="updateTime != null" >
-        UPDATE_TIME = #{updateTime,jdbcType=DATE},
-      </if>
-      <if test="remark != null" >
-        REMARK = #{remark,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where ORDER_ID = #{orderId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.bakery.application.entity.Order" >
+        REMARK = #{record.remark,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bakery.application.entity.Order">
+        update bky_order
+        <set>
+            <if test="id != null">
+                ID = #{id,jdbcType=INTEGER},
+            </if>
+            <if test="totalPrice != null">
+                TOTAL_PRICE = #{totalPrice,jdbcType=VARCHAR},
+            </if>
+            <if test="isVip != null">
+                IS_VIP = #{isVip,jdbcType=VARCHAR},
+            </if>
+            <if test="userPhone != null">
+                USER_PHONE = #{userPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="payMethod != null">
+                PAY_METHOD = #{payMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                STATUS = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=DATE},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime,jdbcType=DATE},
+            </if>
+            <if test="remark != null">
+                REMARK = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ORDER_ID = #{orderId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.bakery.application.entity.Order">
     update bky_order
     set ID = #{id,jdbcType=INTEGER},
       TOTAL_PRICE = #{totalPrice,jdbcType=VARCHAR},
       IS_VIP = #{isVip,jdbcType=VARCHAR},
-      USER_ID = #{userId,jdbcType=VARCHAR},
+      USER_PHONE = #{userPhone,jdbcType=VARCHAR},
       PAY_METHOD = #{payMethod,jdbcType=VARCHAR},
       STATUS = #{status,jdbcType=INTEGER},
       CREATE_TIME = #{createTime,jdbcType=DATE},

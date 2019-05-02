@@ -23,6 +23,16 @@ public class OrderDtl {
 
     private String remark;
 
+    private String pdtName;
+
+    public String getPdtName() {
+        return pdtName;
+    }
+
+    public void setPdtName(String pdtName) {
+        this.pdtName = pdtName;
+    }
+
     public String getOrderDtlId() {
         return orderDtlId;
     }

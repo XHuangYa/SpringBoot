@@ -37,9 +37,11 @@ public class UserServiceImpl implements UserService {
     public int insert(User user) {
         UserCriteria userCriteria = new UserCriteria();
         UserCriteria.Criteria cri = userCriteria.createCriteria();
+        cri.andStatusEqualTo(1);
         cri.andUserPhoneEqualTo(user.getUserPhone().trim());
         List<User> users = userMapper.selectByExample(userCriteria);
         if (users.isEmpty()) {
+            user.setStatus(1);
             user.setUserId(UUIDUtil.create32Key());
             int insert = userMapper.insert(user);
             if (insert >= 1) {

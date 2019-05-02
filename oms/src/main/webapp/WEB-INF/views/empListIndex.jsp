@@ -1059,6 +1059,7 @@
                                             text: '确认',
                                             btnClass: 'btn-primary',
                                             action: function () { //这里写点击按钮回调函数
+                                                $('#tb_roles').bootstrapTable('refresh');  //刷新列表
                                             }
                                         }
                                     }

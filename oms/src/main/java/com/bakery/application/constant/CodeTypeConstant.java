@@ -16,5 +16,7 @@ public interface CodeTypeConstant {
 
     String SEX="SEX";//性别
 
+    String PAY_METHOD="PAY_METHOD";//支付方式
+
 
 }
