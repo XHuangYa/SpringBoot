@@ -34,7 +34,9 @@ public interface Url {
     //订单明细分页查询
     String ORDERDTL_MANAGE_QUERY_URL=ORDER_MANAGE_LIST+"queryOrderDtl";
     //新增/修改订单备注信息
-    String INSERT_OR_UPDATE_ORDER_URL=ORDER_MANAGE_LIST+"/inserOrUpdatetOrder";
+    String INSERT_OR_UPDATE_ORDER_URL = ORDER_MANAGE_LIST + "/inserOrUpdatetOrder";
+    //新增订单初始化页面
+    String INSERT_ORDER_INDEX_URL=ORDER_MANAGE_LIST+"/insertOrderIndex";
     //删除订单明细
     String DELETE_ORDER_DTL_URL=ORDER_MANAGE_LIST+"/deleteOrderDtl";
     //库存管理-库存列表

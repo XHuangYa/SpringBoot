@@ -150,4 +150,16 @@ public class OrderController {
     boolean updateOrderStatus(Order order) {
         return orderService.deleteOrderAndDtl(order);
     }
+    /**
+     * @Description:新增订单及订单明细
+     * @Author: LiTing
+     * @Date: 6:00 PM 2019/5/3
+     * @return:
+     * @throws:
+     */
+    @RequestMapping(value = Url.INSERT_ORDER_INDEX_URL)
+    public String insertOrderIndex(final  Map<String,Order> map){
+
+        return Views.INSERT_ORDER_VIEW;
+    }
 }

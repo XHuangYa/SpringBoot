@@ -13,6 +13,8 @@ public interface Views {
     String PDT_LIST_VIEW="pdt.list.index";
     //订单管理-订单列表
     String ORDER_LIST_VIEW="order.list.index";
+    //新增订单
+    String INSERT_ORDER_VIEW="insert.order.index";
     //库存管理-库存列表
     String STOCK_LIST_VIEW="stock.list.index";
     //库存管理-出库记录

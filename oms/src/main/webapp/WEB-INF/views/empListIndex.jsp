@@ -378,7 +378,7 @@
                 + sysMenuList[i].dataCode
                 + " type=\"button\" class=\"btn btn-default\" onclick=\""
                 + sysMenuList[i].functionName
-                + "();\"><span style=\"display:inline-block; vertical-align:middle; margin-right:3px;\" " +
+                + "();\"><span  style=\"display:inline-block; color: deepskyblue; vertical-align:middle; margin-right:3px;\" " +
                 "class=\"" + sysMenuList[i].cssIcon
                 + "\" aria-hidden=\"true\"></span>"
                 + sysMenuList[i].dataName

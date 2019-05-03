@@ -31,6 +31,10 @@
         <put-attribute name="title" value="订单列表" />
         <put-attribute name="body" value="/WEB-INF/views/orderListIndex.jsp" />
     </definition>
+    <definition name="insert.order.index" extends="layout.basic">
+        <put-attribute name="title" value="新增订单" />
+        <put-attribute name="body" value="/WEB-INF/views/insertOrder.jsp" />
+    </definition>
     <definition name="stock.list.index" extends="layout.basic">
         <put-attribute name="title" value="库存列表" />
         <put-attribute name="body" value="/WEB-INF/views/stockListIndex.jsp" />

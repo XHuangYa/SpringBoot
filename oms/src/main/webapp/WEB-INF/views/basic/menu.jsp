@@ -18,6 +18,7 @@
 	<input type="hidden" id="empList" value="empManageList" />
 	<input type="hidden" id="pdtList" value="pdtManageList" />
 	<input type="hidden" id="orderList" value="orderManageList" />
+	<input type="hidden" id="insertOrder" value="orderManageList/insertOrderIndex"/>
 	<input type="hidden" id="stockList" value="stockManageList" />
 	<input type="hidden" id="storeOutList" value="storeOutList" />
 	<input type="hidden" id="storeInList" value="storeInList" />
@@ -53,6 +54,7 @@
     		<li><span class="img glyphicon glyphicon-shopping-cart"></span>&nbsp; &nbsp; &nbsp;订单管理<span class="right  glyphicon glyphicon-chevron-right"></span>
     			<ul class="sub">
     				<li class="orderList">订单列表</li>
+					<li class="insertOrder">新增订单</li>
     			</ul>
     		</li>
     		<li><span class="img glyphicon glyphicon-book"></span>&nbsp; &nbsp; &nbsp;字典管理<span class="right glyphicon glyphicon-chevron-right"></span>
