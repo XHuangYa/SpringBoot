@@ -145,11 +145,11 @@
         UPDATE `bky_order` o
         SET o.TOTAL_PRICE = (
             SELECT
-                SUM(od.DTL_TOTAL_PRICE) price
+                SUM(od.DTL_TOTAL_PRICE)
             FROM
                 bky_order_dtl od
             WHERE
-                od.ORDER_ID = #{orderId}
+                od.ORDER_ID = #{orderId} and od.STATUS=1
         )where o.ORDER_ID=#{orderId};
 
     </update>

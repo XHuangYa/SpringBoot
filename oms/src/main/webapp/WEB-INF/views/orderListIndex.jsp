@@ -447,7 +447,7 @@
                 striped: true, //是否显示行间隔色
                 sortName: "updateTime",
                 dataType: 'json',
-                queryParamsType: "und1efined",//设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
+                queryParamsType: "undefined",//设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
                 contentType: "application/x-www-form-urlencoded",
                 queryParams: function queryParams(params) { //设置查询参数
                     var param = {
