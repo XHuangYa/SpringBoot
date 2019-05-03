@@ -25,6 +25,8 @@ public interface Url {
     String PDT_MANAGER_LIST = "/pdtManageList";
     //订单管理-订单列表
     String ORDER_MANAGE_LIST = "/orderManageList";
+    //新增订单-商品左侧树
+    String SELECT_LEFT_TREE = "/selectLeftTree";
     //修改订单金额
     String UPDATE_ORDER_PRICE_URL=ORDER_MANAGE_LIST+"/updatePrice";
     //订单分頁查詢

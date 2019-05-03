@@ -304,4 +304,22 @@
       REMARK = #{remark,jdbcType=VARCHAR}
     where PDT_ID = #{pdtId,jdbcType=VARCHAR}
   </update>
+  
+  
+   <select id="countByBaseCode" parameterType="com.bakery.application.dto.BaseCodeDTO" resultType="java.lang.Integer">
+  select  count(p.PDT_TYPE) from bky_pdt p 
+  INNER JOIN base_code b on p.PDT_TYPE=b.DATA_CODE
+  where  PDT_TYPE=#{pdtType,jdbcType=VARCHAR}   AND CODE_TYPE=#{codeType,jdbcType=VARCHAR}  AND b.`STATUS`='1'
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 </mapper>

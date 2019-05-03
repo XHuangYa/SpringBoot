@@ -1,7 +1,7 @@
 spring:
   datasource:
-    username: root
-    password: 960218lee
+    username: YYK
+    password: yangyukun
     driver-class-name: com.p6spy.engine.spy.P6SpyDriver
     url: jdbc:p6spy:mysql://localhost:3306/bakery?serverTimezone=GMT%2B8
     type: com.alibaba.druid.pool.DruidDataSource

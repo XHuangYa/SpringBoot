@@ -1,5 +1,6 @@
 package com.bakery.application.mapper;
 
+import com.bakery.application.dto.BaseCodeDTO;
 import com.bakery.application.entity.Product;
 import com.bakery.application.entity.ProductCriteria;
 import java.util.List;
@@ -27,4 +28,6 @@ public interface ProductMapper {
     int updateByPrimaryKeySelective(Product record);
 
     int updateByPrimaryKey(Product record);
+    
+    int  countByBaseCode(BaseCodeDTO object);
 }

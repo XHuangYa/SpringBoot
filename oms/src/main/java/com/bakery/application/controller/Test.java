@@ -1,4 +1,4 @@
-package com.bakery.application.controller;
+/*package com.bakery.application.controller;
 
 import com.bakery.application.constant.Url;
 import com.bakery.application.constant.Views;
@@ -116,7 +116,7 @@ public class Test {
 
 
     public static void main(String[] args) {
-       /* //生成随机数
+        //生成随机数
         String sms=String.valueOf(Math.random()*1000000);
         String smsText=sms.substring(0,6);
         int result=HttpClientUtil.send("XHuangYa","d41d8cd98f00b204e980","18341836189","+smsText);
@@ -127,9 +127,10 @@ public class Test {
         }
         System.out.println(smsText);
 
-*/
+
 
 
 
     }
 }
+*/
