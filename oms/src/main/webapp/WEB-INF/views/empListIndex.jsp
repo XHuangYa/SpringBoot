@@ -80,8 +80,8 @@
                 <form id="searchEmpForm" name="searchEmpForm" class="form-horizontal">
                     <div class="form-group">
                         <div class="row">
-                            <label class="control-label col-md-1 ">员工名称:</label>
-                            <div class="col-md-2 ">
+                            <label class="control-label col-md-1">员工名称:</label>
+                            <div class="col-md-2">
                                 <input type="text" class="form-control  input-sm " name="search_empId" id="search_empId"
                                        placeholder="请输入客户名称" oninput="checkInput()">
                             </div>

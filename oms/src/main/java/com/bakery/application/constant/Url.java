@@ -23,6 +23,8 @@ public interface Url {
     String DELETE_USER_SINGLE_URL=USER_MANAGER_LIST+"/deleteuser";
     //商品管理-商品列表
     String PDT_MANAGER_LIST = "/pdtManageList";
+    //商品分頁查詢
+    String  PDT_MANAGE_QUERY_URL=PDT_MANAGER_LIST+"/queryPdt";
     //订单管理-订单列表
     String ORDER_MANAGE_LIST = "/orderManageList";
     //新增订单-商品左侧树

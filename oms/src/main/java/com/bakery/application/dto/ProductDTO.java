@@ -1,8 +1,10 @@
-package com.bakery.application.entity;
+package com.bakery.application.dto;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
-public class Product {
+public class ProductDTO {
     private String pdtId;
 
     private Integer id;
@@ -17,13 +19,35 @@ public class Product {
 
     private Integer status;
 
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date createTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date updateTime;
 
     private String picture;
 
     private String remark;
+
+    private String measerDes;
+
+    public String getMeaserDes() {
+        return measerDes;
+    }
+
+    public void setMeaserDes(String measerDes) {
+        this.measerDes = measerDes;
+    }
+
+    public String getPdtTypeDes() {
+        return pdtTypeDes;
+    }
+
+    public void setPdtTypeDes(String pdtTypeDes) {
+        this.pdtTypeDes = pdtTypeDes;
+    }
+
+    private String pdtTypeDes;
 
     public String getPdtId() {
         return pdtId;

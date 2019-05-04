@@ -3,18 +3,11 @@ package com.bakery.application.service.serviceImpl;
 import com.bakery.application.constant.CodeTypeConstant;
 import com.bakery.application.constant.Page;
 import com.bakery.application.dto.BaseCodeDTO;
-import com.bakery.application.dto.OrderDTO;
-import com.bakery.application.entity.BaseCode;
-import com.bakery.application.entity.BaseCodeCriteria;
-import com.bakery.application.entity.CodeType;
-import com.bakery.application.entity.CodeTypeCriteria;
-import com.bakery.application.entity.Order;
-import com.bakery.application.entity.OrderDtl;
+import com.bakery.application.dto.ProductDTO;
+import com.bakery.application.entity.*;
 import com.bakery.application.mapper.BaseCodeMapper;
 import com.bakery.application.mapper.CodeTypeMapper;
-import com.bakery.application.mapper.OrderMapper;
 import com.bakery.application.mapper.ProductMapper;
-import com.bakery.application.service.OrderService;
 import com.bakery.application.service.ProductService;
 import com.bakery.application.util.CopyUtil;
 import com.github.pagehelper.PageHelper;
@@ -24,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author liting
@@ -33,7 +27,7 @@ import java.util.List;
 @Transactional(readOnly = false)
 public class ProductServiceImpl implements ProductService {
     @Autowired
-    ProductMapper productMapper;
+	ProductMapper productMapper;
     
     @Autowired
     BaseCodeMapper baseCodeMapper;
@@ -91,6 +85,12 @@ public class ProductServiceImpl implements ProductService {
 				dest.setTags(new String[]{"("+sum+")"});
 			}
 		return  baselistdto;
+	}
+
+	@Override
+	public List<ProductDTO> selectByCriteriaPage(Page page, Product product) {
+		PageHelper.startPage(page.getPageNo(),page.getPageSize());
+		return productMapper.queryPdtByPage(product);
 	}
 
 }

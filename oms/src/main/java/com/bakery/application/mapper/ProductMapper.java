@@ -1,14 +1,19 @@
 package com.bakery.application.mapper;
 
 import com.bakery.application.dto.BaseCodeDTO;
+import com.bakery.application.dto.ProductDTO;
 import com.bakery.application.entity.Product;
 import com.bakery.application.entity.ProductCriteria;
-import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 @Mapper
 public interface ProductMapper {
+    List<ProductDTO> queryPdtByPage(Product product);
+
+    int countByBaseCode(BaseCodeDTO baseCodeDTO);
+
     int countByExample(ProductCriteria example);
 
     int deleteByExample(ProductCriteria example);
@@ -30,6 +35,4 @@ public interface ProductMapper {
     int updateByPrimaryKeySelective(Product record);
 
     int updateByPrimaryKey(Product record);
-    
-    int  countByBaseCode(BaseCodeDTO object);
 }

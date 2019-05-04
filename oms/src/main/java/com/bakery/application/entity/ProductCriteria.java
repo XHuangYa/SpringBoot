@@ -342,52 +342,62 @@ public class ProductCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andPdtTypeEqualTo(Integer value) {
+        public Criteria andPdtTypeEqualTo(String value) {
             addCriterion("PDT_TYPE =", value, "pdtType");
             return (Criteria) this;
         }
 
-        public Criteria andPdtTypeNotEqualTo(Integer value) {
+        public Criteria andPdtTypeNotEqualTo(String value) {
             addCriterion("PDT_TYPE <>", value, "pdtType");
             return (Criteria) this;
         }
 
-        public Criteria andPdtTypeGreaterThan(Integer value) {
+        public Criteria andPdtTypeGreaterThan(String value) {
             addCriterion("PDT_TYPE >", value, "pdtType");
             return (Criteria) this;
         }
 
-        public Criteria andPdtTypeGreaterThanOrEqualTo(Integer value) {
+        public Criteria andPdtTypeGreaterThanOrEqualTo(String value) {
             addCriterion("PDT_TYPE >=", value, "pdtType");
             return (Criteria) this;
         }
 
-        public Criteria andPdtTypeLessThan(Integer value) {
+        public Criteria andPdtTypeLessThan(String value) {
             addCriterion("PDT_TYPE <", value, "pdtType");
             return (Criteria) this;
         }
 
-        public Criteria andPdtTypeLessThanOrEqualTo(Integer value) {
+        public Criteria andPdtTypeLessThanOrEqualTo(String value) {
             addCriterion("PDT_TYPE <=", value, "pdtType");
             return (Criteria) this;
         }
 
-        public Criteria andPdtTypeIn(List<Integer> values) {
+        public Criteria andPdtTypeLike(String value) {
+            addCriterion("PDT_TYPE like", value, "pdtType");
+            return (Criteria) this;
+        }
+
+        public Criteria andPdtTypeNotLike(String value) {
+            addCriterion("PDT_TYPE not like", value, "pdtType");
+            return (Criteria) this;
+        }
+
+        public Criteria andPdtTypeIn(List<String> values) {
             addCriterion("PDT_TYPE in", values, "pdtType");
             return (Criteria) this;
         }
 
-        public Criteria andPdtTypeNotIn(List<Integer> values) {
+        public Criteria andPdtTypeNotIn(List<String> values) {
             addCriterion("PDT_TYPE not in", values, "pdtType");
             return (Criteria) this;
         }
 
-        public Criteria andPdtTypeBetween(Integer value1, Integer value2) {
+        public Criteria andPdtTypeBetween(String value1, String value2) {
             addCriterion("PDT_TYPE between", value1, value2, "pdtType");
             return (Criteria) this;
         }
 
-        public Criteria andPdtTypeNotBetween(Integer value1, Integer value2) {
+        public Criteria andPdtTypeNotBetween(String value1, String value2) {
             addCriterion("PDT_TYPE not between", value1, value2, "pdtType");
             return (Criteria) this;
         }
