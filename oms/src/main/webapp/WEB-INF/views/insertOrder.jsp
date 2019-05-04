@@ -26,6 +26,8 @@
     <script src="<%=basePath%>static/bootstrap/bootstrapValidator/js/bootstrapValidator.min.js"></script>
     <script src="<%=basePath%>static/bootstrap/js/bootstrap-editable.min.js"></script>
     <script src="<%=basePath%>static/bootstrap/js/bootstrap-table-editable.js"></script>
+    <script src="<%=basePath%>static/bootstrap/treeView/js/bootstrap-treeview.js"></script>
+    <script type="text/javascript" src="<%=basePath%>static/js/jquery.serializejson.min.js"></script>
     <%--css--%>
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/jquery-confirm.css">
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap.min.css">
@@ -34,6 +36,7 @@
     <link rel="stylesheet" href="<%=basePath%>static/jquery_mloading/jquery.mloading.css">
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/bootstrapValidator/css/bootstrapValidator.min.css">
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap-editable.css">
+    <link href="<%=basePath%>static/bootstrap/treeView/css/bootstrap-treeview.min.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
         .breadcrumb {
@@ -60,6 +63,7 @@
 </head>
 
 <body>
+<input type="hidden" id="selectLeftTree" value="selectLeftTree"/>
 <ol class="breadcrumb">
     <li><a>Home</a></li>
     <li><a>订单管理</a></li>
@@ -125,8 +129,7 @@
                     <input type="hidden" class="form-control" name="empNo" id="empNo" placeholder="请输入..."/>
                     <div class="form-group form-group-sm">
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="empName" id="empName"
-                                   placeholder="请输入..."/>
+                            <div id="tree"></div>
                         </div>
                         <div class="col-sm-8">
                             <div id="kk">
@@ -158,7 +161,6 @@
     function getPdtInfo() {
         $('#myModal').modal('show');
     }
-
     /*---------bootstrapTable------订单明细下方表格 start-----*/
     var TableDownInit = function () {
         var oTableInit = new Object();
@@ -208,6 +210,7 @@
                 ]
             });
         }
+        return oTableInit;
     }
 
     /*---------bootstrapTable------订单明细下方表格 end-----*/
@@ -348,8 +351,8 @@
         var oTable = new TableInit();
         oTable.Init();
         //初始化下方table
-        var oTableD = new TableDownInit();
-        oTableD.Init();
+        var oTable = new TableDownInit();
+        oTable.Init();
     })
 </script>
 </html>

@@ -4,8 +4,10 @@ import com.bakery.application.dto.BaseCodeDTO;
 import com.bakery.application.entity.Product;
 import com.bakery.application.entity.ProductCriteria;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface ProductMapper {
     int countByExample(ProductCriteria example);
 

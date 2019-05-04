@@ -1,5 +1,6 @@
 package com.bakery.application.service.serviceImpl;
 
+import com.bakery.application.constant.CodeTypeConstant;
 import com.bakery.application.constant.Page;
 import com.bakery.application.dto.BaseCodeDTO;
 import com.bakery.application.dto.OrderDTO;
@@ -46,12 +47,12 @@ public class ProductServiceImpl implements ProductService {
 		 CodeTypeCriteria criteria2 = new CodeTypeCriteria();
 		 CodeTypeCriteria.Criteria cri2 = criteria2.createCriteria();
 		 cri2.andStatusEqualTo(1);// 只查询状态为1的
-		 cri2.andCodeTypeEqualTo("PDT_TYPE");	  
+		 cri2.andCodeTypeEqualTo(CodeTypeConstant.PDT_TYPE);
 		 List<CodeType> codeTypeList=codeTypeMapper.selectByExample(criteria2);
 		 BaseCodeCriteria criteria3 = new BaseCodeCriteria();
 		 BaseCodeCriteria.Criteria cri3 = criteria3.createCriteria();
 		 cri2.andStatusEqualTo(1);// 只查询状态为1的
-		 cri2.andCodeTypeEqualTo("PDT_TYPE");	  
+		 cri2.andCodeTypeEqualTo(CodeTypeConstant.PDT_TYPE);
 		 List<BaseCode> pdtTypeList =baseCodeMapper.selectByExample(criteria3);
 		 for (CodeType source : codeTypeList) {
 			    BaseCodeDTO dest = new BaseCodeDTO();

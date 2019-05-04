@@ -18,5 +18,7 @@ public interface CodeTypeConstant {
 
     String PAY_METHOD="PAY_METHOD";//支付方式
 
+    String PDT_TYPE="PDT_TYPE";//商品类别
+
 
 }
