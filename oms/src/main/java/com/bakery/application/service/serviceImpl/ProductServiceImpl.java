@@ -51,8 +51,8 @@ public class ProductServiceImpl implements ProductService {
 		 List<CodeType> codeTypeList=codeTypeMapper.selectByExample(criteria2);
 		 BaseCodeCriteria criteria3 = new BaseCodeCriteria();
 		 BaseCodeCriteria.Criteria cri3 = criteria3.createCriteria();
-		 cri2.andStatusEqualTo(1);// 只查询状态为1的
-		 cri2.andCodeTypeEqualTo(CodeTypeConstant.PDT_TYPE);
+		 cri3.andStatusEqualTo(1);// 只查询状态为1的
+		 cri3.andCodeTypeEqualTo(CodeTypeConstant.PDT_TYPE);
 		 List<BaseCode> pdtTypeList =baseCodeMapper.selectByExample(criteria3);
 		 for (CodeType source : codeTypeList) {
 			    BaseCodeDTO dest = new BaseCodeDTO();

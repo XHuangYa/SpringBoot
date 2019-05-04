@@ -132,7 +132,7 @@
                             <div id="tree"></div>
                         </div>
                         <div class="col-sm-8">
-                            <div id="kk">
+                            <div id="kk" style="visibility: hidden;">
                                 <table id="tb_roles"></table>
                             </div>
                         </div>
@@ -345,6 +345,21 @@
         };
         return oTableInit;
     };
+    
+    
+    //点击左边树触发事件
+	  function addRightTree (event, node) 
+      {
+		  parentCode=node.partentCode;
+		  childerCode=node.childerCode;
+	      /* 加载右边的表格 */
+		  $("#dataGrid").bootstrapTable('refresh');
+		  $('#kk').css("visibility", "visible");
+	  }
+    
+    
+    
+    
     /*---------bootstrapTable------模态框右侧表格 end-----*/
     $(function () {
         //初始化table
@@ -353,6 +368,27 @@
         //初始化下方table
         var oTable = new TableDownInit();
         oTable.Init();
+        
+       //默认加载类别数
+ 	   var pdtTypeTreeUrl=$("#selectLeftTree").val();
+        $.ajax({
+ 	            url: pdtTypeTreeUrl,    // 提交到controller的url路径
+ 	            type: "post",    // 提交方式
+ 	            // data: {"xxx":xxx},  // data为String类型，必须为 Key/Value 格式。
+                 dataType: "json",    // 服务器端返回的数据类型
+ 	            success: function (data) { 
+ 	            	$('#tree').treeview({
+ 	            	    data: data,
+ 	            	    showIcon: false,
+ 	            	    showCheckbox: false,
+ 	            	    levels: 0,
+ 	            	    selectedBackColor: '#fffccc',
+ 	            	    selectedColor: '#000000',
+ 	            	    showTags: true,
+ 	            	    onNodeSelected: addRightTree
+ 	 				  });
+ 	            }
+         });
     })
 </script>
 </html>
