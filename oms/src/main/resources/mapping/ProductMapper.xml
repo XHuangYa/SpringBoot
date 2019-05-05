@@ -85,6 +85,7 @@
         bp.PDT_NAME pdtName,
         bp.MEASER measer,
         bp.PDT_TYPE pdtType,
+        bp.STATUS status,
         (
         SELECT
         bc.CODE_NAME
@@ -94,6 +95,15 @@
         bc.DATA_CODE = bp.PDT_TYPE
         AND bc.CODE_TYPE = 'PDT_TYPE'
         ) pdtTypeDes,
+        (
+        SELECT
+        bc.CODE_NAME
+        FROM
+        base_code bc
+        WHERE
+        bc.DATA_CODE = bp. STATUS
+        AND bc.CODE_TYPE = 'STATUS'
+        ) statusDes,
         bp.UNIT_PRICE unitPrice,
         (
         SELECT
@@ -101,7 +111,8 @@
         FROM
         base_code bc
         WHERE
-        bc.DATA_CODE = bp.MEASER AND bc.CODE_TYPE ='MEASER'
+        bc.DATA_CODE = bp.MEASER
+        AND bc.CODE_TYPE = 'MEASER'
         ) measerDes,
         bp.PICTURE picture,
         bp.CREATE_TIME createTime,
@@ -116,7 +127,7 @@
             <if test="pdtName!=null and  pdtName!=''">
                 AND bp.PDT_NAME like '%${pdtName}%'
             </if>
-            and bp.status=1
+            and bp.status>=1
         </where>
     </select>
     <select id="selectByExample" resultMap="BaseResultMap"

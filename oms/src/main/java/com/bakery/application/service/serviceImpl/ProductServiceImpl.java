@@ -10,12 +10,14 @@ import com.bakery.application.mapper.CodeTypeMapper;
 import com.bakery.application.mapper.ProductMapper;
 import com.bakery.application.service.ProductService;
 import com.bakery.application.util.CopyUtil;
+import com.bakery.application.util.UUIDUtil;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -91,6 +93,50 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductDTO> selectByCriteriaPage(Page page, Product product) {
 		PageHelper.startPage(page.getPageNo(),page.getPageSize());
 		return productMapper.queryPdtByPage(product);
+	}
+
+	@Override
+	public Map<String, Object> insertSelective(Product product) {
+		Map<String,Object> map=new HashMap<String, Object>();
+		ProductCriteria productCriteria=new ProductCriteria();
+		ProductCriteria.Criteria cri=productCriteria.createCriteria();
+		cri.andPdtNameEqualTo(product.getPdtName().trim());
+		List<Product> products = productMapper.selectByExample(productCriteria);
+		if(products.isEmpty()){
+			product.setPdtId(UUIDUtil.create32Key());
+			product.setStatus(4);//待上架
+			boolean flag=productMapper.insertSelective(product)>=1?true:false;
+			if(flag){
+				map.put("result",true);
+			}else{
+				map.put("result",false);
+			}
+		}else{
+			map.put("repeat",false);
+		}
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> updateByPrimaryKeySelective(Product product,String flag) {
+		Map<String,Object> map=new HashMap<String, Object>();
+		if("del".equals(flag)){
+			product.setStatus(0);
+			boolean del = productMapper.updateByPrimaryKeySelective(product) >= 1 ? true : false;
+			if(del){
+				map.put("result",true);
+			}else{
+				map.put("result",false);
+			}
+		}else {
+			boolean b = productMapper.updateByPrimaryKeySelective(product) >= 1 ? true : false;
+			if(b){
+				map.put("result",true);
+			}else{
+				map.put("result",false);
+			}
+		}
+		return map;
 	}
 
 }

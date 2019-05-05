@@ -20,5 +20,6 @@ public interface CodeTypeConstant {
 
     String PDT_TYPE="PDT_TYPE";//商品类别
 
+    String MEASER="MEASER";//计量单位
 
 }

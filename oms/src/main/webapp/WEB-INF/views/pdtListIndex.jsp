@@ -45,6 +45,7 @@
         .modal-dialog {
             width: 700px;
         }
+
         #kk {
             margin-top: 35px;
             height: 250px;
@@ -54,6 +55,8 @@
 </head>
 <body>
 <input type="hidden" id="queryPdtManegeUrl" value="pdtManageList/queryPdt"/>
+<input type="hidden" id="createtOrUpdatePdtUrl" value="pdtManageList/insertOrUpdatePdt"/>
+<input type="hidden" id="deletePdtUrl" value="pdtManageList/deletePdt"/>
 <ol class="breadcrumb">
     <li><a>Home</a></li>
     <li><a>商品管理</a></li>
@@ -112,75 +115,93 @@
 <!--模态框 start-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
     <div class="modal-dialog " role="document">
-        <form class="form-horizontal" role="form" id="empForm" name="empForm" method="post">
+        <form class="form-horizontal" role="form" id="pdtForm" name="pdtForm" method="post">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                    <button type="button" class="close" onclick="rightClose()"  data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="gridSystemModalLabel">Modal title</h4>
+                    <h4 class="modal-title" id="gridSystemModalLabel">商品信息</h4>
                 </div>
-                <div class="modal-body">
-                    <div class="form-group form-group-sm">
-                        <label class="control-label col-sm-2"><span>*</span>商品名称:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control input-sm" name="pdtName" id="pdtName"
-                                   placeholder="请输入..."/>
+                <fieldset  id="fieldset" disabled>
+                    <div class="modal-body">
+                        <input type="hidden" class="form-control input-sm" name="pdtId" id="pdtId"/>
+                        <div class="form-group form-group-sm">
+                            <label class="control-label col-sm-2"><span style="color:red">*</span>商品名称:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="pdtName" id="pdtName"
+                                       placeholder="请输入..."/>
+                            </div>
+                            <label class="control-label col-sm-2 "><span style="color:red">*</span>商品类别:</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" name="pdtType" id="pdtType"
+                                        onkeyup="this.value=this.value.replace(/\s+/g,'')">
+                                    <option value="">请选择</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group form-group-sm">
-                        <label class="control-label col-sm-2">商品编号:</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" name="pdtId" id="pdtId" placeholder="请输入..."/>
+                        <div class="form-group form-group-sm">
+                            <label class="control-label col-sm-2"><span style="color:red">*</span>计量单位:</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" name="measer" id="measer"
+                                        onkeyup="this.value=this.value.replace(/\s+/g,'')">
+                                    <option value="">请选择</option>
+                                </select>
+                            </div>
+                            <label class="control-label col-sm-2"><span style="color:red">*</span>商品单价:</label>
+                            <div class="col-sm-4 has-feedback ">
+                                <input name="unitPrice" id="unitPrice" type="text " placeholder="精确到年月日 "
+                                       class="form-control  input-sm "/>
+                                <span class="glyphicon glyphicon-jpy form-control-feedback"></span>
+                            </div>
                         </div>
-                        <label class="control-label col-sm-2 ">商品类别:</label>
-                        <div class="col-sm-4">
-                            <select class="form-control" name="pdtType" id="pdtType"
-                                    onkeyup="this.value=this.value.replace(/\s+/g,'')">
-                                <option value="">请选择</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group form-group-sm">
-                        <label class="control-label col-sm-2">计量单位:</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" name="measer" id="measer" placeholder="请输入..."/>
-                        </div>
-                        <label class="control-label col-sm-2">商品单价:</label>
-                        <div class="col-sm-4 has-feedback ">
-                            <input name="unit_price " id="unit_price " type="text " placeholder="精确到年月日 "
-                                   class="form-control  input-sm "/>
-                            <span class="glyphicon glyphicon-jpy form-control-feedback"></span>
-                        </div>
-                    </div>
-                    <div class="form-group form-group-sm">
-                        <label class="control-label col-sm-2 ">创建时间:</label>
-                        <div class="col-sm-4 has-feedback ">
-                            <input name="doneTime " id="doneTime " type="text " placeholder="精确到年月日时分秒 "
-                                   class="form-control"/>
-                            <span class="glyphicon glyphicon-calendar form-control-feedback "></span>
-                        </div>
+                        <div class="form-group form-group-sm">
+                            <label class="control-label col-sm-2 ">创建时间:</label>
+                            <div class="col-sm-4 has-feedback ">
+                                <input name="createTime" id="createTime" type="text " placeholder="精确到年月日"
+                                       class="form-control" onFocus="WdatePicker({maxDate:'%y-%M-%d',dateFmt: 'yyyy-MM-dd'})"/>
+                                <span class="glyphicon glyphicon-calendar form-control-feedback "></span>
+                            </div>
 
-                        <label class="control-label col-sm-2 ">修改时间:</label>
-                        <div class="col-sm-4 has-feedback ">
-                            <input name="updateTime " id="updateTime " type="text " placeholder="精确到年月日时分秒 "
-                                   class="form-control "/>
-                            <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                            <label class="control-label col-sm-2 ">修改时间:</label>
+                            <div class="col-sm-4 has-feedback ">
+                                <input name="updateTime" id="updateTime" type="text " placeholder="精确到年月日"
+                                       class="form-control"  onFocus="WdatePicker({maxDate:'%y-%M-%d',dateFmt: 'yyyy-MM-dd'})"/>
+                                <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group form-group-sm">
-                        <label class="control-label col-sm-2">描&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;述:</label>
-                    </div>
-                    <div class="form-group form-group-sm" style="padding-left: 18px">
-                        <div class="col-sm-12 ">
-                            <textarea class="form-control" name="remark" id="remark" style="resize:none;height: 60px;"
+                        <div class="form-group form-group-sm">
+                            <label class="control-label col-sm-2">描&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;述:</label>
+                        </div>
+                        <div class="form-group form-group-sm" style="padding-left: 18px">
+                            <div class="col-sm-12 ">
+                            <textarea class="form-control" name="picture" id="picture" style="resize:none;height: 60px;"
                                       rows="3" placeholder="请输入..."
                                       onkeyup="this.value=this.value.replace(/\s+/g,'')"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label class="control-label col-sm-2">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注:</label>
+                        </div>
+                        <div class="form-group form-group-sm" style="padding-left: 18px">
+                            <div class="col-sm-12 ">
+                            <textarea class="form-control" name="remark" id="remark" style="resize:none;height: 40px;"
+                                      rows="3" placeholder="请输入..."
+                                      onkeyup="this.value=this.value.replace(/\s+/g,'')"></textarea>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </fieldset>
                 <div class="form-group form-group-sm">
-                    <button id="ok" class="btn btn-primary  col-sm-1 col-sm-offset-4   ">保存</button>
-                    <button id="reseted" class="btn btn-warning  col-sm-1  col-sm-offset-2  ">重置</button>
+                    <button id="savePdt" onclick="saveOrUpdateFun()" class="btn btn-primary  col-sm-1 col-sm-offset-4"
+                    >保存
+                    </button>
+                    <button id="resetPdt" onclick="resetModelBtn()" class="btn btn-warning  col-sm-1  col-sm-offset-2 "
+                    >重置
+                    </button>
+                    <button id="closePdt" onclick="rightClose()" data-dismiss="modal"
+                            class="btn btn-primary  col-sm-4 col-sm-offset-4"
+                    >关闭
+                    </button>
                 </div>
             </div>
         </form>
@@ -192,6 +213,7 @@
     /*全局变量*/
     var pdtTypeList =${pdtTypeList};//商品类别
     var sysMenuList =${sysMenuList};//按钮列表
+    var measureList=${measureList}; //计量单位
     /*-------下拉框 jsonArr 数据，valPro value ，textPro text，domid select的id*/
     function initSelectOptions(jsonArr, valPro, textPro, domid) {
         var opt = '';
@@ -200,6 +222,7 @@
         }
         $("#" + domid).append(opt);
     }
+
     /* -------------添加功能按钮start-------------*/
     var tempStr = "";
     for (var i = 0; i < sysMenuList.length; i++) {
@@ -223,9 +246,444 @@
         }
     }
     $("#toolbar").html(tempStr);
+
     /*查询按钮*/
     function queryPdtBtn() {
         $('#tb_roles').bootstrapTable('refresh');
+    }
+    /*上架按鈕*/
+    function upShellFun() {
+        var rowids = $('#tb_roles').bootstrapTable('getSelections'); //获取所选中的行
+        if (rowids.length <= 0) {
+            $.alert({
+                title: '提示',
+                content: '请选择一行数据删除！',
+                type: 'blue',
+                buttons: { //定义按钮
+                    confirm: {
+                        text: '确认',
+                        btnClass: 'btn-primary',
+                        action: function () { //这里写点击按钮回调函数
+                        }
+                    }
+                }
+            });
+        } else if (rowids.length == 1) {
+            if(rowids[0].status==4){
+                $.confirm({
+                    title: '提示',
+                    content: '您确认进行此操作吗？',
+                    type: 'blue',
+                    icon: 'glyphicon glyphicon-question-sign',
+                    buttons: {
+                        ok: {
+                            text: '确认',
+                            btnClass: 'btn-primary',
+                            action: function () { //确认按钮回调
+                                upShellTask();
+                            }
+                        },
+                        cancel: {
+                            text: '取消',
+                            btnClass: 'btn-primary',
+                            action: function () { //取消按钮回调
+                            }
+                        }
+                    },
+                });
+
+            }else{
+                $.alert({
+                    title: '提示',
+                    content: '请只有待上架的商品允许此操作！',
+                    type: 'blue',
+                    buttons: { //定义按钮
+                        confirm: {
+                            text: '确认',
+                            btnClass: 'btn-primary',
+                            action: function () { //这里写点击按钮回调函数
+                            }
+                        }
+                    }
+                });
+            }
+        } else {
+            $.alert({
+                title: '提示',
+                content: '每次只能选择一行数据修改！',
+                type: 'blue', //一般危险操作用red,保存成功操作green
+                buttons: { //定义按钮
+                    confirm: {
+                        text: '确认',
+                        btnClass: 'btn-primary',
+                        action: function () { //这里写点击按钮回调函数
+                        }
+                    }
+                }
+            });
+        }
+    }
+    function  upShellTask(){
+
+    }
+    /*删除按钮*/
+    function deleteFun() {
+        var rowids = $('#tb_roles').bootstrapTable('getSelections'); //获取所选中的行
+        if (rowids.length <= 0) {
+            $.alert({
+                title: '提示',
+                content: '请选择一行数据删除！',
+                type: 'blue',
+                buttons: { //定义按钮
+                    confirm: {
+                        text: '确认',
+                        btnClass: 'btn-primary',
+                        action: function () { //这里写点击按钮回调函数
+                        }
+                    }
+                }
+            });
+        } else if (rowids.length == 1) {
+            $.confirm({
+                title: '提示',
+                content: '您确认需要删除选中的数据吗？',
+                type: 'blue',
+                icon: 'glyphicon glyphicon-question-sign',
+                buttons: {
+                    ok: {
+                        text: '确认',
+                        btnClass: 'btn-primary',
+                        action: function () { //确认按钮回调
+                            deleteTask();
+                        }
+                    },
+                    cancel: {
+                        text: '取消',
+                        btnClass: 'btn-primary',
+                        action: function () { //取消按钮回调
+                        }
+                    }
+                },
+            });
+        } else {
+            $.alert({
+                title: '提示',
+                content: '每次只能选择一行数据修改！',
+                type: 'blue', //一般危险操作用red,保存成功操作green
+                buttons: { //定义按钮
+                    confirm: {
+                        text: '确认',
+                        btnClass: 'btn-primary',
+                        action: function () { //这里写点击按钮回调函数
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    /*确认删除*/
+    function deleteTask() {
+        var rowId = $('#tb_roles').bootstrapTable('getSelections');
+        var delUrl = $("#deletePdtUrl").val();
+        var pdtId = "";
+        if (rowId.length == 1) {
+            pdtId = rowId[0].pdtId;
+        }
+        $.post(delUrl, {"pdtId": pdtId,"flag":"del"}, function (data) {
+            if (data || data == 'true') {
+                $.alert({
+                    title: '提示',
+                    content: '删除成功！',
+                    type: 'green',             //一般危险操作用red,保存成功操作green
+                    buttons: {              //定义按钮
+                        confirm: {
+                            text: '确认',
+                            btnClass: 'btn-primary',
+                            action: function () { //这里写点击按钮回调函数
+                            }
+                        }
+                    }
+                });
+                $('#tb_roles').bootstrapTable('refresh');  //刷新列表
+            } else {
+                $.alert({
+                    title: '提示',
+                    content: '删除失败,如有问题请联系管理员！',
+                    type: 'red',             //一般危险操作用red,保存成功操作green
+                    buttons: {              //定义按钮
+                        confirm: {
+                            text: '确认',
+                            btnClass: 'btn-primary',
+                            action: function () { //这里写点击按钮回调函数
+                            }
+                        }
+                    }
+                });
+            }
+        }, 'json');
+    }
+    /*新增按钮*/
+    function addFun() {
+        row = "";
+        $('#myModal').modal('show');
+        checkForm();
+        $("#pdtForm").data('bootstrapValidator').resetForm();
+        $('#pdtForm')[0].reset();
+        $("#fieldset").removeAttr("disabled");
+        $("#savePdt").attr("style", "display:block;");
+        $("#resetPdt").attr("style", "display:block;");
+        $("#closePdt").attr("style", "display:none;");
+    }
+    /*新增信息确认按钮*/
+    function saveOrUpdateFun() {
+        var bootstrapValidator = $("#pdtForm").data('bootstrapValidator');
+        if (bootstrapValidator.validate().isValid()) {
+            $("body").mLoading({
+                text: "加载中，请稍候...",//加载文字，默认值:加载中...
+                html: false,//设置加载内容是否是html格式，默认值是false
+                content: "",//忽略icon和text的值，直接在加载框中显示此值
+                mask: true//是否显示遮罩效果，默认显示
+            })
+            var createtOrUpdatePdtUrl = $("#createtOrUpdatePdtUrl").val();
+            $.post(createtOrUpdatePdtUrl, $("#pdtForm").serialize(), function (data) {
+                $("body").mLoading("hide");//隐藏loading组件
+                if (data.result == true) {
+                    $.alert({
+                        title: '提示',
+                        content: '保存成功！',
+                        type: 'green',				//一般危险操作用red,保存成功操作green
+                        buttons: {				//定义按钮
+                            confirm: {
+                                text: '确认',
+                                btnClass: 'btn-primary',
+                                action: function () {	//这里写点击按钮回调函数
+                                    $('#myModal').modal('hide');
+                                    $("#pdtForm").data('bootstrapValidator').resetForm();
+                                    $('#tb_roles').bootstrapTable('refresh');  //刷新列表
+                                }
+                            }
+                        }
+                    });
+                } else if (data.result == false) {
+                    $.alert({
+                        title: '提示',
+                        content: '保存失败！',
+                        type: 'red',				//一般危险操作用red,保存成功操作green
+                        buttons: {				//定义按钮
+                            confirm: {
+                                text: '确认',
+                                btnClass: 'btn-primary',
+                                action: function () {	//这里写点击按钮回调函数
+                                }
+                            }
+                        }
+                    });
+                } else if (data.repeat == false) {
+                    $.alert({
+                        title: '提示',
+                        content: '商品已存在！',
+                        type: 'red',				//一般危险操作用red,保存成功操作green
+                        buttons: {				//定义按钮
+                            confirm: {
+                                text: '确认',
+                                btnClass: 'btn-primary',
+                                action: function () {	//这里写点击按钮回调函数
+                                }
+                            }
+                        }
+                    });
+                }
+
+            }, 'json');
+        }
+        else {
+            $.alert({
+                title: '提示',
+                content: '请按照相关提示修改！',
+                type: 'red', //一般危险操作用red,保存成功操作green
+                buttons: { //定义按钮
+                    confirm: {
+                        text: '确认',
+                        btnClass: 'btn-primary',
+                        action: function () { //这里写点击按钮回调函数
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    /*新增信息重置按钮*/
+    function resetModelBtn() {
+        if (row.empNo == null) {
+            $("#pdtForm").data('bootstrapValidator').resetForm();
+            $('#pdtForm')[0].reset();
+            $("#pdtForm").data('bootstrapValidator').destroy();
+            checkForm();
+        } else {
+            $('#myModal #empNo').val(row.empNo);
+            $('#myModal #empName').val(row.empName);
+            $('#myModal #password').val(row.password);
+            $('#myModal #phone').val(row.phone);
+            $('#myModal #roleId').val(row.roleId);
+            $('#myModal #job').val(row.job);
+            $('#myModal #mgr').val(row.mgr);
+            $('#myModal #sex').val(row.sex);
+            $('#myModal #birth').val(row.birth);
+            $('#myModal #addr').val(row.addr);
+            $('#myModal #sal').val(row.sal);
+            $('#myModal #depNo').val(row.depNo);
+            $('#myModal #doneTime').val(row.doneTime);
+            $('#myModal #updateTime').val(row.updateTime);
+            $('#myModal #remark').val(row.remark);
+            $('#pdtForm').data('bootstrapValidator', null);
+            checkForm();
+        }
+    }
+    /*修改按钮*/
+    var row = "";
+    function updateFun() {
+        var rowId = $('#tb_roles').bootstrapTable('getSelections'); //获取所选中的行
+        if (rowId.length <= 0) {
+            $.alert({
+                title: '提示',
+                content: '请选择一行数据修改！',
+                type: 'blue',
+                buttons: { //定义按钮
+                    confirm: {
+                        text: '确认',
+                        btnClass: 'btn-primary',
+                        action: function () { //这里写点击按钮回调函数
+                        }
+                    }
+                }
+            });
+        } else if (rowId.length == 1) {
+            $('#myModal #pdtId').val(rowId[0].pdtId);
+            $('#myModal #pdtName').val(rowId[0].pdtName);
+            $('#myModal #pdtType').val(rowId[0].pdtType);
+            $('#myModal #unitPrice').val(rowId[0].unitPrice);
+            $('#myModal #measer').val(rowId[0].measer);
+            $('#myModal #createTime').val(rowId[0].createTime);
+            $('#myModal #updateTime').val(rowId[0].updateTime);
+            $('#myModal #picture').val(rowId[0].picture);
+            $('#myModal #remark').val(rowId[0].remark);
+            row = rowId[0];
+            $('#myModal').modal('show');
+            $("#fieldset").removeAttr("disabled");
+            $("#savePdt").attr("style", "display:block;");
+            $("#resetPdt").attr("style", "display:block;");
+            $("#closePdt").attr("style", "display:none");
+            checkForm();
+            $("#pdtForm").data('bootstrapValidator').resetForm();
+        } else {
+            $.alert({
+                title: '提示',
+                content: '每次只能选择一行数据修改！',
+                type: 'blue', //一般危险操作用red,保存成功操作green
+                buttons: { //定义按钮
+                    confirm: {
+                        text: '确认',
+                        btnClass: 'btn-primary',
+                        action: function () { //这里写点击按钮回调函数
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    /*查看按钮*/
+    function showFun() {
+        var rowId = $('#tb_roles').bootstrapTable('getSelections'); //获取所选中的行
+        if (rowId.length <= 0) {
+            $.alert({
+                title: '提示',
+                content: '请选择一行数据！',
+                type: 'blue',
+                buttons: { //定义按钮
+                    confirm: {
+                        text: '确认',
+                        btnClass: 'btn-primary',
+                        action: function () { //这里写点击按钮回调函数
+                        }
+                    }
+                }
+            });
+        } else if (rowId.length == 1) {
+            $('#myModal #pdtId').val(rowId[0].pdtId);
+            $('#myModal #pdtName').val(rowId[0].pdtName);
+            $('#myModal #pdtType').val(rowId[0].pdtType);
+            $('#myModal #unitPrice').val(rowId[0].unitPrice);
+            $('#myModal #measer').val(rowId[0].measer);
+            $('#myModal #createTime').val(rowId[0].createTime);
+            $('#myModal #updateTime').val(rowId[0].updateTime);
+            $('#myModal #picture').val(rowId[0].picture);
+            $('#myModal #remark').val(rowId[0].remark);
+            row = rowId[0];
+            $('#myModal').modal('show');
+            $("#fieldset").removeAttr("disabled");
+            $("#savePdt").attr("style", "display:block;");
+            $("#resetPdt").attr("style", "display:block;");
+            $("#closePdt").attr("style", "display:none");
+        } else {
+            $.alert({
+                title: '提示',
+                content: '每次只能选择一行数据！',
+                type: 'blue', //一般危险操作用red,保存成功操作green
+                buttons: { //定义按钮
+                    confirm: {
+                        text: '确认',
+                        btnClass: 'btn-primary',
+                        action: function () { //这里写点击按钮回调函数
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    /*表单验证*/
+    function checkForm() {
+        $("#pdtForm").bootstrapValidator({
+            message: '不可用的值',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                pdtName: {
+                    validators: {
+                        notEmpty: {
+                            message: '请填写选商品名称'
+                        }
+                    }
+                },
+                商品类别: {
+                    validators: {
+                        notEmpty: {
+                            message: '请选择商品类别'
+                        }
+                    }
+                },
+                measer: {
+                    validators: {
+                        notEmpty: {
+                            message: '请选择计量单位'
+                        }
+                    }
+                },
+                unitPrice: {
+                    validators: {
+                        notEmpty: {
+                            message: '请填写商品单价'
+                        }
+                    }
+                }
+            }
+        });
     }
 
     /*重置按钮*/
@@ -236,6 +694,11 @@
         });
         $('#tb_roles').bootstrapTable('refresh');
         changeBtndisable();
+    }
+
+    /*刷新按钮*/
+    function refreshFun() {
+        $('#tb_roles').bootstrapTable('refresh');
     }
 
     /*-------------设置重置按钮状态start---------*/
@@ -270,8 +733,8 @@
     /*关闭按钮*/
     function rightClose() {
         //清除表单验证
-        $("#empForm").data('bootstrapValidator').destroy();
-        $('#empForm').data('bootstrapValidator', null);
+        $("#pdtForm").data('bootstrapValidator').destroy();
+        $('#pdtForm').data('bootstrapValidator', null);
     }
 
     /*---------bootstrapTable------start-----*/
@@ -318,7 +781,7 @@
                 clickToSelect: true, //是否启用点击选中行
                 maintainSelected: false,
                 checkboxHeader: true,
-                uniqueId: "empNo", //每一行的唯一标识，一般为主键列
+                uniqueId: "pdtId", //每一行的唯一标识，一般为主键列
                 showToggle: false, //是否显示详细视图和列表视图的切换按钮
                 cardView: false, //是否显示详细视图
                 detailView: false, //是否显示父子表
@@ -362,7 +825,7 @@
                     field: 'pdtTypeDes',
                     align: 'center',
                     valign: 'middle'
-                },{
+                }, {
                     title: '单价',
                     field: 'unitPrice',
                     align: 'center',
@@ -385,18 +848,23 @@
                     align: 'center',
                     valign: 'middle',
                     visible: false
+                },{
+                    title: '状态',
+                    field: 'statusDes',
+                    align: 'center',
+                    valign: 'middle'
                 }, {
                     title: '创建时间',
                     field: 'createTime',
                     align: 'center',
                     valign: 'middle'
-                }, {
+                },{
                     title: '状态',
                     field: 'status',
                     align: 'center',
                     valign: 'middle',
                     visible: false
-                }, {
+                },{
                     title: '修改时间',
                     field: 'updateTime',
                     align: 'center',
@@ -416,6 +884,8 @@
 
     $(function () {
         initSelectOptions(pdtTypeList, "dataCode", "codeName", "search_pdtType");//员工标识
+        initSelectOptions(measureList, "dataCode", "codeName", "measer");//计量单位
+        initSelectOptions(pdtTypeList, "dataCode", "codeName", "pdtType");//员工标识
         //初始化table
         var oTable = new TableInit();
         oTable.Init();

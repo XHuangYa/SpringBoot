@@ -25,6 +25,10 @@ public interface Url {
     String PDT_MANAGER_LIST = "/pdtManageList";
     //商品分頁查詢
     String  PDT_MANAGE_QUERY_URL=PDT_MANAGER_LIST+"/queryPdt";
+    //新增或修改商品
+    String INSERT_OR_UPDATE_PDT_URL=PDT_MANAGER_LIST+"/insertOrUpdatePdt";
+    //刪除商品
+    String DELETE_PDT_URL=PDT_MANAGER_LIST+"/deletePdt";
     //订单管理-订单列表
     String ORDER_MANAGE_LIST = "/orderManageList";
     //新增订单-商品左侧树

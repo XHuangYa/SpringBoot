@@ -12,13 +12,16 @@ import com.bakery.application.service.OrderService;
 import com.bakery.application.service.ProductService;
 import com.bakery.application.service.SysMenuService;
 import com.bakery.application.util.JsonUtil;
+import com.bakery.application.util.UUIDUtil;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -52,11 +55,15 @@ public class ProductController {
      */
     @RequestMapping(Url.PDT_MANAGER_LIST)
     public String pdtIndex(final Map<String, Object> map) {
+        //商品類別
         List<BaseCode> pdtTypeList = baseCodeService.findByCodeType(CodeTypeConstant.PDT_TYPE);
+        //計量單位
+        List<BaseCode> measureList = baseCodeService.findByCodeType(CodeTypeConstant.MEASER);
         //查询按钮
         List<SysMenu> sysMenuList = sysMenuService.selecyByCriteria(new SysMenuCriteria());
         map.put("sysMenuList", JsonUtil.listtojson(sysMenuList));
         map.put("pdtTypeList", JsonUtil.listtojson(pdtTypeList));
+        map.put("measureList", JsonUtil.listtojson(measureList));
         return Views.PDT_LIST_VIEW;
     }
 
@@ -78,7 +85,35 @@ public class ProductController {
         return bootTable;
 
     }
-
+    /**
+     * @Description:新增修改商品
+     * @Author: LiTing
+     * @Date: 2:46 PM 2019/5/4
+     * @return:
+     * @throws:
+     */
+    @RequestMapping(value = Url.INSERT_OR_UPDATE_PDT_URL, method = RequestMethod.POST)
+    public @ResponseBody
+    Map<String,Object> createOrupdate(Product product,  Map<String,Object> map) {
+        if(StringUtils.isNotBlank(product.getPdtId())){
+            map = productService.updateByPrimaryKeySelective(product,"");
+        }else{
+            map = productService.insertSelective(product);
+        }
+        return map;
+    }
+    /**
+     * @Description:刪除商品
+     * @Author: LiTing
+     * @Date: 2:46 PM 2019/5/4
+     * @return:
+     * @throws:
+     */
+    @RequestMapping(value = Url.DELETE_PDT_URL, method = RequestMethod.POST)
+    public @ResponseBody
+    Map<String,Object> deletePdt(Product product,  String flag) {
+        return productService.updateByPrimaryKeySelective(product,flag);
+    }
     /**
      * @Description: 加载订单获得商品类别树
      * @Author: LiTing

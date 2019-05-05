@@ -31,6 +31,16 @@ public class ProductDTO {
 
     private String measerDes;
 
+    private String statusDes;
+
+    public String getStatusDes() {
+        return statusDes;
+    }
+
+    public void setStatusDes(String statusDes) {
+        this.statusDes = statusDes;
+    }
+
     public String getMeaserDes() {
         return measerDes;
     }

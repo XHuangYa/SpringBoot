@@ -32,4 +32,20 @@ public interface ProductService {
 	 * @throws:
 	 */
 	List<ProductDTO> selectByCriteriaPage(Page page, Product product);
+	/**
+	 * @Description:新增商品
+	 * @Author: LiTing
+	 * @Date: 2:46 PM 2019/5/4
+	 * @return:
+	 * @throws:
+	 */
+	Map<String,Object> insertSelective (Product product);
+	/**
+	 * @Description:修改商品
+	 * @Author: LiTing
+	 * @Date: 2:46 PM 2019/5/4
+	 * @return:
+	 * @throws:
+	 */
+	Map<String,Object> updateByPrimaryKeySelective(Product product,String flag);
 }
