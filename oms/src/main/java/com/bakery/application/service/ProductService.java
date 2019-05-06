@@ -7,6 +7,8 @@ import com.bakery.application.dto.ProductDTO;
 import com.bakery.application.entity.Order;
 import com.bakery.application.entity.OrderDtl;
 import com.bakery.application.entity.Product;
+import com.bakery.application.entity.ProductCriteria;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -48,4 +50,12 @@ public interface ProductService {
 	 * @throws:
 	 */
 	Map<String,Object> updateByPrimaryKeySelective(Product product,String flag);
+	/**
+	 * @Description:上架/下架商品
+	 * @Author: LiTing
+	 * @Date: 2:46 PM 2019/5/4
+	 * @return:
+	 * @throws:
+	 */
+	Map<String,Object> updateByExampleSelective(@Param("record") Product record);
 }

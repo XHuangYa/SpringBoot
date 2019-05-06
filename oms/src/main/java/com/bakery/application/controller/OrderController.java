@@ -98,9 +98,10 @@ public class OrderController {
      * @return:
      * @throws:
      */
-    @RequestMapping(value = Url.INSERT_OR_UPDATE_ORDER_URL, method = RequestMethod.POST)
+    @RequestMapping(value = Url.UPDATE_ORDER_URL, method = RequestMethod.POST)
     public @ResponseBody
     boolean queryOrderDtlPage(Order order) {
+
         return orderService.updateByPrimaryKeySelective(order);
     }
 

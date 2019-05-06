@@ -63,7 +63,7 @@
 <input type="hidden" id="queryOrderManegeUrl" value="orderManageList/queryOrder"/>
 <input type="hidden" id="updatePriceUrl" value="orderManageList/updatePrice"/>
 <input type="hidden" id="queryOrderDtlManegeUrl" value="orderManageListqueryOrderDtl"/>
-<input type="hidden" id="insertOrUpdateOrderUrl" value="orderManageList/inserOrUpdatetOrder"/>
+<input type="hidden" id="updateOrderUrl" value="orderManageList/updatetOrder"/>
 <input type="hidden" id="updateOrderDtlUrl" value="orderManageList/updateOrderDtl"/>
 <input type="hidden" id="deleteOrderDtlUrl" value="orderManageList/deleteOrderDtl"/>
 <input type="hidden" id="deleteOrderUrl" value="orderManageList/deleteOrder"/>
@@ -574,10 +574,10 @@
                     }
                 }],
                 onEditableSave: function (field, row, oldValue, $el) {
-                    var insertOrUpdateOrderUrl = $("#insertOrUpdateOrderUrl").val();
+                    var updateOrderUrl = $("#updateOrderUrl").val();
                     $.ajax({
                         type: "post",
-                        url: insertOrUpdateOrderUrl,
+                        url: updateOrderUrl,
                         data: row,
                         dataType: 'JSON',
                         success: function (data, status) {

@@ -16,10 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author liting
@@ -122,19 +119,48 @@ public class ProductServiceImpl implements ProductService {
 		Map<String,Object> map=new HashMap<String, Object>();
 		if("del".equals(flag)){
 			product.setStatus(0);
+			product.setUpdateTime(new Date());
 			boolean del = productMapper.updateByPrimaryKeySelective(product) >= 1 ? true : false;
 			if(del){
 				map.put("result",true);
 			}else{
 				map.put("result",false);
 			}
-		}else {
+		}else{
+			product.setUpdateTime(new Date());
 			boolean b = productMapper.updateByPrimaryKeySelective(product) >= 1 ? true : false;
 			if(b){
 				map.put("result",true);
 			}else{
 				map.put("result",false);
 			}
+		}
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> updateByExampleSelective(Product record) {
+		Map<String,Object> map=new HashMap<String, Object>();
+		int status =record.getStatus();
+		boolean flag=false;
+		ProductCriteria criteria=new ProductCriteria();
+		ProductCriteria.Criteria cri=criteria.createCriteria();
+		//上架
+		if(4==status){//待上架
+			cri.andPdtIdEqualTo(record.getPdtId());
+			record.setStatus(2);//已上架
+			record.setUpdateTime(new Date());
+			flag = productMapper.updateByExampleSelective(record, criteria) >= 1 ? true : false;
+		}else if(2==status){
+			cri.andPdtIdEqualTo(record.getPdtId());
+			record.setStatus(3);//已下架
+			record.setUpdateTime(new Date());
+			flag = productMapper.updateByExampleSelective(record, criteria) >= 1 ? true : false;
+		}
+		if(flag){
+			map.put("result",true);
+		}else{
+			map.put("result",false);
 		}
 		return map;
 	}

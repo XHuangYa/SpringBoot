@@ -29,6 +29,8 @@ public interface Url {
     String INSERT_OR_UPDATE_PDT_URL=PDT_MANAGER_LIST+"/insertOrUpdatePdt";
     //刪除商品
     String DELETE_PDT_URL=PDT_MANAGER_LIST+"/deletePdt";
+    //商品上架/下架
+    String OPERATE_SHELL_PDT_URL=PDT_MANAGER_LIST+"/operateShellPdt";
     //订单管理-订单列表
     String ORDER_MANAGE_LIST = "/orderManageList";
     //新增订单-商品左侧树
@@ -41,8 +43,10 @@ public interface Url {
     String DELETE_ORDER_URL=ORDER_MANAGE_LIST+"/deleteOrder";
     //订单明细分页查询
     String ORDERDTL_MANAGE_QUERY_URL=ORDER_MANAGE_LIST+"queryOrderDtl";
-    //新增/修改订单备注信息
-    String INSERT_OR_UPDATE_ORDER_URL = ORDER_MANAGE_LIST + "/inserOrUpdatetOrder";
+    //修改订单备注信息
+    String UPDATE_ORDER_URL = ORDER_MANAGE_LIST + "/updatetOrder";
+    //新增订单及订单明细
+    String INSERT_ORDER_AND_DTL_URL=ORDER_MANAGE_LIST+"/insertOrderAndDtl";
     //新增订单初始化页面
     String INSERT_ORDER_INDEX_URL=ORDER_MANAGE_LIST+"/insertOrderIndex";
     //删除订单明细

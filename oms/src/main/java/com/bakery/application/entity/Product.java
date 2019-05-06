@@ -1,5 +1,7 @@
 package com.bakery.application.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Product {
@@ -16,9 +18,9 @@ public class Product {
     private String measer;
 
     private Integer status;
-
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date createTime;
-
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date updateTime;
 
     private String picture;

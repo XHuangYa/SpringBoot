@@ -3,10 +3,7 @@ package com.bakery.application.controller;
 import com.bakery.application.constant.*;
 import com.bakery.application.dto.BaseCodeDTO;
 import com.bakery.application.dto.ProductDTO;
-import com.bakery.application.entity.BaseCode;
-import com.bakery.application.entity.Product;
-import com.bakery.application.entity.SysMenu;
-import com.bakery.application.entity.SysMenuCriteria;
+import com.bakery.application.entity.*;
 import com.bakery.application.service.BaseCodeService;
 import com.bakery.application.service.OrderService;
 import com.bakery.application.service.ProductService;
@@ -113,6 +110,18 @@ public class ProductController {
     public @ResponseBody
     Map<String,Object> deletePdt(Product product,  String flag) {
         return productService.updateByPrimaryKeySelective(product,flag);
+    }
+    /**
+     * @Description:上架/下架商品
+     * @Author: LiTing
+     * @Date: 2:46 PM 2019/5/4
+     * @return:
+     * @throws:
+     */
+    @RequestMapping(value = Url.OPERATE_SHELL_PDT_URL, method = RequestMethod.POST)
+    public @ResponseBody
+    Map<String,Object> operateShellPdt(Product product) {
+       return productService.updateByExampleSelective(product);
     }
     /**
      * @Description: 加载订单获得商品类别树

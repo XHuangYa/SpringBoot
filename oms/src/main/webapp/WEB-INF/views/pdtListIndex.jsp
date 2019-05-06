@@ -26,7 +26,9 @@
     <script src="<%=basePath%>static/bootstrap/bootstrapValidator/js/bootstrapValidator.min.js"></script>
     <script src="<%=basePath%>static/bootstrap/js/bootstrap-editable.min.js"></script>
     <script src="<%=basePath%>static/bootstrap/js/bootstrap-table-editable.js"></script>
-    <%--css--%>
+    <script type="text/javascript" src="<%=basePath%>static/js/jquery.serializejson.min.js"></script>
+
+<%--css--%>
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/jquery-confirm.css">
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap-table.min.css">
@@ -57,6 +59,7 @@
 <input type="hidden" id="queryPdtManegeUrl" value="pdtManageList/queryPdt"/>
 <input type="hidden" id="createtOrUpdatePdtUrl" value="pdtManageList/insertOrUpdatePdt"/>
 <input type="hidden" id="deletePdtUrl" value="pdtManageList/deletePdt"/>
+<input type="hidden" id="operateShellPdtUrl" value="pdtManageList/operateShellPdt"/>
 <ol class="breadcrumb">
     <li><a>Home</a></li>
     <li><a>商品管理</a></li>
@@ -257,7 +260,7 @@
         if (rowids.length <= 0) {
             $.alert({
                 title: '提示',
-                content: '请选择一行数据删除！',
+                content: '请选择一行数据！',
                 type: 'blue',
                 buttons: { //定义按钮
                     confirm: {
@@ -324,7 +327,152 @@
         }
     }
     function  upShellTask(){
+        var rowids = $('#tb_roles').bootstrapTable('getSelections'); //获取所选中的行
+        var pdtId=rowids[0].pdtId;
+        var status=rowids[0].status;
+        var upShellUrl=$("#operateShellPdtUrl").val();
+            $.post(upShellUrl, rowids[0], function (data) {
+            if (data || data == 'true') {
+                $.alert({
+                    title: '提示',
+                    content: '上架成功！',
+                    type: 'green',             //一般危险操作用red,保存成功操作green
+                    buttons: {              //定义按钮
+                        confirm: {
+                            text: '确认',
+                            btnClass: 'btn-primary',
+                            action: function () { //这里写点击按钮回调函数
+                            }
+                        }
+                    }
+                });
+                $('#tb_roles').bootstrapTable('refresh');  //刷新列表
+            } else {
+                $.alert({
+                    title: '提示',
+                    content: '上架失败,如有问题请联系管理员！',
+                    type: 'red',             //一般危险操作用red,保存成功操作green
+                    buttons: {              //定义按钮
+                        confirm: {
+                            text: '确认',
+                            btnClass: 'btn-primary',
+                            action: function () { //这里写点击按钮回调函数
+                            }
+                        }
+                    }
+                });
+            }
+        }, 'json');
+    }
+    /*下架按鈕*/
+    function downShellFun() {
+        var rowids = $('#tb_roles').bootstrapTable('getSelections'); //获取所选中的行
+        if (rowids.length <= 0) {
+            $.alert({
+                title: '提示',
+                content: '请选择一行数据删除！',
+                type: 'blue',
+                buttons: { //定义按钮
+                    confirm: {
+                        text: '确认',
+                        btnClass: 'btn-primary',
+                        action: function () { //这里写点击按钮回调函数
+                        }
+                    }
+                }
+            });
+        } else if (rowids.length == 1) {
+            if(rowids[0].status==2){
+                $.confirm({
+                    title: '提示',
+                    content: '您确认进行此操作吗？',
+                    type: 'blue',
+                    icon: 'glyphicon glyphicon-question-sign',
+                    buttons: {
+                        ok: {
+                            text: '确认',
+                            btnClass: 'btn-primary',
+                            action: function () { //确认按钮回调
+                                downShellTask();
+                            }
+                        },
+                        cancel: {
+                            text: '取消',
+                            btnClass: 'btn-primary',
+                            action: function () { //取消按钮回调
+                            }
+                        }
+                    },
+                });
 
+            }else{
+                $.alert({
+                    title: '提示',
+                    content: '只有已上架的商品允许此操作！',
+                    type: 'blue',
+                    buttons: { //定义按钮
+                        confirm: {
+                            text: '确认',
+                            btnClass: 'btn-primary',
+                            action: function () { //这里写点击按钮回调函数
+                            }
+                        }
+                    }
+                });
+            }
+        } else {
+            $.alert({
+                title: '提示',
+                content: '每次只能选择一行数据修改！',
+                type: 'blue', //一般危险操作用red,保存成功操作green
+                buttons: { //定义按钮
+                    confirm: {
+                        text: '确认',
+                        btnClass: 'btn-primary',
+                        action: function () { //这里写点击按钮回调函数
+                        }
+                    }
+                }
+            });
+        }
+    }
+    function  downShellTask(){
+        var rowids = $('#tb_roles').bootstrapTable('getSelections'); //获取所选中的行
+        var pdtId=rowids[0].pdtId;
+        var status=rowids[0].status;
+        var downShellUrl=$("#operateShellPdtUrl").val();
+        $.post(downShellUrl, rowids[0], function (data) {
+            if (data || data == 'true') {
+                $.alert({
+                    title: '提示',
+                    content: '下架成功！',
+                    type: 'green',             //一般危险操作用red,保存成功操作green
+                    buttons: {              //定义按钮
+                        confirm: {
+                            text: '确认',
+                            btnClass: 'btn-primary',
+                            action: function () { //这里写点击按钮回调函数
+                            }
+                        }
+                    }
+                });
+                $('#tb_roles').bootstrapTable('refresh');  //刷新列表
+            } else {
+                $.alert({
+                    title: '提示',
+                    content: '下架失败,如有问题请联系管理员！',
+                    type: 'red',             //一般危险操作用red,保存成功操作green
+                    buttons: {              //定义按钮
+                        confirm: {
+                            text: '确认',
+                            btnClass: 'btn-primary',
+                            action: function () { //这里写点击按钮回调函数
+                            }
+                        }
+                    }
+                });
+            }
+        }, 'json');
     }
     /*删除按钮*/
     function deleteFun() {

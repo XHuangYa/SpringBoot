@@ -127,13 +127,13 @@
                                 <span class="glyphicon glyphicon-calendar form-control-feedback "></span>
                             </div>
 
-                            <div class="col-md-1 col-lg-offset-2   " style="color: white">
+                            <div class="col-md-1 col-lg-offset-2" style="color: white">
                                 <button class="btn btn-primary " style="width: 70px;  text-align: left;" type="button"
                                         id="searchBtn" onclick="queryEmpBtn()">查&nbsp;询
                                     <span class="fa fa-search-plus fa-lg"></span>
                                 </button>
                             </div>
-                            <div class="col-md-1  " style="color: white">
+                            <div class="col-md-1" style="color: white">
                                 <button disabled class="btn btn-primary"
                                         style="width: 70px; background-color: grey; border-color: grey; text-align:left;"
                                         type="button" id="resetSearchBtn" onclick="resetEmpBtn()"> 重&nbsp;置
@@ -167,7 +167,7 @@
                     <div class="modal-body" style="margin-right: 30px">
                         <input type="hidden" class="form-control" name="empNo" id="empNo" placeholder="请输入..."/>
                         <div class="form-group form-group-sm">
-                            <label class="control-label col-sm-2 "><span style="color:red">*</span>员工名称:</label>
+                            <label class="control-label col-sm-2"><span style="color:red">*</span>员工名称:</label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control" name="empName" id="empName"
                                        placeholder="请输入..."/>
@@ -281,7 +281,7 @@
                     <button id="saveEmp" onclick="saveOrUpdateFun()" class="btn btn-primary  col-sm-1 col-sm-offset-4"
                     >保存
                     </button>
-                    <button id="resetEmp" onclick="resetModelBtn()" class="btn btn-warning  col-sm-1  col-sm-offset-2 "
+                    <button id="resetEmp" onclick="resetModelBtn()" class="btn btn-warning  col-sm-1  col-sm-offset-2"
                     >重置
                     </button>
                     <button id="closedEmp" onclick="rightClose()" data-dismiss="modal"
@@ -341,9 +341,7 @@
     </div>
 </div>
 <!--模态框2 end-->--%>
-<%--
-<button class="btn btn-danger" id="click">click</button>
---%>
+
 </body>
 <script>
     /*------------全局变量 start----------*/
@@ -1048,7 +1046,6 @@
                         data: row,
                         dataType: 'JSON',
                         success: function (data, status) {
-                            console.info(date = +"----" + status);
                             if (status == "success") {
                                 $.alert({
                                     title: '提示',

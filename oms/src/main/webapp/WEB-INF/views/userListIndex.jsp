@@ -93,7 +93,7 @@
                                 </button>
                             </div>
                             <div class="col-md-2" style="padding-left: 110px;color: white">
-                                <button disabled class="btn btn-primary "
+                                <button disabled class="btn btn-primary"
                                         style="width: 75px; background-color: grey; border-color: grey; text-align: left"
                                         type="button" id="resetSearchBtn" onclick="resetUserBtn()">重&nbsp;置
                                     <span class="fa fa-repeat fa-lg"></span>
@@ -184,7 +184,7 @@
                     <button id="ok" class="btn btn-primary  col-sm-2 col-sm-offset-3   btn-sm"
                             onclick="saveOrUpdateFun()">保存
                     </button>
-                    <button id="reseted" class="btn btn-warning  col-sm-2  col-sm-offset-2  btn-sm"
+                    <button id="reseted" disabled class="btn btn-warning  col-sm-2  col-sm-offset-2  btn-sm"
                             onclick="resetModelBtn()">重置
                     </button>
                 </div>
