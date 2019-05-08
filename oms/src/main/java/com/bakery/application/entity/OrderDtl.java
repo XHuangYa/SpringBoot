@@ -109,6 +109,23 @@ public class OrderDtl {
         return remark;
     }
 
+    @Override
+    public String toString() {
+        return "OrderDtl{" +
+                "orderDtlId='" + orderDtlId + '\'' +
+                ", id=" + id +
+                ", orderId='" + orderId + '\'' +
+                ", pdtId='" + pdtId + '\'' +
+                ", pdtNum=" + pdtNum +
+                ", dtlTotalPrice='" + dtlTotalPrice + '\'' +
+                ", status=" + status +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", remark='" + remark + '\'' +
+                ", pdtName='" + pdtName + '\'' +
+                '}';
+    }
+
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
     }

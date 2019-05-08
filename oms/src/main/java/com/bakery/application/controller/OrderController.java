@@ -1,7 +1,8 @@
 package com.bakery.application.controller;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.bakery.application.constant.*;
-import com.bakery.application.dto.BaseCodeDTO;
 import com.bakery.application.dto.OrderDTO;
 import com.bakery.application.entity.BaseCode;
 import com.bakery.application.entity.Order;
@@ -10,16 +11,16 @@ import com.bakery.application.service.BaseCodeService;
 import com.bakery.application.service.OrderDtlService;
 import com.bakery.application.service.OrderService;
 import com.bakery.application.util.JsonUtil;
+import com.bakery.application.util.UUIDUtil;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author liting
@@ -92,7 +93,7 @@ public class OrderController {
     }
 
     /**
-     * @Description:新增订单/订单明细-修改订单备注信息
+     * @Description:修改订单备注信息
      * @Author: LiTing
      * @Date: 9:05 PM 2019/5/2
      * @return:
@@ -101,7 +102,6 @@ public class OrderController {
     @RequestMapping(value = Url.UPDATE_ORDER_URL, method = RequestMethod.POST)
     public @ResponseBody
     boolean queryOrderDtlPage(Order order) {
-
         return orderService.updateByPrimaryKeySelective(order);
     }
 
@@ -153,17 +153,46 @@ public class OrderController {
         return orderService.deleteOrderAndDtl(order);
     }
     /**
-     * @Description:新增订单及订单明细
+     * @Description:新增订单及订单明细界面初始化
      * @Author: LiTing
      * @Date: 6:00 PM 2019/5/3
      * @return:
      * @throws:
      */
     @RequestMapping(value = Url.INSERT_ORDER_INDEX_URL)
-    public String insertOrderIndex(final  Map<String,Order> map){
-
+    public String insertOrderIndex(final  Map<String,Object> map){
+        //支付方式
+        List<BaseCode> payMethodList = baseCodeService.findByCodeType(CodeTypeConstant.PAY_METHOD);
+        map.put("payMethodList", JsonUtil.listtojson(payMethodList));
         return Views.INSERT_ORDER_VIEW;
     }
-    
-   
+    /**
+     * @Description:新增订单及订单明细
+     * @Author: LiTing
+     * @Date: 6:00 PM 2019/5/3
+     * @return:
+     * @throws:
+     */
+    @RequestMapping(value = Url.INSERT_ORDER_AND_DTL_URL, method = RequestMethod.POST)
+    public  Map<String, Object> createOrderAndDtl(@RequestParam(value="data", required=false) String data,Order order){
+        Map<String, Object> map=new HashMap<String, Object>();
+        JSONArray array=JSONArray.parseArray(data);
+        String orderId=UUIDUtil.create32Key();
+        order.setOrderId(orderId);
+        Map<String, Object> orderMap = orderService.insertSelective(order);//订单
+        List<OrderDtl> dtls=new ArrayList<OrderDtl>();
+        for (Object o : array) {
+            OrderDtl dtl = JSONObject.parseObject(o.toString(), OrderDtl.class);
+            dtl.setStatus(1);
+            dtl.setCreateTime(new Date());
+            dtl.setOrderId(orderId);
+            dtl.setOrderDtlId(UUIDUtil.create32Key());
+            dtls.add(dtl);
+        }
+        Map<String, Object> dtlsMap = orderDtlService.insertBatchService(dtls);//訂單明細
+        map.put("orderResult",orderMap.get("orderResult"));
+        map.put("dtlResult",orderMap.get("dtlResult"));
+        return map;
+    }
+
 }

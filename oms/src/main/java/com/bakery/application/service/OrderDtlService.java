@@ -4,6 +4,7 @@ import com.bakery.application.constant.Page;
 import com.bakery.application.entity.OrderDtl;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author liting
@@ -34,4 +35,12 @@ public interface OrderDtlService {
      * @throws:
      */
     public boolean updateByPrimaryKeySelective(OrderDtl orderDtl);
+    /**
+     * @Description:批量插入
+     * @Author: LiTing
+     * @Date: 11:45 PM 2019/5/2
+     * @return:
+     * @throws:
+     */
+    public Map<String,Object> insertBatchService(List<OrderDtl> orderDtl);
 }

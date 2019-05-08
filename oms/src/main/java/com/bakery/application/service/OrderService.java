@@ -6,6 +6,7 @@ import com.bakery.application.entity.Order;
 import com.bakery.application.entity.OrderDtl;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author liting
@@ -47,4 +48,13 @@ public interface OrderService {
      * @throws:
      */
     public boolean deleteOrderAndDtl(Order order);
+
+    /**
+     * @Description:新增訂單
+     * @Author: LiTing
+     * @Date: 12:34 AM 2019/5/3
+     * @return:
+     * @throws:
+     */
+    public Map<String,Object> insertSelective(Order order);
 }

@@ -72,7 +72,7 @@
 <input type="hidden" id="selectLeftTree" value="selectLeftTree"/>
 <input type="hidden" id="queryPdtManegeUrl" value="pdtManageList/queryPdt"/>
 <input type="hidden" id="queryUserManegeUrl" value="userManageList/queryUser"/>
-<input type="hidden" id="insertOrderAndDtlUrl" value="userManageList/insertOrderAndDtl"/>
+<input type="hidden" id="insertOrderAndDtlUrl" value="orderManageList/insertOrderAndDtl"/>
 <ol class="breadcrumb">
     <li><a>Home</a></li>
     <li><a>订单管理</a></li>
@@ -81,7 +81,7 @@
 <!-- 输入框 start -->
 <div class="panel-body" style="padding-bottom:0px; padding-top:0px ;">
     <div class="panel panel-default">
-        <div class="panel-body" style="height: 540px">
+        <div class="panel-body" style="height: 580px">
             <div class="container-fluid">
 
                 <form id="orderForm" name="orderForm" role="form" class="form-horizontal">
@@ -137,19 +137,32 @@
                                        placeholder="会员请选择">
                             </fieldset>
                         </div>
+                        <div class="col-md-2">
+                            <select type="text" class="form-control  input-sm" id="payMethod"
+                                    name="payMethod" >
+                                <option value="">请选择支付方式</option>
+                            </select>
+                        </div>
                         <label class="control-label col-md-1 col-md-offset-1">应付款:</label>
                         <div class="col-md-2">
                             <label class="control-label col-md-1" ><span id="money" style="color: red;"></span></label>
                             <label class="control-label col-md-1" >元</label>
                         </div>
                         <label class="control-label col-md-1">实付款:</label>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label class="control-label col-md-1"><span id="moneyF" style="color: red;"></span></label>
-                            <label class="control-label col-md-2" >元</label>
+                            <input type="hidden" id="totalPrice">
+                            <label class="control-label col-md-1" >元</label>
                         </div>
-                        <div class="col-md-1" style="color: white">
-                            <button class="btn btn-primary " type="button"
-                                    id="searchBtn" onclick="createOrder()">提交订单
+
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-5" style="margin-top: 15px">
+                            <button class="btn btn-primary btn-sm" type="button"  style="width: 100px"
+                                    onclick="createOrder()">提交订单
                             </button>
                         </div>
                     </div>
@@ -270,12 +283,86 @@
 <!--模态框 加载客户start-->
 </body>
 <script>
+    var payMethodList =${payMethodList}; //支付方式
+    /*-------下拉框 jsonArr 数据，valPro value ，textPro text，domid select的id*/
+    function initSelectOptions(jsonArr, valPro, textPro, domid) {
+        var opt = '';
+        for (var i = 0; i < jsonArr.length; i++) {
+            opt += '<option value="' + jsonArr[i][valPro] + '">' + jsonArr[i][textPro] + '</option>';
+        }
+        $("#" + domid).append(opt);
+    }
     /*点击选择用户输入框触发*/
     function choseUser() {
         $('#userModal').modal('show');
     }
     /*提交订单*/
     function createOrder() {
+        var totalPrice= $("#totalPrice").val();
+        alert(totalPrice);
+        var userPhone= $("#choseUserPhone").val();
+        var data = $('#dataGrid').bootstrapTable('getData');
+        var createUrl=$("#insertOrderAndDtlUrl").val();
+        $.post(createUrl, {"data":JSON.stringify(data),"totalPrice":totalPrice,"userPhone":userPhone}, function (data) {
+            if (data.orderResult == true&&data.dtlResult == true) {
+                $.alert({
+                    title: '提示',
+                    content: '提交成功！',
+                    type: 'green',             //一般危险操作用red,保存成功操作green
+                    buttons: {              //定义按钮
+                        confirm: {
+                            text: '确认',
+                            btnClass: 'btn-primary',
+                            action: function () { //这里写点击按钮回调函数
+                            }
+                        }
+                    }
+                });
+                $('#tb_roles').bootstrapTable('refresh');  //刷新列表
+            } else if (data.orderResult == true&&data.dtlResult == false) {
+                $.alert({
+                    title: '提示',
+                    content: '订单明细生成失败！',
+                    type: 'red',             //一般危险操作用red,保存成功操作green
+                    buttons: {              //定义按钮
+                        confirm: {
+                            text: '确认',
+                            btnClass: 'btn-primary',
+                            action: function () { //这里写点击按钮回调函数
+                            }
+                        }
+                    }
+                });
+            }else if (data.orderResult == false&&data.dtlResult == true){
+                $.alert({
+                    title: '提示',
+                    content: '订单生成失败！',
+                    type: 'red',             //一般危险操作用red,保存成功操作green
+                    buttons: {              //定义按钮
+                        confirm: {
+                            text: '确认',
+                            btnClass: 'btn-primary',
+                            action: function () { //这里写点击按钮回调函数
+                            }
+                        }
+                    }
+                });
+            }else{
+                $.alert({
+                    title: '提示',
+                    content: '提交失败！',
+                    type: 'green',             //一般危险操作用red,保存成功操作green
+                    buttons: {              //定义按钮
+                        confirm: {
+                            text: '确认',
+                            btnClass: 'btn-primary',
+                            action: function () { //这里写点击按钮回调函数
+                            }
+                        }
+                    }
+                });
+            }
+        }, 'json');
 
     }
     /*取用户名*/
@@ -299,6 +386,7 @@
             $("#choseUserName").val(rowids[0].userName);
             $("#choseUserPhone").val(rowids[0].userPhone);
             $("#moneyF").text(Math.ceil(priceTotal*0.8));
+            $("#totalPrice").val(Math.ceil(priceTotal*0.8));
             $('#userModal').modal('hide');
         } else {
             $.alert({
@@ -452,6 +540,8 @@
             $('#dataGrid').bootstrapTable('insertRow', {index: count, row: jsonData});
             $("#orderForm")[0].reset();
             $("#money").text(priceTotal);
+            $("#moneyF").text(priceTotal);
+            $("#totalPrice").val(priceTotal);
             /* $('#orderForm').find('[name]').each(function () {
                  $(this).val('');
              });*/
@@ -558,7 +648,7 @@
                                 for (var i in value) {
                                     count += parseInt(value[i].dtlTotalPrice);
                                 }
-                               priceTotal=count
+                               priceTotal=count;
                                return  count;
                             }
                         }, {
@@ -887,6 +977,7 @@
 
     /*---------bootstrapTable------模态框右侧表格 end-----*/
     $(function () {
+        initSelectOptions(payMethodList, "dataCode", "codeName", "payMethod");
         //初始化table
         var oTable = new TableInit();
         oTable.Init();

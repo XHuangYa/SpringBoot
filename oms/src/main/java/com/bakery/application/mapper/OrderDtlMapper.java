@@ -11,6 +11,9 @@ public interface OrderDtlMapper {
     List<OrderDtl> queryByExample(String orderId);
 
     int updatepdtNumByPrimaryKey(OrderDtl orderDtl);
+
+    int insertBatch(@Param("dtls") List<OrderDtl> dtl);
+
     int countByExample(OrderDtlCriteria example);
 
     int deleteByExample(OrderDtlCriteria example);

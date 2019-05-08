@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author liting
@@ -35,5 +37,13 @@ public class OrderDtlServiceImpl implements OrderDtlService {
     public boolean updateByPrimaryKeySelective(OrderDtl orderDtl) {
         orderDtl.setStatus(0);
         return orderDtlMapper.updateByPrimaryKeySelective(orderDtl)>=1?true:false;
+    }
+
+    @Override
+    public Map<String,Object> insertBatchService(List<OrderDtl> orderDtl) {
+        Map<String,Object> map=new HashMap<String,Object>();
+        boolean b = orderDtlMapper.insertBatch(orderDtl) >= 1 ? true : false;
+        map.put("dtlResult",b);
+        return map;
     }
 }

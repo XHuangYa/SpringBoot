@@ -77,7 +77,7 @@
     ORDER_DTL_ID, ID, ORDER_ID, PDT_ID, PDT_NUM, DTL_TOTAL_PRICE, STATUS, CREATE_TIME, 
     UPDATE_TIME, REMARK
   </sql>
-
+    <!--分页查询-->
     <select id="queryByExample" parameterType="java.lang.String" resultType="com.bakery.application.entity.OrderDtl">
     SELECT
 	od.ORDER_DTL_ID orderDtlId,
@@ -96,7 +96,71 @@
     FROM
 	`bky_order_dtl` od where od.ORDER_ID=#{orderId} and od.status=1;
     </select>
-    <!--分页查询-->
+    <!--批量插入-->
+    <insert id="insertBatch" parameterType="java.util.List" >
+        INSERT INTO bky_order_dtl
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderDtlId != null">
+                ORDER_DTL_ID,
+            </if>
+            <if test="orderId != null">
+                ORDER_ID,
+            </if>
+            <if test="pdtId != null">
+                PDT_ID,
+            </if>
+            <if test="pdtNum != null">
+                PDT_NUM,
+            </if>
+            <if test="dtlTotalPrice != null">
+                DTL_TOTAL_PRICE,
+            </if>
+            <if test="status != null">
+                STATUS,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME,
+            </if>
+            <if test="remark != null">
+                REMARK,
+            </if>
+        </trim>
+        values
+        <foreach collection="dtls" item="dtl" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="orderDtlId != null">
+                    #{orderDtlId,jdbcType=VARCHAR},
+                </if>
+                <if test="orderId != null">
+                    #{orderId,jdbcType=VARCHAR},
+                </if>
+                <if test="pdtId != null">
+                    #{pdtId,jdbcType=VARCHAR},
+                </if>
+                <if test="pdtNum != null">
+                    #{pdtNum,jdbcType=INTEGER},
+                </if>
+                <if test="dtlTotalPrice != null">
+                    #{dtlTotalPrice,jdbcType=VARCHAR},
+                </if>
+                <if test="status != null">
+                    #{status,jdbcType=INTEGER},
+                </if>
+                <if test="createTime != null">
+                    #{createTime,jdbcType=DATE},
+                </if>
+                <if test="updateTime != null">
+                    #{updateTime,jdbcType=DATE},
+                </if>
+                <if test="remark != null">
+                    #{remark,jdbcType=VARCHAR},
+                </if>
+            </trim>
+        </foreach>
+    </insert>
     <select id="selectByExample" resultMap="BaseResultMap"
             parameterType="com.bakery.application.entity.OrderDtlCriteria">
         select
