@@ -57,6 +57,12 @@ public interface Url {
     String STORE_OUT_LIST = "/storeOutList";
     //库存管理-出库记录
     String STORE_IN_LIST = "/storeInList";
+    //分页查询
+    String QUERY_STOCK_IN_OR_OUT_URL="/queryStockInOutStock";
+    //修改入库量
+    String UPDATE_STOCK_INNUM_URL=STORE_IN_LIST+"/updateStockInNum";
+    //删除入库单
+    String DELETE_IN_STOCK_URL=STORE_IN_LIST+"/deleteInStock";
 
 
 }
