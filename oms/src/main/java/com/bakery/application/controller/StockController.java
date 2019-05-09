@@ -82,7 +82,7 @@ public class StockController {
      */
     @RequestMapping(value = Url.DELETE_IN_STOCK_URL, method = RequestMethod.POST)
     public @ResponseBody
-    boolean updateStockInNum(Stock stock) throws ParseException {
+    boolean updateStockInNum(Stock stock) {
         StockCriteria criteria=new StockCriteria();
         StockCriteria.Criteria cri=criteria.createCriteria();
         cri.andStockIdEqualTo(stock.getStockId());

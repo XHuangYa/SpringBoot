@@ -138,6 +138,7 @@
       <if test="pdtName != null and pdtName!=''">
         AND bp.PDT_NAME like '%${pdtName}%'
       </if>
+      and bs.status=1
     </where>
     order by bs.update_time desc
   </select>
