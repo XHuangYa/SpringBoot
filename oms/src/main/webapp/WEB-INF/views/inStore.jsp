@@ -63,7 +63,7 @@
                         <div class="row">
                             <label class="control-label col-md-1 ">商品名称:</label>
                             <div class="col-md-2 ">
-                                <input type="text" class="form-control  input-sm" name="search_pdtName" id="search_pdtName" placeholder="请输入商品名称"  >
+                                <input type="text" class="form-control  input-sm" name="search_pdtName" id="search_pdtName" placeholder="请输入商品名称" oninput="checkInput()" >
                             </div>
 
                             <label class="control-label col-md-1 ">开始时间:</label>
@@ -111,6 +111,18 @@
 
 </body>
 <script>
+    function queryStockBtn() {
+        $("#tb_roles").bootstrapTable("refresh");
+    }
+    /*重置按钮*/
+    function resetStockBtn() {
+        $("#searchStockForm")[0].reset();
+        $('#searchStockForm').find('[name]').each(function () {
+            $(this).val('');
+        });
+        $('#tb_roles').bootstrapTable('refresh');
+        changeBtndisable();
+    }
     /*-------------设置重置按钮状态start---------*/
     function changeBtnable() {
         $("#resetSearchBtn").removeAttr("disabled");
@@ -152,21 +164,7 @@
     }
 
     /*-------------设置重置按钮状态end---------*/
-    var values = "";//判断按钮状态全局变量
-    function checkInput() {
-        var searchStockForm = $('#searchStockForm').serializeArray();
-        $.each(searchStockForm, function () {
-            if (this.value != "") {
-                values += this.value;
-            }
-        });
-        if (values.length > 0) {
-            changeBtnable();
-        } else {
-            changeBtndisable();
-        }
-        values = "";
-    }
+
     /*删除订单*/
     function delFun(stockId) {
         if (stockId.length > 0) {

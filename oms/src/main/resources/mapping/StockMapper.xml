@@ -141,8 +141,7 @@
       and bs.status=1
     </where>
     order by bs.update_time desc
-  </select>
-  <select id="selectByExample" parameterType="com.bakery.application.entity.StockCriteria" resultMap="BaseResultMap">
+  </select><select id="selectByExample" parameterType="com.bakery.application.entity.StockCriteria" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -156,6 +155,67 @@
     <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
+  </select>
+  <!--查看库存-->
+  <select id="queryStockList" parameterType="com.bakery.application.entity.Product" resultType="com.bakery.application.dto.ProductDTO">
+        SELECT
+        bp.ID id,
+        bp.PDT_ID pdtId,
+        bp.PDT_NAME pdtName,
+        (
+            SELECT
+                CONCAT(
+                    (
+                        SELECT
+                            (
+                                (
+                                    SELECT
+                                        SUM(bc.IN_NUM) IN_NUM
+                                    FROM
+                                        bky_stock bc
+                                    WHERE
+                                        bc.FLAG = 'IN'
+                                    AND bc.PDT_ID = bp.PDT_ID and bc.STATUS=1
+                                ) - (
+                                    SELECT
+                                        SUM(bc.OUT_NUM) OUT_NUM
+                                    FROM
+                                        bky_stock bc
+                                    WHERE
+                                        bc.FLAG = 'OUT'
+                                    AND bc.PDT_ID = bp.PDT_ID and bc.STATUS=1
+                                )
+                            )
+                    ),
+                    '(',
+                    (
+                        SELECT
+                            bc.code_name
+                        FROM
+                            base_code bc
+                        WHERE
+                            bp.MEASER = bc.data_code
+                        AND bc.code_type = 'MEASER'
+                    ),
+                    ')'
+                )
+        ) measerDes,
+        (
+            SELECT
+                bc.CODE_NAME
+            FROM
+                base_code bc
+            WHERE
+                bc.CODE_TYPE = 'PDT_TYPE'
+            AND bc.DATA_CODE = bp.PDT_TYPE
+        ) pdtTypeDes
+    FROM
+        bky_pdt bp where  bp.STATUS>=1
+            <if test="pdtName!=null and pdtName!=''">
+                and bp.PDT_NAME=#{pdtName}
+            </if>
+    ORDER BY
+        bp.ID
   </select>
   <delete id="deleteByExample" parameterType="com.bakery.application.entity.StockCriteria">
     delete from bky_stock

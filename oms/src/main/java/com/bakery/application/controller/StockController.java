@@ -4,7 +4,9 @@ import com.bakery.application.constant.BootstrapTablePage;
 import com.bakery.application.constant.Page;
 import com.bakery.application.constant.Url;
 import com.bakery.application.constant.Views;
+import com.bakery.application.dto.ProductDTO;
 import com.bakery.application.dto.StockDTO;
+import com.bakery.application.entity.Product;
 import com.bakery.application.entity.Stock;
 import com.bakery.application.entity.StockCriteria;
 import com.bakery.application.service.StockService;
@@ -36,11 +38,50 @@ public class StockController {
      * @throws:
      */
     @RequestMapping(Url.STORE_IN_LIST)
-    public String orderIndex(final Map<String, Object> map) {
+    public String inStockIndex(final Map<String, Object> map) {
         return Views.STORE_IN_VIEW;
     }
     /**
-     * @Description:分頁查询
+     * @Description:出库记录初始化
+     * @Author: LiTing
+     * @Date: 10:14 PM 2019/5/1
+     * @return:
+     * @throws:
+     */
+    @RequestMapping(Url.STORE_OUT_LIST)
+    public String outStockIndex(final Map<String, Object> map) {
+        return Views.STORE_OUT_VIEW;
+    }
+    /**
+     * @Description:库存记录初始化
+     * @Author: LiTing
+     * @Date: 10:14 PM 2019/5/1
+     * @return:
+     * @throws:
+     */
+    @RequestMapping(Url.STOCK_MANAGE_LIST)
+    public String stockIndex(final Map<String, Object> map) {
+        return Views.STOCK_LIST_VIEW;
+    }
+    /**
+     * @Description:库存分頁查询
+     * @Author: LiTing
+     * @Date: 10:14 PM 2019/5/1
+     * @return:
+     * @throws:
+     */
+    @RequestMapping(value = Url.QUERY_STOCK_LIST_BY_PAGE, method = RequestMethod.POST)
+    public @ResponseBody
+    BootstrapTablePage queryStockListPage(Page page, Product product) throws ParseException {
+        List<ProductDTO> productDTOS = stockService.queryStockList(page, product);
+        PageInfo pageInfo = new PageInfo<ProductDTO>(productDTOS);
+        BootstrapTablePage bootTable = new BootstrapTablePage(String.valueOf(pageInfo.getTotal()));
+        bootTable.pageValue(page, pageInfo.getList());
+        bootTable.setPageSize(page.getPageSize() + "");
+        return bootTable;
+    }
+    /**
+     * @Description:出入库分頁查询
      * @Author: LiTing
      * @Date: 10:14 PM 2019/5/1
      * @return:
@@ -48,7 +89,7 @@ public class StockController {
      */
     @RequestMapping(value = Url.QUERY_STOCK_IN_OR_OUT_URL, method = RequestMethod.POST)
     public @ResponseBody
-    BootstrapTablePage queryUserPage(Page page, StockDTO stockDTO) throws ParseException {
+    BootstrapTablePage queryStockPage(Page page, StockDTO stockDTO) throws ParseException {
         List<StockDTO> stockDTOS = stockService.queryStockByPage(page, stockDTO);
         PageInfo pageInfo = new PageInfo<StockDTO>(stockDTOS);
         BootstrapTablePage bootTable = new BootstrapTablePage(String.valueOf(pageInfo.getTotal()));

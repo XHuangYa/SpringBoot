@@ -1,7 +1,9 @@
 package com.bakery.application.service.serviceImpl;
 
 import com.bakery.application.constant.Page;
+import com.bakery.application.dto.ProductDTO;
 import com.bakery.application.dto.StockDTO;
+import com.bakery.application.entity.Product;
 import com.bakery.application.entity.Stock;
 import com.bakery.application.entity.StockCriteria;
 import com.bakery.application.mapper.StockMapper;
@@ -22,6 +24,12 @@ import java.util.List;
 public class StockServiceImpl implements StockService {
     @Autowired
     StockMapper stockMapper;
+
+    @Override
+    public List<ProductDTO> queryStockList(Page page, Product product) {
+        PageHelper.startPage(page.getPageNo(),page.getPageSize());
+        return stockMapper.queryStockList(product);
+    }
 
     @Override
     public List<StockDTO> queryStockByPage(Page page, StockDTO stockDTO) {

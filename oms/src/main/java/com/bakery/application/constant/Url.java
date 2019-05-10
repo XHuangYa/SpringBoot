@@ -53,6 +53,8 @@ public interface Url {
     String DELETE_ORDER_DTL_URL=ORDER_MANAGE_LIST+"/deleteOrderDtl";
     //库存管理-库存列表
     String STOCK_MANAGE_LIST = "/stockManageList";
+    //库存分页查询
+    String QUERY_STOCK_LIST_BY_PAGE=STOCK_MANAGE_LIST+"/queryStockByPage";
     //库存管理-出库记录
     String STORE_OUT_LIST = "/storeOutList";
     //库存管理-出库记录

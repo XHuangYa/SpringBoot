@@ -33,6 +33,9 @@ public class ProductDTO {
 
     private String statusDes;
 
+    private String pdtTypeDes;
+
+
     public String getStatusDes() {
         return statusDes;
     }
@@ -57,7 +60,7 @@ public class ProductDTO {
         this.pdtTypeDes = pdtTypeDes;
     }
 
-    private String pdtTypeDes;
+
 
     public String getPdtId() {
         return pdtId;
