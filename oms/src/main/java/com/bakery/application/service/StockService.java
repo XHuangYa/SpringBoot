@@ -14,9 +14,13 @@ import java.util.List;
  * @date 2019-05-09  09:56
  */
 public interface StockService {
+    public int insertBatch(List<Stock> stocks);
+
     public List<ProductDTO> queryStockList(Page page, Product product);
 
-    public  List<StockDTO> queryStockByPage(Page pag, StockDTO stockDTO);
+    public List<StockDTO> queryStockByPage(Page pag, StockDTO stockDTO);
 
     public boolean updateByExampleSelective(Stock stock, StockCriteria example);
+
+    public boolean insertSelective(Stock stock);
 }

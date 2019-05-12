@@ -36,7 +36,6 @@
     		<li><span class="img glyphicon glyphicon-globe"></span>&nbsp; &nbsp; &nbsp;客户管理<span class="right glyphicon glyphicon-chevron-right"></span>
     			<ul class="sub">
     				<li class="userList">客户列表</li>
-    				<li>客户级别</li>
     			</ul>
     		</li>
     		<li><span class="img glyphicon glyphicon-cutlery"></span>&nbsp; &nbsp; &nbsp;商品管理<span class="right glyphicon glyphicon-chevron-right"></span>

@@ -2,6 +2,7 @@ package com.bakery.application.service;
 
 import com.bakery.application.constant.Page;
 import com.bakery.application.entity.OrderDtl;
+import com.bakery.application.entity.OrderDtlCriteria;
 
 import java.util.List;
 import java.util.Map;
@@ -34,7 +35,7 @@ public interface OrderDtlService {
      * @return:
      * @throws:
      */
-    public boolean updateByPrimaryKeySelective(OrderDtl orderDtl);
+    public boolean deleteOrderDtl(String orderDtlId);
     /**
      * @Description:批量插入
      * @Author: LiTing
@@ -43,4 +44,12 @@ public interface OrderDtlService {
      * @throws:
      */
     public Map<String,Object> insertBatchService(List<OrderDtl> orderDtl);
+    /**
+     * @Description:计数
+     * @Author: LiTing
+     * @Date: 6:28 PM 2019/5/12
+     * @return:
+     * @throws:
+     */
+    public int countByExample(OrderDtlCriteria criteria);
 }

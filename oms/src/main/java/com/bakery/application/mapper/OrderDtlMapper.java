@@ -2,12 +2,16 @@ package com.bakery.application.mapper;
 
 import com.bakery.application.entity.OrderDtl;
 import com.bakery.application.entity.OrderDtlCriteria;
+
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
 @Mapper
 public interface OrderDtlMapper {
+    int deleteOrderDtl(String orderDtlId);
+
     List<OrderDtl> queryByExample(String orderId);
 
     int updatepdtNumByPrimaryKey(OrderDtl orderDtl);

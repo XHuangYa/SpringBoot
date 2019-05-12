@@ -44,8 +44,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public boolean deleteOrderAndDtl(Order order) {
-        return orderMapper.deleteOrderAndDtl(order)>=0?true:false;
+    public boolean deleteOrderAndDtl(String orderId) {
+        return orderMapper.deleteOrderAndDtl(orderId)>=0?true:false;
     }
 
     @Override

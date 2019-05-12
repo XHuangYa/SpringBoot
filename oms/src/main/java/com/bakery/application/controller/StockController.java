@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,6 +42,7 @@ public class StockController {
     public String inStockIndex(final Map<String, Object> map) {
         return Views.STORE_IN_VIEW;
     }
+
     /**
      * @Description:出库记录初始化
      * @Author: LiTing
@@ -52,6 +54,7 @@ public class StockController {
     public String outStockIndex(final Map<String, Object> map) {
         return Views.STORE_OUT_VIEW;
     }
+
     /**
      * @Description:库存记录初始化
      * @Author: LiTing
@@ -63,6 +66,7 @@ public class StockController {
     public String stockIndex(final Map<String, Object> map) {
         return Views.STOCK_LIST_VIEW;
     }
+
     /**
      * @Description:库存分頁查询
      * @Author: LiTing
@@ -80,6 +84,7 @@ public class StockController {
         bootTable.setPageSize(page.getPageSize() + "");
         return bootTable;
     }
+
     /**
      * @Description:出入库分頁查询
      * @Author: LiTing
@@ -97,6 +102,7 @@ public class StockController {
         bootTable.setPageSize(page.getPageSize() + "");
         return bootTable;
     }
+
     /**
      * @Description:修改入库量
      * @Author: LiTing
@@ -107,13 +113,14 @@ public class StockController {
     @RequestMapping(value = Url.UPDATE_STOCK_INNUM_URL, method = RequestMethod.POST)
     public @ResponseBody
     boolean updateStockInNum(StockDTO stockDTO) throws ParseException {
-        Stock stock=new Stock();
+        Stock stock = new Stock();
         stock.setInNum(stockDTO.getInNumDes());
-        StockCriteria criteria=new StockCriteria();
-        StockCriteria.Criteria cri=criteria.createCriteria();
+        StockCriteria criteria = new StockCriteria();
+        StockCriteria.Criteria cri = criteria.createCriteria();
         cri.andStockIdEqualTo(stockDTO.getStockId());
-        return stockService.updateByExampleSelective(stock,criteria);
+        return stockService.updateByExampleSelective(stock, criteria);
     }
+
     /**
      * @Description:删除入库单
      * @Author: LiTing
@@ -124,11 +131,27 @@ public class StockController {
     @RequestMapping(value = Url.DELETE_IN_STOCK_URL, method = RequestMethod.POST)
     public @ResponseBody
     boolean updateStockInNum(Stock stock) {
-        StockCriteria criteria=new StockCriteria();
-        StockCriteria.Criteria cri=criteria.createCriteria();
+        StockCriteria criteria = new StockCriteria();
+        StockCriteria.Criteria cri = criteria.createCriteria();
         cri.andStockIdEqualTo(stock.getStockId());
         stock.setStatus(0);
-        return stockService.updateByExampleSelective(stock,criteria);
+        return stockService.updateByExampleSelective(stock, criteria);
+    }
+
+    /**
+     * @Description:商品入库
+     * @Author: LiTing
+     * @Date: 5:06 PM 2019/5/12
+     * @return:
+     * @throws:
+     */
+    @RequestMapping(value = Url.INSERT_IN_STOCK_URL, method = RequestMethod.POST)
+    public @ResponseBody
+    Map<String,Object> createInstock(Stock stock) {
+        Map<String,Object> map=new HashMap<String,Object>();
+        boolean b = stockService.insertSelective(stock);
+        map.put("result",b);
+        return  map;
     }
 }
 

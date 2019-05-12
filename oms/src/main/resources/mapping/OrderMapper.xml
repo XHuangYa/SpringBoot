@@ -154,14 +154,17 @@
 
     </update>
     <!--修改订单/订单明细status-->
-    <update id="deleteOrderAndDtl" parameterType="com.bakery.application.entity.Order">
+    <update id="deleteOrderAndDtl" parameterType="java.lang.String">
         UPDATE bky_order bo,
-         bky_order_dtl od
+         bky_order_dtl od,
+         bky_stock bs
         SET bo. STATUS = 0,
-         od. STATUS = 0
+         od. STATUS = 0,
+         bs. STATUS = 0
         WHERE
             bo.ORDER_ID = od.ORDER_ID
-        AND bo.ORDER_ID =#{orderId};
+        AND od.ORDER_DTL_ID = bs.STOCK_ID
+        AND bo.ORDER_ID = #{orderId,jdbcType=VARCHAR}
     </update>
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bakery.application.entity.OrderCriteria">
         select

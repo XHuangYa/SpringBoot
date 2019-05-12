@@ -1,229 +1,266 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bakery.application.mapper.StockMapper">
-  <resultMap id="BaseResultMap" type="com.bakery.application.entity.Stock">
-    <result column="ID" jdbcType="INTEGER" property="id" />
-    <result column="STOCK_ID" jdbcType="VARCHAR" property="stockId" />
-    <result column="PDT_ID" jdbcType="VARCHAR" property="pdtId" />
-    <result column="IN_TIME" jdbcType="DATE" property="inTime" />
-    <result column="OUT_TIME" jdbcType="DATE" property="outTime" />
-    <result column="IN_NUM" jdbcType="VARCHAR" property="inNum" />
-    <result column="OUT_NUM" jdbcType="VARCHAR" property="outNum" />
-    <result column="FLAG" jdbcType="VARCHAR" property="flag" />
-    <result column="CREATE_TIME" jdbcType="DATE" property="createTime" />
-    <result column="UPDATE_TIME" jdbcType="DATE" property="updateTime" />
-    <result column="STATUS" jdbcType="INTEGER" property="status" />
-    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+    <resultMap id="BaseResultMap" type="com.bakery.application.entity.Stock">
+        <result column="ID" jdbcType="INTEGER" property="id"/>
+        <result column="STOCK_ID" jdbcType="VARCHAR" property="stockId"/>
+        <result column="PDT_ID" jdbcType="VARCHAR" property="pdtId"/>
+        <result column="IN_TIME" jdbcType="DATE" property="inTime"/>
+        <result column="OUT_TIME" jdbcType="DATE" property="outTime"/>
+        <result column="IN_NUM" jdbcType="VARCHAR" property="inNum"/>
+        <result column="OUT_NUM" jdbcType="VARCHAR" property="outNum"/>
+        <result column="FLAG" jdbcType="VARCHAR" property="flag"/>
+        <result column="CREATE_TIME" jdbcType="DATE" property="createTime"/>
+        <result column="UPDATE_TIME" jdbcType="DATE" property="updateTime"/>
+        <result column="STATUS" jdbcType="INTEGER" property="status"/>
+        <result column="REMARK" jdbcType="VARCHAR" property="remark"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
     ID, STOCK_ID, PDT_ID, IN_TIME, OUT_TIME, IN_NUM, OUT_NUM, FLAG, CREATE_TIME, UPDATE_TIME, 
     STATUS, REMARK
   </sql>
-  <!--分页查詢-->
-  <select id="queryStockByPage" parameterType="com.bakery.application.dto.StockDTO" resultType="com.bakery.application.dto.StockDTO">
-    SELECT
-    bs.STOCK_ID stockId,
-    bs.PDT_ID pdtId,
-    bp.PDT_NAME pdtName,
-    CONCAT(
-    bs.IN_NUM,
-    '(',
-    (
-    SELECT
-    bc.CODE_NAME
-    FROM
-    base_code bc
-    WHERE
-    bp.PDT_ID = bs.PDT_ID
-    AND bp.MEASER = bc.DATA_CODE
-    AND bc.code_type = 'MEASER'
-    ),
-    ')'
-    ) inNumDes,
-    CONCAT(
-    bs.OUT_NUM,
-    '(',
-    (
-    SELECT
-    bc.CODE_NAME
-    FROM
-    base_code bc
-    WHERE
-    bp.PDT_ID = bs.PDT_ID
-    AND bp.MEASER = bc.DATA_CODE
-    AND bc.code_type = 'MEASER'
-    ),
-    ')'
-    ) outNumDes,
-    bs.IN_NUM inNum,
-    bs.OUT_NUM outNum,
-    bs.IN_TIME inTime,
-    bs.OUT_TIME outTime,
-    bs.FLAG flag,
-    bs.CREATE_TIME createTime,
-    bs.UPDATE_TIME updateTime,
-    bs.REMARK remark
-    FROM
-    bky_stock bs,
-    bky_pdt bp
-    <where>
-      bs.PDT_ID = bp.PDT_ID
-      <if test="flag != null and flag!=''">
-        AND bs.flag = #{flag}
-      </if>
-      <if test="beginTime != null">
-        AND bs.CREATE_TIME &gt;=#{beginTime}
-      </if>
-      <if test="endTime != null">
-        AND bs.CREATE_TIME &lt;=#{endTime}
-      </if>
-      <if test="pdtName != null and pdtName!=''">
-        AND bp.PDT_NAME like '%${pdtName}%'
-      </if>
-      and bs.status=1
-    </where>
-    order by bs.update_time desc
-  </select><select id="selectByExample" parameterType="com.bakery.application.entity.StockCriteria" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    'true' as QUERYID,
-    <include refid="Base_Column_List" />
-    from bky_stock
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <!--查看库存-->
-  <select id="queryStockList" parameterType="com.bakery.application.entity.Product" resultType="com.bakery.application.dto.ProductDTO">
+    <!--分页查詢-->
+    <select id="queryStockByPage" parameterType="com.bakery.application.dto.StockDTO"
+            resultType="com.bakery.application.dto.StockDTO">
+        SELECT
+        bs.STOCK_ID stockId,
+        bs.PDT_ID pdtId,
+        bp.PDT_NAME pdtName,
+        CONCAT(
+        bs.IN_NUM,
+        '(',
+        (
+        SELECT
+        bc.CODE_NAME
+        FROM
+        base_code bc
+        WHERE
+        bp.PDT_ID = bs.PDT_ID
+        AND bp.MEASER = bc.DATA_CODE
+        AND bc.code_type = 'MEASER'
+        ),
+        ')'
+        ) inNumDes,
+        CONCAT(
+        bs.OUT_NUM,
+        '(',
+        (
+        SELECT
+        bc.CODE_NAME
+        FROM
+        base_code bc
+        WHERE
+        bp.PDT_ID = bs.PDT_ID
+        AND bp.MEASER = bc.DATA_CODE
+        AND bc.code_type = 'MEASER'
+        ),
+        ')'
+        ) outNumDes,
+        bs.IN_NUM inNum,
+        bs.OUT_NUM outNum,
+        bs.IN_TIME inTime,
+        bs.OUT_TIME outTime,
+        bs.FLAG flag,
+        bs.CREATE_TIME createTime,
+        bs.UPDATE_TIME updateTime,
+        bs.REMARK remark
+        FROM
+        bky_stock bs,
+        bky_pdt bp
+        <where>
+            bs.PDT_ID = bp.PDT_ID
+            <if test="flag != null and flag!=''">
+                AND bs.flag = #{flag}
+            </if>
+            <if test="beginTime != null">
+                AND bs.CREATE_TIME &gt;=#{beginTime}
+            </if>
+            <if test="endTime != null">
+                AND bs.CREATE_TIME &lt;=#{endTime}
+            </if>
+            <if test="pdtName != null and pdtName!=''">
+                AND bp.PDT_NAME like '%${pdtName}%'
+            </if>
+            and bs.status=1
+        </where>
+        order by bs.update_time desc
+    </select>
+    <select id="selectByExample" parameterType="com.bakery.application.entity.StockCriteria" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        'true' as QUERYID,
+        <include refid="Base_Column_List"/>
+        from bky_stock
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <!--查看库存-->
+    <select id="queryStockList" parameterType="com.bakery.application.entity.Product"
+            resultType="com.bakery.application.dto.ProductDTO">
         SELECT
         bp.ID id,
         bp.PDT_ID pdtId,
         bp.PDT_NAME pdtName,
         (
-            SELECT
-                CONCAT(
-                    (
-                        SELECT
-                            (
-                                (
-                                    SELECT
-                                        SUM(bc.IN_NUM) IN_NUM
-                                    FROM
-                                        bky_stock bc
-                                    WHERE
-                                        bc.FLAG = 'IN'
-                                    AND bc.PDT_ID = bp.PDT_ID and bc.STATUS=1
-                                ) - (
-                                    SELECT
-                                        SUM(bc.OUT_NUM) OUT_NUM
-                                    FROM
-                                        bky_stock bc
-                                    WHERE
-                                        bc.FLAG = 'OUT'
-                                    AND bc.PDT_ID = bp.PDT_ID and bc.STATUS=1
-                                )
-                            )
-                    ),
-                    '(',
-                    (
-                        SELECT
-                            bc.code_name
-                        FROM
-                            base_code bc
-                        WHERE
-                            bp.MEASER = bc.data_code
-                        AND bc.code_type = 'MEASER'
-                    ),
-                    ')'
-                )
+        SELECT
+        CONCAT(
+        (
+        SELECT
+        (
+        (
+        SELECT
+        SUM(bc.IN_NUM) IN_NUM
+        FROM
+        bky_stock bc
+        WHERE
+        bc.FLAG = 'IN'
+        AND bc.PDT_ID = bp.PDT_ID and bc.STATUS=1
+        ) - (
+        SELECT
+        SUM(bc.OUT_NUM) OUT_NUM
+        FROM
+        bky_stock bc
+        WHERE
+        bc.FLAG = 'OUT'
+        AND bc.PDT_ID = bp.PDT_ID and bc.STATUS=1
+        )
+        )
+        ),
+        '(',
+        (
+        SELECT
+        bc.code_name
+        FROM
+        base_code bc
+        WHERE
+        bp.MEASER = bc.data_code
+        AND bc.code_type = 'MEASER'
+        ),
+        ')'
+        )
         ) measerDes,
         (
-            SELECT
-                bc.CODE_NAME
-            FROM
-                base_code bc
-            WHERE
-                bc.CODE_TYPE = 'PDT_TYPE'
-            AND bc.DATA_CODE = bp.PDT_TYPE
+        SELECT
+        bc.CODE_NAME
+        FROM
+        base_code bc
+        WHERE
+        bc.CODE_TYPE = 'PDT_TYPE'
+        AND bc.DATA_CODE = bp.PDT_TYPE
         ) pdtTypeDes
-    FROM
-        bky_pdt bp where  bp.STATUS>=1
-            <if test="pdtName!=null and pdtName!=''">
-                and bp.PDT_NAME=#{pdtName}
-            </if>
-    ORDER BY
+        FROM
+        bky_pdt bp where bp.STATUS>=1
+        <if test="pdtName!=null and pdtName!=''">
+            and bp.PDT_NAME=#{pdtName}
+        </if>
+        ORDER BY
         bp.ID
-  </select>
-  <delete id="deleteByExample" parameterType="com.bakery.application.entity.StockCriteria">
-    delete from bky_stock
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.bakery.application.entity.Stock">
+    </select>
+    <!--批量插入-->
+    <insert id="insertBatch">
+        insert into bky_stock (STOCK_ID, PDT_ID,
+        OUT_TIME, OUT_NUM,
+        FLAG, CREATE_TIME,STATUS)
+        values
+        <foreach collection="stocks" item="item" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="item.stockId != null">
+                    #{item.stockId,jdbcType=VARCHAR},
+                </if>
+                <if test="item.pdtId != null">
+                    #{item.pdtId,jdbcType=VARCHAR},
+                </if>
+                <if test="item.outTime != null">
+                    #{item.outTime,jdbcType=DATE},
+                </if>
+                <if test="item.outNum != null">
+                    #{item.outNum,jdbcType=INTEGER},
+                </if>
+                <if test="item.flag != null">
+                    #{item.flag,jdbcType=VARCHAR},
+                </if>
+                <if test="item.createTime != null">
+                    #{item.createTime,jdbcType=DATE},
+                </if>
+                <if test="item.status != null">
+                    #{item.status,jdbcType=DATE},
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+    <delete id="deleteByExample" parameterType="com.bakery.application.entity.StockCriteria">
+        delete from bky_stock
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.bakery.application.entity.Stock">
     insert into bky_stock (ID, STOCK_ID, PDT_ID, 
       IN_TIME, OUT_TIME, IN_NUM, OUT_NUM, 
       FLAG, CREATE_TIME, UPDATE_TIME, 
@@ -233,151 +270,152 @@
       #{flag,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, 
       #{status,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.bakery.application.entity.Stock">
-    insert into bky_stock
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        ID,
-      </if>
-      <if test="stockId != null">
-        STOCK_ID,
-      </if>
-      <if test="pdtId != null">
-        PDT_ID,
-      </if>
-      <if test="inTime != null">
-        IN_TIME,
-      </if>
-      <if test="outTime != null">
-        OUT_TIME,
-      </if>
-      <if test="inNum != null">
-        IN_NUM,
-      </if>
-      <if test="outNum != null">
-        OUT_NUM,
-      </if>
-      <if test="flag != null">
-        FLAG,
-      </if>
-      <if test="createTime != null">
-        CREATE_TIME,
-      </if>
-      <if test="updateTime != null">
-        UPDATE_TIME,
-      </if>
-      <if test="status != null">
-        STATUS,
-      </if>
-      <if test="remark != null">
-        REMARK,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="stockId != null">
-        #{stockId,jdbcType=VARCHAR},
-      </if>
-      <if test="pdtId != null">
-        #{pdtId,jdbcType=VARCHAR},
-      </if>
-      <if test="inTime != null">
-        #{inTime,jdbcType=DATE},
-      </if>
-      <if test="outTime != null">
-        #{outTime,jdbcType=DATE},
-      </if>
-      <if test="inNum != null">
-        #{inNum,jdbcType=VARCHAR},
-      </if>
-      <if test="outNum != null">
-        #{outNum,jdbcType=VARCHAR},
-      </if>
-      <if test="flag != null">
-        #{flag,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=DATE},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=DATE},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="remark != null">
-        #{remark,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.bakery.application.entity.StockCriteria" resultType="java.lang.Integer">
-    select count(*) from bky_stock
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update bky_stock
-    <set>
-      <if test="record.id != null">
-        ID = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.stockId != null">
+    <insert id="insertSelective" parameterType="com.bakery.application.entity.Stock">
+        insert into bky_stock
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="stockId != null">
+                STOCK_ID,
+            </if>
+            <if test="pdtId != null">
+                PDT_ID,
+            </if>
+            <if test="inTime != null">
+                IN_TIME,
+            </if>
+            <if test="outTime != null">
+                OUT_TIME,
+            </if>
+            <if test="inNum != null">
+                IN_NUM,
+            </if>
+            <if test="outNum != null">
+                OUT_NUM,
+            </if>
+            <if test="flag != null">
+                FLAG,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME,
+            </if>
+            <if test="status != null">
+                STATUS,
+            </if>
+            <if test="remark != null">
+                REMARK,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="stockId != null">
+                #{stockId,jdbcType=VARCHAR},
+            </if>
+            <if test="pdtId != null">
+                #{pdtId,jdbcType=VARCHAR},
+            </if>
+            <if test="inTime != null">
+                #{inTime,jdbcType=DATE},
+            </if>
+            <if test="outTime != null">
+                #{outTime,jdbcType=DATE},
+            </if>
+            <if test="inNum != null">
+                #{inNum,jdbcType=VARCHAR},
+            </if>
+            <if test="outNum != null">
+                #{outNum,jdbcType=VARCHAR},
+            </if>
+            <if test="flag != null">
+                #{flag,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=DATE},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=DATE},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.bakery.application.entity.StockCriteria"
+            resultType="java.lang.Integer">
+        select count(*) from bky_stock
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update bky_stock
+        <set>
+            <if test="record.id != null">
+                ID = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.stockId != null">
+                STOCK_ID = #{record.stockId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.pdtId != null">
+                PDT_ID = #{record.pdtId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.inTime != null">
+                IN_TIME = #{record.inTime,jdbcType=DATE},
+            </if>
+            <if test="record.outTime != null">
+                OUT_TIME = #{record.outTime,jdbcType=DATE},
+            </if>
+            <if test="record.inNum != null">
+                IN_NUM = #{record.inNum,jdbcType=VARCHAR},
+            </if>
+            <if test="record.outNum != null">
+                OUT_NUM = #{record.outNum,jdbcType=VARCHAR},
+            </if>
+            <if test="record.flag != null">
+                FLAG = #{record.flag,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createTime != null">
+                CREATE_TIME = #{record.createTime,jdbcType=DATE},
+            </if>
+            <if test="record.updateTime != null">
+                UPDATE_TIME = #{record.updateTime,jdbcType=DATE},
+            </if>
+            <if test="record.status != null">
+                STATUS = #{record.status,jdbcType=INTEGER},
+            </if>
+            <if test="record.remark != null">
+                REMARK = #{record.remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update bky_stock
+        set ID = #{record.id,jdbcType=INTEGER},
         STOCK_ID = #{record.stockId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.pdtId != null">
         PDT_ID = #{record.pdtId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.inTime != null">
         IN_TIME = #{record.inTime,jdbcType=DATE},
-      </if>
-      <if test="record.outTime != null">
         OUT_TIME = #{record.outTime,jdbcType=DATE},
-      </if>
-      <if test="record.inNum != null">
         IN_NUM = #{record.inNum,jdbcType=VARCHAR},
-      </if>
-      <if test="record.outNum != null">
         OUT_NUM = #{record.outNum,jdbcType=VARCHAR},
-      </if>
-      <if test="record.flag != null">
         FLAG = #{record.flag,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createTime != null">
         CREATE_TIME = #{record.createTime,jdbcType=DATE},
-      </if>
-      <if test="record.updateTime != null">
         UPDATE_TIME = #{record.updateTime,jdbcType=DATE},
-      </if>
-      <if test="record.status != null">
         STATUS = #{record.status,jdbcType=INTEGER},
-      </if>
-      <if test="record.remark != null">
-        REMARK = #{record.remark,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update bky_stock
-    set ID = #{record.id,jdbcType=INTEGER},
-      STOCK_ID = #{record.stockId,jdbcType=VARCHAR},
-      PDT_ID = #{record.pdtId,jdbcType=VARCHAR},
-      IN_TIME = #{record.inTime,jdbcType=DATE},
-      OUT_TIME = #{record.outTime,jdbcType=DATE},
-      IN_NUM = #{record.inNum,jdbcType=VARCHAR},
-      OUT_NUM = #{record.outNum,jdbcType=VARCHAR},
-      FLAG = #{record.flag,jdbcType=VARCHAR},
-      CREATE_TIME = #{record.createTime,jdbcType=DATE},
-      UPDATE_TIME = #{record.updateTime,jdbcType=DATE},
-      STATUS = #{record.status,jdbcType=INTEGER},
-      REMARK = #{record.remark,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
+        REMARK = #{record.remark,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
 </mapper>

@@ -11,11 +11,12 @@ import java.util.List;
 
 @Mapper
 public interface OrderMapper {
+
     List<Order> queryByExample(OrderDTO orderDTO);
 
     int updatePricebyPrimaryKey(OrderDtl orderDtl);
 
-    int deleteOrderAndDtl(Order order);
+    int deleteOrderAndDtl(String orderId);
 
     int countByExample(OrderCriteria example);
 

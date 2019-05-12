@@ -28,7 +28,7 @@
     <script src="<%=basePath%>static/bootstrap/js/bootstrap-table-editable.js"></script>
     <script type="text/javascript" src="<%=basePath%>static/js/jquery.serializejson.min.js"></script>
 
-<%--css--%>
+    <%--css--%>
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/jquery-confirm.css">
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap-table.min.css">
@@ -53,6 +53,10 @@
             height: 250px;
         }
 
+        #pdtInStock:hover {
+            text-decoration: none;
+        }
+
     </style>
 </head>
 <body>
@@ -60,6 +64,7 @@
 <input type="hidden" id="createtOrUpdatePdtUrl" value="pdtManageList/insertOrUpdatePdt"/>
 <input type="hidden" id="deletePdtUrl" value="pdtManageList/deletePdt"/>
 <input type="hidden" id="operateShellPdtUrl" value="pdtManageList/operateShellPdt"/>
+<input type="hidden" id="createInstockUrl" value="pdtManageList/createInstock"/>
 <ol class="breadcrumb">
     <li><a>Home</a></li>
     <li><a>商品管理</a></li>
@@ -121,11 +126,12 @@
         <form class="form-horizontal" role="form" id="pdtForm" name="pdtForm" method="post">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" onclick="rightClose()"  data-dismiss="modal" aria-label="Close"><span
+                    <button type="button" class="close" onclick="rightClose()" data-dismiss="modal"
+                            aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="gridSystemModalLabel">商品信息</h4>
                 </div>
-                <fieldset  id="fieldset" disabled>
+                <fieldset id="fieldset" disabled>
                     <div class="modal-body">
                         <input type="hidden" class="form-control input-sm" name="pdtId" id="pdtId"/>
                         <div class="form-group form-group-sm">
@@ -161,14 +167,16 @@
                             <label class="control-label col-sm-2 ">创建时间:</label>
                             <div class="col-sm-4 has-feedback ">
                                 <input name="createTime" id="createTime" type="text " placeholder="精确到年月日"
-                                       class="form-control" onFocus="WdatePicker({maxDate:'%y-%M-%d',dateFmt: 'yyyy-MM-dd'})"/>
+                                       class="form-control"
+                                       onFocus="WdatePicker({maxDate:'%y-%M-%d',dateFmt: 'yyyy-MM-dd'})"/>
                                 <span class="glyphicon glyphicon-calendar form-control-feedback "></span>
                             </div>
 
                             <label class="control-label col-sm-2 ">修改时间:</label>
                             <div class="col-sm-4 has-feedback ">
                                 <input name="updateTime" id="updateTime" type="text " placeholder="精确到年月日"
-                                       class="form-control"  onFocus="WdatePicker({maxDate:'%y-%M-%d',dateFmt: 'yyyy-MM-dd'})"/>
+                                       class="form-control"
+                                       onFocus="WdatePicker({maxDate:'%y-%M-%d',dateFmt: 'yyyy-MM-dd'})"/>
                                 <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
                             </div>
                         </div>
@@ -211,12 +219,74 @@
     </div>
 </div>
 <!--模态框 end-->
+<!--商品入库模态框 start-->
+<div class="modal fade  bs-example-modal-sm" id="pdtModal" tabindex="-1" role="dialog"
+     aria-labelledby="gridSystemModalLabel">
+    <div class="modal-dialog modal-sm" role="document" style="width: 400px;">
+        <form class="form-horizontal" role="form" id="pdtInStockForm" name="userForm" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" onclick="rightClose()"
+                            aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="gridSystemModalLabelPdt">商品入库</h4>
+                </div>
+                <div class="modal-body">
+                    <input id="pdtInStockId" name="pdtId" type="hidden"/>
+                    <div class="form-group form-group-sm">
+                        <label class="control-label col-sm-4">商品名称:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control input-sm" name="pdtName" id="pdtName2"
+                                   placeholder="请输入..."/>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label class="control-label col-sm-4">入库数量:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control input-sm" name="inNum" id="inNum"
+                                   placeholder="请输入..."/>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label class="control-label col-sm-4">入库时间:</label>
+                        <div class="col-sm-8 has-feedback ">
+                            <input name="inTime" id="inTime" type="text" placeholder="精确到年月日时分秒 "
+                                   class="form-control"
+                                   onFocus="WdatePicker({maxDate:'%y-%M-%d',dateFmt: 'yyyy-MM-dd'})"/>
+                            <span class="glyphicon glyphicon-calendar form-control-feedback "></span>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label class="control-label col-sm-4">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注:</label>
+                    </div>
+                    <div class="form-group form-group-sm" style="margin-left: 15px;">
+                        <div class="col-sm-12">
+                            <textarea class="form-control" name="remark" id="desc" style="resize:none;height: 40px;"
+                                      rows="3"
+                                      placeholder="请输入..."
+                                      onkeyup="this.value=this.value.replace(/\s+/g,'')"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <button id="ok" class="btn btn-primary  col-sm-2 col-sm-offset-3   btn-sm"
+                            onclick="saveFun()">保存
+                    </button>
+                    <button id="reseted" class="btn btn-warning  col-sm-2  col-sm-offset-2  btn-sm"
+                            onclick="resetBtn()">重置
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--商品入库模态框 end-->
 </body>
 <script>
     /*全局变量*/
     var pdtTypeList =${pdtTypeList};//商品类别
     var sysMenuList =${sysMenuList};//按钮列表
-    var measureList=${measureList}; //计量单位
+    var measureList =${measureList}; //计量单位
     /*-------下拉框 jsonArr 数据，valPro value ，textPro text，domid select的id*/
     function initSelectOptions(jsonArr, valPro, textPro, domid) {
         var opt = '';
@@ -254,6 +324,7 @@
     function queryPdtBtn() {
         $('#tb_roles').bootstrapTable('refresh');
     }
+
     /*上架按鈕*/
     function upShellFun() {
         var rowids = $('#tb_roles').bootstrapTable('getSelections'); //获取所选中的行
@@ -272,7 +343,7 @@
                 }
             });
         } else if (rowids.length == 1) {
-            if(rowids[0].status==4){
+            if (rowids[0].status == 4) {
                 $.confirm({
                     title: '提示',
                     content: '您确认进行此操作吗？',
@@ -295,7 +366,7 @@
                     },
                 });
 
-            }else{
+            } else {
                 $.alert({
                     title: '提示',
                     content: '请只有待上架的商品允许此操作！',
@@ -326,12 +397,13 @@
             });
         }
     }
-    function  upShellTask(){
+
+    function upShellTask() {
         var rowids = $('#tb_roles').bootstrapTable('getSelections'); //获取所选中的行
-        var pdtId=rowids[0].pdtId;
-        var status=rowids[0].status;
-        var upShellUrl=$("#operateShellPdtUrl").val();
-            $.post(upShellUrl, rowids[0], function (data) {
+        var pdtId = rowids[0].pdtId;
+        var status = rowids[0].status;
+        var upShellUrl = $("#operateShellPdtUrl").val();
+        $.post(upShellUrl, rowids[0], function (data) {
             if (data || data == 'true') {
                 $.alert({
                     title: '提示',
@@ -364,6 +436,7 @@
             }
         }, 'json');
     }
+
     /*下架按鈕*/
     function downShellFun() {
         var rowids = $('#tb_roles').bootstrapTable('getSelections'); //获取所选中的行
@@ -382,7 +455,7 @@
                 }
             });
         } else if (rowids.length == 1) {
-            if(rowids[0].status==2){
+            if (rowids[0].status == 2) {
                 $.confirm({
                     title: '提示',
                     content: '您确认进行此操作吗？',
@@ -405,7 +478,7 @@
                     },
                 });
 
-            }else{
+            } else {
                 $.alert({
                     title: '提示',
                     content: '只有已上架的商品允许此操作！',
@@ -436,11 +509,12 @@
             });
         }
     }
-    function  downShellTask(){
+
+    function downShellTask() {
         var rowids = $('#tb_roles').bootstrapTable('getSelections'); //获取所选中的行
-        var pdtId=rowids[0].pdtId;
-        var status=rowids[0].status;
-        var downShellUrl=$("#operateShellPdtUrl").val();
+        var pdtId = rowids[0].pdtId;
+        var status = rowids[0].status;
+        var downShellUrl = $("#operateShellPdtUrl").val();
         $.post(downShellUrl, rowids[0], function (data) {
             if (data || data == 'true') {
                 $.alert({
@@ -474,6 +548,7 @@
             }
         }, 'json');
     }
+
     /*删除按钮*/
     function deleteFun() {
         var rowids = $('#tb_roles').bootstrapTable('getSelections'); //获取所选中的行
@@ -538,7 +613,7 @@
         if (rowId.length == 1) {
             pdtId = rowId[0].pdtId;
         }
-        $.post(delUrl, {"pdtId": pdtId,"flag":"del"}, function (data) {
+        $.post(delUrl, {"pdtId": pdtId, "flag": "del"}, function (data) {
             if (data || data == 'true') {
                 $.alert({
                     title: '提示',
@@ -571,6 +646,7 @@
             }
         }, 'json');
     }
+
     /*新增按钮*/
     function addFun() {
         row = "";
@@ -583,6 +659,7 @@
         $("#resetPdt").attr("style", "display:block;");
         $("#closePdt").attr("style", "display:none;");
     }
+
     /*新增信息确认按钮*/
     function saveOrUpdateFun() {
         var bootstrapValidator = $("#pdtForm").data('bootstrapValidator');
@@ -689,8 +766,10 @@
             checkForm();
         }
     }
+
     /*修改按钮*/
     var row = "";
+
     function updateFun() {
         var rowId = $('#tb_roles').bootstrapTable('getSelections'); //获取所选中的行
         if (rowId.length <= 0) {
@@ -885,6 +964,99 @@
         $('#pdtForm').data('bootstrapValidator', null);
     }
 
+    /*商品入库*/
+    function pdtInStock(row) {
+        var rows=row.split(",");
+        checkForm2();
+        $("#pdtInStockForm").data('bootstrapValidator').resetForm();
+        $('#pdtInStockForm')[0].reset();
+        $('#pdtModal #pdtInStockId').val(rows[0]);
+        $('#pdtModal #pdtName2').val(rows[1]);
+        $('#pdtModal').modal('show');
+
+    }
+    /*商品入库确认按钮*/
+    function saveFun() {
+        var bootstrapValidator = $("#pdtInStockForm").data('bootstrapValidator');
+        if (bootstrapValidator.validate().isValid()) {
+            $("body").mLoading({
+                text: "加载中，请稍候...",//加载文字，默认值:加载中...
+                html: false,//设置加载内容是否是html格式，默认值是false
+                content: "",//忽略icon和text的值，直接在加载框中显示此值
+                mask: true//是否显示遮罩效果，默认显示
+            })
+            var createInstockUrl = $("#createInstockUrl").val();
+            $.post(createInstockUrl, $("#pdtInStockForm").serialize(), function (data) {
+                $("body").mLoading("hide");//隐藏loading组件
+                if (data.result == true) {
+                    $.alert({
+                        title: '提示',
+                        content: '保存成功！',
+                        type: 'green',				//一般危险操作用red,保存成功操作green
+                        buttons: {				//定义按钮
+                            confirm: {
+                                text: '确认',
+                                btnClass: 'btn-primary',
+                                action: function () {	//这里写点击按钮回调函数
+                                    $('#pdtModal').modal('hide');
+                                    $("#pdtInStockForm").data('bootstrapValidator').resetForm();
+                                }
+                            }
+                        }
+                    });
+                } else if (data.result == false) {
+                    $.alert({
+                        title: '提示',
+                        content: '保存失败！',
+                        type: 'red',				//一般危险操作用red,保存成功操作green
+                        buttons: {				//定义按钮
+                            confirm: {
+                                text: '确认',
+                                btnClass: 'btn-primary',
+                                action: function () {	//这里写点击按钮回调函数
+                                }
+                            }
+                        }
+                    });
+                }
+            }, 'json');
+        }
+        else {
+            $.alert({
+                title: '提示',
+                content: '请按照相关提示修改！',
+                type: 'red', //一般危险操作用red,保存成功操作green
+                buttons: { //定义按钮
+                    confirm: {
+                        text: '确认',
+                        btnClass: 'btn-primary',
+                        action: function () { //这里写点击按钮回调函数
+                        }
+                    }
+                }
+            });
+        }
+    }
+    /*表单验证*/
+    function checkForm2() {
+        $("#pdtInStockForm").bootstrapValidator({
+            message: '不可用的值',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                inNum: {
+                    validators: {
+                        notEmpty: {
+                            message: '请填写入库数量'
+                        }
+                    }
+                },
+            }
+        });
+    }
     /*---------bootstrapTable------start-----*/
     var index = '';
     var TableInit = function () {
@@ -996,7 +1168,7 @@
                     align: 'center',
                     valign: 'middle',
                     visible: false
-                },{
+                }, {
                     title: '状态',
                     field: 'statusDes',
                     align: 'center',
@@ -1006,13 +1178,13 @@
                     field: 'createTime',
                     align: 'center',
                     valign: 'middle'
-                },{
+                }, {
                     title: '状态',
                     field: 'status',
                     align: 'center',
                     valign: 'middle',
                     visible: false
-                },{
+                }, {
                     title: '修改时间',
                     field: 'updateTime',
                     align: 'center',
@@ -1023,6 +1195,14 @@
                     field: 'remark',
                     align: 'center',
                     valign: 'middle'
+                }, {
+                    field: 'action',
+                    title: '操作',
+                    align: "center",
+                    valign: 'middle',
+                    formatter: function (value, row, index) {
+                        return '<button id="pdtInStock" class="btn btn-link"  onclick="pdtInStock(\'' + row.pdtId +','+row.pdtName+ '\')">商品入库</button> ';
+                    }
                 }],
             });
 

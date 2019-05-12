@@ -92,7 +92,7 @@
                             <label class="control-label col-md-1">商品名称:</label>
                             <div class="col-md-2">
                                 <input type="text" class="form-control  input-sm" name="pdtName"
-                                       id="pdtName" placeholder="名称" onclick="getPdtInfo()" value="1000">
+                                       id="pdtName" placeholder="名称" onclick="getPdtInfo()">
                             </div>
                             <label class="control-label col-md-1">商品数量:</label>
                             <div class="col-md-2">
@@ -299,11 +299,12 @@
     /*提交订单*/
     function createOrder() {
         var totalPrice= $("#totalPrice").val();
-        alert(totalPrice);
         var userPhone= $("#choseUserPhone").val();
-        var data = $('#dataGrid').bootstrapTable('getData');
+        var datas = $('#dataGrid').bootstrapTable('getData');
         var createUrl=$("#insertOrderAndDtlUrl").val();
-        $.post(createUrl, {"data":JSON.stringify(data),"totalPrice":totalPrice,"userPhone":userPhone}, function (data) {
+        $.post(createUrl, {"data":JSON.stringify(datas),"totalPrice":totalPrice,"userPhone":userPhone}, function (data) {
+            console.info(data);
+            console.info(data.orderResult);
             if (data.orderResult == true&&data.dtlResult == true) {
                 $.alert({
                     title: '提示',
@@ -314,6 +315,7 @@
                             text: '确认',
                             btnClass: 'btn-primary',
                             action: function () { //这里写点击按钮回调函数
+                                window.location.href="orderManageList/insertOrderIndex";
                             }
                         }
                     }
@@ -750,7 +752,13 @@
                         field: 'pdtType',
                         align: 'center',
                         valign: 'middle',
-                    }, {
+                        visible: false
+                    },  {
+                        title: '商品类别',
+                        field: 'pdtTypeDes',
+                        align: 'center',
+                        valign: 'middle'
+                    },{
                         title: '单价',
                         field: 'unitPrice',
                         align: 'center',
@@ -988,7 +996,7 @@
         oTable2.Init();
         //默认加载类别数
         var pdtTypeTreeUrl = $("#selectLeftTree").val();
-        /* $.ajax({
+        $.ajax({
              url: pdtTypeTreeUrl,    // 提交到controller的url路径
              type: "post",    // 提交方式
              dataType: "json",    // 服务器端返回的数据类型
@@ -1004,7 +1012,7 @@
                      onNodeSelected: addRightTable
                  });
              }
-         });*/
+         });
     })
 </script>
 </html>

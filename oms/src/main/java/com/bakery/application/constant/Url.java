@@ -29,6 +29,8 @@ public interface Url {
     String INSERT_OR_UPDATE_PDT_URL=PDT_MANAGER_LIST+"/insertOrUpdatePdt";
     //刪除商品
     String DELETE_PDT_URL=PDT_MANAGER_LIST+"/deletePdt";
+    //商品入库
+    String INSERT_IN_STOCK_URL=PDT_MANAGER_LIST+"/createInstock";
     //商品上架/下架
     String OPERATE_SHELL_PDT_URL=PDT_MANAGER_LIST+"/operateShellPdt";
     //订单管理-订单列表

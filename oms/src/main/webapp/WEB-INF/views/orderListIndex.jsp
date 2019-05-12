@@ -298,8 +298,9 @@
     }
 
     /*删除订单明细*/
-    function delDtlFun(dtlId) {
-        if (dtlId.length > 0) {
+    function delDtlFun(row) {
+        var rows = row.split(",");
+        if (rows[1].length > 0) {
             $.confirm({
                 title: '提示',
                 content: '您确认需要删除该数据吗？',
@@ -310,7 +311,7 @@
                         text: '确认',
                         btnClass: 'btn-primary',
                         action: function () { //确认按钮回调
-                            deleteDtlTask(dtlId);
+                            deleteDtlTask(row);
                         }
                     },
                     cancel: {
@@ -324,9 +325,10 @@
         }
     }
 
-    function deleteDtlTask(dtlId) {
+    function deleteDtlTask(row) {
+        var rows = row.split(",");
         var delUrl = $("#deleteOrderDtlUrl").val();
-        $.post(delUrl, {"orderDtlId": dtlId}, function (data) {
+        $.post(delUrl, {"orderDtlId": rows[1],"orderId":rows[0]}, function (data) {
             if (data || data == 'true') {
                 $.alert({
                     title: '提示',
@@ -338,6 +340,7 @@
                             btnClass: 'btn-primary',
                             action: function () { //这里写点击按钮回调函数
                                 $(cur_table).bootstrapTable('refresh');  //刷新列表
+                                $("#tb_roles").bootstrapTable("refresh");
                             }
                         }
                     }
@@ -389,8 +392,9 @@
             });
         }
     }
-    function deleteTask(orderId){
-        var delUrl=$("#deleteOrderUrl").val();
+
+    function deleteTask(orderId) {
+        var delUrl = $("#deleteOrderUrl").val();
         $.post(delUrl, {"orderId": orderId}, function (data) {
             if (data || data == 'true') {
                 $.alert({
@@ -427,6 +431,7 @@
 
 
     }
+
     /*---------bootstrapTable------start-----*/
     var index = '';
     var cur_table = '';
@@ -732,7 +737,7 @@
                 align: "center",
                 valign: 'middle',
                 formatter: function (value, row, index) {
-                    return '<button style="margin-left: 15px" class="btn btn-danger"  onclick="delDtlFun(\'' + row.orderDtlId + '\')"><span class="fa fa-trash-o fa-fw"></span></button> ';
+                    return '<button style="margin-left: 15px" class="btn btn-danger"  onclick="delDtlFun(\'' + row.orderId + ',' + row.orderDtlId + '\')"><span class="fa fa-trash-o fa-fw"></span></button> ';
 
                 }
             }],

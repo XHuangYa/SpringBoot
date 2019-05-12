@@ -184,7 +184,7 @@
                     <button id="ok" class="btn btn-primary  col-sm-2 col-sm-offset-3   btn-sm"
                             onclick="saveOrUpdateFun()">保存
                     </button>
-                    <button id="reseted" disabled class="btn btn-warning  col-sm-2  col-sm-offset-2  btn-sm"
+                    <button id="reseted"  class="btn btn-warning  col-sm-2  col-sm-offset-2  btn-sm"
                             onclick="resetModelBtn()">重置
                     </button>
                 </div>

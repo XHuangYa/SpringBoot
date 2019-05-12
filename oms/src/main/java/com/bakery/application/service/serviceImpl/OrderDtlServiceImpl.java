@@ -2,6 +2,7 @@ package com.bakery.application.service.serviceImpl;
 
 import com.bakery.application.constant.Page;
 import com.bakery.application.entity.OrderDtl;
+import com.bakery.application.entity.OrderDtlCriteria;
 import com.bakery.application.mapper.OrderDtlMapper;
 import com.bakery.application.service.OrderDtlService;
 import com.github.pagehelper.PageHelper;
@@ -34,10 +35,10 @@ public class OrderDtlServiceImpl implements OrderDtlService {
     }
 
     @Override
-    public boolean updateByPrimaryKeySelective(OrderDtl orderDtl) {
-        orderDtl.setStatus(0);
-        return orderDtlMapper.updateByPrimaryKeySelective(orderDtl)>=1?true:false;
+    public boolean deleteOrderDtl(String orderDtlId) {
+        return orderDtlMapper.deleteOrderDtl(orderDtlId)>=1?true:false;
     }
+
 
     @Override
     public Map<String,Object> insertBatchService(List<OrderDtl> orderDtl) {
@@ -45,5 +46,10 @@ public class OrderDtlServiceImpl implements OrderDtlService {
         boolean b = orderDtlMapper.insertBatch(orderDtl) >= 1 ? true : false;
         map.put("dtlResult",b);
         return map;
+    }
+
+    @Override
+    public int countByExample(OrderDtlCriteria criteria) {
+        return orderDtlMapper.countByExample(criteria);
     }
 }

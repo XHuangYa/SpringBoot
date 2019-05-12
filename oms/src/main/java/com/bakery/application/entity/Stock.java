@@ -1,5 +1,7 @@
 package com.bakery.application.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Stock {
@@ -8,9 +10,9 @@ public class Stock {
     private String stockId;
 
     private String pdtId;
-
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     private Date inTime;
-
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     private Date outTime;
 
     private String inNum;
@@ -18,9 +20,9 @@ public class Stock {
     private String outNum;
 
     private String flag;
-
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     private Date createTime;
-
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     private Date updateTime;
 
     private Integer status;

@@ -4,12 +4,11 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.bakery.application.constant.*;
 import com.bakery.application.dto.OrderDTO;
-import com.bakery.application.entity.BaseCode;
-import com.bakery.application.entity.Order;
-import com.bakery.application.entity.OrderDtl;
+import com.bakery.application.entity.*;
 import com.bakery.application.service.BaseCodeService;
 import com.bakery.application.service.OrderDtlService;
 import com.bakery.application.service.OrderService;
+import com.bakery.application.service.StockService;
 import com.bakery.application.util.JsonUtil;
 import com.bakery.application.util.UUIDUtil;
 import com.github.pagehelper.PageInfo;
@@ -37,6 +36,9 @@ public class OrderController {
 
     @Autowired
     OrderDtlService orderDtlService;
+
+    @Autowired
+    StockService stockService;
 
     /**
      * @Description:订单首页初始化
@@ -138,8 +140,22 @@ public class OrderController {
     @RequestMapping(value = Url.DELETE_ORDER_DTL_URL, method = RequestMethod.POST)
     public @ResponseBody
     boolean updateOrderDtlStatus(OrderDtl orderDtl) {
-        return  orderDtlService.updateByPrimaryKeySelective(orderDtl);
+        OrderDtlCriteria criteria = new OrderDtlCriteria();
+        OrderDtlCriteria.Criteria cri = criteria.createCriteria();
+        cri.andStatusEqualTo(1);
+        cri.andOrderIdEqualTo(orderDtl.getOrderId());
+        cri.andOrderDtlIdNotEqualTo(orderDtl.getOrderDtlId());
+        int i = orderDtlService.countByExample(criteria);
+        boolean b = false;
+        if (0 == i) {
+            b = orderService.deleteOrderAndDtl(orderDtl.getOrderId());
+        } else {
+            b = orderDtlService.deleteOrderDtl(orderDtl.getOrderDtlId());
+            final boolean price = orderService.updatePricebyPrimaryKey(orderDtl);
+        }
+        return b;
     }
+
     /**
      * @Description:删除订单
      * @Author: LiTing
@@ -149,9 +165,10 @@ public class OrderController {
      */
     @RequestMapping(value = Url.DELETE_ORDER_URL, method = RequestMethod.POST)
     public @ResponseBody
-    boolean updateOrderStatus(Order order) {
-        return orderService.deleteOrderAndDtl(order);
+    boolean updateOrderStatus(String orderId) {
+        return orderService.deleteOrderAndDtl(orderId);
     }
+
     /**
      * @Description:新增订单及订单明细界面初始化
      * @Author: LiTing
@@ -160,12 +177,13 @@ public class OrderController {
      * @throws:
      */
     @RequestMapping(value = Url.INSERT_ORDER_INDEX_URL)
-    public String insertOrderIndex(final  Map<String,Object> map){
+    public String insertOrderIndex(final Map<String, Object> map) {
         //支付方式
         List<BaseCode> payMethodList = baseCodeService.findByCodeType(CodeTypeConstant.PAY_METHOD);
         map.put("payMethodList", JsonUtil.listtojson(payMethodList));
         return Views.INSERT_ORDER_VIEW;
     }
+
     /**
      * @Description:新增订单及订单明细
      * @Author: LiTing
@@ -174,13 +192,15 @@ public class OrderController {
      * @throws:
      */
     @RequestMapping(value = Url.INSERT_ORDER_AND_DTL_URL, method = RequestMethod.POST)
-    public  Map<String, Object> createOrderAndDtl(@RequestParam(value="data", required=false) String data,Order order){
-        Map<String, Object> map=new HashMap<String, Object>();
-        JSONArray array=JSONArray.parseArray(data);
-        String orderId=UUIDUtil.create32Key();
+    public @ResponseBody
+    Map<String, Object> createOrderAndDtl(@RequestParam(value = "data", required = false) String data, Order order) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        JSONArray array = JSONArray.parseArray(data);
+        String orderId = UUIDUtil.create32Key();
         order.setOrderId(orderId);
         Map<String, Object> orderMap = orderService.insertSelective(order);//订单
-        List<OrderDtl> dtls=new ArrayList<OrderDtl>();
+        List<OrderDtl> dtls = new ArrayList<OrderDtl>();
+        List<Stock> stocks = new ArrayList<Stock>();
         for (Object o : array) {
             OrderDtl dtl = JSONObject.parseObject(o.toString(), OrderDtl.class);
             dtl.setStatus(1);
@@ -188,10 +208,21 @@ public class OrderController {
             dtl.setOrderId(orderId);
             dtl.setOrderDtlId(UUIDUtil.create32Key());
             dtls.add(dtl);
+            Stock stock = new Stock();
+            stock.setStockId(dtl.getOrderDtlId());
+            stock.setPdtId(dtl.getPdtId());
+            stock.setOutTime(dtl.getCreateTime());
+            stock.setOutNum(String.valueOf(dtl.getPdtNum()));
+            stock.setFlag("OUT");
+            stock.setStatus(1);
+            stock.setCreateTime(dtl.getCreateTime());
+            stocks.add(stock);
         }
         Map<String, Object> dtlsMap = orderDtlService.insertBatchService(dtls);//訂單明細
-        map.put("orderResult",orderMap.get("orderResult"));
-        map.put("dtlResult",orderMap.get("dtlResult"));
+        int i = stockService.insertBatch(stocks);
+        System.out.println(i + "---");
+        map.put("orderResult", orderMap.get("orderResult"));
+        map.put("dtlResult", dtlsMap.get("dtlResult"));
         return map;
     }
 

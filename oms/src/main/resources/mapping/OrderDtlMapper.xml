@@ -97,66 +97,34 @@
 	`bky_order_dtl` od where od.ORDER_ID=#{orderId} and od.status=1;
     </select>
     <!--批量插入-->
-    <insert id="insertBatch" parameterType="java.util.List" >
-        INSERT INTO bky_order_dtl
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="orderDtlId != null">
-                ORDER_DTL_ID,
-            </if>
-            <if test="orderId != null">
-                ORDER_ID,
-            </if>
-            <if test="pdtId != null">
-                PDT_ID,
-            </if>
-            <if test="pdtNum != null">
-                PDT_NUM,
-            </if>
-            <if test="dtlTotalPrice != null">
-                DTL_TOTAL_PRICE,
-            </if>
-            <if test="status != null">
-                STATUS,
-            </if>
-            <if test="createTime != null">
-                CREATE_TIME,
-            </if>
-            <if test="updateTime != null">
-                UPDATE_TIME,
-            </if>
-            <if test="remark != null">
-                REMARK,
-            </if>
-        </trim>
+    <insert id="insertBatch">
+        insert into bky_order_dtl (ORDER_DTL_ID,ORDER_ID,
+        PDT_ID, PDT_NUM, DTL_TOTAL_PRICE,
+        STATUS, CREATE_TIME
+        )
         values
         <foreach collection="dtls" item="dtl" separator=",">
             <trim prefix="(" suffix=")" suffixOverrides=",">
-                <if test="orderDtlId != null">
-                    #{orderDtlId,jdbcType=VARCHAR},
+                <if test="dtl.orderDtlId != null">
+                    #{dtl.orderDtlId,jdbcType=VARCHAR},
                 </if>
-                <if test="orderId != null">
-                    #{orderId,jdbcType=VARCHAR},
+                <if test="dtl.orderId != null">
+                    #{dtl.orderId,jdbcType=VARCHAR},
                 </if>
-                <if test="pdtId != null">
-                    #{pdtId,jdbcType=VARCHAR},
+                <if test="dtl.pdtId != null">
+                    #{dtl.pdtId,jdbcType=VARCHAR},
                 </if>
-                <if test="pdtNum != null">
-                    #{pdtNum,jdbcType=INTEGER},
+                <if test="dtl.pdtNum != null">
+                    #{dtl.pdtNum,jdbcType=INTEGER},
                 </if>
-                <if test="dtlTotalPrice != null">
-                    #{dtlTotalPrice,jdbcType=VARCHAR},
+                <if test="dtl.dtlTotalPrice != null">
+                    #{dtl.dtlTotalPrice,jdbcType=VARCHAR},
                 </if>
-                <if test="status != null">
-                    #{status,jdbcType=INTEGER},
+                <if test="dtl.status != null">
+                    #{dtl.status,jdbcType=INTEGER},
                 </if>
-                <if test="createTime != null">
-                    #{createTime,jdbcType=DATE},
-                </if>
-                <if test="updateTime != null">
-                    #{updateTime,jdbcType=DATE},
-                </if>
-                <if test="remark != null">
-                    #{remark,jdbcType=VARCHAR},
+                <if test="dtl.createTime != null">
+                    #{dtl.createTime,jdbcType=DATE},
                 </if>
             </trim>
         </foreach>
@@ -195,6 +163,18 @@
         )
         WHERE
             od.ORDER_DTL_ID = #{orderDtlId}
+    </update>
+    <!--删除订单明细-->
+    <update id="deleteOrderDtl" parameterType="java.lang.String">
+        UPDATE
+         bky_order_dtl od,
+         bky_stock bs
+        SET
+         od. STATUS = 0,
+         bs. STATUS = 0
+        WHERE
+          od.ORDER_DTL_ID = bs.STOCK_ID
+        AND od.ORDER_DTL_ID  = #{orderDtlId}
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
         select

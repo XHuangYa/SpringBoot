@@ -12,6 +12,8 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface StockMapper {
 
+    int insertBatch(@Param("stocks") List<Stock> stocks);
+
     List<ProductDTO> queryStockList(Product product);
 
     List<StockDTO> queryStockByPage(StockDTO stockDTO);

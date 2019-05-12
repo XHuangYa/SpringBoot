@@ -47,7 +47,7 @@ public interface OrderService {
      * @return:
      * @throws:
      */
-    public boolean deleteOrderAndDtl(Order order);
+    public boolean deleteOrderAndDtl(String orderId);
 
     /**
      * @Description:新增訂單
