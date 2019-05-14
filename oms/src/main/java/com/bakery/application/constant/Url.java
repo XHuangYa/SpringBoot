@@ -33,6 +33,8 @@ public interface Url {
     String INSERT_IN_STOCK_URL=PDT_MANAGER_LIST+"/createInstock";
     //商品上架/下架
     String OPERATE_SHELL_PDT_URL=PDT_MANAGER_LIST+"/operateShellPdt";
+    //文件上传
+    String UPLOAD_FILE_URL=PDT_MANAGER_LIST+"/upLoadFile";
     //订单管理-订单列表
     String ORDER_MANAGE_LIST = "/orderManageList";
     //新增订单-商品左侧树
@@ -67,6 +69,11 @@ public interface Url {
     String UPDATE_STOCK_INNUM_URL=STORE_IN_LIST+"/updateStockInNum";
     //删除入库单
     String DELETE_IN_STOCK_URL=STORE_IN_LIST+"/deleteInStock";
+    //登录
+    String LOGIN_OMS_URL="/login";
+    //用户民密码登录验证
+    String LOGIN_VALID_URL="/loginValidate";
+
 
 
 }

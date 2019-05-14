@@ -16,8 +16,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -100,6 +106,34 @@ public class ProductController {
         return map;
     }
     /**
+     * @Description: 文件上传
+     * @Author: LiTing
+     * @Date: 2:49 PM 2019/5/4
+     * @return:
+     * @throws:
+     */
+    @RequestMapping(value = Url.UPLOAD_FILE_URL,method = RequestMethod.POST)
+    public @ResponseBody String upLoadFile(MultipartFile file) throws IOException {
+        //获取源文件名
+        String originalFilename = file.getOriginalFilename();
+        //获取文件上传的后缀名
+        String exet=originalFilename.substring(originalFilename.lastIndexOf("."));
+        String uuid= UUIDUtil.create32Key();
+        //动态创建文件路径（以时间命名）
+        Date date=new Date();
+        SimpleDateFormat sdf =new SimpleDateFormat("yyyyMMdd");
+        String dir="C:/Users/Administrator/Desktop/testPic/"+sdf.format(date);
+        File fileDir =new File(dir);
+        //判断文件是否存在
+        if(!fileDir.exists()){
+            fileDir.mkdirs();
+        }
+        String saveFilePath=fileDir+"\\"+uuid+exet;
+        File newFile=new File(saveFilePath);
+        file.transferTo(newFile);
+        return JsonUtil.stringtojson(sdf.format(date)+uuid+exet);
+    }
+    /**
      * @Description:刪除商品
      * @Author: LiTing
      * @Date: 2:46 PM 2019/5/4
@@ -136,4 +170,6 @@ public class ProductController {
         List<BaseCodeDTO> baselistdto = productService.selectLeftTrees();
         return JsonUtil.listtojson(baselistdto);
     }
+
+
 }

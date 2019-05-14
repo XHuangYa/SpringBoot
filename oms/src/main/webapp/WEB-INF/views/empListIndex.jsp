@@ -546,6 +546,7 @@
         $('#myModal').modal('show');
         checkForm();
         $("#empForm").data('bootstrapValidator').resetForm();
+        $('#myModal #empNo').val("");
         $('#empForm')[0].reset();
         $("#fieldset").removeAttr("disabled");
         $("#saveEmp").attr("style", "display:block;");

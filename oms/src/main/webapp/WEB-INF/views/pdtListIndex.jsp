@@ -11,7 +11,6 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>product</title>
     <%--js--%>
     <script src="<%=basePath%>static/js/jquery-3.2.1.min.js"></script>
@@ -57,6 +56,18 @@
             text-decoration: none;
         }
 
+        #div
+        {
+            text-align:center;
+            border:1px solid #a1a1a1;
+            padding:2px 20px;
+            width:300px;
+            height: 120px;
+            border-radius:3px;
+        }
+        img[src = ""]{
+            opacity:0;
+        }
     </style>
 </head>
 <body>
@@ -65,7 +76,8 @@
 <input type="hidden" id="deletePdtUrl" value="pdtManageList/deletePdt"/>
 <input type="hidden" id="operateShellPdtUrl" value="pdtManageList/operateShellPdt"/>
 <input type="hidden" id="createInstockUrl" value="pdtManageList/createInstock"/>
-<ol class="breadcrumb">
+<input type="hidden" id="upLoadFileUrl" value="pdtManageList/upLoadFile"/>
+    <ol class="breadcrumb">
     <li><a>Home</a></li>
     <li><a>商品管理</a></li>
     <li class="active">商品列表</li>
@@ -123,7 +135,7 @@
 <!--模态框 start-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
     <div class="modal-dialog " role="document">
-        <form class="form-horizontal" role="form" id="pdtForm" name="pdtForm" method="post">
+        <form class="form-horizontal" role="form" id="pdtForm" name="pdtForm" method="post" enctype="multipart/form-data">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" onclick="rightClose()" data-dismiss="modal"
@@ -149,7 +161,7 @@
                             </div>
                         </div>
                         <div class="form-group form-group-sm">
-                            <label class="control-label col-sm-2"><span style="color:red">*</span>计量单位:</label>
+                            <label class="control-label col-sm-2"><span style=";color:red">*</span>计量单位:</label>
                             <div class="col-sm-4">
                                 <select class="form-control" name="measer" id="measer"
                                         onkeyup="this.value=this.value.replace(/\s+/g,'')">
@@ -157,9 +169,9 @@
                                 </select>
                             </div>
                             <label class="control-label col-sm-2"><span style="color:red">*</span>商品单价:</label>
-                            <div class="col-sm-4 has-feedback ">
-                                <input name="unitPrice" id="unitPrice" type="text " placeholder="精确到年月日 "
-                                       class="form-control  input-sm "/>
+                            <div class="col-sm-4 has-feedback">
+                                <input name="unitPrice" id="unitPrice" type="text "
+                                       class="form-control  input-sm"/>
                                 <span class="glyphicon glyphicon-jpy form-control-feedback"></span>
                             </div>
                         </div>
@@ -169,10 +181,10 @@
                                 <input name="createTime" id="createTime" type="text " placeholder="精确到年月日"
                                        class="form-control"
                                        onFocus="WdatePicker({maxDate:'%y-%M-%d',dateFmt: 'yyyy-MM-dd'})"/>
-                                <span class="glyphicon glyphicon-calendar form-control-feedback "></span>
+                                <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
                             </div>
 
-                            <label class="control-label col-sm-2 ">修改时间:</label>
+                            <label class="control-label col-sm-2">修改时间:</label>
                             <div class="col-sm-4 has-feedback ">
                                 <input name="updateTime" id="updateTime" type="text " placeholder="精确到年月日"
                                        class="form-control"
@@ -181,21 +193,30 @@
                             </div>
                         </div>
                         <div class="form-group form-group-sm">
+<%--
                             <label class="control-label col-sm-2">描&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;述:</label>
+--%>
+                            <label class="control-label col-sm-2">
+                                <table>
+                                    <tr>
+                                        <td><input type="file" name="file" id="file" onchange="checkFile()" style="padding-left: 15px;width: 220px"></td>
+                                        <td><button disabled id="imgBtn" class="btn btn-sm" onclick="upLoadFile()" style="margin-left: 55px">
+                                            <span class="fa fa-check fa-lg"></span>
+                                        </button> </td>
+                                    </tr>
+                                </table>
+                            </label>
+                            <label class="control-label col-sm-2 col-sm-offset-4">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注:</label>
                         </div>
                         <div class="form-group form-group-sm" style="padding-left: 18px">
-                            <div class="col-sm-12 ">
-                            <textarea class="form-control" name="picture" id="picture" style="resize:none;height: 60px;"
-                                      rows="3" placeholder="请输入..."
-                                      onkeyup="this.value=this.value.replace(/\s+/g,'')"></textarea>
+                            <div class="col-sm-6">
+                                <div id="div">
+                                    <img src="" alt="" width="200px" height="110px" name="imgInfo" id="imgInfo"/>
+                                    <input type="hidden" id="picture" name="picture">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group form-group-sm">
-                            <label class="control-label col-sm-2">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注:</label>
-                        </div>
-                        <div class="form-group form-group-sm" style="padding-left: 18px">
-                            <div class="col-sm-12 ">
-                            <textarea class="form-control" name="remark" id="remark" style="resize:none;height: 40px;"
+                            <div class="col-sm-6">
+                            <textarea class="form-control" name="remark" id="remark" style="resize:none;height: 120px;"
                                       rows="3" placeholder="请输入..."
                                       onkeyup="this.value=this.value.replace(/\s+/g,'')"></textarea>
                             </div>
@@ -320,6 +341,49 @@
     }
     $("#toolbar").html(tempStr);
 
+    function upLoadFile() {
+            var files = document.getElementById("file").files;
+            var formdata = new FormData();
+            formdata.append("file", files[0]);
+            $.ajax({
+                url: "pdtManageList/upLoadFile",
+                type: "post",
+                data: formdata,
+                contentType: false, //- 必须false才会自动加上正确的Content-Type
+                processData: false, //- 必须false才会避开jQuery对 formdata 的默认处理,XMLHttpRequest会对 formdata 进行正确的处理
+                success: function (res) {
+                    var str1=res.substr(0,8);
+                    var str2=res.substr(8,res.length);
+                    var picrure=str1+"/"+str2;
+                    $("#picture").val("/image/"+picrure);
+                    $("#imgInfo").attr("src","/image/"+picrure);
+                },
+                error: function () {
+                }
+            });
+        }
+    function changeImgable() {
+        $("#imgBtn").removeAttr("disabled");
+        $("#imgBtn").addClass("btn-primary");
+    }
+
+    function changeImgdisable() {
+        $("#imgBtn").attr("disabled", "true");
+        $("#imgBtn").removeClass("btn-primary");
+    }
+    function checkFile() {
+       var file=$("#file").val();
+       if(file==null || file==''){
+           changeImgdisable();
+       }else{
+           changeImgable();
+       }
+    }
+    //预览图片
+    /*function checkImage() {
+        var file=$('#file').get(0).files[0];
+        $("#imgInfo").attr("src","/image/"+file.name);
+    }*/
     /*查询按钮*/
     function queryPdtBtn() {
         $('#tb_roles').bootstrapTable('refresh');
@@ -652,8 +716,10 @@
         row = "";
         $('#myModal').modal('show');
         checkForm();
+        $('#myModal #pdtId').val("");
         $("#pdtForm").data('bootstrapValidator').resetForm();
         $('#pdtForm')[0].reset();
+        $("#imgInfo").attr("src","");
         $("#fieldset").removeAttr("disabled");
         $("#savePdt").attr("style", "display:block;");
         $("#resetPdt").attr("style", "display:block;");
@@ -741,27 +807,26 @@
 
     /*新增信息重置按钮*/
     function resetModelBtn() {
-        if (row.empNo == null) {
+        if (row.pdtId == null) {
+            $("#imgInfo").attr("src","");
             $("#pdtForm").data('bootstrapValidator').resetForm();
             $('#pdtForm')[0].reset();
             $("#pdtForm").data('bootstrapValidator').destroy();
+            changeImgdisable();
             checkForm();
         } else {
-            $('#myModal #empNo').val(row.empNo);
-            $('#myModal #empName').val(row.empName);
-            $('#myModal #password').val(row.password);
-            $('#myModal #phone').val(row.phone);
-            $('#myModal #roleId').val(row.roleId);
-            $('#myModal #job').val(row.job);
-            $('#myModal #mgr').val(row.mgr);
-            $('#myModal #sex').val(row.sex);
-            $('#myModal #birth').val(row.birth);
-            $('#myModal #addr').val(row.addr);
-            $('#myModal #sal').val(row.sal);
-            $('#myModal #depNo').val(row.depNo);
-            $('#myModal #doneTime').val(row.doneTime);
+            $('#myModal #pdtId').val(row.pdtId);
+            $('#myModal #pdtName').val(row.pdtName);
+            $('#myModal #pdtType').val(row.pdtType);
+            $('#myModal #unitPrice').val(row.unitPrice);
+            $('#myModal #measer').val(row.measer);
+            $('#myModal #createTime').val(row.createTime);
             $('#myModal #updateTime').val(row.updateTime);
+            $('#myModal #picture').val(row.picture);
             $('#myModal #remark').val(row.remark);
+            $("#myModal #imgInfo").attr("src",row.picture);
+            $("#file").val("");
+            changeImgdisable();
             $('#pdtForm').data('bootstrapValidator', null);
             checkForm();
         }
@@ -769,7 +834,6 @@
 
     /*修改按钮*/
     var row = "";
-
     function updateFun() {
         var rowId = $('#tb_roles').bootstrapTable('getSelections'); //获取所选中的行
         if (rowId.length <= 0) {
@@ -796,6 +860,7 @@
             $('#myModal #updateTime').val(rowId[0].updateTime);
             $('#myModal #picture').val(rowId[0].picture);
             $('#myModal #remark').val(rowId[0].remark);
+            $("#myModal #imgInfo").attr("src",rowId[0].picture);
             row = rowId[0];
             $('#myModal').modal('show');
             $("#fieldset").removeAttr("disabled");
@@ -848,12 +913,13 @@
             $('#myModal #updateTime').val(rowId[0].updateTime);
             $('#myModal #picture').val(rowId[0].picture);
             $('#myModal #remark').val(rowId[0].remark);
+            $("#myModal #imgInfo").attr("src",rowId[0].picture);
             row = rowId[0];
             $('#myModal').modal('show');
-            $("#fieldset").removeAttr("disabled");
-            $("#savePdt").attr("style", "display:block;");
-            $("#resetPdt").attr("style", "display:block;");
-            $("#closePdt").attr("style", "display:none");
+            $("#fieldset").attr("disabled", "true");
+            $("#savePdt").attr("style", "display:none;");
+            $("#resetPdt").attr("style", "display:none;");
+            $("#closePdt").attr("style", "display:block");
         } else {
             $.alert({
                 title: '提示',
@@ -941,6 +1007,8 @@
     }
 
     /*-------------设置重置按钮状态end---------*/
+
+
     var values = "";//判断按钮状态全局变量
     function checkInput() {
         var searchProductForm = $('#searchProductForm').serializeArray();

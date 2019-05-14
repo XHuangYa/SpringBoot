@@ -28,6 +28,6 @@
         </table>
     </form>
 </center>
-
+<img src="/image/timg.jpg" width="150px" height="150px"/>
 </body>
 </html>

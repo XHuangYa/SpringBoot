@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -99,6 +100,8 @@ public class ProductServiceImpl implements ProductService {
 		ProductCriteria.Criteria cri=productCriteria.createCriteria();
 		cri.andPdtNameEqualTo(product.getPdtName().trim());
 		List<Product> products = productMapper.selectByExample(productCriteria);
+		Date date=new Date();
+		SimpleDateFormat sdf =new SimpleDateFormat("yyyyMMdd");
 		if(products.isEmpty()){
 			product.setPdtId(UUIDUtil.create32Key());
 			product.setStatus(4);//待上架

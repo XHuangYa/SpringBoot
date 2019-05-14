@@ -39,36 +39,10 @@
     <script src="<%=basePath%>static/assets/js/retina-1.1.0.min.js"></script>
     <script src="<%=basePath%>static/assets/js/scripts.js"></script>
     <script src="<%=basePath%>static/assets/js/login.js?ver=1"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
 
 </head>
-<%--	<script type="text/javascript">
-		$(function() {
-			$("#form1").validate({
-				rules: {
-					username: {
-						required: true,
-						minlength: 2,
-					},
-					pasword: {
-						required: true,
-						minlength: 6,
-					}
-				},
-				messages: {
-					username: {
-						required: "请输入用户名",
-						minlength: "请输入用户名长度不能小于 2 个字母符",
-					},
-					loginpwd2: {
-						required: "请输入密码",
-						minlength: "密码长度不能小于 6 个字母",
-				}
-			}
-				});
-		});
-	</script>--%>
-<body>
-
+<input type="hidden" id="loginUrl" value="login"/>
 <div class="top-content">
     <div class="inner-bg">
         <div class="container">
@@ -108,44 +82,46 @@
                                 <i class="fa fa-pencil"></i>
                             </div>
                         </div>
+                        <form role="form" action="" method="post" id="loginForm">
                         <!--普通会员登录start-->
                         <div class="form-bottom">
-                            <form role="form" action="" method="post" id="form1">
+                           <%-- <form role="form" action="" method="post" id="formOne">--%>
                                 <div class="form-group">
-                                    <label class="sr-only" for="login_username">username</label>
-                                    <input type="text" name="login_username" id="login_username" placeholder="请输入你的用户名"
+                                    <label class="sr-only" for="empName">username</label>
+                                    <input type="text" name="empName" id="empName" placeholder="请输入你的用户名"
                                            class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label class="sr-only" for="login_pasword">username</label>
-                                    <input type="text" name="login_pasword" id="login_pasword" placeholder="请输入你的密码"
-                                           class="form-control  ">
+                                    <label class="sr-only" for="password">username</label>
+                                    <input type="text" name="password" id="password" placeholder="请输入你的密码"
+                                           class="form-control">
                                 </div>
                                 <p class="forget">
                                     <a type="button" class="btn-link" id="reset"
-                                       style="color: white; font-size: 25px; ">
+                                       style="color: white; font-size: 25px;">
                                         Forget your password?
                                     </a>
                                 </p>
-                                <button type="button" class="btn   btn-warning btn-block">登录</button>
-                            </form>
+                                <button type="button" class="btn   btn-warning btn-block"onclick="loginFun()">登录</button>
+                           <%-- </form>--%>
                         </div>
                         <!--普通会员登录end-->
                         <!--手机动态码登录start-->
                         <div class="phoneLog hide">
-                            <form role="form" action="" method="post">
+                           <%-- <form role="form" action="" method="post">--%>
                                 <div class="form-group">
-                                    <input type="text" name="login_phone" id="login_phone" placeholder="请输入你的手机号"
+                                    <input type="text" name="phone" id="phone" placeholder="请输入你的手机号"
                                            class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="login_numer" id="login_numer" placeholder="请输入你的验证码">
+                                    <input type="text" name="remark" id="remark" placeholder="请输入你的验证码">
                                     <button class="btn btn-warning" style="margin-left:  167px;">获取验证码</button>
                                 </div>
-                                <button type="button" class="btn btn-warning btn-block">登录</button>
-                            </form>
+                                <button type="button" class="btn btn-warning btn-block" onclick="loginFun()">登录</button>
+                          <%--  </form>--%>
                         </div>
                         <!--手机动态码登录end-->
+                        </form>
                     </div>
                 </div>
             </div>
@@ -283,5 +259,98 @@
     </div>
 </div>
 </body>
-
+<script>
+    function loginFun() {
+        var flag = $("#loginForm").valid();
+        if(flag){
+            var loginUrl = $("#loginUrl").val();
+            $.post(loginUrl, $("#loginForm").serialize(), function (data) {
+            }, 'json');
+        }
+    }
+    $(function() {
+        $.validator.addMethod("regex", function(value, element, regexpr) {
+            return regexpr.test(value);
+        }, "Please enter a valid pasword.");
+        $("#loginForm").validate({
+            rules: {
+                empName: {
+                    required: true,
+                    minlength: 2,
+                    regex:/[\u4E00-\u9FA5]+/
+                },
+                password: {
+                    required: true,
+                    minlength: 6,
+                    regex: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/,
+                    remote: {
+                        type:"POST",
+                        url:"loginValidate",
+                        data:{
+                            empName: function() {
+                                return $("#empName").val();
+                            },
+                            password: function() {
+                                return $("#password").val();
+                            }
+                        }
+                    }
+                },
+                phone: {
+                    required: true,
+                    minlength: 11,
+                    regex:/^1[3,5,7,8]\d{9}$/,
+                    remote: {
+                        type:"POST",
+                        url:"loginValidate",
+                        data:{
+                            phone: function() {
+                                return $("#phone").val();
+                            }
+                        }
+                    }
+                },
+                remark:{
+                    required: true,
+                    minlength: 6,
+                    regex:/^\d+$|^\d+[.]?\d+$/,
+                    remote: {
+                        type:"POST",
+                        url:"loginValidate",
+                        data:{
+                            remark: function() {
+                                return $("#remark").val();
+                            }
+                        }
+                    }
+                }
+            },
+            messages: {
+                empName: {
+                    required: "请输入用户名",
+                    minlength: "请输入用户名长度不能小于 2 ",
+                    regex:"禁止输入特殊字符"
+                },
+                password: {
+                    required: "请输入密码",
+                    minlength: "密码长度不能小于6位",
+                    regex : '密码必须是数字和字母组合',
+                    remote: "用户名或密码不正确"
+                },
+                phone:{
+                    required: "请输入电话",
+                    minlength: "电话长度不能小于11位",
+                    regex:"手机号码格式不正确",
+                    remote:"手机号码尚未注册"
+                },
+                remark:{
+                    required: "请输入验证码",
+                    minlength: "验证码长度不能小于6位",
+                    regex:"只能输入数字",
+                    remote:"验证码不正确"
+                }
+            }
+        });
+    });
+</script>
 </html>
