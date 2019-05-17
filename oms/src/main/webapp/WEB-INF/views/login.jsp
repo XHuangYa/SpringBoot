@@ -40,7 +40,7 @@
     <script src="<%=basePath%>static/assets/js/scripts.js"></script>
     <script src="<%=basePath%>static/assets/js/login.js?ver=1"></script>
     <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
-
+    <script type="text/javascript" src="<%=basePath%>static/js/jquery.serializejson.min.js"></script>
 </head>
 <input type="hidden" id="loginUrl" value="login"/>
 <div class="top-content">
@@ -115,7 +115,10 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="text" name="remark" id="remark" placeholder="请输入你的验证码">
-                                    <button class="btn btn-warning" style="margin-left:  167px;">获取验证码</button>
+<%--
+                                    <button id="getValidNum"class="btn btn-warning" style="margin-left:  167px;"onclick="getValidNum()" >获取验证码</button>
+--%>
+                                    <input  type="button"id="getValidNum"class="btn btn-info" style="margin-left:  167px;height: 45px;" value="获取验证码">
                                 </div>
                                 <button type="button" class="btn btn-warning btn-block" onclick="loginFun()">登录</button>
                           <%--  </form>--%>
@@ -260,6 +263,25 @@
 </div>
 </body>
 <script>
+    /*获取验证码*/
+    $("#getValidNum").click(function () {
+        var jsonData=$("#loginForm").serializeJSON();
+        $.ajax({
+            url:"<%=basePath%>/getValidNumber",
+            type:"POST",
+            dataType:"json",
+            data:jsonData,
+            success:　function(data){
+                alert(JSON.stringify(data.responseText));
+            },
+            error:　function(data){
+                alert(JSON.stringify(data.responseText));
+                $("#getValidNum").val(data.responseText);
+
+            }
+        });
+    })
+
     function loginFun() {
         var flag = $("#loginForm").valid();
         if(flag){
@@ -316,7 +338,7 @@
                     regex:/^\d+$|^\d+[.]?\d+$/,
                     remote: {
                         type:"POST",
-                        url:"loginValidate",
+                        url:"validateNumber",
                         data:{
                             remark: function() {
                                 return $("#remark").val();

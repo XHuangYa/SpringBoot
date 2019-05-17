@@ -73,7 +73,10 @@ public interface Url {
     String LOGIN_OMS_URL="/login";
     //用户民密码登录验证
     String LOGIN_VALID_URL="/loginValidate";
-
+    //获取验证码
+    String GET_VALID_NUM_URL="/getValidNumber";
+    //校验验证码
+    String VALIDATE_NUMBER_URL="/validateNumber";
 
 
 }
