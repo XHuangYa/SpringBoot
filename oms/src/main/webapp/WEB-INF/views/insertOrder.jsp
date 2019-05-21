@@ -71,7 +71,7 @@
 
 <body>
 <input type="hidden" id="selectLeftTree" value="selectLeftTree"/>
-<input type="hidden" id="queryPdtManegeUrl" value="pdtManageList/queryPdt"/>
+<input type="hidden" id="queryStockByPageUrl" value="stockManageList/queryStockByPage"/>
 <input type="hidden" id="queryUserManegeUrl" value="userManageList/queryUser"/>
 <input type="hidden" id="insertOrderAndDtlUrl" value="orderManageList/insertOrderAndDtl"/>
 <ol class="breadcrumb">
@@ -678,7 +678,7 @@
     var pdtType = '';
     var TableInit = function () {
         var oTableInit = new Object();
-        var urlStr = $("#queryPdtManegeUrl").val();
+        var urlStr = $("#queryStockByPageUrl").val();
         //初始化Table
         oTableInit.Init = function () {
             $('#tb_roles').bootstrapTable({
@@ -776,6 +776,11 @@
                         valign: 'middle',
                         visible: false
                     }, {
+                        title: '商品库存',
+                        field: 'measerDes',
+                        align: 'center',
+                        valign: 'middle'
+                    },{
                         title: '会员',
                         field: 'isVip',
                         align: 'center',
@@ -803,7 +808,8 @@
                         title: '备注',
                         field: 'remark',
                         align: 'center',
-                        valign: 'middle'
+                        valign: 'middle',
+                        visible: false
                     }],
                 }
             );

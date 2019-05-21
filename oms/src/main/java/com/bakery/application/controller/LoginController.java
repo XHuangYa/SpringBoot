@@ -139,5 +139,58 @@ public class LoginController {
     public String welcome(){
         return  Views.WELCOME_VIEW;
     }
+    /**
+     * @Description:找回密码获取验证吗
+     * @Author: LiTing
+     * @Date: 9:40 PM 2019/5/21
+     * @return:
+     * @throws:
+     */
+    @RequestMapping(value = Url.GETPWD_VALID_NUM_URL,method = RequestMethod.POST)
+    public @ResponseBody String rePwdGetValidNum(String phone, HttpServletRequest request){
+        smsText= HttpClientUtil.getRandomCode();
+        int result= HttpClientUtil.send(Uid,Key,phone,smsText);
+        HttpSession session = request.getSession();
+        session.setAttribute("getPwdText", smsText);
+        session.setMaxInactiveInterval(60 * 1);
+        return HttpClientUtil.getMessage(result);
+    }
+    /**
+     * @Description:找回密码验证验证码
+     * @Author: LiTing
+     * @Date: 12:27 PM 2019/4/
+     * @return:
+     * @throws:
+     */
+    @RequestMapping(value = Url.REPWD_VALIDATE_NUM_URL,method = RequestMethod.POST)
+    public @ResponseBody boolean rePwdValidNum(String validNum, HttpServletRequest request){
+        boolean flag=false;
+        if(StringUtils.isNotBlank(validNum)){
+            //从session中比对发送的验证码
+            HttpSession session = request.getSession();//设置session
+            String sessioncode =(String) session.getAttribute("getPwdText");
+            if(StringUtils.isNotBlank(sessioncode)){
+                if(sessioncode.equals(validNum)){
+                    flag=true;
+                }
+            }
+
+        }
+        return flag;
+    }
+    /**
+     * @Description: 找回密码
+     * @Author: LiTing
+     * @Date: 9:59 PM 2019/5/21
+     * @return:
+     * @throws:
+     */
+    @RequestMapping(value = Url.REBACK_PWD_URL,method = RequestMethod.POST)
+    public @ResponseBody boolean reBackPwd(Employee employee){
+        EmployeeCriteria criteria=new EmployeeCriteria();
+        EmployeeCriteria.Criteria cri=criteria.createCriteria();
+        cri.andPhoneEqualTo(employee.getPhone());
+        return  employeeService.updateByExampleSelective(employee, criteria);
+    }
 
 }

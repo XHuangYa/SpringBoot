@@ -48,6 +48,16 @@ public class StockDTO {
 
     private String outNumDes;
 
+    private String unitPrice;
+
+    public String getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(String unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
     public String getInNumDes() {
         return inNumDes;
     }

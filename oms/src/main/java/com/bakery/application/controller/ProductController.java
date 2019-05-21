@@ -122,13 +122,13 @@ public class ProductController {
         //动态创建文件路径（以时间命名）
         Date date=new Date();
         SimpleDateFormat sdf =new SimpleDateFormat("yyyyMMdd");
-        String dir="C:/Users/Administrator/Desktop/testPic/"+sdf.format(date);
+        String dir="/Users/liting/文档/upload/"+sdf.format(date);
         File fileDir =new File(dir);
         //判断文件是否存在
         if(!fileDir.exists()){
             fileDir.mkdirs();
         }
-        String saveFilePath=fileDir+"\\"+uuid+exet;
+        String saveFilePath=fileDir+"/"+uuid+exet;
         File newFile=new File(saveFilePath);
         file.transferTo(newFile);
         return JsonUtil.stringtojson(sdf.format(date)+uuid+exet);

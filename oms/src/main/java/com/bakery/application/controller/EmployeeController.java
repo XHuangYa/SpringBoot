@@ -125,6 +125,7 @@ public class EmployeeController {
             if (employees.isEmpty()) {
                 employee.setEmpNo(UUIDUtil.create32Key());
                 employee.setStatus(1);
+                employee.setRoleId("0");
                 if(StringUtils.isBlank(employee.getPassword())){
                     employee.setPassword("123456");
                 }

@@ -33,14 +33,13 @@ public class MVCConfig implements WebMvcConfigurer {
         fc.setFastJsonConfig(fastJsonConfig);
         converters.add(fc);
     }
-    /**
-     * 资源映射路径
-     */
+    //资源映射路径
+
     @Configuration
     public class MyWebAppConfigurer implements WebMvcConfigurer {
         @Override
         public void addResourceHandlers(ResourceHandlerRegistry registry) {
-            registry.addResourceHandler("/image/**").addResourceLocations("file:C:/Users/Administrator/Desktop/testPic/");
+            registry.addResourceHandler("/image/**").addResourceLocations("file:/Users/liting/文档/upload/");
         }
     }
 

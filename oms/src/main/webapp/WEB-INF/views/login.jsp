@@ -45,6 +45,7 @@
 </head>
 <input type="hidden" id="loginUrl" value="login"/>
 <input type="hidden" id="registUrl" value="regisOms"/>
+<input type="hidden" id="rebackPwdUrl" value="rebackPwd"/>
 <div class="top-content">
     <div class="inner-bg">
         <div class="container">
@@ -183,7 +184,7 @@
                                            placeholder="确认密码"
                                            class="form-control">
                                 </div>
-                                <button type="button" class="btn btn-warning btn-block"onclick="regisFun()">注册</button>
+                                <button type="button" class="btn btn-warning btn-block" onclick="regisFun()">注册</button>
                                 <%-- </form>--%>
                             </div>
                             <!--普通会员注册end-->
@@ -233,30 +234,37 @@
                             </div>
                         </div>
                         <!--start-->
-                        <div class="pwdRegis " style="padding-top: 0px">
-                            <form role="form" action="" method="post">
+                        <div class="pwdRegis" style="padding-top: 0px">
+                            <form role="form" id="backPwdForm" action="" method="post">
                                 <div class="form-group">
                                     <label class="sr-only" for="reback_phone">First name</label>
-                                    <input type="text" name="reback_phone" id="reback_phone" placeholder="输入您的手机号"
+                                    <input type="text" name="phone" id="reback_phone" placeholder="输入您的手机号"
                                            class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label class="sr-only" for="reback_number">Last name</label>
-                                    <input type="text" name="reback_number" id="reback_number" placeholder="输入短信验证码">
-                                    <button class="btn btn-warning" style="margin-left: 167px;">获取验证码</button>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <input type="text" name="validNum" id="validNum" placeholder="请输入你的验证码">
+                                        </div>
+                                        <div class="col-sm-4 col-sm-offset-2">
+                                            <input type="button" id="getrebackNum" class="btn btn-info"
+                                                   style="margin-left:  50px;height: 45px;" value="获取验证码">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group">
+
+                                <div class="form-group" id="pwd1">
                                     <label class="sr-only" for="reback_password">repassword</label>
-                                    <input type="text" name="reback_password" placeholder="请输入6位以上密码."
-                                           class="form-control" id="reback_password">
+                                    <input type="text" name="firstPwd" id="reback_password" placeholder="请输入6位以上密码"
+                                           class="form-control">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" id="pwd2">
                                     <label class="sr-only" for="reback_newPassword">renewpassword</label>
-                                    <input type="text" name="reback_newPassword" id="reback_newPassword"
+                                    <input type="text" name="password" id="reback_newPassword"
                                            placeholder="确认密码"
                                            class="form-control">
                                 </div>
-                                <button type="button" class="btn btn-warning btn-block">确认</button>
+                                <button type="button" class="btn btn-warning btn-block" onclick="reBackPwdFun()">确认</button>
                             </form>
                         </div>
                         <!-- end-->
@@ -286,7 +294,7 @@
             }
         });
     })
-    /*登陆注册验证码*/
+    /*注册获取验证码*/
     $("#getregisNum").click(function () {
         var jsonData = $("#regisForm").serializeJSON();
         $.ajax({
@@ -303,6 +311,24 @@
             }
         });
     })
+    /*找回密码获取验证码*/
+    $("#getrebackNum").click(function () {
+        var jsonData = $("#backPwdForm").serializeJSON();
+        $.ajax({
+            url: "<%=basePath%>/pwdGetValidNum",
+            type: "POST",
+            dataType: "json",
+            data: jsonData,
+            success: function (data) {
+                $("#getrebackNum").val(data.responseText);
+            },
+            error: function (data) {
+                alert(JSON.stringify(data.responseText));
+
+            }
+        });
+    })
+
     /*登陆*/
     function loginFun() {
         var loginUrl = $("#loginUrl").val();
@@ -321,6 +347,7 @@
             });
         }
     }
+
     /*注册*/
     function regisFun() {
         var registUrl = $("#registUrl").val();
@@ -340,17 +367,118 @@
         }
     }
 
+    /*找回密码*/
+    function reBackPwdFun(){
+        var rebackPwdUrl = $("#rebackPwdUrl").val();
+        var flag = $("#backPwdForm").valid();
+        if (flag) {
+            $.ajax({
+                type: 'post',
+                data: $("#backPwdForm").serialize(),
+                url: rebackPwdUrl,
+                success: function (data) {
+                    $.alert({
+                        title: '提示',
+                        content: '找回成功！',
+                        type: 'green',				//一般危险操作用red,保存成功操作green
+                        buttons: {				//定义按钮
+                            confirm: {
+                                text: '确认',
+                                btnClass: 'btn-primary',
+                                action: function () {	//这里写点击按钮回调函数
+                                    window.location.href = '<%=basePath%>oms';
+                                }
+                            }
+                        }
+                    });
+                },
+                error: function (data) {
+                    alert("米密码找回失败！");
+                }
+            });
+        }
+    }
     $(function () {
         $.validator.addMethod("regex", function (value, element, regexpr) {
             return regexpr.test(value);
         }, "Please enter a valid pasword.");
+
+        /*找回密码验证*/
+        $("#backPwdForm").validate({
+            rules: {
+                firstPwd: {
+                    required: true,
+                    minlength: 6,
+                    regex: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/,
+                },
+                password: {
+                    required: true,
+                    minlength: 6,
+                    regex: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/,
+                    equalTo: "#reback_password"
+                },
+                phone: {
+                    required: true,
+                    minlength: 11,
+                    regex: /^1[3,5,7,8]\d{9}$/,
+                    remote: {
+                        type: "POST",
+                        url: "loginValidate",
+                        data: {
+                            phone: function () {
+                                return $("#reback_phone").val();
+                            }
+                        }
+                    }
+                },
+                validNum: {
+                    required: true,
+                    minlength: 6,
+                    regex: /^\d+$|^\d+[.]?\d+$/,
+                    remote: {
+                        type: "POST",
+                        url: "repwdValidateNum",
+                        data: {
+                            remark: function () {
+                                return $("#validNum").val();
+                            }
+                        }
+                    }
+                }
+            },
+            messages: {
+                firstPwd: {
+                    required: "请输入密码",
+                    minlength: "密码长度不能小于6位",
+                    regex: '密码必须是数字和字母组合',
+                },
+                password: {
+                    required: "请输入密码",
+                    minlength: "密码长度不能小于6位",
+                    regex: '密码必须是数字和字母组合',
+                    equalTo: "两次输入的密码不一样"
+                },
+                phone: {
+                    required: "请输入电话",
+                    minlength: "电话长度不能小于11位",
+                    regex: "手机号码格式不正确",
+                    remote: "该手机号尚未注册"
+                },
+                validNum: {
+                    required: "请输入验证码",
+                    minlength: "验证码长度不能小于6位",
+                    regex: "只能输入数字",
+                    remote: "验证码不正确"
+                }
+            }
+        });
         /*注册验证*/
         $("#regisForm").validate({
             rules: {
                 empName: {
                     required: true,
                     minlength: 2,
-                    regex: /[\u4E00-\u9FA5]+/
+                    regex: /^[a-zA-Z\u4e00-\u9fa5]+$/
                 },
                 password: {
                     required: true,
@@ -416,11 +544,11 @@
                     regex: '密码必须是数字和字母组合',
                     remote: "请更换用户名或密码"
                 },
-                newPassword:{
+                newPassword: {
                     required: "请输入密码",
                     minlength: "密码长度不能小于6位",
                     regex: '密码必须是数字和字母组合',
-                    equalTo:"两次输入的密码不一样"
+                    equalTo: "两次输入的密码不一样"
                 },
                 phone: {
                     required: "请输入电话",
@@ -442,7 +570,7 @@
                 empName: {
                     required: true,
                     minlength: 2,
-                    regex: /[\u4E00-\u9FA5]+/
+                    regex: /^[a-zA-Z\u4e00-\u9fa5]+$/
                 },
                 password: {
                     required: true,

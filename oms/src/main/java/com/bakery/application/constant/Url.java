@@ -87,4 +87,10 @@ public interface Url {
     String GET_REGIS_VALID_NUM_URL="/getRegisValidNum";
     //注册
     String REGIST_OMS_URL="/regisOms";
+    //找回密码获取验证码
+    String GETPWD_VALID_NUM_URL="/pwdGetValidNum";
+    //找回密码验证验证吗
+    String REPWD_VALIDATE_NUM_URL="/repwdValidateNum";
+    //找回密码
+    String REBACK_PWD_URL="/rebackPwd";
 }

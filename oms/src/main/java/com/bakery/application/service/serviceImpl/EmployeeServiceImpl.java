@@ -43,5 +43,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeMapper.insertSelective(employee)>=1?true:false;
     }
 
+    @Override
+    public boolean updateByExampleSelective(Employee record, EmployeeCriteria example) {
+        return employeeMapper.updateByExampleSelective(record,example)>=1?true:false;
+    }
+
 
 }

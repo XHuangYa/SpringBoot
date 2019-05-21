@@ -125,6 +125,7 @@ public class RegistController {
         }else{
             employee.setEmpNo(UUIDUtil.create32Key());
             employee.setStatus(1);
+            employee.setRoleId("0");
             flag = employeeService.insertSelective(employee);
         }
         return flag;

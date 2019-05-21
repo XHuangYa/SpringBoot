@@ -44,6 +44,14 @@ public interface EmployeeService {
      * @throws:
      */
     public boolean insertSelective(Employee employee);
+    /**
+     * @Description:找回密码
+     * @Author: LiTing
+     * @Date: 10:04 PM 2019/5/21
+     * @return:
+     * @throws:
+     */
+    public boolean updateByExampleSelective(Employee record,EmployeeCriteria example);
 
 
 }

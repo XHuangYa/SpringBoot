@@ -244,7 +244,7 @@
 <!--商品入库模态框 start-->
 <div class="modal fade  bs-example-modal-sm" id="pdtModal" tabindex="-1" role="dialog"
      aria-labelledby="gridSystemModalLabel">
-    <div class="modal-dialog modal-sm" role="document" style="width: 400px;">
+    <div class="modal-dialog modal-sm" role="document" style="width: 350px;">
         <form class="form-horizontal" role="form" id="pdtInStockForm" name="userForm" method="post">
             <div class="modal-content">
                 <div class="modal-header">

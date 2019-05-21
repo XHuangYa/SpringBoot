@@ -166,6 +166,7 @@
         SELECT
         bp.ID id,
         bp.PDT_ID pdtId,
+        bp.UNIT_PRICE unitPrice,
         bp.PDT_NAME pdtName,
         (
         SELECT
@@ -175,20 +176,22 @@
         (
         (
         SELECT
-        SUM(bc.IN_NUM) IN_NUM
+        IFNULL(SUM(bc.IN_NUM), 0)IN_NUM
         FROM
         bky_stock bc
         WHERE
         bc.FLAG = 'IN'
-        AND bc.PDT_ID = bp.PDT_ID and bc.STATUS=1
+        AND bc.PDT_ID = bp.PDT_ID
+        AND bc. STATUS = 1
         ) - (
         SELECT
-        SUM(bc.OUT_NUM) OUT_NUM
+        IFNULL(SUM(bc.OUT_NUM), 0) OUT_NUM
         FROM
         bky_stock bc
         WHERE
         bc.FLAG = 'OUT'
-        AND bc.PDT_ID = bp.PDT_ID and bc.STATUS=1
+        AND bc.PDT_ID = bp.PDT_ID
+        AND bc. STATUS = 1
         )
         )
         ),
@@ -215,9 +218,14 @@
         AND bc.DATA_CODE = bp.PDT_TYPE
         ) pdtTypeDes
         FROM
-        bky_pdt bp where bp.STATUS>=1
+        bky_pdt bp
+        WHERE
+        bp. STATUS >= 1
         <if test="pdtName!=null and pdtName!=''">
             and bp.PDT_NAME=#{pdtName}
+        </if>
+        <if test="pdtType!=null and pdtType!=''">
+            and bp.PDT_TYPE=#{pdtType}
         </if>
         ORDER BY
         bp.ID

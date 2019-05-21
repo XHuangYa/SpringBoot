@@ -1,7 +1,9 @@
+<%@ page import="com.bakery.application.entity.Employee" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+	Employee employee=(Employee)request.getSession().getAttribute("employees");
 %>
 <html>
     <head>
@@ -28,9 +30,9 @@
     		</div>
     </div>
     	<ul class="nav" style="margin-top: 25px">
-    		<li><span class="img  glyphicon glyphicon-user"></span>&nbsp; &nbsp; &nbsp;员工管理<span class="right glyphicon glyphicon-chevron-right"></span>
+    		<li id="empLi"><span class="img  glyphicon glyphicon-user"></span>&nbsp; &nbsp; &nbsp;员工管理<span class="right glyphicon glyphicon-chevron-right"></span>
     			<ul class="sub">
-    				<li class="empList">员工列表</li>
+    				<li class="empList" >员工列表</li>
     			</ul>
     		</li>
     		<li><span class="img glyphicon glyphicon-globe"></span>&nbsp; &nbsp; &nbsp;客户管理<span class="right glyphicon glyphicon-chevron-right"></span>
@@ -65,6 +67,11 @@
  	</body>
 	<script>
         $(function() {
+            //权限控制
+            var roleId = '<%=employee.getRoleId()%>';
+            if(roleId!="1"){
+                $("#empLi").attr("style", "display:none");
+			}
             //监听一级菜单点击事件
             $(".nav>li").click(function() {
                 //找到二级菜单，让二级菜单展开
