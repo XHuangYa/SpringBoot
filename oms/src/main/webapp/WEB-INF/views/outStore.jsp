@@ -40,23 +40,28 @@
             width: 1205px;
             height: 40px;
             margin-left: 18px;
+            margin-top: 15px;
+        }
+        #kk {
+            margin-top: 50px;
+            height: 250px;
         }
     </style>
 </head>
 <body>
 <input type="hidden" id="queryInOrOutStockUrl" value="/queryInOrOutStock"/>
 <ol class="breadcrumb">
-    <li><a>Home</a></li>
+    <li><a href="<%=basePath%>welcome">Home</a></li>
     <li><a>库存管理</a></li>
     <li class="active">出库记录</li>
 </ol>
 <!-- 查询框 start -->
 <div class="panel-body" style="padding-bottom:0px; padding-top:0px ;">
-    <div class="panel panel-default">
-        <div class="panel-body">
+    <div class="panel panel-default"style="width: 1205px">
+        <div class="panel-body"style="height: 620px;">
             <div class="container-fluid">
                 <form id="searchStockForm" name="searchStockForm" class="form-horizontal">
-                    <div class="form-group">
+                    <div class="form-group" style="margin-top: 30px">
                         <div class="row">
                             <label class="control-label col-md-1 ">商品名称:</label>
                             <div class="col-md-2 ">
@@ -230,7 +235,7 @@
                     align: 'center',
                     valign: 'middle',
                 }, {
-                    title: '入库单号',
+                    title: '出库单号',
                     field: 'stockId',
                     align: 'center',
                     valign: 'middle'
@@ -257,7 +262,7 @@
                     align: 'center',
                     valign: 'middle',
                 }, {
-                    title: '入库时间',
+                    title: '出库时间',
                     field: 'inTime',
                     align: 'center',
                     valign: 'middle'

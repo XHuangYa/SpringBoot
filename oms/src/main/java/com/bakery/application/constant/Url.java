@@ -77,6 +77,14 @@ public interface Url {
     String GET_VALID_NUM_URL="/getValidNumber";
     //校验验证码
     String VALIDATE_NUMBER_URL="/validateNumber";
-
-
+    //welcome
+    String WELCOME_URL="/welcome";
+    //用户名密码注册验证
+    String REGIST_VALID_URL="/regisValidate";
+    //注册验证码验证
+    String  VALIDATE_REGISNUM_URL="/validateRegisNum";
+    //获取验证吗
+    String GET_REGIS_VALID_NUM_URL="/getRegisValidNum";
+    //注册
+    String REGIST_OMS_URL="/regisOms";
 }

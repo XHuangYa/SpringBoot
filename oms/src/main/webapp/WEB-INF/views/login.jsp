@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="<%=basePath%>static/assets/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="<%=basePath%>static/assets/css/form-elements.css">
     <link rel="stylesheet" href="<%=basePath%>static/assets/css/style.css">
-
+    <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/jquery-confirm.css">
     <link rel="shortcut icon" href="<%=basePath%>static/assets/ico/favicon.png">
     <link rel="apple-touch-icon-precomposed" sizes="144x144"
           href="<%=basePath%>static/assets/ico/apple-touch-icon-144-precomposed.png">
@@ -39,10 +39,12 @@
     <script src="<%=basePath%>static/assets/js/retina-1.1.0.min.js"></script>
     <script src="<%=basePath%>static/assets/js/scripts.js"></script>
     <script src="<%=basePath%>static/assets/js/login.js?ver=1"></script>
+    <script src="<%=basePath%>static/bootstrap/js/jquery-confirm.js"></script>
     <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
     <script type="text/javascript" src="<%=basePath%>static/js/jquery.serializejson.min.js"></script>
 </head>
 <input type="hidden" id="loginUrl" value="login"/>
+<input type="hidden" id="registUrl" value="regisOms"/>
 <div class="top-content">
     <div class="inner-bg">
         <div class="container">
@@ -83,9 +85,9 @@
                             </div>
                         </div>
                         <form role="form" action="" method="post" id="loginForm">
-                        <!--普通会员登录start-->
-                        <div class="form-bottom">
-                           <%-- <form role="form" action="" method="post" id="formOne">--%>
+                            <!--普通会员登录start-->
+                            <div class="form-bottom">
+                                <%-- <form role="form" action="" method="post" id="formOne">--%>
                                 <div class="form-group">
                                     <label class="sr-only" for="empName">username</label>
                                     <input type="text" name="empName" id="empName" placeholder="请输入你的用户名"
@@ -102,28 +104,36 @@
                                         Forget your password?
                                     </a>
                                 </p>
-                                <button type="button" class="btn   btn-warning btn-block"onclick="loginFun()">登录</button>
-                           <%-- </form>--%>
-                        </div>
-                        <!--普通会员登录end-->
-                        <!--手机动态码登录start-->
-                        <div class="phoneLog hide">
-                           <%-- <form role="form" action="" method="post">--%>
+                                <button type="button" class="btn   btn-warning btn-block" onclick="loginFun()">登录
+                                </button>
+                                <%-- </form>--%>
+                            </div>
+                            <!--普通会员登录end-->
+                            <!--手机动态码登录start-->
+                            <div class="phoneLog hide">
+                                <%-- <form role="form" action="" method="post">--%>
                                 <div class="form-group">
                                     <input type="text" name="phone" id="phone" placeholder="请输入你的手机号"
                                            class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="remark" id="remark" placeholder="请输入你的验证码">
-<%--
-                                    <button id="getValidNum"class="btn btn-warning" style="margin-left:  167px;"onclick="getValidNum()" >获取验证码</button>
---%>
-                                    <input  type="button"id="getValidNum"class="btn btn-info" style="margin-left:  167px;height: 45px;" value="获取验证码">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <input type="text" name="remark" id="remark" placeholder="请输入你的验证码">
+                                        </div>
+                                        <div class="col-sm-4 col-sm-offset-2">
+                                            <input type="button" id="getValidNum" class="btn btn-info"
+                                                   style="margin-left:  50px;height: 45px;" value="获取验证码">
+                                            <%--
+                                                <button id="getValidNum"class="btn btn-warning" onclick="getValidNum()" >获取验证码</button>
+                                            --%>
+                                        </div>
+                                    </div>
                                 </div>
                                 <button type="button" class="btn btn-warning btn-block" onclick="loginFun()">登录</button>
-                          <%--  </form>--%>
-                        </div>
-                        <!--手机动态码登录end-->
+                                <%--  </form>--%>
+                            </div>
+                            <!--手机动态码登录end-->
                         </form>
                     </div>
                 </div>
@@ -154,55 +164,51 @@
                             </div>
                         </div>
                         <!--普通会员注册start-->
-                        <div class="normalRegis">
-                            <form role="form" action="" method="post">
+                        <form role="form" action="" method="post" id="regisForm">
+                            <div class="normalRegis">
                                 <div class="form-group">
-                                    <label class="sr-only" for="regis_username">username</label>
-                                    <input type="text" name="regis_username" id="regis_username" placeholder="输入您的用户名"
+                                    <label class="sr-only" for="empName">username</label>
+                                    <input type="text" name="empName" id="regis_empName" placeholder="输入您的用户名"
                                            class="form-first-name form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label class="sr-only" for="regis_password">password</label>
-                                    <input type="text" name="regis_password" id="regis_password"
+                                    <label class="sr-only" for="password">password</label>
+                                    <input type="text" name="password" id="regis_password"
                                            placeholder="请输入6位以上密码."
-                                           class="form-email form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label class="sr-only" for="regis_newNassword">newpassword</label>
-                                    <input type="text" name="regis_newNassword" id="regis_newNassword"
-                                           placeholder="确认密码"
-                                           class="form-email form-control">
-                                </div>
-                                <button type="button" class="btn btn-warning btn-block">注册</button>
-                            </form>
-                        </div>
-                        <!--普通会员注册end-->
-                        <!--手机动态码注册 start-->
-                        <div class="phoneRegis hide">
-                            <form role="form" action="" method="post">
-                                <div class="form-group">
-                                    <label class="sr-only" for="regis_phone">phone</label>
-                                    <input type="text" name="regis_phone" id="regis_phone" placeholder="输入您的手机号"
                                            class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label class="sr-only" for="regis_number">number</label>
-                                    <input type="text" name="regis_number" id="regis_number" placeholder="输入短信验证码">
-                                    <button class="btn btn-warning" style="margin-left: 167px;">获取验证码</button>
+                                    <label class="sr-only">newpassword</label>
+                                    <input type="text" name="newPassword" id="regis_newPassword"
+                                           placeholder="确认密码"
+                                           class="form-control">
                                 </div>
-                                <%--<div class="form-group">
-                                    <label class="sr-only" for="form-email">password</label>
-                                    <input type="text" name="form-email" placeholder="请输入6位以上验证码."
-                                           class="form-email form-control">
+                                <button type="button" class="btn btn-warning btn-block"onclick="regisFun()">注册</button>
+                                <%-- </form>--%>
+                            </div>
+                            <!--普通会员注册end-->
+                            <!--手机动态码注册 start-->
+                            <div class="phoneRegis hide">
+                                <%-- <form role="form" action="" method="post">--%>
+                                <div class="form-group">
+                                    <label class="sr-only" for="phone">phone</label>
+                                    <input type="text" name="phone" id="regis_phone" placeholder="输入您的手机号"
+                                           class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-email">password</label>
-                                    <input type="text" name="form-email" placeholder="确认密码"
-                                           class="form-email form-control">
-                                </div>--%>
-                                <button type="button" class="btn btn-warning btn-block">注册</button>
-                            </form>
-                        </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <input type="text" name="remark" id="regisremark" placeholder="请输入你的验证码">
+                                        </div>
+                                        <div class="col-sm-4 col-sm-offset-2">
+                                            <input type="button" id="getregisNum" class="btn btn-info"
+                                                   style="margin-left:  50px;height: 45px;" value="获取验证码">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-warning btn-block" onclick="regisFun()">注册</button>
+                            </div>
+                        </form>
                         <!--手机动态码注册 end-->
                     </div>
                 </div>
@@ -263,56 +269,193 @@
 </div>
 </body>
 <script>
-    /*获取验证码*/
+    /*登陆获取验证码*/
     $("#getValidNum").click(function () {
-        var jsonData=$("#loginForm").serializeJSON();
+        var jsonData = $("#loginForm").serializeJSON();
         $.ajax({
-            url:"<%=basePath%>/getValidNumber",
-            type:"POST",
-            dataType:"json",
-            data:jsonData,
-            success:　function(data){
-                alert(JSON.stringify(data.responseText));
-            },
-            error:　function(data){
-                alert(JSON.stringify(data.responseText));
+            url: "<%=basePath%>/getValidNumber",
+            type: "POST",
+            dataType: "json",
+            data: jsonData,
+            success: function (data) {
                 $("#getValidNum").val(data.responseText);
+            },
+            error: function (data) {
+                alert(JSON.stringify(data.responseText));
 
             }
         });
     })
+    /*登陆注册验证码*/
+    $("#getregisNum").click(function () {
+        var jsonData = $("#regisForm").serializeJSON();
+        $.ajax({
+            url: "<%=basePath%>/getRegisValidNum",
+            type: "POST",
+            dataType: "json",
+            data: jsonData,
+            success: function (data) {
+                $("#getregisNum").val(data.responseText);
+            },
+            error: function (data) {
+                alert(JSON.stringify(data.responseText));
 
+            }
+        });
+    })
+    /*登陆*/
     function loginFun() {
+        var loginUrl = $("#loginUrl").val();
         var flag = $("#loginForm").valid();
-        if(flag){
-            var loginUrl = $("#loginUrl").val();
-            $.post(loginUrl, $("#loginForm").serialize(), function (data) {
-            }, 'json');
+        if (flag) {
+            $.ajax({
+                type: 'post',
+                data: $("#loginForm").serialize(),
+                url: loginUrl,
+                success: function (data) {
+                    window.location.href = '<%=basePath%>welcome';
+                },
+                error: function (data) {
+                    alert("登陆信息有误！");
+                }
+            });
         }
     }
-    $(function() {
-        $.validator.addMethod("regex", function(value, element, regexpr) {
+    /*注册*/
+    function regisFun() {
+        var registUrl = $("#registUrl").val();
+        var flag = $("#regisForm").valid();
+        if (flag) {
+            $.ajax({
+                type: 'post',
+                data: $("#regisForm").serialize(),
+                url: registUrl,
+                success: function (data) {
+                    window.location.href = '<%=basePath%>oms';
+                },
+                error: function (data) {
+                    alert("登陆信息有误！");
+                }
+            });
+        }
+    }
+
+    $(function () {
+        $.validator.addMethod("regex", function (value, element, regexpr) {
             return regexpr.test(value);
         }, "Please enter a valid pasword.");
-        $("#loginForm").validate({
+        /*注册验证*/
+        $("#regisForm").validate({
             rules: {
                 empName: {
                     required: true,
                     minlength: 2,
-                    regex:/[\u4E00-\u9FA5]+/
+                    regex: /[\u4E00-\u9FA5]+/
                 },
                 password: {
                     required: true,
                     minlength: 6,
                     regex: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/,
                     remote: {
-                        type:"POST",
-                        url:"loginValidate",
-                        data:{
-                            empName: function() {
+                        type: "POST",
+                        url: "regisValidate",
+                        data: {
+                            empName: function () {
+                                return $("#regis_empName").val();
+                            },
+                            password: function () {
+                                return $("#regis_password").val();
+                            }
+                        }
+                    }
+                },
+                newPassword: {
+                    required: true,
+                    minlength: 6,
+                    regex: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/,
+                    equalTo: "#regis_password"
+                },
+                phone: {
+                    required: true,
+                    minlength: 11,
+                    regex: /^1[3,5,7,8]\d{9}$/,
+                    remote: {
+                        type: "POST",
+                        url: "regisValidate",
+                        data: {
+                            phone: function () {
+                                return $("#regis_phone").val();
+                            }
+                        }
+                    }
+                },
+                remark: {
+                    required: true,
+                    minlength: 6,
+                    regex: /^\d+$|^\d+[.]?\d+$/,
+                    remote: {
+                        type: "POST",
+                        url: "validateRegisNum",
+                        data: {
+                            remark: function () {
+                                return $("#regisremark").val();
+                            }
+                        }
+                    }
+                }
+            },
+            messages: {
+                empName: {
+                    required: "请输入用户名",
+                    minlength: "请输入用户名长度不能小于 2 ",
+                    regex: "禁止输入特殊字符"
+                },
+                password: {
+                    required: "请输入密码",
+                    minlength: "密码长度不能小于6位",
+                    regex: '密码必须是数字和字母组合',
+                    remote: "请更换用户名或密码"
+                },
+                newPassword:{
+                    required: "请输入密码",
+                    minlength: "密码长度不能小于6位",
+                    regex: '密码必须是数字和字母组合',
+                    equalTo:"两次输入的密码不一样"
+                },
+                phone: {
+                    required: "请输入电话",
+                    minlength: "电话长度不能小于11位",
+                    regex: "手机号码格式不正确",
+                    remote: "该手机号已注册"
+                },
+                remark: {
+                    required: "请输入验证码",
+                    minlength: "验证码长度不能小于6位",
+                    regex: "只能输入数字",
+                    remote: "验证码不正确"
+                }
+            }
+        });
+        /*登陆验证*/
+        $("#loginForm").validate({
+            rules: {
+                empName: {
+                    required: true,
+                    minlength: 2,
+                    regex: /[\u4E00-\u9FA5]+/
+                },
+                password: {
+                    required: true,
+                    minlength: 6,
+                    regex: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/,
+                    remote: {
+                        type: "POST",
+                        url: "loginValidate",
+                        data: {
+                            empName: function () {
                                 return $("#empName").val();
                             },
-                            password: function() {
+                            password: function () {
                                 return $("#password").val();
                             }
                         }
@@ -321,26 +464,26 @@
                 phone: {
                     required: true,
                     minlength: 11,
-                    regex:/^1[3,5,7,8]\d{9}$/,
+                    regex: /^1[3,5,7,8]\d{9}$/,
                     remote: {
-                        type:"POST",
-                        url:"loginValidate",
-                        data:{
-                            phone: function() {
+                        type: "POST",
+                        url: "loginValidate",
+                        data: {
+                            phone: function () {
                                 return $("#phone").val();
                             }
                         }
                     }
                 },
-                remark:{
+                remark: {
                     required: true,
                     minlength: 6,
-                    regex:/^\d+$|^\d+[.]?\d+$/,
+                    regex: /^\d+$|^\d+[.]?\d+$/,
                     remote: {
-                        type:"POST",
-                        url:"validateNumber",
-                        data:{
-                            remark: function() {
+                        type: "POST",
+                        url: "validateNumber",
+                        data: {
+                            remark: function () {
                                 return $("#remark").val();
                             }
                         }
@@ -351,25 +494,25 @@
                 empName: {
                     required: "请输入用户名",
                     minlength: "请输入用户名长度不能小于 2 ",
-                    regex:"禁止输入特殊字符"
+                    regex: "禁止输入特殊字符"
                 },
                 password: {
                     required: "请输入密码",
                     minlength: "密码长度不能小于6位",
-                    regex : '密码必须是数字和字母组合',
+                    regex: '密码必须是数字和字母组合',
                     remote: "用户名或密码不正确"
                 },
-                phone:{
+                phone: {
                     required: "请输入电话",
                     minlength: "电话长度不能小于11位",
-                    regex:"手机号码格式不正确",
-                    remote:"手机号码尚未注册"
+                    regex: "手机号码格式不正确",
+                    remote: "手机号码尚未注册"
                 },
-                remark:{
+                remark: {
                     required: "请输入验证码",
                     minlength: "验证码长度不能小于6位",
-                    regex:"只能输入数字",
-                    remote:"验证码不正确"
+                    regex: "只能输入数字",
+                    remote: "验证码不正确"
                 }
             }
         });

@@ -15,12 +15,38 @@
 <html>
     <head>
             <title><tiles:getAsString name="title" /></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+    </style>
     </head>
-    <body style="background: rgba(53, 53, 53, 0.98);"  >
-        <table border="0" width="100%" height="800px" cellspacing="5" align="center" >
-                <tr  >
-                    <td  colspan="2" style="height: 50px">
-                        <tiles:insertAttribute name="header" />
+    <body style="background: black">
+
+        <div class="container-fluid">
+            <div class="row" style="background: black;height: 30px">
+                <tiles:insertAttribute name='header' />
+            </div>
+            <div class="row" style="background: rgba(157,157,157,0.7)" >
+                <div class="col-md-2" style="width: 200px;margin-top:60px">
+                    <tiles:insertAttribute name='menu' />
+                </div>
+                <div class="col-md-10" style="background: white;width: 1250px;">
+                    <tiles:insertAttribute name='body' />
+                </div>
+            </div>
+            <div class="row" style="background: black;height: 10px">
+                <tiles:insertAttribute name="footer" />
+            </div>
+        </div>
+
+<%--
+        <table border="0" width="100%" height="700px" cellspacing="5" align="center">
+                <tr style="height: 10px">
+                    <td  colspan="2">
+                        <tiles:insertAttribute name='header' />
                     </td>
                 </tr>
 
@@ -29,14 +55,14 @@
                         <tiles:insertAttribute name='menu' />
                     </td>
                     <td valign="top" align="left" style="background:white";>
-                        <tiles:insertAttribute name='body' />
+                        <tiles:insertAttribute name='body'/>
                     </td>
                 </tr>
-                <tr height="30px">
+                <tr height="15px">
                     <td colspan="2">
                         <tiles:insertAttribute name="footer" />
                     </td>
                 </tr>
-            </table>
+            </table>--%>
     </body>
 </html>

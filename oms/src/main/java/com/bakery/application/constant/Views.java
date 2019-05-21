@@ -21,5 +21,7 @@ public interface Views {
     String STORE_OUT_VIEW="store.out.list";
     //库存管理-出库记录
     String STORE_IN_VIEW="store.in.list";
+    //welcome
+    String WELCOME_VIEW="welcome.index";
 
 }

@@ -37,10 +37,16 @@
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap-editable.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
         .breadcrumb {
-            width: 1205px;
+            width: 1200px;
             height: 40px;
             margin-left: 18px;
+            margin-top: 15px;
+
         }
 
         .modal-dialog {
@@ -53,7 +59,7 @@
 
         #kk {
             margin-top: 50px;
-            height: 260px;
+            height: 300px;
         }
 
     </style>
@@ -64,14 +70,14 @@
 <input type="hidden" id="createOrUpdateUserUrl" value="userManageList/inserOrUpdatetUser"/>
 <input type="hidden" id="deleteUserUrl" value="userManageList/deleteuser"/>
 <ol class="breadcrumb">
-    <li><a>Home</a></li>
+    <li><a href="<%=basePath%>welcome">Home</a></li>
     <li><a>客户管理</a></li>
     <li class="active">客户列表</li>
 </ol>
 <!-- 查询框 start -->
 <div class="panel-body" style="padding-bottom:0px; padding-top:0px ;">
-    <div class="panel panel-default">
-        <div class="panel-body" style="height: 540px">
+    <div class="panel panel-default" style="width: 1205px">
+        <div class="panel-body" style="height: 620px;">
             <div class="container-fluid">
                 <form id="searchUserForm" name="searchUserForm" class="form-horizontal">
                     <div class="form-group" style="margin-top: 30px">
@@ -496,7 +502,7 @@
         ) {
             tempStr += "<button id=\"btn_\""
                 + sysMenuList[i].dataCode
-                + " type=\"button\" class=\"btn btn-primary\" onclick=\""
+                + " type=\"button\" class=\"btn btn-default\" onclick=\""
                 + sysMenuList[i].functionName
                 + "();\"><span style=\"display:inline-block; vertical-align:middle; margin-right:3px;\" " +
                 "class=\"" + sysMenuList[i].cssIcon

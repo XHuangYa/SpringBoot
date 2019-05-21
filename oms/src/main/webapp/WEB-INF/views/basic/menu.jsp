@@ -24,7 +24,7 @@
 	<input type="hidden" id="storeInList" value="storeInList" />
     <div class="circle">
     		<div class="picture">
-    			<h2><i class="shop glyphicon glyphicon-shopping-cart "></i><p>shop</p> </h2>
+    			<h2><i class="shop glyphicon glyphicon-shopping-cart "></i><p>bake</p> </h2>
     		</div>
     </div>
     	<ul class="nav" style="margin-top: 25px">
@@ -56,11 +56,11 @@
 					<li class="insertOrder">新增订单</li>
     			</ul>
     		</li>
-    		<li><span class="img glyphicon glyphicon-book"></span>&nbsp; &nbsp; &nbsp;字典管理<span class="right glyphicon glyphicon-chevron-right"></span>
+    		<%--li><span class="img glyphicon glyphicon-book"></span>&nbsp; &nbsp; &nbsp;字典管理<span class="right glyphicon glyphicon-chevron-right"></span>
     			<ul class="sub">
     				<li>数据字典</li>
     			</ul>
-    		</li>
+    		</li>--%>
     	</ul>
  	</body>
 	<script>

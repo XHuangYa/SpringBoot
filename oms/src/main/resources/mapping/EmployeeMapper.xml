@@ -123,8 +123,11 @@
         (select c.EMP_NAME from bky_emp c where e.MGR=c.EMP_NO) mgrDes
         from bky_emp e
         <where>
+            <if test="empNo != null and empNo!=''">
+                e.EMP_NO = #{empNo}
+            </if>
             <if test="phone != null and phone!=''">
-                e.phone = #{phone}
+                AND e.phone = #{phone}
             </if>
             <if test="roleId != null and roleId!=''">
                 AND e.role_id = #{roleId}

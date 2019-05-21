@@ -15,6 +15,6 @@
     <title>footer</title>
 </head>
 <body>
-<p style="text-align: center ;color: rgba(241,241,241,0.69)">如有任何问题请联系管理员！</p>
+<p style="text-align: center ;color: rgba(241,241,241,0.69)">Copyright © 如有任何问题请联系管理员！</p>
 </body>
 </html>

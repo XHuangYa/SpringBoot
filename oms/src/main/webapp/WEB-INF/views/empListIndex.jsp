@@ -42,9 +42,10 @@
         }
 
         .breadcrumb {
-            width: 1205px;
+            width: 1200px;
             height: 40px;
             margin-left: 18px;
+            margin-top: 15px;
         }
 
         .row {
@@ -57,7 +58,7 @@
 
         #kk {
             margin-top: 25px;
-            height: 250px;
+            height: 300px;
         }
 
     </style>
@@ -68,14 +69,14 @@
 <input type="hidden" id="createOrUpdateEmpUrl" value="empManageListinserOrUpdatetEmp"/>
 
 <ol class="breadcrumb">
-    <li><a>Home</a></li>
+    <li><a href="<%=basePath%>welcome">Home</a></li>
     <li><a>员工管理</a></li>
     <li class="active">员工列表</li>
 </ol>
 <!-- 查询框 start -->
 <div class="panel-body" style="padding-bottom:0px; padding-top:0px;">
-    <div class="panel panel-default">
-        <div class="panel-body" style="height: 540px">
+    <div class="panel panel-default"style="width: 1200px;">
+        <div class="panel-body" style="height: 620px;">
             <div class="container-fluid">
                 <form id="searchEmpForm" name="searchEmpForm" class="form-horizontal">
                     <div class="form-group">

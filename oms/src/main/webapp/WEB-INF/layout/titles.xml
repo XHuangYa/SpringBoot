@@ -47,5 +47,8 @@
         <put-attribute name="title" value="入库记录" />
         <put-attribute name="body" value="/WEB-INF/views/inStore.jsp" />
     </definition>
-
+    <definition name="welcome.index" extends="layout.basic">
+        <put-attribute name="title" value="welcome" />
+        <put-attribute name="body" value="/WEB-INF/views/welcome.jsp" />
+    </definition>
 </tiles-definitions>

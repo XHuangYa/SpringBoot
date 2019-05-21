@@ -41,6 +41,7 @@
             width: 1205px;
             height: 40px;
             margin-left: 18px;
+            margin-top: 15px;
         }
 
         .modal-dialog {
@@ -49,7 +50,7 @@
 
         #kk {
             margin-top: 35px;
-            height: 250px;
+            height: 300px;
         }
 
         #pdtInStock:hover {
@@ -78,14 +79,14 @@
 <input type="hidden" id="createInstockUrl" value="pdtManageList/createInstock"/>
 <input type="hidden" id="upLoadFileUrl" value="pdtManageList/upLoadFile"/>
     <ol class="breadcrumb">
-    <li><a>Home</a></li>
+    <li><a href="<%=basePath%>welcome">Home</a></li>
     <li><a>商品管理</a></li>
     <li class="active">商品列表</li>
 </ol>
 <!-- 查询框 start -->
 <div class="panel-body" style="padding-bottom:0px;">
-    <div class="panel panel-default">
-        <div class="panel-body" style="height: 540px">
+    <div class="panel panel-default" style="width: 1205px">
+        <div class="panel-body" style="height: 600px">
             <div class="container">
                 <form id="searchProductForm" name="searchProductForm" class="form-horizontal">
                     <div class="form-group" style="margin-top: 20px">

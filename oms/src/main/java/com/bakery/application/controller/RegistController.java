@@ -1,29 +1,27 @@
 package com.bakery.application.controller;
-
 import com.bakery.application.constant.Url;
 import com.bakery.application.constant.Views;
 import com.bakery.application.entity.Employee;
 import com.bakery.application.entity.EmployeeCriteria;
 import com.bakery.application.service.EmployeeService;
 import com.bakery.application.util.HttpClientUtil;
-import com.github.pagehelper.util.StringUtil;
+import com.bakery.application.util.UUIDUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
  * @author liting
- * @date 2019-05-14  14:52
+ * @date 2019/05/17  19:11
  */
 @Controller
-public class LoginController {
+public class RegistController {
     @Autowired
     EmployeeService employeeService;
     //用户名
@@ -42,12 +40,12 @@ public class LoginController {
      * @return:
      * @throws:
      */
-    @RequestMapping(value = Url.GET_VALID_NUM_URL,method = RequestMethod.POST)
+    @RequestMapping(value = Url.GET_REGIS_VALID_NUM_URL,method = RequestMethod.POST)
     public @ResponseBody String getValidNum(String phone, HttpServletRequest request){
         smsText= HttpClientUtil.getRandomCode();
         int result= HttpClientUtil.send(Uid,Key,phone,smsText);
         HttpSession session = request.getSession();
-        session.setAttribute("smsText", smsText);
+        session.setAttribute("resText", smsText);
         session.setMaxInactiveInterval(60 * 1);
         return HttpClientUtil.getMessage(result);
     }
@@ -58,9 +56,9 @@ public class LoginController {
      * @return:
      * @throws:
      */
-    @RequestMapping(value = Url.VALIDATE_NUMBER_URL,method = RequestMethod.POST)
+    @RequestMapping(value = Url.VALIDATE_REGISNUM_URL,method = RequestMethod.POST)
     public @ResponseBody boolean validNum(String remark, HttpServletRequest request){
-       boolean flag=false;
+        boolean flag=false;
         if(StringUtils.isNotBlank(remark)){
             //从session中比对发送的验证码
             HttpSession session = request.getSession();//设置session
@@ -75,40 +73,41 @@ public class LoginController {
         return flag;
     }
     /**
-     * @Description:登录验证
+     * @Description:注册用户名密码验证
      * @Author: LiTing
      * @Date: 12:27 PM 2019/4/21
      * @return:
      * @throws:
      */
-    @RequestMapping(value = Url.LOGIN_VALID_URL,method = RequestMethod.POST)
-    public @ResponseBody boolean loginValid(Employee employee){
-        boolean flag=false;
+    @RequestMapping(value = Url.REGIST_VALID_URL,method = RequestMethod.POST)
+    public @ResponseBody
+    boolean regisValid(Employee employee){
+        boolean flag=true;
         EmployeeCriteria criteria=new EmployeeCriteria();
         EmployeeCriteria.Criteria cri =criteria.createCriteria();
         if(StringUtils.isNotBlank(employee.getEmpName())&&StringUtils.isNotBlank(employee.getPassword())){
             cri.andEmpNameEqualTo(employee.getEmpName().trim());
             cri.andPasswordEqualTo(employee.getPassword().trim());
             cri.andStatusEqualTo(1);
-             flag = employeeService.selectByCriteria(criteria).size() > 0 ? true : false;
+            flag = employeeService.selectByCriteria(criteria).size() > 0 ? false : true;
         }
         if(StringUtils.isNotBlank(employee.getPhone())){
             cri.andPhoneEqualTo(employee.getPhone());
             cri.andStatusEqualTo(1);
-            flag = employeeService.selectByCriteria(criteria).size() > 0 ? true : false;
+            flag = employeeService.selectByCriteria(criteria).size() > 0 ? false : true;
         }
         return flag;
     }
     /**
-     * @Description:登录
+     * @Description:注册
      * @Author: LiTing
      * @Date: 12:27 PM 2019/4/21
      * @return:
      * @throws:
      */
-    @RequestMapping(value = Url.LOGIN_OMS_URL)
+    @RequestMapping(value = Url.REGIST_OMS_URL)
     public @ResponseBody boolean login(Employee employee,HttpServletRequest request){
-        boolean flag=false;
+        boolean flag=true;
         EmployeeCriteria employeeCriteria=new EmployeeCriteria();
         EmployeeCriteria.Criteria cri=employeeCriteria.createCriteria();
         if(StringUtils.isNotBlank(employee.getEmpName())&&StringUtils.isNotBlank(employee.getPassword())) {
@@ -122,22 +121,15 @@ public class LoginController {
         }
         List<Employee> employees = employeeService.selectByCriteria(employeeCriteria);
         if(employees.size()>=1){
-            flag=true;
-            HttpSession session=request.getSession();
-            session.setAttribute("employees",employees.get(0));
+            flag=false;
+        }else{
+            employee.setEmpNo(UUIDUtil.create32Key());
+            employee.setStatus(1);
+            flag = employeeService.insertSelective(employee);
         }
         return flag;
     }
-    /**
-     * @Description: 初始化界面
-     * @Author: LiTing
-     * @Date: 3:36 PM 2019/5/17
-     * @return:
-     * @throws:
-     */
-    @RequestMapping(value = Url.WELCOME_URL)
-    public String welcome(){
-        return  Views.WELCOME_VIEW;
-    }
+
+
 
 }
