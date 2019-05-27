@@ -61,6 +61,8 @@
                     <li><a tabindex="-1" href="<%=basePath%>oms" class="glyphicon glyphicon-log-in">&nbsp;切换账号</a></li>
                      <li class="divider "></li>
                     <li><a tabindex="-1" onclick="closeCurrentPage()" class="glyphicon glyphicon-off">&nbsp;登出</a></li>
+                     <li class="divider "></li>
+                    <li><a tabindex="-1" class="glyphicon glyphicon-leaf">&nbsp;系统访问量：${num}</a></li>
                 </ul>
           </span>
         </div>

@@ -3,6 +3,8 @@ package com.bakery.application.config;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.bakery.application.constant.LoginInterceptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -18,6 +20,9 @@ import java.util.List;
  */
 @Configuration
 public class MVCConfig implements WebMvcConfigurer {
+    @Autowired
+    LoginInterceptor loginInterceptor;
+
     //注册视图控制器
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -27,8 +32,8 @@ public class MVCConfig implements WebMvcConfigurer {
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        FastJsonHttpMessageConverter fc=new FastJsonHttpMessageConverter();
-        FastJsonConfig  fastJsonConfig=new FastJsonConfig();
+        FastJsonHttpMessageConverter fc = new FastJsonHttpMessageConverter();
+        FastJsonConfig fastJsonConfig = new FastJsonConfig();
         fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
         fc.setFastJsonConfig(fastJsonConfig);
         converters.add(fc);
@@ -45,13 +50,12 @@ public class MVCConfig implements WebMvcConfigurer {
 
 
     //注册拦截器
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(new Interceptor())
-//                .addPathPatterns("/**")
-//                .excludePathPatterns("/oms","/**/*.css","/**/*.js","/**/*.png","/**/*.jpg","/**/*.jpeg");
-//                 WebMvcConfigurer.super.addInterceptors(registry);
-//              }
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(loginInterceptor)
+                .addPathPatterns("/**")
+                .excludePathPatterns("/oms", "/login", "/**/*.css", "/**/*.js", "/**/*.png", "/**/*.jpg", "/**/*.jpeg");
+    }
 
 
 }
