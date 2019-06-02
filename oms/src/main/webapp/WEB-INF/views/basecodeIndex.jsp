@@ -1,8 +1,4 @@
-<%--
-  User: YYK
-  Date: 2019/3/26
-  Time: 9:48 PM
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
@@ -13,27 +9,32 @@
     <base href="<%=basePath%>">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Title</title>
-    <script src="<%=basePath%>static/js/jquery.js"></script> 
-    <script src="<%=basePath%>static/js/jquery.min.js"></script> 
-   <%--  <script src="<%=basePath%>static/js/jquery-3.2.1.min.js"></script> --%>
+    <%--js--%>
+    <script src="<%=basePath%>static/js/jquery-3.2.1.min.js"></script>
+    <script src="<%=basePath%>static/bootstrap/js/jquery-confirm.js"></script>
     <script src="<%=basePath%>static/bootstrap/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap.css">
+    <script src="<%=basePath%>static/bootstrap/js/bootstrap-table.min.js"></script>
+    <script src="<%=basePath%>static/bootstrap/js/bootstrap-table-zh-CN.min.js"></script>
+    <script src="<%=basePath%>static/bootstrap/js/bootstrap-table-group.js"></script>
+    <script src="<%=basePath%>static/My97DatePicker/WdatePicker.js"></script>
+    <script src="<%=basePath%>static/js/jquery.serializejson.min.js"></script>
+    <script src="<%=basePath%>static/jquery_mloading/jquery.mloading.js"></script>
+    <script src="<%=basePath%>static/bootstrap/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+    <script src="<%=basePath%>static/bootstrap/js/bootstrap-editable.min.js"></script>
+    <script src="<%=basePath%>static/bootstrap/js/bootstrap-table-editable.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script src="<%=basePath%>static/js/jquery.dataTables.js"></script>
+    <script src="http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <%--css--%>
+    <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/jquery-confirm.css">
+    <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap-table.min.css">
+    <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap-table-group.css">
+    <link rel="stylesheet" href="<%=basePath%>static/jquery_mloading/jquery.mloading.css">
+    <link rel="stylesheet" href="<%=basePath%>static/bootstrap/bootstrapValidator/css/bootstrapValidator.min.css">
+    <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap-editable.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href=" http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.css">
-    <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"> -->
-    <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap-table.css">
-    <link href="https://cdn.bootcss.com/bootstrap-validator/0.5.3/css/bootstrapValidator.css" rel="stylesheet">
-    <link rel="stylesheet" href="<%=basePath%>static/bootstrap/bootstrapValidator/css/bootstrapValidator.min.css">
-    <link rel="stylesheet" href="<%=basePath%>static/bootstrap//css/jquery-confirm.css">
-    <script src="<%=basePath%>static/My97DatePicker/WdatePicker.js"></script>
-    <script src="<%=basePath%>static/bootstrap/js/bootstrap.js"></script>
-    <script src="<%=basePath%>static/bootstrap/js/bootstrap-table.js"></script>
-    <script src="<%=basePath%>static/bootstrap/bootstrapValidator/js/bootstrapValidator.min.js"></script>
-    <script src="<%=basePath%>static/bootstrap/bootstrapValidator/js/bootstrap-table-zh-CN.js"></script>
-    <script src="<%=basePath%>static/bootstrap/jquery-confirm/js/jquery-confirm.js"></script>
-    <script src="<%=basePath%>static/js/jquery.dataTables.js"></script> 
-    <script src="http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.js"></script>
     <style>
         * {
             margin: 0;
@@ -41,9 +42,9 @@
           }
 
         .breadcrumb {
-            /* width: 1360px; */
+            width: 1200px;
             height: 40px;
-            margin-left: 18px;
+            margin-top: 15px;
         }
         .row {
             margin-bottom: 10px;
@@ -55,7 +56,7 @@
             padding-left: 850px;
         }
         .btnfun{
-        	
+
         }
         .text-c>th{
         text-align: center;
@@ -86,7 +87,7 @@
 
 <div class="container-fluid">
 	<ol class="breadcrumb">
-	    <li><a>Home</a></li>
+        <li><a href="<%=basePath%>welcome">Home</a></li>
 	    <li><a>字典管理</a></li>
 	    <li class="active">数据字典</li>
 	</ol>
@@ -118,11 +119,11 @@
 							<button style="margin-left: 70px" class="btn btn-primary" type="button"  id="resetSearchBtn" onclick="resetSearchConditions();"><span class="glyphicon glyphicon-remove">
 						   </span>重&nbsp;&nbsp;&nbsp;置</button>
 				          </span>
-				          
+
 			           </div>
                     </div>
-                   
-                  
+
+
 		  </form>
 	</div>
     </div>
@@ -146,7 +147,7 @@
                         <div class="col-sm-4">
                             <input type="text" class="form-control" name="codeType" id="codeType" oninput="check()" onmouseleave="checkInputing()" onkeyup="this.value=this.value.replace(/\s+/g,'')" placeholder="请输入..." />
                         </div>
-                        
+
                         <label class="control-label col-sm-2">类别名称:</label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control" name="codeName" id="codeName" oninput="check()" onmouseleave="checkInputing()" onkeyup="this.value=this.value.replace(/\s+/g,'')" placeholder="请输入..."/>
@@ -191,13 +192,13 @@
                         <div class="col-sm-4">
                             <input type="text" class="form-control" name="dataCode" id="dataCode" oninput="check2()" onmouseleave="checkInputing2()" onkeyup="this.value=this.value.replace(/\s+/g,'')" placeholder="请输入..." />
                         </div>
-                        
+
                         <label class="control-label col-sm-2">名称:</label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control" name="codeName" id="dataName" oninput="check2()" onmouseleave="checkInputing2()" onkeyup="this.value=this.value.replace(/\s+/g,'')" placeholder="请输入..."/>
                         </div>
                     </div>
-					
+
                     <div class="form-group form-group-sm">
                         <label class="control-label col-sm-2 ">类别代码:</label>
                         <div class="col-sm-4">
@@ -228,8 +229,8 @@
 
 <div id='table-div1' style="width:45%;float:left;">
 	<div class="btn-group" style="margin-top:10px; " >
-	   <button type="button" class="btn btn-default" onclick="addCodeTypeFun()" style="margin-left:16px"> <i class="fa fa-plus-square-o fa-lg"></i>&nbsp;新&nbsp;&nbsp;&nbsp;&nbsp;增</button>
-		<button class="btn btn-default" onclick="deleteCodeTypeListFun()" ><i class="fa fa-trash-o fa-lg"></i>&nbsp;批量删除</button>
+	   <button type="button" class="btn btn-default" onclick="addCodeTypeFun()" style="margin-left:16px"> 新增</button>
+		<button class="btn btn-default" onclick="deleteCodeTypeListFun()" >&nbsp;删除</button>
 	</div>
 	<table class="display table table-striped table-bordered table-hover table-checkable text-center" id="codeTypeListTable" style="white-space:nowrap">
 		<thead>
@@ -237,7 +238,7 @@
 			    <th>
 	                <input type="checkbox" id="checkCodeTypeall" class="checkCodeTypeall" name="checkBoxs" />
 	            </th>
-				<th></th> 
+				<th></th>
 				<th>类别代码</th>
 				<th>类别名称</th>
 				<th>操作</th>
@@ -249,9 +250,9 @@
 	</table>
 </div>
 <div id='table-div2'  style="width:54%;float: right;visibility: hidden">
-	<div class="btn-group" style="margin-top:10px; " >
-	   <button type="button" class="btn btn-default" onclick="addCodeFun()" style="margin-left:16px"> <i class="fa fa-plus-square-o fa-lg"></i>&nbsp;新&nbsp;&nbsp;&nbsp;&nbsp;增</button>
-	   <button class="btn btn-default" onclick="deleteCodeListFun()" ><i class="fa fa-trash-o fa-lg"></i>&nbsp;批量删除</button>
+	<div class="btn-group" style="margin-top:10px;" >
+	   <button type="button" class="btn btn-default" onclick="addCodeFun()" style="margin-left:16px">&nbsp;新增</button>
+	   <button class="btn btn-default" onclick="deleteCodeListFun()" >&nbsp;删除</button>
 	</div>
 	<table class="display table table-striped table-bordered table-hover table-checkable text-center" id="codeListTable" style="white-space:nowrap">
 		<thead>
@@ -262,8 +263,8 @@
 	            <th></th>
 				<th>代码</th>
 				<th>名称</th>
-				
-				
+
+
 				<th></th>
 				<th>操作</th>
 				<th></th>
@@ -286,16 +287,16 @@ var codeRemark=null;
    $(document).ready(function() {
 	   //默认加载类别dataTable
 	   codeTypeDataTableDraw();
-	   
+
 	  //默认加载明细dataTable
 	   codeDataTableDraw();
-	   
+
 	   //类别表单验证
 	   codeTypeValidator();
-	   
+
 	  //明细表单验证
 	   codeValidator();
-	  
+
 	  //点击左侧列表
 	   var myTable = $('#codeTypeListTable').DataTable();
 	   $('#codeTypeListTable').on('click', 'tr',function() {
@@ -306,9 +307,9 @@ var codeRemark=null;
     	   tableTwo.draw(true);                    //刷新列表2
 		   $('#table-div2').css("visibility", "visible");
 		 });
-	  
+
    });
-   
+
    $("#okCodeType").attr("disabled","true");
    $("#okCodeType").attr("style","background-color:grey;border-color:grey");
    $("#okCode").attr("disabled","true");
@@ -327,15 +328,15 @@ var codeRemark=null;
 		if((codeType=='')&& (codeName=='' )&&(remark==''))
 		{
 			$("#okCodeType").attr("disabled","true");
-			$("#resetedCodeType").attr("disabled","true");	
+			$("#resetedCodeType").attr("disabled","true");
 			$("#okCodeType").attr("style","background-color:grey;border-color:grey");
 			$("#resetedCodeType").attr("style","background-color:grey;border-color:grey");
 	    }else{
 	    	check();
 	    }
 	}
-   
-   
+
+
    function check2()
    {
      $("#okCode").removeAttr("disabled");
@@ -350,15 +351,15 @@ var codeRemark=null;
 		if((dataCode=='')&& (codeName=='' )&&(remarkTwo==''))
 		{
 			$("#okCode").attr("disabled","true");
-			$("#resetedCode").attr("disabled","true");	
+			$("#resetedCode").attr("disabled","true");
 			$("#okCode").attr("style","background-color:grey;border-color:grey");
 			$("#resetedCode").attr("style","background-color:grey;border-color:grey");
 	    }else{
 	    	check2();
 	    }
 	}
-    
-   
+
+
    //表单验证配置
    function codeTypeValidator(){
    $('#baseCodeTypeForm').bootstrapValidator({
@@ -367,7 +368,7 @@ var codeRemark=null;
 	   valid: 'glyphicon glyphicon-ok',
 	   invalid: 'glyphicon glyphicon-remove',
 	   validating: 'glyphicon glyphicon-refresh'
-            }, 
+            },
       fields: {
     	  codeType: {
               validators: {
@@ -385,8 +386,8 @@ var codeRemark=null;
           },
       }
     });
-   }  
-   
+   }
+
  //表单验证配置
    function codeValidator(){
    $('#baseCodeForm').bootstrapValidator({
@@ -395,7 +396,7 @@ var codeRemark=null;
 	   valid: 'glyphicon glyphicon-ok',
 	   invalid: 'glyphicon glyphicon-remove',
 	   validating: 'glyphicon glyphicon-refresh'
-            }, 
+            },
       fields: {
     	  dataCode: {
               validators: {
@@ -414,8 +415,8 @@ var codeRemark=null;
 
       }
     });
-   }  
- 	
+   }
+
    /* 初始化类别 */
    var codeTypeUrlStr = $("#baseCodeTypePageList").val();
    function codeTypeDataTableDraw(){
@@ -425,7 +426,7 @@ var codeRemark=null;
 	 scrollX:false,
 	 processing : true, //加载转态
 	 ordering:false,       //禁用排序去掉图标
-	 bProcessing : true, //DataTables载入数据时，是否显示‘进度’提示 
+	 bProcessing : true, //DataTables载入数据时，是否显示‘进度’提示
 	 bAutoWidth: false,
      bServerSide:true, //开启后端分页
      bDestroy: true,         //下边两个属性应该是重载数据相关的 不加在加载数据会弹窗报错 点击确定后显示数据
@@ -441,9 +442,9 @@ var codeRemark=null;
      iDisplayStart :0,
      fnServerData: retrieveData, //执行函数
      //动态生成复选框
-     fnDrawCallback: function() {  
-           $(this).find('thead input[type=checkbox]').removeAttr('checked');                        
-       },  
+     fnDrawCallback: function() {
+           $(this).find('thead input[type=checkbox]').removeAttr('checked');
+       },
      aoColumnDefs: [{
                        'targets': 0,
                        'searchable':false,
@@ -451,11 +452,11 @@ var codeRemark=null;
                        'className': 'dt-body-center',
                        'render': function (data, type, row){
                         return '<input class="checkbox_select" type="checkbox" data-status="'+ row.status + '"name="id[]" value="' + $('<div/>').text(row.codeType).html() + '">';
-                  
+
                        }
-                  }],  
-     aoColumns:[//列表元素  支持多种属性 
-                      { "mData": ""}, 
+                  }],
+     aoColumns:[//列表元素  支持多种属性
+                      { "mData": ""},
 					  {
 					     "mData": "codeType",
 					     "visible": false
@@ -467,7 +468,7 @@ var codeRemark=null;
 				              var html="<button type='button' class='btn btn-primary btn-sm oemp-privbtn' onclick=\"selectCodeTypeFun('"+meta.row+"')\">查看</button>"+
 				            	       "&nbsp;&nbsp;&nbsp;&nbsp;<button type='button' class='btn btn-primary btn-sm oemp-privbtn' onclick=\"updateCodeTypeFun('"+meta.row+"')\">修改</button>"+
 				                       "&nbsp;&nbsp;&nbsp;&nbsp;<button type='button' class='btn btn-primary btn-sm oemp-privbtn' onclick=\"deleteCodeTypeFun('"+row.codeType+"')\">删除</button>"
-				               return html;  
+				               return html;
 				            }
 				      },
 				      { "mData": "remark",
@@ -475,26 +476,26 @@ var codeRemark=null;
 				      }
 
                   ],
-     oLanguage: {  
-          "sProcessing" : "正在加载中......",  
-          "sLengthMenu" : "_MENU_",  
-          "sZeroRecords" : "无记录",  
-          "sEmptyTable" : "表中无数据存在！",  
-          "sInfo" : "当前显示 _START_ 到 _END_ 条，共 _MAX_  条记录",  
-          "sInfoEmpty" : "没有数据",  
-          "sInfoFiltered" : "数据表中共为 _TOTAL_ 条记录",  
-          "sSearch" : " ",  
-          "oPaginate" : {  
-           "sFirst" : " 首页 ",  
-           "sPrevious" : " 上一页 ",  
-           "sNext" : " 下一页 ",  
-           "sLast" : " 末页 "  
-           }  
-    }  
+     oLanguage: { 
+          "sProcessing" : "正在加载中......", 
+          "sLengthMenu" : "_MENU_", 
+          "sZeroRecords" : "无记录", 
+          "sEmptyTable" : "表中无数据存在！", 
+          "sInfo" : "当前显示 _START_ 到 _END_ 条，共 _MAX_  条记录", 
+          "sInfoEmpty" : "没有数据", 
+          "sInfoFiltered" : "数据表中共为 _TOTAL_ 条记录", 
+          "sSearch" : " ", 
+          "oPaginate" : { 
+           "sFirst" : " 首页 ", 
+           "sPrevious" : " 上一页 ", 
+           "sNext" : " 下一页 ", 
+           "sLast" : " 末页 " 
+           } 
+    } 
     });
    // $(".dataTables_wrapper .dataTables_filter input").attr("placeholder","检索内容");
-  
-} 
+
+}
  //对应上边的回调函数 参数个数不变 名字可改 第一个为请求url  第二个为上送数据 第三个为回调函数
 	function retrieveData(sSource,aoData,fnCallback) {
 	 var codeTypeSearch = {
@@ -527,8 +528,8 @@ var codeRemark=null;
 	   }
 	 });
 	}
- 
-   
+
+
 	 /* 初始化明细 */
    var codeUrlStr = $("#baseCodePageList").val();
    function codeDataTableDraw(){
@@ -539,7 +540,7 @@ var codeRemark=null;
 	// paging:false,  //取消分页
 	 processing : true, //加载转态
 	 ordering:false,       //禁用排序去掉图标
-	 bProcessing : true, //DataTables载入数据时，是否显示‘进度’提示 
+	 bProcessing : true, //DataTables载入数据时，是否显示‘进度’提示
 	 bAutoWidth: false,
      bServerSide:true, //开启后端分页
      bDestroy: true,         //下边两个属性应该是重载数据相关的 不加在加载数据会弹窗报错 点击确定后显示数据
@@ -555,9 +556,9 @@ var codeRemark=null;
      iDisplayStart :0,
      fnServerData: retrieveDataTwo, //执行函数
      //动态生成复选框
-     fnDrawCallback: function() {  
-           $(this).find('thead input[type=checkbox]').removeAttr('checked');                        
-       },  
+     fnDrawCallback: function() {
+           $(this).find('thead input[type=checkbox]').removeAttr('checked');
+       },
      aoColumnDefs: [{
                        'targets': 0,
                        'searchable':false,
@@ -565,11 +566,11 @@ var codeRemark=null;
                        'className': 'dt-body-center',
                        'render': function (data, type, row){
                         return '<input class="checkbox_selectTwo" type="checkbox" data-status="'+ row.status + '"name="id[]" value="' + $('<div/>').text(row.dataCode).html() + '">';
-                  
+
                        }
-                  }],  
-     aoColumns:[//列表元素  支持多种属性 
-                      { "mData": ""}, 
+                  }],
+     aoColumns:[//列表元素  支持多种属性
+                      { "mData": ""},
 					  {
 					     "mData": "dataCode",
 					     "visible": false
@@ -578,17 +579,17 @@ var codeRemark=null;
 						"mData": "dataCode"
 					  },
                       { "mData": "codeName"},
-  					
+
                       { "mData": "codeType",
 	                    "visible": false
 	                  },
-	                
+
 					  {"mData":null,
 				            render: function (data, type, row, meta){
 				              var html="<button type='button' class='btn btn-primary btn-sm oemp-privbtn' onclick=\"selectCodeFun('"+meta.row+"')\">查看</button>"+
 				            	       "&nbsp;&nbsp;&nbsp;&nbsp;<button type='button' class='btn btn-primary btn-sm oemp-privbtn' onclick=\"updateCodeFun('"+meta.row+"')\">修改</button>"+
 				                       "&nbsp;&nbsp;&nbsp;&nbsp;<button type='button' class='btn btn-primary btn-sm oemp-privbtn' onclick=\"deleteCodeFun('"+meta.row+"')\">删除</button>"
-				               return html;  
+				               return html;
 				            }
 				      },
 				      { "mData": "remark",
@@ -596,26 +597,26 @@ var codeRemark=null;
 				      }
 
                   ],
-     oLanguage: {  
-          "sProcessing" : "正在加载中......",  
-          "sLengthMenu" : "_MENU_",  
-          "sZeroRecords" : "无记录",  
-          "sEmptyTable" : "表中无数据存在！",  
-          "sInfo" : "当前显示 _START_ 到 _END_ 条，共 _MAX_  条记录",  
-          "sInfoEmpty" : "没有数据",  
-          "sInfoFiltered" : "数据表中共为 _TOTAL_ 条记录",  
-          "sSearch" : " ",  
-          "oPaginate" : {  
-           "sFirst" : " 首页 ",  
-           "sPrevious" : " 上一页 ",  
-           "sNext" : " 下一页 ",  
-           "sLast" : " 末页 "  
-           }  
-    }  
+     oLanguage: { 
+          "sProcessing" : "正在加载中......", 
+          "sLengthMenu" : "_MENU_", 
+          "sZeroRecords" : "无记录", 
+          "sEmptyTable" : "表中无数据存在！", 
+          "sInfo" : "当前显示 _START_ 到 _END_ 条，共 _MAX_  条记录", 
+          "sInfoEmpty" : "没有数据", 
+          "sInfoFiltered" : "数据表中共为 _TOTAL_ 条记录", 
+          "sSearch" : " ", 
+          "oPaginate" : { 
+           "sFirst" : " 首页 ", 
+           "sPrevious" : " 上一页 ", 
+           "sNext" : " 下一页 ", 
+           "sLast" : " 末页 " 
+           } 
+    } 
     });
    // $(".dataTables_wrapper .dataTables_filter input").attr("placeholder","检索内容");
-  
-} 
+
+}
    function retrieveDataTwo(sSource,aoData,fnCallback) {
 	  var codeTypeSearch = {
 		 "name":"codeTypeSearch",
@@ -640,45 +641,45 @@ var codeRemark=null;
 	   }
 	 });
 	}
-	
-   
-   
-   
-  
-  
-	     
+
+
+
+
+
+
+
 	  //类别 datatable全选
         $('.checkCodeTypeall').on('click', function () {
               if (this.checked) {
                    $(this).attr('checked','checked')
                    $('.checkbox_select').each(function () {
-                       this.checked = true;                        
+                       this.checked = true;
                    });
                } else {
                    $(this).removeAttr('checked')
                    $('.checkbox_select').each(function () {
                        this.checked = false;
                    });
-               }                 
-       });   
-	  
+               }
+       });
+
       //明细 datatable全选
         $('.checkCodeall').on('click', function () {
               if (this.checked) {
                    $(this).attr('checked','checked')
                    $('.checkbox_selectTwo').each(function () {
-                       this.checked = true;                        
+                       this.checked = true;
                    });
                } else {
                    $(this).removeAttr('checked')
                    $('.checkbox_selectTwo').each(function () {
                        this.checked = false;
                    });
-               }                 
+               }
        });
 
 
-	    
+
    /* 查询查询条件 */
    function searchDatas(){
 	   $("#rowid").val("");
@@ -687,26 +688,26 @@ var codeRemark=null;
 	   var tableTwo = $('#codeListTable').DataTable();
 	   tableTwo.draw(true);
     }
-   
+
    /* 刷新类别列表 */
    function codeTypeRefresh(){
 	   var table = $('#codeTypeListTable').DataTable();
 	   table.draw(true);
     }
-   
+
    /* 刷新明细列表 */
    function codeRefresh(){
 	   var tableTwo = $('#codeListTable').DataTable();
 	   tableTwo.draw(true);
     }
-   
+
    /**重置查询条件*/
 	function resetSearchConditions() {
 		$("#searchBasecodeForm")[0].reset();
 		var table = $('#codeTypeListTable').DataTable();
 		table.draw(true);
 	}
-   
+
 	/* 类别关闭模态框*/
 	$('#myModal').on('hidden.bs.modal', function() {
 		$("#id").val("");
@@ -715,7 +716,7 @@ var codeRemark=null;
         $('#baseCodeTypeForm').data('bootstrapValidator', null);
         codeTypeValidator();
     });
-	
+
 	/* 明细关闭模态框*/
 	$('#myModalTwo').on('hidden.bs.modal', function() {
 		 $("#codes").val("");
@@ -724,34 +725,34 @@ var codeRemark=null;
         $('#baseCodeForm').data('bootstrapValidator', null);
         codeValidator();
     });
-	
-	
+
+
    /* 按钮关闭类别模态框*/
    function closeCodeTypeModel(){
 	   $("#id").val("");
 	   $("#baseCodeTypeForm")[0].reset();//使用dom的reset
-	   $("#resetedCodeType").attr("disabled","true");	
+	   $("#resetedCodeType").attr("disabled","true");
 	   $("#okCodeType").attr("disabled","true");
 	   $("#resetedCodeType").attr("style","background-color:grey;border-color:grey");
 	   $("#okCodeType").attr("style","background-color:grey;border-color:grey");
    }
-   
+
    /* 按钮关闭明细模态框*/
    function  closeCodeModel(){
 	   $("#codes").val("");
 	   $("#baseCodeForm")[0].reset();//使用dom的reset
-	   $("#resetedCode").attr("disabled","true");	
+	   $("#resetedCode").attr("disabled","true");
 	   $("#okCode").attr("disabled","true");
 	   $("#resetedCode").attr("style","background-color:grey;border-color:grey");
 	   $("#okCode").attr("style","background-color:grey;border-color:grey");
    }
-   
+
    /* 按钮重置类别模态框 */
    function resetCodeType(){
 	   console.info("类别："+$("#codeType").val());
 	   if($("#id").val()==null || $("#id").val()==""){  //新增
 		   $("#baseCodeTypeForm").data('bootstrapValidator').resetForm();
-		   $("#resetedCodeType").attr("disabled","true");	
+		   $("#resetedCodeType").attr("disabled","true");
 		   $("#okCodeType").attr("disabled","true");
 		   $("#resetedCodeType").attr("style","background-color:grey;border-color:grey");
 		   $("#okCodeType").attr("style","background-color:grey;border-color:grey");
@@ -763,37 +764,37 @@ var codeRemark=null;
 		   $("#remark").val(codeTypeRemark);
 		   $("#baseCodeTypeForm").data('bootstrapValidator').destroy();
 	       $('#baseCodeTypeForm').data('bootstrapValidator', null);
-	       codeTypeValidator(); 
+	       codeTypeValidator();
 	   }
    }
-	   
+
 	   /* 按钮重置明细模态框 */
 	   function resetCode(){
 		   if($("#codes").val()==null || $("#codes").val()==""){  //新增
 			   $("#baseCodeForm").data('bootstrapValidator').resetForm();
-			   $("#resetedCode").attr("disabled","true");	
+			   $("#resetedCode").attr("disabled","true");
 			   $("#okCode").attr("disabled","true");
 			   $("#resetedCode").attr("style","background-color:grey;border-color:grey");
 			   $("#okCode").attr("style","background-color:grey;border-color:grey");
 			   //baseCodeForm.reset();
 			   $("#dataCode").val("");
-			   $("#codeTypeTwo").val(codeType); 
+			   $("#codeTypeTwo").val(codeType);
 			   $("#dataName").val("");
 			   $("#remarkTwo").val("");
 		   }
 		   if($("#codes").val()!=null && $("#codes").val()!=""){  //修改
 			   $("#dataCode").val(dataCode);
-			   $("#codeTypeTwo").val(codeType); 
+			   $("#codeTypeTwo").val(codeType);
 			   $("#dataName").val(dataName);
 			   $("#remarkTwo").val(codeRemark);
 			   $("#baseCodeForm").data('bootstrapValidator').destroy();
 		       $('#baseCodeForm').data('bootstrapValidator', null);
-		       codeValidator(); 
+		       codeValidator();
 		   }
-	   
+
    }
-   
-   
+
+
    /**新增类别信息*/
 	function addCodeTypeFun() {
 		$("#id").val("");	//避免hidden出现不能reset的情况
@@ -828,8 +829,8 @@ var codeRemark=null;
 	    $('#remarkTwo').removeAttr("readonly");
 		$('#myModalTwo').modal('show');
 	}
-   
-	 
+
+
    /* 查看类别信息*/
    function selectCodeTypeFun(Row){
 	   $('#myModal').modal('show');
@@ -846,8 +847,8 @@ var codeRemark=null;
 	   $("#resetedCodeType").attr("style","background-color:grey;border-color:grey");
 	   $('#closeCodeTypeModel').removeAttr("disabled");
    }
-   
-   
+
+
    /* 查看明细信息*/
    function selectCodeFun(Row){
 	   $('#myModalTwo').modal('show');
@@ -865,10 +866,10 @@ var codeRemark=null;
 	   $('#resetedCode').attr("disabled",true);
 	   $("#resetedCode").attr("style","background-color:grey;border-color:grey");
 	   $('#closeCodeModel').removeAttr("disabled");
-	   
+
    }
-   
-   
+
+
    /* 修改类别 */
 	 function updateCodeTypeFun(Row){
 	   $('#okCodeType').removeAttr("disabled");
@@ -892,8 +893,8 @@ var codeRemark=null;
 	   codeName=data.codeName;
 	   codeTypeRemark=data.remark;
 	 }
-   
-   
+
+
 	 /* 修改明细 */
 	 function updateCodeFun(Row){
 	   $('#okCode').removeAttr("disabled");
@@ -924,8 +925,8 @@ var codeRemark=null;
 	   console.info("#codes11111"+  $("#baseCodeForm #code").val());
 	   $("#code").val(data.code);
 	 }
-	 
-	 
+
+
 	 /* 删除类别函数  */
 	 function deleteCodeTypeFun(codeType){
 		 $.confirm({
@@ -950,8 +951,8 @@ var codeRemark=null;
 	            },
 	        });
 	 }
-	
-	 
+
+
 	 /* 删除类别数据 */
 	 function deleteCodeType(codeType){
 	 var delCodeTypeUrl = $("#deleteInfoCodeType").val();
@@ -988,8 +989,8 @@ var codeRemark=null;
 	 			}
 	 		}, 'json');
 	 }
-	 
-	 
+
+
 	 /* 删除明细函数  */
 	 function deleteCodeFun(Row){
 		 var data= $('#codeListTable').DataTable().rows(Row).data()[0];
@@ -1015,8 +1016,8 @@ var codeRemark=null;
 	            },
 	        });
 	 }
-	 
-	 
+
+
 	 /* 删除明细数据 */
 	 function deleteCode(codeType,dataCode){
 	 var delCodeUrl = $("#deleteInfoCode").val();
@@ -1053,18 +1054,18 @@ var codeRemark=null;
 	 			}
 	 		}, 'json');
 	 }
-		
-	 
-	 
+
+
+
 	 /* 批量删除类别 */
 	  function deleteCodeTypeListFun(){
 		  var selectLoans = [];
           $('.checkbox_select').each(function () {
               if($(this).is(':checked')){
-            	   selectLoans.push($(this).val());                  
+            	   selectLoans.push($(this).val());
               }
           });
-         if(selectLoans.length == 0){ 
+         if(selectLoans.length == 0){
         	 $.alert({
  			    title: '提示',
  			    content: '请选择一行数据进行删除！',
@@ -1074,20 +1075,20 @@ var codeRemark=null;
  			        	text: '确认',
  			        	btnClass: 'btn-primary',
  			        	action: function(){	//这里写点击按钮回调函数
- 			        		
+
  			        	}
  			        }
  			    }
- 			});           
+ 			});
          }else{
              var idListStr ='';
-             for (var i = 0; i < selectLoans.length; i++) { 
+             for (var i = 0; i < selectLoans.length; i++) {
                  if(i!=selectLoans.length-1){
                      idListStr = idListStr + selectLoans[i] +",";
                  }else{
                      idListStr = idListStr + selectLoans[i];
-                 } 
-             }  
+                 }
+             }
              console.info("id:"+idListStr);
              var deleteInfoUrl = $("#deleteCodeTypeList").val();
         	 $.post(deleteInfoUrl,  {"idListStr": idListStr},function(data) {
@@ -1123,19 +1124,19 @@ var codeRemark=null;
         	 			}
         	 		}, 'json');
          }
-	  	
+
 	 }
-	 
-	 
+
+
 	  /* 批量删除明细 */
 	  function deleteCodeListFun(){
 		  var selectLoans = [];
           $('.checkbox_selectTwo').each(function () {
               if($(this).is(':checked')){
-            	   selectLoans.push($(this).val());                  
+            	   selectLoans.push($(this).val());
               }
           });
-         if(selectLoans.length == 0){ 
+         if(selectLoans.length == 0){
         	 $.alert({
  			    title: '提示',
  			    content: '请选择一行数据进行删除！',
@@ -1145,20 +1146,20 @@ var codeRemark=null;
  			        	text: '确认',
  			        	btnClass: 'btn-primary',
  			        	action: function(){	//这里写点击按钮回调函数
- 			        		
+
  			        	}
  			        }
  			    }
- 			});           
+ 			});
          }else{
              var idListStr ='';
-             for (var i = 0; i < selectLoans.length; i++) { 
+             for (var i = 0; i < selectLoans.length; i++) {
                  if(i!=selectLoans.length-1){
                      idListStr = idListStr + selectLoans[i] +",";
                  }else{
                      idListStr = idListStr + selectLoans[i];
-                 } 
-             }  
+                 }
+             }
              console.info("id:"+idListStr);
              var deleteInfoCodeUrl = $("#deleteCodeList").val();
              codeType=$('#rowid').val();
@@ -1195,11 +1196,11 @@ var codeRemark=null;
         	 			}
         	 		}, 'json');
          }
-	  	
+
 	 }
-	 
-	  
-	  
+
+
+
 	/**类别表单提交事件*/
 	function submitCodeType() {
 		var bootstrapValidator = $("#baseCodeTypeForm").data('bootstrapValidator');
@@ -1222,7 +1223,7 @@ var codeRemark=null;
 			$.post(createCodeTypeUrl, $("#baseCodeTypeForm").serialize(), function(data) {
 				console.info("data.result"+data.result);
 				if (data.result=='true') {
-					
+
 					$.alert({
 		                title: '提示',
 		                content: '数据类别保存成功！',
@@ -1264,13 +1265,13 @@ var codeRemark=null;
 		                    confirm: {
 		                        text: '确认',
 		                        btnClass: 'btn-primary',
-		                        action: function(){ //这里写点击按钮回调函数 
+		                        action: function(){ //这里写点击按钮回调函数
 		                        }
 		                    }
 		                }
 		            });
 				}
-				
+
 				}, 'json' );
 		}else {
             $.alert({
@@ -1288,8 +1289,8 @@ var codeRemark=null;
             });
         }
 	}
-	
-	
+
+
 	/**明细表单提交事件*/
 	function submitCode() {
 		var bootstrapValidator = $("#baseCodeForm").data('bootstrapValidator');
@@ -1337,13 +1338,13 @@ var codeRemark=null;
 		                    confirm: {
 		                        text: '确认',
 		                        btnClass: 'btn-primary',
-		                        action: function(){ //这里写点击按钮回调函数 
+		                        action: function(){ //这里写点击按钮回调函数
 		                        }
 		                    }
 		                }
 		            });
 				}
-				
+
 				}, 'json' );
 		}else {
             $.alert({
@@ -1361,6 +1362,6 @@ var codeRemark=null;
             });
         }
 	}
-	
+
 </script>
 </html>

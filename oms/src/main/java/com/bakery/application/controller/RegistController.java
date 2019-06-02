@@ -5,6 +5,7 @@ import com.bakery.application.entity.Employee;
 import com.bakery.application.entity.EmployeeCriteria;
 import com.bakery.application.service.EmployeeService;
 import com.bakery.application.util.HttpClientUtil;
+import com.bakery.application.util.MD5Util;
 import com.bakery.application.util.UUIDUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,14 +106,14 @@ public class RegistController {
      * @return:
      * @throws:
      */
-    @RequestMapping(value = Url.REGIST_OMS_URL)
-    public @ResponseBody boolean login(Employee employee,HttpServletRequest request){
+    @RequestMapping(value = Url.REGIST_OMS_URL ,method = RequestMethod.POST)
+    public @ResponseBody boolean login(Employee employee) throws Exception {
         boolean flag=true;
         EmployeeCriteria employeeCriteria=new EmployeeCriteria();
         EmployeeCriteria.Criteria cri=employeeCriteria.createCriteria();
         if(StringUtils.isNotBlank(employee.getEmpName())&&StringUtils.isNotBlank(employee.getPassword())) {
             cri.andEmpNameEqualTo(employee.getEmpName());
-            cri.andPasswordEqualTo(employee.getPassword());
+            cri.andPasswordEqualTo(MD5Util.finishMD5(employee.getPassword()));
             cri.andStatusEqualTo(1);
         }
         if(StringUtils.isNotBlank(employee.getPhone())){
@@ -126,6 +127,7 @@ public class RegistController {
             employee.setEmpNo(UUIDUtil.create32Key());
             employee.setStatus(1);
             employee.setRoleId("0");
+            employee.setPassword(MD5Util.finishMD5(employee.getPassword()));
             flag = employeeService.insertSelective(employee);
         }
         return flag;

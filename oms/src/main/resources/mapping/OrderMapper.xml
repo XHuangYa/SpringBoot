@@ -87,7 +87,7 @@
         SELECT
         bu.USER_NAME
         FROM
-        `bky_user` bu
+        bky_user bu
         WHERE
         bu.USER_PHONE = bo.USER_PHONE
         ),
@@ -133,9 +133,6 @@
             </if>
             <if test="endTime != null">
                 AND bo.CREATE_TIME &lt;=#{endTime}
-            </if>
-            <if test="userName != null and userName!=''">
-                AND bu.USER_NAME like '%${userName}%'
             </if>
             AND bo.`STATUS` = 1
         </where>

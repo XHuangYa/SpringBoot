@@ -20,13 +20,11 @@
             margin: 0;
             padding: 0;
         }
-
     </style>
     </head>
     <body style="background: black">
-
         <div class="container-fluid">
-            <div class="row" style="background: black;height: 30px">
+            <div class="row" style="background: black;margin-bottom: 0px">
                 <tiles:insertAttribute name='header' />
             </div>
             <div class="row" style="background: rgba(157,157,157,0.7)" >

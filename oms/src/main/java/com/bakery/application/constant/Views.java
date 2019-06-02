@@ -26,6 +26,7 @@ public interface Views {
     
     //数据字典
     String BASECODE_VIEW="basecode.index";
+
     String CODETYPE_VIEW="codetype.index";
 
 }

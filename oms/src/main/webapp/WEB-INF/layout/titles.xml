@@ -51,4 +51,8 @@
         <put-attribute name="title" value="welcome" />
         <put-attribute name="body" value="/WEB-INF/views/welcome.jsp" />
     </definition>
+    <definition name="basecode.index" extends="layout.basic">
+        <put-attribute name="title" value="数据字典" />
+        <put-attribute name="body" value="/WEB-INF/views/basecodeIndex.jsp" />
+    </definition>
 </tiles-definitions>

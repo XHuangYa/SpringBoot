@@ -26,6 +26,7 @@
     <script src="<%=basePath%>static/bootstrap/bootstrapValidator/js/bootstrapValidator.min.js"></script>
     <script src="<%=basePath%>static/bootstrap/js/bootstrap-editable.min.js"></script>
     <script src="<%=basePath%>static/bootstrap/js/bootstrap-table-editable.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
     <%--css--%>
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/jquery-confirm.css">
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap.min.css">
@@ -40,12 +41,14 @@
             margin: 0;
             padding: 0;
         }
+
         .breadcrumb {
             width: 1205px;
             height: 40px;
             margin-left: 18px;
             margin-top: 15px;
         }
+
         #kk {
             margin-top: 50px;
             height: 300px;
@@ -61,7 +64,7 @@
 </ol>
 <!-- 查询框 start -->
 <div class="panel-body" style="padding-bottom:0px; padding-top:0px ;">
-    <div class="panel panel-default"style="width: 1205px">
+    <div class="panel panel-default" style="width: 1205px">
         <div class="panel-body" style="height: 620px">
             <div class="container-fluid">
 
@@ -105,6 +108,7 @@
     function queryStockBtn() {
         $("#tb_roles").bootstrapTable("refresh");
     }
+
     /*重置按钮*/
     function resetStockBtn() {
         $("#searchStockForm")[0].reset();
@@ -114,6 +118,7 @@
         $('#tb_roles').bootstrapTable('refresh');
         changeBtndisable();
     }
+
     /*-------------设置重置按钮状态start---------*/
     function changeBtnable() {
         $("#resetSearchBtn").removeAttr("disabled");
@@ -142,6 +147,7 @@
         }
         values = "";
     }
+
     /*-------------设置重置按钮状态start---------*/
     function changeBtnable() {
         $("#resetSearchBtn").removeAttr("disabled");
@@ -153,6 +159,7 @@
         $("#resetSearchBtn").attr("disabled", "true");
         $("#resetSearchBtn").attr("style", "background-color:grey;border-color:grey");
     }
+
     /*-------------设置重置按钮状态end---------*/
     /*---------bootstrapTable------start-----*/
     var index = '';
@@ -181,7 +188,7 @@
                         pageSize: params.pageSize,
                         orderBy: params.sortName,
                         orderType: params.sortOrder,
-                        pdtName:$("#search_pdtName").val(),
+                        pdtName: $("#search_pdtName").val(),
                         searchText: params.searchText
                     };
                     return param;
@@ -236,7 +243,7 @@
                     field: 'pdtName',
                     align: 'center',
                     valign: 'middle',
-                },  {
+                }, {
                     title: '商品库存',
                     field: 'measerDes',
                     align: 'center',

@@ -7,6 +7,7 @@ package com.bakery.application.service.serviceImpl;
 
 import com.bakery.application.entity.VisitCount;
 import com.bakery.application.entity.VisitCountCriteria;
+import com.bakery.application.mapper.VisitCountMapper;
 import com.bakery.application.service.VisitCountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,15 +18,15 @@ import java.util.List;
 @Transactional(readOnly = false)
 public class VisitCountServiceImpl implements VisitCountService {
 
+	@Autowired
+	VisitCountMapper visitCountMapper;
 	@Override
-	public boolean updateByExampleSelective(VisitCount record, VisitCountCriteria example) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updateByExampleSelective(VisitCount visitCount, VisitCountCriteria countCriteria) {
+		return visitCountMapper.updateByExampleSelective(visitCount,countCriteria)>=1?true:false;
 	}
 
 	@Override
 	public List<VisitCount> selectByExample(VisitCountCriteria example) {
-		// TODO Auto-generated method stub
-		return null;
+		return visitCountMapper.selectByExample(example);
 	}
 }

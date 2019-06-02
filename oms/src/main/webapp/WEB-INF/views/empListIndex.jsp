@@ -26,6 +26,7 @@
     <script src="<%=basePath%>static/bootstrap/bootstrapValidator/js/bootstrapValidator.min.js"></script>
     <script src="<%=basePath%>static/bootstrap/js/bootstrap-editable.min.js"></script>
     <script src="<%=basePath%>static/bootstrap/js/bootstrap-table-editable.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
     <%--css--%>
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/jquery-confirm.css">
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap.min.css">
@@ -35,6 +36,7 @@
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/bootstrapValidator/css/bootstrapValidator.min.css">
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap-editable.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -75,7 +77,7 @@
 </ol>
 <!-- 查询框 start -->
 <div class="panel-body" style="padding-bottom:0px; padding-top:0px;">
-    <div class="panel panel-default"style="width: 1200px;">
+    <div class="panel panel-default" style="width: 1200px;">
         <div class="panel-body" style="height: 620px;">
             <div class="container-fluid">
                 <form id="searchEmpForm" name="searchEmpForm" class="form-horizontal">
@@ -169,15 +171,15 @@
                         <input type="hidden" class="form-control" name="empNo" id="empNo" placeholder="请输入..."/>
                         <div class="form-group form-group-sm">
                             <label class="control-label col-sm-2"><span style="color:red">*</span>员工名称:</label>
-                            <div class="col-sm-4">
+                            <div class="col-sm-10">
                                 <input type="text" class="form-control" name="empName" id="empName"
                                        placeholder="请输入..."/>
                             </div>
-                            <label class="control-label col-sm-2">员工密码:</label>
+                            <%--<label class="control-label col-sm-2">员工密码:</label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control" name="password" id="password"
                                        placeholder="默认123456"/>
-                            </div>
+                            </div>--%>
                         </div>
 
                         <div class="form-group form-group-sm">
@@ -185,11 +187,11 @@
                             <div class="col-sm-4">
                                 <input type="text" class="form-control" name="phone" id="phone" placeholder="请输入..."/>
                             </div>
-                            <label class="control-label col-sm-2 "><span style="color:red">*</span>员工标识:</label>
+                            <label class="control-label col-sm-2 ">员工标识:</label>
                             <div class="col-sm-4">
                                 <select class="form-control" name="roleId" id="roleId"
                                         onkeyup="this.value=this.value.replace(/\s+/g,'')">
-                                    <option value="">请选择</option>
+                                    <option value="">管理员身份请选择</option>
                                 </select>
                             </div>
                         </div>
@@ -232,8 +234,7 @@
                             <div class="col-sm-12">
                             <textarea class="form-control" name="addr" id="addr"
                                       style="resize:none; height: 50px;" rows="3"
-                                      placeholder="请输入..."
-                                      onkeyup="this.value=this.value.replace(/\s+/g,'')"></textarea>
+                                      placeholder="请输入..."></textarea>
                             </div>
                         </div>
                         <div class="form-group form-group-sm">
@@ -686,13 +687,13 @@
                         }
                     }
                 },
-                roleId: {
+                /*roleId: {
                     validators: {
                         notEmpty: {
                             message: '请选择员工标识'
                         }
                     }
-                },
+                },*/
                 job: {
                     validators: {
                         notEmpty: {
@@ -923,7 +924,7 @@
                     field: 'empName',
                     align: 'center',
                     valign: 'middle',
-                }, {
+                }, /*{
                     title: '登陆密码',
                     field: 'password',
                     align: 'center',
@@ -939,7 +940,7 @@
 
                         }
                     }
-                }, {
+                },*/ {
                     title: '联系方式',
                     field: 'phone',
                     align: 'center',
@@ -1040,52 +1041,52 @@
                     valign: 'middle',
                     visible: false
                 }],
-                onEditableSave: function (field, row, oldValue, $el) {
-                    var createOrUpdateEmpUrl = $("#createOrUpdateEmpUrl").val();
-                    $.ajax({
-                        type: "post",
-                        url: createOrUpdateEmpUrl,
-                        data: row,
-                        dataType: 'JSON',
-                        success: function (data, status) {
-                            if (status == "success") {
-                                $.alert({
-                                    title: '提示',
-                                    content: '密码修改成功！',
-                                    type: 'blue', //一般危险操作用red,保存成功操作green
-                                    buttons: { //定义按钮
-                                        confirm: {
-                                            text: '确认',
-                                            btnClass: 'btn-primary',
-                                            action: function () { //这里写点击按钮回调函数
-                                                $('#tb_roles').bootstrapTable('refresh');  //刷新列表
-                                            }
-                                        }
-                                    }
-                                });
-                            }
-                        },
-                        error: function () {
-                            $.alert({
-                                title: '提示',
-                                content: '密码修改失败！',
-                                type: 'red', //一般危险操作用red,保存成功操作green
-                                buttons: { //定义按钮
-                                    confirm: {
-                                        text: '确认',
-                                        btnClass: 'btn-primary',
-                                        action: function () { //这里写点击按钮回调函数
-                                        }
-                                    }
-                                }
-                            });
-                        },
-                        complete: function () {
+                /*  onEditableSave: function (field, row, oldValue, $el) {
+                      var createOrUpdateEmpUrl = $("#createOrUpdateEmpUrl").val();
+                      $.ajax({
+                          type: "post",
+                          url: createOrUpdateEmpUrl,
+                          data: row,
+                          dataType: 'JSON',
+                          success: function (data, status) {R
+                              if (status == "success") {
+                                  $.alert({
+                                      title: '提示',
+                                      content: '密码修改成功！',
+                                      type: 'blue', //一般危险操作用red,保存成功操作green
+                                      buttons: { //定义按钮
+                                          confirm: {
+                                              text: '确认',
+                                              btnClass: 'btn-primary',
+                                              action: function () { //这里写点击按钮回调函数
+                                                  $('#tb_roles').bootstrapTable('refresh');  //刷新列表
+                                              }
+                                          }
+                                      }
+                                  });
+                              }
+                          },
+                          error: function () {
+                              $.alert({
+                                  title: '提示',
+                                  content: '密码修改失败！',
+                                  type: 'red', //一般危险操作用red,保存成功操作green
+                                  buttons: { //定义按钮
+                                      confirm: {
+                                          text: '确认',
+                                          btnClass: 'btn-primary',
+                                          action: function () { //这里写点击按钮回调函数
+                                          }
+                                      }
+                                  }
+                              });
+                          },
+                          complete: function () {
 
-                        }
+                          }
 
-                    });
-                }
+                      });
+                  }*/
             });
 
         };

@@ -26,7 +26,7 @@
     <script src="<%=basePath%>static/bootstrap/js/bootstrap-editable.min.js"></script>
     <script src="<%=basePath%>static/bootstrap/js/bootstrap-table-editable.js"></script>
     <script type="text/javascript" src="<%=basePath%>static/js/jquery.serializejson.min.js"></script>
-
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
     <%--css--%>
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/jquery-confirm.css">
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap.min.css">
@@ -95,8 +95,7 @@
                             <div class="col-md-3 ">
                                 <input type="text" class="form-control  input-sm" name="search_pdtName"
                                        id="search_pdtName"
-                                       oninput="checkInput()" placeholder="请输入商品名称"
-                                       onkeyup="this.value=this.value.replace(/\s+/g,'')"/>
+                                       oninput="checkInput()" placeholder="请输入商品名称"/>
                             </div>
                             <label class="control-label col-md-1">商品类别:</label>
                             <div class="col-md-3">

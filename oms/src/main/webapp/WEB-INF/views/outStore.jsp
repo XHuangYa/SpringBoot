@@ -26,6 +26,7 @@
     <script src="<%=basePath%>static/bootstrap/bootstrapValidator/js/bootstrapValidator.min.js"></script>
     <script src="<%=basePath%>static/bootstrap/js/bootstrap-editable.min.js"></script>
     <script src="<%=basePath%>static/bootstrap/js/bootstrap-table-editable.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
     <%--css--%>
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/jquery-confirm.css">
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap.min.css">
@@ -36,12 +37,13 @@
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap-editable.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
-        .breadcrumb{
+        .breadcrumb {
             width: 1205px;
             height: 40px;
             margin-left: 18px;
             margin-top: 15px;
         }
+
         #kk {
             margin-top: 50px;
             height: 250px;
@@ -57,15 +59,16 @@
 </ol>
 <!-- 查询框 start -->
 <div class="panel-body" style="padding-bottom:0px; padding-top:0px ;">
-    <div class="panel panel-default"style="width: 1205px">
-        <div class="panel-body"style="height: 620px;">
+    <div class="panel panel-default" style="width: 1205px">
+        <div class="panel-body" style="height: 620px;">
             <div class="container-fluid">
                 <form id="searchStockForm" name="searchStockForm" class="form-horizontal">
                     <div class="form-group" style="margin-top: 30px">
                         <div class="row">
                             <label class="control-label col-md-1 ">商品名称:</label>
                             <div class="col-md-2 ">
-                                <input type="text" class="form-control  input-sm" name="search_pdtName" id="search_pdtName" placeholder="请输入商品名称" oninput="checkInput()" >
+                                <input type="text" class="form-control  input-sm" name="search_pdtName"
+                                       id="search_pdtName" placeholder="请输入商品名称" oninput="checkInput()">
                             </div>
                             <label class="control-label col-md-1 ">开始时间:</label>
                             <div class="col-md-2 has-feedback">
@@ -115,6 +118,7 @@
     function queryStockBtn() {
         $("#tb_roles").bootstrapTable("refresh");
     }
+
     /*重置按钮*/
     function resetStockBtn() {
         $("#searchStockForm")[0].reset();
@@ -124,6 +128,7 @@
         $('#tb_roles').bootstrapTable('refresh');
         changeBtndisable();
     }
+
     /*-------------设置重置按钮状态start---------*/
     function changeBtnable() {
         $("#resetSearchBtn").removeAttr("disabled");
@@ -152,6 +157,7 @@
         }
         values = "";
     }
+
     /*-------------设置重置按钮状态start---------*/
     function changeBtnable() {
         $("#resetSearchBtn").removeAttr("disabled");
@@ -163,6 +169,7 @@
         $("#resetSearchBtn").attr("disabled", "true");
         $("#resetSearchBtn").attr("style", "background-color:grey;border-color:grey");
     }
+
     /*-------------设置重置按钮状态end---------*/
     /*---------bootstrapTable------start-----*/
     var index = '';
@@ -191,8 +198,8 @@
                         pageSize: params.pageSize,
                         orderBy: params.sortName,
                         orderType: params.sortOrder,
-                        flag:"OUT",
-                        pdtName:$("#search_pdtName").val(),
+                        flag: "OUT",
+                        pdtName: $("#search_pdtName").val(),
                         beginTime: $("#beginTime").val(),//开始时间
                         endTime: $("#endTime").val(),//结束时间
                         searchText: params.searchText
@@ -263,7 +270,7 @@
                     valign: 'middle',
                 }, {
                     title: '出库时间',
-                    field: 'inTime',
+                    field: 'outTime',
                     align: 'center',
                     valign: 'middle'
                 }, {

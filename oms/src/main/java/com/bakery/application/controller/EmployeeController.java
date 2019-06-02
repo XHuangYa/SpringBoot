@@ -7,6 +7,7 @@ import com.bakery.application.service.BaseCodeService;
 import com.bakery.application.service.EmployeeService;
 import com.bakery.application.service.SysMenuService;
 import com.bakery.application.util.JsonUtil;
+import com.bakery.application.util.MD5Util;
 import com.bakery.application.util.UUIDUtil;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang.StringUtils;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import sun.security.provider.MD5;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -113,7 +115,7 @@ public class EmployeeController {
      */
     @RequestMapping(value = Url.INSERT_OR_UPDATE_EMPINFO_URL, method = RequestMethod.POST)
     public @ResponseBody
-    Map<String, Object> insertOrUpdateEmp(Employee employee) {
+    Map<String, Object> insertOrUpdateEmp(Employee employee) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
         boolean flag = false;
         if (StringUtils.isBlank(employee.getEmpNo())) {
@@ -125,9 +127,8 @@ public class EmployeeController {
             if (employees.isEmpty()) {
                 employee.setEmpNo(UUIDUtil.create32Key());
                 employee.setStatus(1);
-                employee.setRoleId("0");
-                if(StringUtils.isBlank(employee.getPassword())){
-                    employee.setPassword("123456");
+                if (StringUtils.isNotBlank(employee.getRoleId())) {
+                    employee.setPassword(MD5Util.finishMD5("123456"));
                 }
                 flag = employeeService.insertSelective(employee);
             } else {
@@ -145,6 +146,21 @@ public class EmployeeController {
             }
         }
         return map;
+    }
+    /**
+     * @Description: 修改密码
+     * @Author: LiTing
+     * @Date: 11:43 AM 2019/5/29
+     * @return:
+     * @throws:
+     */
+    @RequestMapping(value = Url.UPDATE_PWD_URL)
+    public @ResponseBody boolean updatePwd(Employee employee) throws Exception {
+        EmployeeCriteria employeeCriteria=new EmployeeCriteria();
+        EmployeeCriteria.Criteria cri=employeeCriteria.createCriteria();
+        cri.andEmpNoEqualTo(employee.getEmpNo());
+        employee.setPassword(MD5Util.finishMD5(employee.getPassword()));
+        return employeeService.updateByExampleSelective(employee, employeeCriteria);
     }
 
 }

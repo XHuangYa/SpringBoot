@@ -5,6 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.bakery.application.constant.*;
+import com.bakery.application.entity.*;
+import com.bakery.application.service.EmployeeService;
+import com.bakery.application.service.SysMenuService;
+import com.bakery.application.util.JsonUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,14 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.bakery.application.constant.PageInfo;
-import com.bakery.application.constant.ResDataDTO;
-import com.bakery.application.constant.Url;
-import com.bakery.application.constant.Views;
-import com.bakery.application.entity.BaseCode;
-import com.bakery.application.entity.BaseCodeCriteria;
-import com.bakery.application.entity.CodeType;
-import com.bakery.application.entity.CodeTypeCriteria;
 import com.bakery.application.service.BaseCodeService;
 import com.bakery.application.service.CodeTypeService;
 
@@ -44,15 +41,40 @@ public class BaseCodeController {
 	@Autowired
 	@Qualifier("baseCodeService")
 	private BaseCodeService baseCodeService;
-	
+	@Autowired
+	EmployeeService employeeService;
+
+	@Autowired
+	SysMenuService sysMenuService;
 
 	@Autowired
 	@Qualifier("codeTypeService")
 	private CodeTypeService codeTypeService;
 
-	 @RequestMapping("BASECODE_MANAGE_LIST")
-	 public String get(){
-	   return Views.BASECODE_VIEW;
+	 @RequestMapping(value = Url.BASECODE_MANAGE_LIST)
+	 public String get(final Map<String, Object> map){
+		 //查询按钮
+		 List<SysMenu> sysMenuList = sysMenuService.selecyByCriteria(new SysMenuCriteria());
+		 //归属部门
+		 List<BaseCode> deptTypeList = baseCodeService.findByCodeType(CodeTypeConstant.DEPT_TYPE);
+		 //员工标识
+		 List<BaseCode> roleTypeList = baseCodeService.findByCodeType(CodeTypeConstant.EMP_ROLE_TYPE);
+		 //员工职位
+		 List<BaseCode> JobList = baseCodeService.findByCodeType(CodeTypeConstant.EMP_JOB);
+		 //员工性别
+		 List<BaseCode> sexList = baseCodeService.findByCodeType(CodeTypeConstant.SEX);
+		 //上级领导
+		 EmployeeCriteria criteria = new EmployeeCriteria();
+		 EmployeeCriteria.Criteria cri = criteria.createCriteria();
+		 cri.andJobEqualTo("1");
+		 List<Employee> mgrList = employeeService.selectByCriteria(criteria);
+		 map.put("deptTypeList", JsonUtil.listtojson(deptTypeList));
+		 map.put("roleTypeList", JsonUtil.listtojson(roleTypeList));
+		 map.put("JobList", JsonUtil.listtojson(JobList));
+		 map.put("sysMenuList", JsonUtil.listtojson(sysMenuList));
+		 map.put("sexList", JsonUtil.listtojson(sexList));
+		 map.put("mgrList", JsonUtil.listtojson(mgrList));
+	 	return Views.BASECODE_VIEW;
 	 }
 
 	 /**
@@ -162,7 +184,7 @@ public class BaseCodeController {
 	
 	/**
 	 * 类别修改
-	 * @param baseCodeType
+	 * @param
 	 * @return
 	 */
 	 @RequestMapping(value = Url.UPDATE_CODETYPE, method = RequestMethod.POST)
@@ -188,7 +210,7 @@ public class BaseCodeController {
 	 
 	 /**
 		 * 类别增加
-		 * @param baseCodeType
+		 * @param
 		 * @return
 		 */
 		 @RequestMapping(value = Url.INSERT_CODETYPE, method = RequestMethod.POST)
@@ -269,7 +291,7 @@ public class BaseCodeController {
 		 
 		 /**
 		  * 删除类别
-		  * @param userId
+		  * @param
 		  * @return
 		  */
 		 @RequestMapping(value = Url.DELETE_INFO_CODETYPE, method = RequestMethod.POST)
@@ -301,7 +323,7 @@ public class BaseCodeController {
 		 
 		 /**
 		  * 删除明细
-		  * @param userId
+		  * @param
 		  * @return
 		  */
 		 @RequestMapping(value = Url.DELETE_INFO_CODE, method = RequestMethod.POST)
@@ -328,7 +350,7 @@ public class BaseCodeController {
 		 
 		 /**
 		  * 批量删除类别
-		  * @param userId
+		  * @param
 		  * @return
 		  */
 		 @RequestMapping(value = Url.DELETE_LIST_CODETYPE, method = RequestMethod.POST)
@@ -362,7 +384,7 @@ public class BaseCodeController {
 		 
 		 /**
 		  * 批量删除明细
-		  * @param userId
+		  * @param
 		  * @return
 		  */
 		 @RequestMapping(value = Url.DELETE_LIST_CODE, method = RequestMethod.POST)

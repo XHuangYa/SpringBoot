@@ -1,15 +1,14 @@
 package com.bakery.application.controller;
 
-import com.bakery.application.constant.BootstrapTablePage;
-import com.bakery.application.constant.Page;
-import com.bakery.application.constant.Url;
-import com.bakery.application.constant.Views;
+import com.bakery.application.constant.*;
 import com.bakery.application.dto.ProductDTO;
 import com.bakery.application.dto.StockDTO;
-import com.bakery.application.entity.Product;
-import com.bakery.application.entity.Stock;
-import com.bakery.application.entity.StockCriteria;
+import com.bakery.application.entity.*;
+import com.bakery.application.service.BaseCodeService;
+import com.bakery.application.service.EmployeeService;
 import com.bakery.application.service.StockService;
+import com.bakery.application.service.SysMenuService;
+import com.bakery.application.util.JsonUtil;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +29,13 @@ import java.util.Map;
 public class StockController {
     @Autowired
     StockService stockService;
+    @Autowired
+    SysMenuService sysMenuService;
+    @Autowired
+    BaseCodeService baseCodeService;
 
+    @Autowired
+    EmployeeService employeeService;
     /**
      * @Description:入库记录初始化
      * @Author: LiTing
@@ -40,6 +45,27 @@ public class StockController {
      */
     @RequestMapping(Url.STORE_IN_LIST)
     public String inStockIndex(final Map<String, Object> map) {
+        //查询按钮
+        List<SysMenu> sysMenuList = sysMenuService.selecyByCriteria(new SysMenuCriteria());
+        //归属部门
+        List<BaseCode> deptTypeList = baseCodeService.findByCodeType(CodeTypeConstant.DEPT_TYPE);
+        //员工标识
+        List<BaseCode> roleTypeList = baseCodeService.findByCodeType(CodeTypeConstant.EMP_ROLE_TYPE);
+        //员工职位
+        List<BaseCode> JobList = baseCodeService.findByCodeType(CodeTypeConstant.EMP_JOB);
+        //员工性别
+        List<BaseCode> sexList = baseCodeService.findByCodeType(CodeTypeConstant.SEX);
+        //上级领导
+        EmployeeCriteria criteria = new EmployeeCriteria();
+        EmployeeCriteria.Criteria cri = criteria.createCriteria();
+        cri.andJobEqualTo("1");
+        List<Employee> mgrList = employeeService.selectByCriteria(criteria);
+        map.put("deptTypeList", JsonUtil.listtojson(deptTypeList));
+        map.put("roleTypeList", JsonUtil.listtojson(roleTypeList));
+        map.put("JobList", JsonUtil.listtojson(JobList));
+        map.put("sysMenuList", JsonUtil.listtojson(sysMenuList));
+        map.put("sexList", JsonUtil.listtojson(sexList));
+        map.put("mgrList", JsonUtil.listtojson(mgrList));
         return Views.STORE_IN_VIEW;
     }
 
@@ -52,6 +78,27 @@ public class StockController {
      */
     @RequestMapping(Url.STORE_OUT_LIST)
     public String outStockIndex(final Map<String, Object> map) {
+        //查询按钮
+        List<SysMenu> sysMenuList = sysMenuService.selecyByCriteria(new SysMenuCriteria());
+        //归属部门
+        List<BaseCode> deptTypeList = baseCodeService.findByCodeType(CodeTypeConstant.DEPT_TYPE);
+        //员工标识
+        List<BaseCode> roleTypeList = baseCodeService.findByCodeType(CodeTypeConstant.EMP_ROLE_TYPE);
+        //员工职位
+        List<BaseCode> JobList = baseCodeService.findByCodeType(CodeTypeConstant.EMP_JOB);
+        //员工性别
+        List<BaseCode> sexList = baseCodeService.findByCodeType(CodeTypeConstant.SEX);
+        //上级领导
+        EmployeeCriteria criteria = new EmployeeCriteria();
+        EmployeeCriteria.Criteria cri = criteria.createCriteria();
+        cri.andJobEqualTo("1");
+        List<Employee> mgrList = employeeService.selectByCriteria(criteria);
+        map.put("deptTypeList", JsonUtil.listtojson(deptTypeList));
+        map.put("roleTypeList", JsonUtil.listtojson(roleTypeList));
+        map.put("JobList", JsonUtil.listtojson(JobList));
+        map.put("sysMenuList", JsonUtil.listtojson(sysMenuList));
+        map.put("sexList", JsonUtil.listtojson(sexList));
+        map.put("mgrList", JsonUtil.listtojson(mgrList));
         return Views.STORE_OUT_VIEW;
     }
 
@@ -64,6 +111,27 @@ public class StockController {
      */
     @RequestMapping(Url.STOCK_MANAGE_LIST)
     public String stockIndex(final Map<String, Object> map) {
+        //查询按钮
+        List<SysMenu> sysMenuList = sysMenuService.selecyByCriteria(new SysMenuCriteria());
+        //归属部门
+        List<BaseCode> deptTypeList = baseCodeService.findByCodeType(CodeTypeConstant.DEPT_TYPE);
+        //员工标识
+        List<BaseCode> roleTypeList = baseCodeService.findByCodeType(CodeTypeConstant.EMP_ROLE_TYPE);
+        //员工职位
+        List<BaseCode> JobList = baseCodeService.findByCodeType(CodeTypeConstant.EMP_JOB);
+        //员工性别
+        List<BaseCode> sexList = baseCodeService.findByCodeType(CodeTypeConstant.SEX);
+        //上级领导
+        EmployeeCriteria criteria = new EmployeeCriteria();
+        EmployeeCriteria.Criteria cri = criteria.createCriteria();
+        cri.andJobEqualTo("1");
+        List<Employee> mgrList = employeeService.selectByCriteria(criteria);
+        map.put("deptTypeList", JsonUtil.listtojson(deptTypeList));
+        map.put("roleTypeList", JsonUtil.listtojson(roleTypeList));
+        map.put("JobList", JsonUtil.listtojson(JobList));
+        map.put("sysMenuList", JsonUtil.listtojson(sysMenuList));
+        map.put("sexList", JsonUtil.listtojson(sexList));
+        map.put("mgrList", JsonUtil.listtojson(mgrList));
         return Views.STOCK_LIST_VIEW;
     }
 

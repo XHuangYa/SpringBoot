@@ -24,7 +24,7 @@
 	<input type="hidden" id="stockList" value="stockManageList" />
 	<input type="hidden" id="storeOutList" value="storeOutList" />
 	<input type="hidden" id="storeInList" value="storeInList" />
-	<input type="hidden" id="basecodeList" value="basecodeManageList" /> 
+	<input type="hidden" id="baseCodeList" value="baseCodeList" />
 	
 	
     <div class="circle">

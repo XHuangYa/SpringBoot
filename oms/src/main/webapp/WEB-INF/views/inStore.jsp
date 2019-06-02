@@ -26,6 +26,7 @@
     <script src="<%=basePath%>static/bootstrap/bootstrapValidator/js/bootstrapValidator.min.js"></script>
     <script src="<%=basePath%>static/bootstrap/js/bootstrap-editable.min.js"></script>
     <script src="<%=basePath%>static/bootstrap/js/bootstrap-table-editable.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
     <%--css--%>
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/jquery-confirm.css">
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap.min.css">
@@ -40,12 +41,14 @@
             margin: 0;
             padding: 0;
         }
-        .breadcrumb{
+
+        .breadcrumb {
             width: 1205px;
             height: 40px;
             margin-left: 18px;
             margin-top: 15px;
         }
+
         #kk {
             margin-top: 50px;
             height: 250px;
@@ -63,8 +66,8 @@
 </ol>
 <!-- 查询框 start -->
 <div class="panel-body" style="padding-bottom:0px; padding-top:0px ;">
-    <div class="panel panel-default"style="width: 1205px">
-        <div class="panel-body"style="height: 620px;">
+    <div class="panel panel-default" style="width: 1205px">
+        <div class="panel-body" style="height: 620px;">
             <div class="container-fluid">
 
                 <form id="searchStockForm" name="searchStockForm" class="form-horizontal">
@@ -72,7 +75,8 @@
                         <div class="row">
                             <label class="control-label col-md-1 ">商品名称:</label>
                             <div class="col-md-2 ">
-                                <input type="text" class="form-control  input-sm" name="search_pdtName" id="search_pdtName" placeholder="请输入商品名称" oninput="checkInput()" >
+                                <input type="text" class="form-control  input-sm" name="search_pdtName"
+                                       id="search_pdtName" placeholder="请输入商品名称" oninput="checkInput()">
                             </div>
 
                             <label class="control-label col-md-1 ">开始时间:</label>
@@ -123,6 +127,7 @@
     function queryStockBtn() {
         $("#tb_roles").bootstrapTable("refresh");
     }
+
     /*重置按钮*/
     function resetStockBtn() {
         $("#searchStockForm")[0].reset();
@@ -132,6 +137,7 @@
         $('#tb_roles').bootstrapTable('refresh');
         changeBtndisable();
     }
+
     /*-------------设置重置按钮状态start---------*/
     function changeBtnable() {
         $("#resetSearchBtn").removeAttr("disabled");
@@ -160,6 +166,7 @@
         }
         values = "";
     }
+
     /*-------------设置重置按钮状态start---------*/
     function changeBtnable() {
         $("#resetSearchBtn").removeAttr("disabled");
@@ -200,8 +207,9 @@
             });
         }
     }
-    function deleteTask(stockId){
-        var delUrl=$("#deleteInStockUrl").val();
+
+    function deleteTask(stockId) {
+        var delUrl = $("#deleteInStockUrl").val();
         $.post(delUrl, {"stockId": stockId}, function (data) {
             if (data || data == 'true') {
                 $.alert({
@@ -238,6 +246,7 @@
 
 
     }
+
     /*---------bootstrapTable------start-----*/
     var index = '';
     var TableInit = function () {
@@ -265,8 +274,8 @@
                         pageSize: params.pageSize,
                         orderBy: params.sortName,
                         orderType: params.sortOrder,
-                        flag:"IN",
-                        pdtName:$("#search_pdtName").val(),
+                        flag: "IN",
+                        pdtName: $("#search_pdtName").val(),
                         beginTime: $("#beginTime").val(),//开始时间
                         endTime: $("#endTime").val(),//结束时间
                         searchText: params.searchText
@@ -339,14 +348,14 @@
                         type: 'text',
                         title: '入库量',
                         validate: function (v) {
+                            if (!v) return '入库数量不能为空';
                             if (/(^\s+)|(\s+$)/g.test(v)) {
-                                return '入库量不能输入空格!';
+                                return '入库数量不能输入空格!';
                             }
-                            if (/^[1-9]\d*$/ .test(v)) {
-                                return '只能输入数字!';
-                            }
+                            if (isNaN(v)) return '商品数量必须是数字';
+                        }
                     }
-                }}, {
+                }, {
                     title: '入库时间',
                     field: 'inTime',
                     align: 'center',

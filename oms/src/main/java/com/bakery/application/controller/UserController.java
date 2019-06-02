@@ -34,6 +34,8 @@ public class UserController {
     SysMenuService sysMenuService;
     @Autowired
     UserService userService;
+    @Autowired
+    EmployeeService employeeService;
 
     /**
      * @Description: 客戶管理主页面
@@ -48,6 +50,23 @@ public class UserController {
         List<SysMenu> sysMenuList = sysMenuService.selecyByCriteria(new SysMenuCriteria());
         //性别
         List<BaseCode> sexList = baseCodeService.findByCodeType(CodeTypeConstant.SEX);
+        //归属部门
+        List<BaseCode> deptTypeList = baseCodeService.findByCodeType(CodeTypeConstant.DEPT_TYPE);
+        //员工标识
+        List<BaseCode> roleTypeList = baseCodeService.findByCodeType(CodeTypeConstant.EMP_ROLE_TYPE);
+        //员工职位
+        List<BaseCode> JobList = baseCodeService.findByCodeType(CodeTypeConstant.EMP_JOB);
+        //上级领导
+        EmployeeCriteria criteria = new EmployeeCriteria();
+        EmployeeCriteria.Criteria cri = criteria.createCriteria();
+        cri.andJobEqualTo("1");
+        List<Employee> mgrList = employeeService.selectByCriteria(criteria);
+        map.put("deptTypeList", JsonUtil.listtojson(deptTypeList));
+        map.put("roleTypeList", JsonUtil.listtojson(roleTypeList));
+        map.put("JobList", JsonUtil.listtojson(JobList));
+        map.put("sysMenuList", JsonUtil.listtojson(sysMenuList));
+        map.put("sexList", JsonUtil.listtojson(sexList));
+        map.put("mgrList", JsonUtil.listtojson(mgrList));
         map.put("sexList", JsonUtil.listtojson(sexList));
         map.put("sysMenuList", JsonUtil.listtojson(sysMenuList));
         return Views.USER_LIST_VIEW;
@@ -96,6 +115,7 @@ public class UserController {
         }
         return map;
     }
+
     /**
      * @Description: 删除用户
      * @Author: LiTing
@@ -103,9 +123,9 @@ public class UserController {
      * @return:
      * @throws:
      */
-    @RequestMapping(value =Url.DELETE_USER_SINGLE_URL)
+    @RequestMapping(value = Url.DELETE_USER_SINGLE_URL)
     public @ResponseBody
-    boolean deleteUser(User user){
+    boolean deleteUser(User user) {
         user.setStatus(0);
         return userService.updateByPrimaryKeySelective(user);
     }

@@ -70,7 +70,6 @@
                                 <li class="tab_regist">注册</li>
                             </ul>
                         </div>
-
                         <div class="form-top">
                             <div class="form-top-left">
                                 <div>
@@ -139,7 +138,6 @@
                     </div>
                 </div>
             </div>
-
             <!--注册-->
             <div class="regist  hide">
                 <div class="row">
@@ -264,7 +262,8 @@
                                            placeholder="确认密码"
                                            class="form-control">
                                 </div>
-                                <button type="button" class="btn btn-warning btn-block" onclick="reBackPwdFun()">确认</button>
+                                <button type="button" class="btn btn-warning btn-block" onclick="reBackPwdFun()">确认
+                                </button>
                             </form>
                         </div>
                         <!-- end-->
@@ -358,17 +357,18 @@
                 data: $("#regisForm").serialize(),
                 url: registUrl,
                 success: function (data) {
+                    alert("注册成功！");
                     window.location.href = '<%=basePath%>oms';
                 },
                 error: function (data) {
-                    alert("登陆信息有误！");
+                    alert("注册信息有误！");
                 }
             });
         }
     }
 
     /*找回密码*/
-    function reBackPwdFun(){
+    function reBackPwdFun() {
         var rebackPwdUrl = $("#rebackPwdUrl").val();
         var flag = $("#backPwdForm").valid();
         if (flag) {
@@ -398,6 +398,7 @@
             });
         }
     }
+
     $(function () {
         $.validator.addMethod("regex", function (value, element, regexpr) {
             return regexpr.test(value);

@@ -29,7 +29,8 @@
     <script src="<%=basePath%>static/bootstrap/treeView/js/bootstrap-treeview.js"></script>
     <script type="text/javascript" src="<%=basePath%>static/js/jquery.serializejson.min.js"></script>
     <script type="text/javascript" src="<%=basePath%>static/bootstrap/switch/js/bootstrap-switch.min.js"></script>
-    <%--css--%>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<%--css--%>
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/jquery-confirm.css">
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap-table.min.css">

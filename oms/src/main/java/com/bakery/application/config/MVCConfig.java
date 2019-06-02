@@ -38,14 +38,11 @@ public class MVCConfig implements WebMvcConfigurer {
         fc.setFastJsonConfig(fastJsonConfig);
         converters.add(fc);
     }
-    //资源映射路径
 
-    @Configuration
-    public class MyWebAppConfigurer implements WebMvcConfigurer {
-        @Override
-        public void addResourceHandlers(ResourceHandlerRegistry registry) {
-            registry.addResourceHandler("/image/**").addResourceLocations("file:/Users/liting/文档/upload/");
-        }
+    //资源映射路径
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/image/**").addResourceLocations("file:/Users/liting/文档/upload/");
     }
 
 
@@ -54,8 +51,8 @@ public class MVCConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginInterceptor)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/oms", "/login", "/**/*.css", "/**/*.js", "/**/*.png", "/**/*.jpg", "/**/*.jpeg");
+                .excludePathPatterns("/error400Page", "/error401Page", "/error404Page", "/error403Page", "/error405Page", "/error500Page", "/oms", "/login", "/regisOms", "/loginValidate", "/getValidNumber", "/validateNumber", "/regisValidate", "validateRegisNum", "getRegisValidNum",
+                        "pwdGetValidNum", "repwdValidateNum", "/**/*.css", "/**/*.js", "/**/*.png", "/**/*.jpg", "/**/*.jpeg");
     }
-
 
 }

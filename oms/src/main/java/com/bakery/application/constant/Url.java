@@ -93,28 +93,30 @@ public interface Url {
     String REPWD_VALIDATE_NUM_URL="/repwdValidateNum";
     //找回密码
     String REBACK_PWD_URL="/rebackPwd";
+    //修改密码
+    String UPDATE_PWD_URL="/updatePwd";
     //数据字典列表
     String BASECODE_BY_PAGE_LIST = "/baseCodeByPageList";
-    
-    String BASECODE_MANAGE_LIST = "/baseCodeManageList";
-    
+
+    String BASECODE_MANAGE_LIST = "/baseCodeList";
+
     String CODETYPE_BY_PAGE_LIST = "/codeTypeByPageList";
-    
+
     String UPDATE_CODETYPE = "/updateCodeTyoe";
-    
+
     String INSERT_CODETYPE="/insertCodeType";
-    
+
     String UPDATE_CODE="/updateCode";
-    
+
     String INSERT_CODE="/insertCode";
-    
-    String DELETE_LIST_CODETYPE="/deleteInfoCodeType";
-    
+
+    String DELETE_LIST_CODETYPE="/deleteListCodeType";
+
     String DELETE_INFO_CODETYPE="/deleteInfoCodeType";
-    
+
     String DELETE_INFO_CODE="/deleteInfoCode";
-    
-    String DELETE_LIST_CODE="/deleteInfoCode";
-    
-    
+
+    String DELETE_LIST_CODE="/deleteListCode";
+
+
 }

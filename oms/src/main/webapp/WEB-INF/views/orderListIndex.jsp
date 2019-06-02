@@ -26,6 +26,7 @@
     <script src="<%=basePath%>static/bootstrap/bootstrapValidator/js/bootstrapValidator.min.js"></script>
     <script src="<%=basePath%>static/bootstrap/js/bootstrap-editable.min.js"></script>
     <script src="<%=basePath%>static/bootstrap/js/bootstrap-table-editable.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
     <%--css--%>
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/jquery-confirm.css">
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap.min.css">
@@ -75,34 +76,34 @@
 </ol>
 <!-- 查询框 start -->
 <div class="panel-body" style="padding-bottom:0px; padding-top:0px ;">
-    <div class="panel panel-default"style="width: 1205px;">
+    <div class="panel panel-default" style="width: 1205px;">
         <div class="panel-body" style="height: 620px">
             <div class="container-fluid">
 
                 <form id="searchOrderForm" name="searchOrderForm" class="form-horizontal">
                     <div class="form-group">
                         <div class="row">
-                            <label class="control-label col-md-1 ">客户名称:</label>
+                            <%--<label class="control-label col-md-1 ">客户名称:</label>
                             <div class="col-md-2 ">
                                 <input type="text" class="form-control  input-sm" name="search_userName"
                                        id="search_userName" placeholder="请输入客户名称" oninput="checkInput()">
-                            </div>
+                            </div>--%>
                             <label class="control-label col-md-1 ">联系方式:</label>
-                            <div class="col-md-2 ">
+                            <div class="col-md-3">
                                 <input type="text" class="form-control  input-sm " name="search_userPhone"
                                        id="search_userPhone" placeholder="请输入联系方式" oninput="checkInput()">
                             </div>
                             <label class="control-label col-md-1 ">时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;间:</label>
-                            <div class="col-md-2 has-feedback">
-                                <input name="beginTime" id="beginTime" type="text " placeholder="精确到年月日"
+                            <div class="col-md-3 has-feedback">
+                                <input name="beginTime" id="beginTime" type="text" placeholder="精确到年月日"
                                        class="form-control input-sm" onchange="checkInput()"
                                        onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'endTime\')||\'2020-10-01\'}',dateFmt: 'yyyy-MM-dd'})"/>
                                 <span class="glyphicon glyphicon-calendar form-control-feedback "></span>
                             </div>
 
                             <label class="control-label col-md-1" style="padding-right: 60px; ">至:</label>
-                            <div class="col-md-2 has-feedback">
-                                <input name="endTime" id="endTime" type="text " placeholder="精确到年月日"
+                            <div class="col-md-3 has-feedback">
+                                <input name="endTime" id="endTime" type="text" placeholder="精确到年月日"
                                        class="form-control  input-sm" onchange="checkInput()"
                                        onFocus="WdatePicker({minDate:'#F{$dp.$D(\'beginTime\')}',maxDate:'%y-%M-%d',dateFmt: 'yyyy-MM-dd'})"/>
                                 <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
@@ -329,7 +330,7 @@
     function deleteDtlTask(row) {
         var rows = row.split(",");
         var delUrl = $("#deleteOrderDtlUrl").val();
-        $.post(delUrl, {"orderDtlId": rows[1],"orderId":rows[0]}, function (data) {
+        $.post(delUrl, {"orderDtlId": rows[1], "orderId": rows[0]}, function (data) {
             if (data || data == 'true') {
                 $.alert({
                     title: '提示',

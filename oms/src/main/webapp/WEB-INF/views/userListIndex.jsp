@@ -27,6 +27,7 @@
     <script src="<%=basePath%>static/bootstrap/bootstrapValidator/js/bootstrapValidator.min.js"></script>
     <script src="<%=basePath%>static/bootstrap/js/bootstrap-editable.min.js"></script>
     <script src="<%=basePath%>static/bootstrap/js/bootstrap-table-editable.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
     <%--css--%>
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/jquery-confirm.css">
     <link rel="stylesheet" href="<%=basePath%>static/bootstrap/css/bootstrap.min.css">
@@ -41,6 +42,7 @@
             margin: 0;
             padding: 0;
         }
+
         .breadcrumb {
             width: 1200px;
             height: 40px;
@@ -190,7 +192,7 @@
                     <button id="ok" class="btn btn-primary  col-sm-2 col-sm-offset-3   btn-sm"
                             onclick="saveOrUpdateFun()">保存
                     </button>
-                    <button id="reseted"  class="btn btn-warning  col-sm-2  col-sm-offset-2  btn-sm"
+                    <button id="reseted" class="btn btn-warning  col-sm-2  col-sm-offset-2  btn-sm"
                             onclick="resetModelBtn()">重置
                     </button>
                 </div>
@@ -234,10 +236,12 @@
     function queryUserBtn() {
         $('#tb_roles').bootstrapTable('refresh');
     }
+
     /*刷新按钮*/
     function refreshFun() {
         $('#tb_roles').bootstrapTable('refresh');
     }
+
     /*重置按钮*/
     function resetUserBtn() {
         $("#searchUserForm")[0].reset();
@@ -263,6 +267,7 @@
         $("#userForm").data('bootstrapValidator').destroy();
         $('#userForm').data('bootstrapValidator', null);
     }
+
     /*删除按钮*/
     function deleteFun() {
         var rowids = $('#tb_roles').bootstrapTable('getSelections'); //获取所选中的行
@@ -360,6 +365,7 @@
             }
         }, 'json');
     }
+
     /*新增信息确认按钮*/
     function saveOrUpdateFun() {
         var bootstrapValidator = $("#userForm").data('bootstrapValidator');
