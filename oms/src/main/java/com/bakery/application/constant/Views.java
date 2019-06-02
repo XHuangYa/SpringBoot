@@ -23,5 +23,9 @@ public interface Views {
     String STORE_IN_VIEW="store.in.list";
     //welcome
     String WELCOME_VIEW="welcome.index";
+    
+    //数据字典
+    String BASECODE_VIEW="basecode.index";
+    String CODETYPE_VIEW="codetype.index";
 
 }

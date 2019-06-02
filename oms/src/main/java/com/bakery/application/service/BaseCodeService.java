@@ -1,8 +1,12 @@
 package com.bakery.application.service;
 
-import com.bakery.application.entity.BaseCode;
-
 import java.util.List;
+
+import com.bakery.application.constant.Page;
+import com.bakery.application.constant.PageInfo;
+import com.bakery.application.constant.ResDataDTO;
+import com.bakery.application.entity.BaseCode;
+import com.bakery.application.entity.BaseCodeCriteria;
 
 /**
  * @author liting
@@ -17,4 +21,14 @@ public interface BaseCodeService {
      * @throws:
      */
     public List<BaseCode> findByCodeType(String codeType);
+    
+    
+    
+    ResDataDTO<List<BaseCode>>  selectCodeByPage(BaseCodeCriteria criteria, PageInfo pageInfo);
+	
+	int insertBaseCode (BaseCode baseCode);
+	
+	int updateBaseCode (BaseCodeCriteria criteria,BaseCode baseCode);
+	
+	List<BaseCode> selectInfoCode(BaseCodeCriteria criteria);
 }
