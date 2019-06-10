@@ -16,6 +16,8 @@ public interface OrderMapper {
 
     int updatePricebyPrimaryKey(OrderDtl orderDtl);
 
+    int updatePricebyPrimaryKeyV(OrderDtl orderDtl);
+
     int deleteOrderAndDtl(String orderId);
 
     int countByExample(OrderCriteria example);

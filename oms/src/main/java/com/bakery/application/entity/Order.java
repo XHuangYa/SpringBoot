@@ -13,6 +13,8 @@ public class Order {
 
     private String isVip;
 
+    private String isVipDesc;
+
     private String userPhone;
 
     private String payMethod;
@@ -24,6 +26,14 @@ public class Order {
     private Date updateTime;
 
     private String remark;
+
+    public String getIsVipDesc() {
+        return isVipDesc;
+    }
+
+    public void setIsVipDesc(String isVipDesc) {
+        this.isVipDesc = isVipDesc;
+    }
 
     public String getOrderId() {
         return orderId;

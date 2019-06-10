@@ -224,11 +224,8 @@
         <if test="pdtName!=null and pdtName!=''">
             and bp.PDT_NAME=#{pdtName}
         </if>
-        <if test="pdtType!=null and pdtType!=''">
-            and bp.PDT_TYPE=#{pdtType}
-        </if>
-        ORDER BY
-        bp.ID
+
+        ORDER BY bp.ID
     </select>
     <!--批量插入-->
     <insert id="insertBatch">

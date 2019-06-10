@@ -677,6 +677,14 @@
                     validators: {
                         notEmpty: {
                             message: '请填写选员工名称'
+                        },
+                        stringLength: {
+                            max: 10,
+                            message: '用户名长度过长'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z\u4e00-\u9fa5]+$/,
+                            message: '员工名称不能有数字和字符！'
                         }
                     }
                 },

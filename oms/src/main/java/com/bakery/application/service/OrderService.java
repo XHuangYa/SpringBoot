@@ -3,6 +3,7 @@ package com.bakery.application.service;
 import com.bakery.application.constant.Page;
 import com.bakery.application.dto.OrderDTO;
 import com.bakery.application.entity.Order;
+import com.bakery.application.entity.OrderCriteria;
 import com.bakery.application.entity.OrderDtl;
 
 import java.util.List;
@@ -57,4 +58,13 @@ public interface OrderService {
      * @throws:
      */
     public Map<String,Object> insertSelective(Order order);
+
+    /**
+     * @Description:example
+     * @Author: LiTing
+     * @Date: 7:32 PM 2019/6/8
+     * @return:
+     * @throws:
+     */
+    List<Order> selectByExample(OrderCriteria example);
 }

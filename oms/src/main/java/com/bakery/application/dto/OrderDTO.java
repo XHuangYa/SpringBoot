@@ -31,6 +31,16 @@ public class OrderDTO {
     @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     private Date endTime;//结束时间
 
+    private  String payMethodDesc;
+
+    public String getPayMethodDesc() {
+        return payMethodDesc;
+    }
+
+    public void setPayMethodDesc(String payMethodDesc) {
+        this.payMethodDesc = payMethodDesc;
+    }
+
     public Date getBeginTime() {
         return beginTime;
     }

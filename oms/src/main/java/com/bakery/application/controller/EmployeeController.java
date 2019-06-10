@@ -63,7 +63,7 @@ public class EmployeeController {
         //上级领导
         EmployeeCriteria criteria = new EmployeeCriteria();
         EmployeeCriteria.Criteria cri = criteria.createCriteria();
-        cri.andJobEqualTo("1");
+        cri.andJobBetween("1","2");
         List<Employee> mgrList = employeeService.selectByCriteria(criteria);
         map.put("deptTypeList", JsonUtil.listtojson(deptTypeList));
         map.put("roleTypeList", JsonUtil.listtojson(roleTypeList));

@@ -44,7 +44,7 @@
         }
 
         .bg {
-            background: url(static/assets/img/backgrounds/2.jpg) no-repeat center center;
+            background: url(static/assets/img/backgrounds/bg.jpeg) no-repeat center center;
             background-size: 50% 50%;
         }
     </style>

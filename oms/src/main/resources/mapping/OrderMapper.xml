@@ -102,16 +102,9 @@
         WHERE
         bc.DATA_CODE = bo.PAY_METHOD
         AND bc.CODE_TYPE = 'PAY_METHOD'
-        ) payMethod,
-        (
-        SELECT
-        bc.CODE_NAME
-        FROM
-        base_code bc
-        WHERE
-        bc.DATA_CODE = bo.IS_VIP
-        AND bc.CODE_TYPE = 'YSESORNO'
-        ) isVip,
+        ) payMethodDesc,
+        bo.IS_VIP isVip,
+        bo.PAY_METHOD payMethod,
         bo.TOTAL_PRICE totalPrice,
         bo.CREATE_TIME createTime,
         bo.UPDATE_TIME updateTime,
@@ -136,9 +129,10 @@
             </if>
             AND bo.`STATUS` = 1
         </where>
+        order by bo.UPDATE_TIME desc
     </select>
-    <!--修改订单总价-->
-    <update id="updatePricebyPrimaryKey" parameterType="com.bakery.application.entity.Order">
+    <!--修改订单总价非会员-->
+    <update id="updatePricebyPrimaryKey" parameterType="com.bakery.application.entity.OrderDtl">
         UPDATE `bky_order` o
         SET o.TOTAL_PRICE = (
             SELECT
@@ -148,6 +142,26 @@
             WHERE
                 od.ORDER_ID = #{orderId} and od.STATUS=1
         )where o.ORDER_ID=#{orderId};
+
+    </update>
+    <!--修改订单总价会员-->
+    <update id="updatePricebyPrimaryKeyV" parameterType="com.bakery.application.entity.Order">
+        UPDATE `bky_order` o
+        SET o.TOTAL_PRICE = (
+            SELECT
+                TRUNCATE (
+                    (
+                        SELECT
+                            SUM(od.DTL_TOTAL_PRICE) * 0.8
+                        FROM
+                            bky_order_dtl od
+                        WHERE
+                            od.ORDER_ID = #{orderId} and od.STATUS=1
+                    ),
+                    1
+                )
+            )
+        where o.ORDER_ID=#{orderId};
 
     </update>
     <!--修改订单/订单明细status-->

@@ -80,9 +80,9 @@
                                 </div>
                                 <h3>Sign in to continue</h3>
                             </div>
-                            <div class="form-top-right">
+                           <%-- <div class="form-top-right">
                                 <i class="fa fa-pencil"></i>
-                            </div>
+                            </div>--%>
                         </div>
                         <form role="form" action="" method="post" id="loginForm">
                             <!--普通会员登录start-->
@@ -158,9 +158,9 @@
                                 </div>
                                 <h3>Let's create your account</h3>
                             </div>
-                            <div class="form-top-right">
+                            <%--<div class="form-top-right">
                                 <i class="fa fa-pencil"></i>
-                            </div>
+                            </div>--%>
                         </div>
                         <!--普通会员注册start-->
                         <form role="form" action="" method="post" id="regisForm">
@@ -227,9 +227,9 @@
                             <div class="form-top-left">
                                 <h3 style="margin-top: 15px;">Let's reset your password</h3>
                             </div>
-                            <div class="form-top-right">
+                            <%--<div class="form-top-right">
                                 <i class="fa fa-pencil"></i>
-                            </div>
+                            </div>--%>
                         </div>
                         <!--start-->
                         <div class="pwdRegis" style="padding-top: 0px">

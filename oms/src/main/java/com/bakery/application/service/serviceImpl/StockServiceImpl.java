@@ -55,6 +55,7 @@ public class StockServiceImpl implements StockService {
             stock.setStatus(1);
             stock.setFlag("IN");
             stock.setCreateTime(new Date());
+            stock.setUpdateTime(new Date());
             stock.setStockId(UUIDUtil.create32Key());
         return stockMapper.insertSelective(stock)>=1?true:false;
     }

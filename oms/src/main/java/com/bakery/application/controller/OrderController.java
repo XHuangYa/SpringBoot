@@ -127,6 +127,7 @@ public class OrderController {
     @RequestMapping(value = Url.UPDATE_ORDER_URL, method = RequestMethod.POST)
     public @ResponseBody
     boolean queryOrderDtlPage(Order order) {
+        order.setUpdateTime(new Date());
         return orderService.updateByPrimaryKeySelective(order);
     }
 
@@ -141,6 +142,7 @@ public class OrderController {
     public @ResponseBody
     Map<String, Object> updateOrderDtlpdtNum(OrderDtl orderDtl) {
         Map<String, Object> map = new HashMap<String, Object>();
+        orderDtl.setUpdateTime(new Date());
         final boolean num = orderDtlService.updatepdtNumByPrimaryKey(orderDtl);
         final boolean price = orderService.updatePricebyPrimaryKey(orderDtl);
         if (num && price) {
@@ -250,12 +252,14 @@ public class OrderController {
             dtl.setStatus(1);
             dtl.setCreateTime(new Date());
             dtl.setOrderId(orderId);
+            dtl.setUpdateTime(new Date());
             dtl.setOrderDtlId(UUIDUtil.create32Key());
             dtls.add(dtl);
             Stock stock = new Stock();
             stock.setStockId(dtl.getOrderDtlId());
             stock.setPdtId(dtl.getPdtId());
             stock.setOutTime(dtl.getCreateTime());
+            stock.setUpdateTime(dtl.getUpdateTime());
             stock.setOutNum(String.valueOf(dtl.getPdtNum()));
             stock.setFlag("OUT");
             stock.setStatus(1);
@@ -264,7 +268,6 @@ public class OrderController {
         }
         Map<String, Object> dtlsMap = orderDtlService.insertBatchService(dtls);//訂單明細
         int i = stockService.insertBatch(stocks);
-        System.out.println(i + "---");
         map.put("orderResult", orderMap.get("orderResult"));
         map.put("dtlResult", dtlsMap.get("dtlResult"));
         return map;

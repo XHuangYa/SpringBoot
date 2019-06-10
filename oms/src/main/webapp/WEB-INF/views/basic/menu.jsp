@@ -55,13 +55,13 @@
     				<li class="storeOutList">出库记录</li>
     			</ul>
     		</li>
-    		<li><span class="img glyphicon glyphicon-shopping-cart"></span>&nbsp; &nbsp; &nbsp;订单管理<span class="right  glyphicon glyphicon-chevron-right"></span>
+    		<li style="border-bottom: 1px solid #414040"><span class="img glyphicon glyphicon-shopping-cart"></span>&nbsp; &nbsp; &nbsp;订单管理<span class="right  glyphicon glyphicon-chevron-right"></span>
     			<ul class="sub">
     				<li class="orderList">订单列表</li>
 					<li class="insertOrder">新增订单</li>
     			</ul>
     		</li>
-    		<li><span class="img glyphicon glyphicon-book"></span>&nbsp; &nbsp; &nbsp;字典管理<span class="right glyphicon glyphicon-chevron-right"></span>
+    		<li id="dicLi" style="border-top: none;"><span class="img glyphicon glyphicon-book"></span>&nbsp; &nbsp; &nbsp;字典管理<span class="right glyphicon glyphicon-chevron-right"></span>
     			<ul class="sub">
     				<li class="baseCodeList">数据字典</li>
     			</ul>
@@ -74,6 +74,8 @@
             var roleId = '<%=employee.getRoleId()%>';
             if(roleId!="1"){
                 $("#empLi").attr("style", "display:none");
+                $("#dicLi").attr("style", "display:none");
+
 			}
             //监听一级菜单点击事件
             $(".nav>li").click(function() {

@@ -136,21 +136,21 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group form-group-sm">
-                        <label class="control-label col-sm-4">客户名称:</label>
+                        <label class="control-label col-sm-4"><span style="color:red">*</span>客户名称:</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control input-sm" name="userName" id="userName"
                                    placeholder="请输入..."/>
                         </div>
                     </div>
                     <div class="form-group form-group-sm">
-                        <label class="control-label col-sm-4">电话号码:</label>
+                        <label class="control-label col-sm-4"><span style="color:red">*</span>电话号码:</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control input-sm" name="userPhone" id="userPhone"
                                    placeholder="请输入..."/>
                         </div>
                     </div>
                     <div class="form-group form-group-sm">
-                        <label class="control-label col-sm-4">客户性别:</label>
+                        <label class="control-label col-sm-4"><span style="color:red">*</span>客户性别:</label>
                         <div class="col-sm-8">
                             <select class="form-control" name="sex" id="sex"
                                     onkeyup="this.value=this.value.replace(/\s+/g,'')">

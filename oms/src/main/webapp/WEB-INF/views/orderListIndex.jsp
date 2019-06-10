@@ -530,9 +530,15 @@
                     valign: 'middle',
                 }, {
                     title: '支付方式',
-                    field: 'payMethod',
+                    field: 'payMethodDesc',
                     align: 'center',
                     valign: 'middle'
+                }, {
+                    title: '支付方式',
+                    field: 'payMethod',
+                    align: 'center',
+                    valign: 'middle',
+                    visible: false
                 }, {
                     title: '会员',
                     field: 'isVip',

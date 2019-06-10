@@ -94,7 +94,8 @@
 	od.DTL_TOTAL_PRICE dtlTotalPrice,
 	od.ORDER_ID orderId
     FROM
-	`bky_order_dtl` od where od.ORDER_ID=#{orderId} and od.status=1;
+	`bky_order_dtl` od where od.ORDER_ID=#{orderId} and od.status=1
+	order by od.UPDATE_TIME desc
     </select>
     <!--批量插入-->
     <insert id="insertBatch">

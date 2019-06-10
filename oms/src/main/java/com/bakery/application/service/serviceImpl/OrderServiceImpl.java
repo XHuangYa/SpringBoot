@@ -3,6 +3,7 @@ package com.bakery.application.service.serviceImpl;
 import com.bakery.application.constant.Page;
 import com.bakery.application.dto.OrderDTO;
 import com.bakery.application.entity.Order;
+import com.bakery.application.entity.OrderCriteria;
 import com.bakery.application.entity.OrderDtl;
 import com.bakery.application.mapper.OrderMapper;
 import com.bakery.application.service.OrderService;
@@ -40,7 +41,17 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public boolean updatePricebyPrimaryKey(OrderDtl orderDtl) {
-        return orderMapper.updatePricebyPrimaryKey(orderDtl)>=1?true:false;
+        OrderCriteria criteria=new OrderCriteria();
+        OrderCriteria.Criteria cri=criteria.createCriteria();
+        cri.andOrderIdEqualTo(orderDtl.getOrderId());
+        String  vip =orderMapper.selectByExample(criteria).get(0).getIsVip();
+        boolean b=false;
+        if("N".equals(vip)){
+             b = orderMapper.updatePricebyPrimaryKey(orderDtl) >= 1 ? true : false;
+        }else{
+            b=orderMapper.updatePricebyPrimaryKeyV(orderDtl)>= 1 ? true : false;
+        }
+        return b;
     }
 
     @Override
@@ -53,6 +64,7 @@ public class OrderServiceImpl implements OrderService {
         Map<String,Object> map=new HashMap<String,Object>();
         order.setStatus(1);
         order.setCreateTime(new Date());
+        order.setUpdateTime(new Date());
         if(StringUtils.isNotBlank(order.getUserPhone())){
             order.setIsVip("Y");
         }else{
@@ -61,5 +73,10 @@ public class OrderServiceImpl implements OrderService {
         boolean b = orderMapper.insertSelective(order) >= 0 ? true : false;
         map.put("orderResult",b);
         return map;
+    }
+
+    @Override
+    public List<Order> selectByExample(OrderCriteria example) {
+        return orderMapper.selectByExample(example);
     }
 }

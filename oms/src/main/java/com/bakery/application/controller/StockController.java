@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -186,6 +187,7 @@ public class StockController {
         StockCriteria criteria = new StockCriteria();
         StockCriteria.Criteria cri = criteria.createCriteria();
         cri.andStockIdEqualTo(stockDTO.getStockId());
+        stock.setUpdateTime(new Date());
         return stockService.updateByExampleSelective(stock, criteria);
     }
 
