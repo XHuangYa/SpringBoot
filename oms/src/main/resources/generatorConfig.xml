@@ -38,7 +38,7 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
         <!--下面是数据库表名和项目中需要生成类的名称，建议和数据库保持一致，如果有多个表，添加多个节点即可 -->
-        <table tableName="bky_order" domainObjectName="Order"
+        <table tableName="bky_count" domainObjectName="VisitCount"
                enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true">

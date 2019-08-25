@@ -38,8 +38,8 @@ public class LoginController {
     //用户名
     private static String Uid = "XHuangYa";
     //接口安全秘钥
-    //private static String Key = "d41d8cd98f00b204e980";
-    private static String Key = "d41d8cd9843243214";
+    private static String Key = "d41d8cd98f00b204e980";
+    //private static String Key = "d41d8cd9843243214";
     //手机号码，多个号码如13800000000,13800000001,13800000002
     private static String smsMob = "18341836189";
     //短信内容
